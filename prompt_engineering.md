@@ -40,7 +40,7 @@ relevant to legal professionals and ethicists.
 from llama import MistralRunner
 
 runner = MistralRunner(authentication_data)
-user_prompt = "What was the decision in Nixon v. United States? Answer in one sentence."
+user_prompt = "What was the decision in Nixon v. United States?"
 sys_prompt = "You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists."
 answer = runner(prompt, system_prompt=sys_prompt)
 print(answer)
