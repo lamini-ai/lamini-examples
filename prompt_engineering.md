@@ -33,10 +33,18 @@ A query such as `What was the decision in Nixon v. United States?` represents a 
 seeking specific information and tailored responses, while a system prompt, an optional
 directive, sets the context and guides the language model's overall behavior and tone.
 
-By combining the user prompt with the system prompt below,
-the model can generate a nuanced discussion tailored to a legal ethics symposium, providing insights
+In lamini, you can set the system prompt like below. This will allow the model to generate a
+discussion tailored to a legal ethics symposium, providing insights
 relevant to legal professionals and ethicists.
-* `You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists.`
+```python
+from llama import MistralRunner
+
+runner = MistralRunner(authentication_data)
+user_prompt = "What was the decision in Nixon v. United States? Answer in one sentence."
+sys_prompt = "You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists."
+answer = runner(prompt, system_prompt=sys_prompt)
+print(answer)
+```
 
 Here are some additional examples of system prompts:
 
