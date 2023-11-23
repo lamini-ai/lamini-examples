@@ -69,10 +69,14 @@ TODO: add max tokens example
 
 ### Temperature
 
-Temperature affects the randomness of the generated output. Higher values increase randomness.
-Adjusting temperature can influence the diversity of responses.
+Temperature affects the randomness of the generated output.
+* Temperature 0: The model selects the most probable token at each step. This leads to more focused and deterministic responses.
+* Low Temperature (Close to 0): Results in more deterministic and conservative outputs, with a focus on the most probable tokens.
+* Moderate Temperature (Around 1): Allowing for a mix of likely and less likely tokens in the output.
+* High Temperature (Above 1): Introduces more randomness and diversity into the generation process, leading to more creative and varied responses.
 
 TODO: add temperature example
+TODO: check if temperature must be float
 
 --------------
 TODO: batch
