@@ -52,3 +52,28 @@ Here are some additional examples of system prompts:
 * `Imagine you are a poet inspired by nature.`
 * `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` (this is the default system prompt in lamini's MistralRunner)
 
+### Common Parameters
+
+In prompt engineering, various parameters play a crucial role in shaping the behavior and output of language models.
+Here are some common ones:
+
+#### Max Tokens
+
+A token refers to the smallest unit of text, whether it be a word, subword, or character.
+`max_tokens` specifies the maximum number of tokens in the generated output.
+Adjusting `max_tokens` allows you to control the length of the output. Increasing for longer
+or decreasing for shorter results. However, it's important to note that utilizing tokens
+may result in associated costs.
+
+TODO: add max tokens example
+
+#### Temperature
+
+Temperature affects the randomness of the generated output. Higher values increase randomness.
+Adjusting temperature can influence the diversity of responses.
+
+TODO: add temperature example
+
+--------------
+TODO: batch
+TODO: json_schema
