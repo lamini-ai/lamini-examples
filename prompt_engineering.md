@@ -1,6 +1,6 @@
-## Simple Guide to Prompt Engineering
+# Simple Guide to Prompt Engineering
 
-### Introduction
+## Introduction
 
 Prompt engineering involves designing prompts that elicit desired response
 from the model. You can create prompts for a wide range of purposes, including
@@ -27,7 +27,7 @@ Sample output:
 The decision in Nixon v. United States was that President Richard Nixon was ordered to release tapes of his conversations with his advisors, as part of a court order to comply with the Presidential Records Act.
 ```
 
-### User vs. System Prompts
+## User vs. System Prompts
 
 A query such as `What was the decision in Nixon v. United States?` represents a user prompt,
 seeking specific information and tailored responses, while a system prompt, an optional
@@ -52,12 +52,12 @@ Here are some additional examples of system prompts:
 * `Imagine you are a poet inspired by nature.`
 * `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` (this is the default system prompt in lamini's MistralRunner)
 
-### Common Parameters
+## Common Parameters
 
 In prompt engineering, various parameters play a crucial role in shaping the behavior and output of language models.
 Here are some common ones:
 
-#### Max Tokens
+### Max Tokens
 
 A token refers to the smallest unit of text, whether it be a word, subword, or character.
 `max_tokens` specifies the maximum number of tokens in the generated output.
@@ -67,7 +67,7 @@ may result in associated costs.
 
 TODO: add max tokens example
 
-#### Temperature
+### Temperature
 
 Temperature affects the randomness of the generated output. Higher values increase randomness.
 Adjusting temperature can influence the diversity of responses.
