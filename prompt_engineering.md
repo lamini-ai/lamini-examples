@@ -94,12 +94,12 @@ prompts = ["Is pizza nutritous?",
            "Did Richard Nixon reisgn?",
            "Summarize the impact of global warming.",
           ]
-answer = runner(prompts)
+answer = runner(prompts, system_prompt="Provide very short responses."))
 print(answer)
 ```
 
 Sample output:
-```json
+```
 [{'input': 'Is pizza nutritous?',
   'output': 'No, pizza is not typically considered a nutritious food due to its high calorie, carbohydrate, and fat content. However, it can be made healthier by using whole grain crust, lean protein toppings, and plenty of vegetables.'},
  {'input': 'Did Richard Nixon reisgn?',
