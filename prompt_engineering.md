@@ -78,6 +78,37 @@ Temperature affects the randomness of the generated output.
 TODO: add temperature example
 TODO: check if temperature must be float
 
+## Batching
+
+Batching involves grouping multiple input prompts together and processing them simultaneously as a
+batch.  This approach enhances efficiency and speed by allowing the model to handle several prompts
+at once, optimizing resource utilization and potentially reducing response time.
+
+In lamini, you can easily batch a list of prompts like below:
+
+```python
+from llama import MistralRunner
+
+runner = MistralRunner(authentication_data)
+prompts = ["Is pizza nutritous?",
+           "Did Richard Nixon reisgn?",
+           "Summarize the impact of global warming.",
+          ]
+answer = runner(prompts)
+print(answer)
+```
+
+Sample output:
+```json
+[{'input': 'Is pizza nutritous?',
+  'output': 'No, pizza is not typically considered a nutritious food due to its high calorie, carbohydrate, and fat content. However, it can be made healthier by using whole grain crust, lean protein toppings, and plenty of vegetables.'},
+ {'input': 'Did Richard Nixon reisgn?',
+  'output': ' Yes, Richard Nixon resigned as President of the United States on August 9, 1974.'},
+ {'input: 'Summarize the impact of global warming.',
+  'output': " Global warming has significant impacts on the Earth's environment, including rising sea levels, more frequent and intense heatwaves, droughts, and extreme weather events. It also affects wildlife, agriculture, and human health. The main cause of global warming is the increase in greenhouse gases in the atmosphere, primarily from human activities such as burning fossil fuels and deforestation. Addressing global warming requires reducing greenhouse gas emissions and transitioning to renewable energy sources."}]
+```
+
+
 --------------
 TODO: batch
 TODO: json_schema
