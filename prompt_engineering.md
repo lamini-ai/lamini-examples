@@ -26,6 +26,11 @@ answer = runner(prompt)
 print(answer)
 ```
 
+It's important to note that there's no need for you to manually include the
+special tokens `[INST]` and `[/INST]` around the prompt.
+While the Mistral documentation indicates otherwise, our runner will
+automatically include these special tokens for you.
+
 Sample output:
 
 ```
