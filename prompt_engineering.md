@@ -76,9 +76,10 @@ Temperature affects the randomness of the generated output.
 * High Temperature (Above 1): Introduces more randomness and diversity into the generation process, leading to more creative and varied responses.
 
 TODO: add temperature example
+
 TODO: check if temperature must be float
 
-## Batching
+### Batching
 
 Batching involves grouping multiple input prompts together and processing them simultaneously as a
 batch.  This approach enhances efficiency and speed by allowing the model to handle several prompts
@@ -108,7 +109,14 @@ Sample output:
   'output': " Global warming has significant impacts on the Earth's environment, including rising sea levels, more frequent and intense heatwaves, droughts, and extreme weather events. It also affects wildlife, agriculture, and human health. The main cause of global warming is the increase in greenhouse gases in the atmosphere, primarily from human activities such as burning fossil fuels and deforestation. Addressing global warming requires reducing greenhouse gas emissions and transitioning to renewable energy sources."}]
 ```
 
+## JSON Output with Lamini
 
---------------
-TODO: batch
-TODO: json_schema
+While manually crafting prompts for JSON output is possible,
+the results may lack consistency and reliability.
+Hence, we've introduced a feature to guarantee valid JSON output.
+
+TODO: add example using MistralRunner.
+
+For technical details, see our blog post
+[Guarantee Valid JSON Output with Lamini]
+(https://www.lamini.ai/blog/guarantee-valid-json-output-with-lamini).
