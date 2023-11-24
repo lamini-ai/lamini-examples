@@ -9,13 +9,13 @@ coding assistance, language translation, opinion generation,
 text summerization, conversational agents, data analysis, and more.
 It is important to clearly articulate the task or question in the prompt.
 
+In this tutorial, we'll guide you through prompt engineering using lamini's
+`MistralRunner()`, which uses the Mistral instruct model by default.
+
 For example, You can write a prompt like
 `"What was the decision in Nixon v. United States? Answer in one sentence."`
 Lamini allows you to obtain the answer from the Mistral instruct model
 with just a few lines of code.
-
-In this tutorial, we'll guide you through prompt engineering using lamini's
-`MistralRunner()`, which uses the Mistral instruct model by default.
 
 ```python
 from llama import MistralRunner
