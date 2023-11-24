@@ -35,7 +35,8 @@ A query such as `What was the decision in Nixon v. United States?` represents a 
 seeking specific information and tailored responses, while a system prompt, an optional
 directive, sets the context and guides the language model's overall behavior and tone.
 
-In lamini, you can set the system prompt like below. This will allow the model to generate a
+In lamini, you can set the system prompt like below.
+The system prompt in the example below allows the model to generate a
 discussion tailored to a legal ethics symposium, providing insights
 relevant to legal professionals and ethicists.
 ```python
