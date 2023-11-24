@@ -52,7 +52,7 @@ print(answer)
 Sample Output:
 
 ```
- Nixon v. United States was a landmark case in the United States that involved the Presiden
+ Nixon v. United States was a landmark case in the United States that involved the President
 of the United States, Richard Nixon, and his efforts to cover up illegal activities by his
 administration. The case was decided by the Supreme Court of the United States in 1974 and
 is considered a significant milestone in the development of legal ethics and the rule of law
@@ -71,11 +71,11 @@ decision helped to establish the principle of separation of powers, which holds 
 three branches of government - the legislative, executive, and judicial branches -
 ```
 
-Here are some additional examples of system prompts:
+Here are some additional system prompts examples:
 
 * `You are a patient and helpful customer service agent. Help the user troubleshoot.`
 * `Imagine you are a poet inspired by nature.`
-* `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` (this is the default system prompt in lamini's MistralRunner)
+* `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` (default system prompt in lamini's MistralRunner)
 
 ## Common Parameters
 
