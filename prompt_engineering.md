@@ -18,7 +18,7 @@ with just a few lines of code.
 ```python
 from llama import MistralRunner
 
-runner = MistralRunner(authentication_data) # class for running/training a Mistral model
+runner = MistralRunner() # class for running/training a Mistral model
 prompt = "What was the decision in Nixon v. United States? Answer in one sentence."
 answer = runner(prompt)
 print(answer)
@@ -56,7 +56,7 @@ and provide insights relevant to legal professionals and ethicists, like below.
 ```python
 from llama import MistralRunner
 
-runner = MistralRunner(authentication_data)
+runner = MistralRunner()
 user_prompt = "What was the decision in Nixon v. United States?"
 sys_prompt = "You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists."
 answer = runner(prompt, system_prompt=sys_prompt)
@@ -164,7 +164,7 @@ In lamini, you can easily batch a list of prompts like below:
 ```python
 from llama import MistralRunner
 
-runner = MistralRunner(authentication_data)
+runner = MistralRunner()
 prompts = ["Is pizza nutritous?",
            "Did Richard Nixon reisgn?",
            "Summarize the impact of global warming.",
