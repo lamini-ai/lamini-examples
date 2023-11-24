@@ -7,6 +7,7 @@ from the model. You can create prompts for a wide range of purposes, including
 information retrieval, problem solving, creative/technical writing,
 coding assistance, language translation, opinion generation,
 text summerization, conversational agents, data analysis, and more.
+It is important to clearly articulate the task or question in the prompt.
 
 For example, You can write a prompt like
 `"What was the decision in Nixon v. United States? Answer in one sentence."`
