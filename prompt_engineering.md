@@ -102,7 +102,7 @@ Increasing `max_tokens` for longer results
 or decreasing for shorter results. However, it's important to note that utilizing tokens
 may result in associated costs.
 
-TODO: add max tokens example
+TODO: add max tokens example using the runner
 
 ### Temperature
 
@@ -112,9 +112,7 @@ Temperature affects the randomness of the generated output.
 * Moderate Temperature (Around 1): Allowing for a mix of likely and less likely tokens in the output.
 * High Temperature (Above 1): Introduces more randomness and diversity into the generation process, leading to more creative and varied responses.
 
-TODO: add temperature example
-
-TODO: check if temperature must be float, if int is ok.
+TODO: add temperature example using the runner
 
 ### Batching
 
