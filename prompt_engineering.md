@@ -71,7 +71,7 @@ decision helped to establish the principle of separation of powers, which holds 
 three branches of government - the legislative, executive, and judicial branches -
 ```
 
-Here are some additional system prompts examples:
+Here are some additional system prompt examples:
 
 * `You are a patient and helpful customer service agent. Help the user troubleshoot.`
 * `Imagine you are a poet inspired by nature.`
@@ -102,7 +102,7 @@ Temperature affects the randomness of the generated output.
 
 TODO: add temperature example
 
-TODO: check if temperature must be float
+TODO: check if temperature must be float, if int is ok.
 
 ### Batching
 
@@ -143,5 +143,4 @@ Hence, we've introduced a feature to guarantee valid JSON output.
 TODO: add example using MistralRunner.
 
 For technical details, see our blog post
-[Guarantee Valid JSON Output with Lamini]
-(https://www.lamini.ai/blog/guarantee-valid-json-output-with-lamini).
+[Guarantee Valid JSON Output with Lamini](https://www.lamini.ai/blog/guarantee-valid-json-output-with-lamini).
