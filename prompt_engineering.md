@@ -35,9 +35,9 @@ A query such as `What was the decision in Nixon v. United States?` represents a 
 seeking specific information and tailored responses, while a system prompt, an optional
 directive, sets the context and guides the language model's overall behavior and tone.
 
-In lamini, you can set the system prompt like below, which allows the model to generate a
-discussion tailored to a legal ethics symposium, providing insights
-relevant to legal professionals and ethicists.
+You can add a system prompt to generate an output tailored to a legal ethics symposium,
+and provide insights relevant to legal professionals and ethicists, like below.
+
 ```python
 from llama import MistralRunner
 
@@ -46,6 +46,15 @@ user_prompt = "What was the decision in Nixon v. United States?"
 sys_prompt = "You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists."
 answer = runner(prompt, system_prompt=sys_prompt)
 print(answer)
+```
+Sample Output:
+
+```
+ Nixon v. United States was a landmark case in the United States that involved the President of the United States, Richard Nixon, and his efforts to cover up illegal activities by his administration. The case was decided by the Supreme Court of the United States in 1974 and is considered a significant milestone in the development of legal ethics and the rule of law in the United States.
+
+In Nixon v. United States, the Supreme Court held that President Nixon had committed a high crime or misdemeanor in office by covering up illegal activities by his administration, including the break-in at the Democratic National Committee headquarters during the 1972 presidential campaign. The Court also held that Nixon's actions constituted an abuse of power and violated his constitutional duty to uphold the law.
+
+The decision in Nixon v. United States was significant for several reasons. First, it established the principle that no one, not even the President of the United States, is above the law and that the rule of law must be upheld regardless of who is in power. Second, the decision helped to establish the principle of separation of powers, which holds that the three branches of government - the legislative, executive, and judicial branches -
 ```
 
 Here are some additional examples of system prompts:
