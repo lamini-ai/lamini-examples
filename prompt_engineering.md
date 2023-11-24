@@ -17,7 +17,7 @@ with just a few lines of code.
 ```python
 from llama import MistralRunner
 
-runner = MistralRunner(authentication_data)
+runner = MistralRunner(authentication_data) # class for running/training a Mistral mode
 prompt = "What was the decision in Nixon v. United States? Answer in one sentence."
 answer = runner(prompt)
 print(answer)
