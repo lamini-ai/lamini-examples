@@ -115,7 +115,45 @@ Temperature affects the randomness of the generated output.
 
 TODO: add temperature example using the runner
 
-### Batching
+## Itereate and Repeat
+
+The process of refining and improving prompts through successive iterations is cruical
+for achieving desired results.  The key is to be adaptable and responsive to the performance of the model, user needs, and changes in the external environment. Here is an example:
+
+* Observation
+  - Initial Prompt: `"Tell me about climate change."`
+  - Observation: The model provides general information, but the response lacks specificity.
+* Iteration 1 - Refine User Prompt:
+  - Refined Prompt: `"Explain the impact of human activities on rising global temperatures due to climate change."`
+  - Observation: The model provides more detailed and focused information.
+* Iteration 2 - Adjust Temperature:
+  - Refined Prompt: `"Describe the consequences of deforestation on biodiversity and climate change."`
+  - Adjustment: Lower the temperature for more deterministic responses.
+  - Observation: The responses become more focused and less varied.
+* Iteration 3 - Test Diverse Scenarios:
+  - Refined Prompt: `"Discuss the role of renewable energy in mitigating climate change."`
+  - Testing Scenario: Include prompts related to different renewable energy sources.
+  - Observation: Evaluate how well the model generalizes across various aspects of the topic.
+* Iteration 4 - Incorporate Feedback.
+  - Refined Prompt: `"Examine the economic impact of climate change policies on developing nations."`
+  - Feedback: Users express a desire for insights into economic aspects.
+  - Observation: The model adapts to provide more information on economic considerations.
+* Iteration 5 - Adjust Max Tokens:
+  - Refined Prompt: `"Summarize the key findings of the latest IPCC report on climate change."`
+  - Adjustment: Set a higher max tokens limit for more comprehensive responses.
+  - Observation: Ensure that longer documents, like summaries, are generated without being cut off.
+* Iteration 6 - Explore Novel Prompts:
+  - Refined Prompt: `"Imagine you are a journalist reporting on climate change. Provide a news brief highlighting recent developments."`
+  - Observation: Assess how well the model responds to prompts that simulate real-world scenarios.
+* Iteration 7 - Fine-Tune System Prompts:
+  - Refined System Prompt: `"You are an expert scientist responding to inquiries about climate change. Maintain a scientific and informative tone."`
+  - Observation: Evaluate if the refined system prompt influences the model's tone and style.
+* Iteration 8 - Stay Informed:
+  - Refined Prompt: `"Considering recent advancements, discuss the emerging technologies for carbon capture and their potential impact on mitigating climate change."`
+  - Adjustment: Incorporate new keywords or concepts based on the latest information.
+  - Observation: Ensure that the model stays up-to-date with evolving topics.
+
+## Batching Prompts
 
 Batching involves grouping multiple input prompts together and processing them simultaneously as a
 batch.  This approach enhances efficiency and speed by allowing the model to handle several prompts
