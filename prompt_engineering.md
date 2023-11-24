@@ -31,6 +31,15 @@ release tapes of his conversations with his advisors, as part of a court order t
 with the Presidential Records Act.
 ```
 
+Additional prompt examples:
+* `How to convert inches to centimeters?`
+* `Summarize this story: once upon a time, there was a ...`
+* `Write java code for this problem.  Give an array of integers and an integer target, return the indices of the two numbers such that they add up to the target.  Also explain the runtime complexity of the code.`
+* `Write a short story about a talking bear who lived in a treehouse.`
+* `Translate "hello world, I am a llama" to French.`
+* `Explain superintelligence.`
+* `What is your opinion on AI?`
+
 ## User vs. System Prompts
 
 A query such as `What was the decision in Nixon v. United States?` represents a user prompt,
