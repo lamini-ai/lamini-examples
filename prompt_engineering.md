@@ -9,7 +9,7 @@ coding assistance, language translation, opinion generation,
 text summerization, conversational agents, data analysis, and more.
 
 For example, You can write a prompt like
-"What was the decision in Nixon v. United States? Answer in one sentence."
+`What was the decision in Nixon v. United States? Answer in one sentence.`
 With lamini, you can get the answer from the mistral instruct model with just a few lines of code.
 
 ```python
