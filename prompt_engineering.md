@@ -37,8 +37,11 @@ Additional prompt examples:
 * `Write java code for this problem.  Give an array of integers and an integer target, return the indices of the two numbers such that they add up to the target.  Also explain the runtime complexity of the code.`
 * `Write a short story about a talking bear who lived in a treehouse.`
 * `Translate "hello world, I am a llama" to French.`
-* `Explain superintelligence.`
-* `What is your opinion on AI?`
+* `Suggest innovative solutions to address climate change.`
+* `Explain the principles of quantum computing in simple terms.`
+* `What would happen if a major historical event had a different outcome?`
+* `Envision the world 100 years from now.`
+* `If you could time travel to any era, where would you go and why?`
 
 ## User vs. System Prompts
 
