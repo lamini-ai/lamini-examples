@@ -115,7 +115,7 @@ Temperature affects the randomness of the generated output.
 
 TODO: add temperature example using the runner
 
-## Itereate and Repeat
+## Iterate and Repeat
 
 The process of refining and improving prompts through successive iterations is cruical
 for achieving desired results.  The key is to be adaptable and responsive to the performance of the model and user needs. Here is an example:
