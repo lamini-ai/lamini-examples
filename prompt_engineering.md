@@ -14,11 +14,13 @@ For example, You can write a prompt like
 Lamini allows you to obtain the answer from the Mistral instruct model
 with just a few lines of code.
 
+In this tutorial, we'll guide you through prompt engineering using lamini's
+`MistralRunner()`, which uses the Mistral instruct model by default.
 
 ```python
 from llama import MistralRunner
 
-runner = MistralRunner() # class for running/training a Mistral model
+runner = MistralRunner()
 prompt = "What was the decision in Nixon v. United States? Answer in one sentence."
 answer = runner(prompt)
 print(answer)
