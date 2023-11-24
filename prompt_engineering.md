@@ -98,7 +98,7 @@ Here are some common ones:
 
 A token refers to the smallest unit of text, whether it be a word, subword, or character.
 `max_tokens` specifies the maximum number of tokens in the generated output.
-Adjusting `max_tokens` allows you to control the length of the output. Increasing for longer
+Increasing `max_tokens` for longer results
 or decreasing for shorter results. However, it's important to note that utilizing tokens
 may result in associated costs.
 
