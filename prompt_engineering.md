@@ -103,20 +103,18 @@ Here are some additional system prompt examples:
 
 Consider the output to this prompt:
 ```
-Write a story about the Supreme Court.
+Write an article about the Supreme Court.
 ```
 
-Consider the output, where the end shows it is incomplete sentence
+Consider the output below,  noting its incomplete sentence at the end.
 ```
- Once upon a time, in a land far away, there was a Supreme Court. It was a place where justice was served and where the rights of all citizens were protected. The Supreme Court was made up of wise and fair judges who always made decisions with care, respect, and truth.
+ The Supreme Court of the United States is the highest court in the land, responsible for interpreting the Constitution and federal laws. It is located in Washington, D.C., and is made up of nine justices, including a chief justice and eight associate justices, who are nominated by the President and confirmed by the Senate for life tenure.
 
-One day, a group of people came to the Supreme Court with a very important case. They were seeking justice for a wrong that had been done to them. The judges listened carefully to their story and asked them many questions to make sure they fully understood the situation.
+The Supreme Court has the power to hear cases from all over the country, and its decisions have a far-reaching impact on American society. It has the authority to declare laws passed by Congress or state legislatures to be unconstitutional, and it can also set legal precedents that guide lower courts in their decision-making.
 
-After much deliberation, the judges made a decision. They ruled in favor of the people and ordered that the wrongdoer be held accountable for their actions. The people were overjoyed and thanked the Supreme Court for their help.
+One of the most important roles of the Supreme Court is to protect individual rights and liberties, as enshrined in the Constitution. This includes the right to free speech, the right to bear arms, the right to a fair trial, and the right to privacy. The court has also played a critical role in ensuring that the rights of marginalized groups, such as women, minorities, and the LGBTQ+ community, are protected under the law.
 
-From that day on, the Supreme Court was known as a place where justice always prevailed. People came from all over the land to seek its help and to have their rights protected. The judges always made decisions with care, respect, and truth, and the people always felt that they were being treated fairly and with positivity.
-
-The Supreme Court became a symbol of hope and justice for all, and its legacy lived on for generations to come
+Despite its important role in American society, the Supreme Court is not without controversy. Its decisions
 ```
 
 
