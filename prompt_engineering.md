@@ -101,12 +101,9 @@ Here are some additional system prompt examples:
 
 ### Incomplete output
 
-Consider the output to this prompt:
-```
-Write an article about the Supreme Court.
-```
+Consider the output to this prompt ```Write an article about the Supreme Court.```
 
-Consider the output below,  noting its incomplete sentence at the end.
+The output below has an incomplete sentence at the end.
 ```
  The Supreme Court of the United States is the highest court in the land, responsible for interpreting the Constitution and federal laws. It is located in Washington, D.C., and is made up of nine justices, including a chief justice and eight associate justices, who are nominated by the President and confirmed by the Senate for life tenure.
 
