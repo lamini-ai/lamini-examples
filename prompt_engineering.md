@@ -97,30 +97,28 @@ Here are some additional system prompt examples:
 * `Imagine you are a poet inspired by nature.`
 * `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` (default system prompt in lamini's MistralRunner)
 
-## Common Parameters
+## Mitigate output issues with prompt engineering
 
-In prompt engineering, various parameters play a crucial role in shaping the behavior and output of language models.
-Here are some common ones:
+### Incomplete output
 
-### Max Tokens
+Consider the output to this prompt:
+```
+Write a story about the Supreme Court.
+```
 
-A token refers to the smallest unit of text, whether it be a word, subword, or character.
-`max_tokens` specifies the maximum number of tokens in the generated output.
-Increasing `max_tokens` for longer results
-or decreasing for shorter results. However, it's important to note that utilizing tokens
-may result in associated costs.
+Consider the output, where the end shows it is incomplete sentence
+```
+ Once upon a time, in a land far away, there was a Supreme Court. It was a place where justice was served and where the rights of all citizens were protected. The Supreme Court was made up of wise and fair judges who always made decisions with care, respect, and truth.
 
-TODO: add max tokens example using the runner
+One day, a group of people came to the Supreme Court with a very important case. They were seeking justice for a wrong that had been done to them. The judges listened carefully to their story and asked them many questions to make sure they fully understood the situation.
 
-### Temperature
+After much deliberation, the judges made a decision. They ruled in favor of the people and ordered that the wrongdoer be held accountable for their actions. The people were overjoyed and thanked the Supreme Court for their help.
 
-Temperature affects the randomness of the generated output.
-* Temperature 0: The model selects the most probable token at each step. This leads to more focused and deterministic responses.
-* Low Temperature (Close to 0): Results in more deterministic and conservative outputs, with a focus on the most probable tokens.
-* Moderate Temperature (Around 1): Allowing for a mix of likely and less likely tokens in the output.
-* High Temperature (Above 1): Introduces more randomness and diversity into the generation process, leading to more creative and varied responses.
+From that day on, the Supreme Court was known as a place where justice always prevailed. People came from all over the land to seek its help and to have their rights protected. The judges always made decisions with care, respect, and truth, and the people always felt that they were being treated fairly and with positivity.
 
-TODO: add temperature example using the runner
+The Supreme Court became a symbol of hope and justice for all, and its legacy lived on for generations to come
+```
+
 
 ## Iterate and Repeat
 
