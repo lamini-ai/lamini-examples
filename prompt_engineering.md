@@ -99,14 +99,14 @@ Here are some additional system prompt examples:
 
 ## Mitigate Common Output Issues with Prompt Engineering
 
-### Incomplete Output
+### Output Incomoplete or Too Long
 
-It is not uncommon for models to produce incomplete sentences, influenced by various factors such as prompt complexity and training data.
-Incomplete sentences could arise due to the model attempting to generate additional context or information.
+It is not uncommon for models to produce sentences that are incomplete or too long, influenced by various factors such as prompt complexity and training data.
+Such sentences could arise due to the model attempting to generate additional context or information.
 Refining prompts can help address this behavior.
 
 Consider the output to this prompt ```Describe the impacts of Silicon Valley.```
-Note the output below has an incomplete sentence at the end.
+Note the output below is long and has an incomplete sentence at the end.
 
 ```
  Silicon Valley is a region in California that is known for its high-tech industry and innovation. It is home to some of the world's largest and most successful technology companies, including Google, Facebook, Apple, and Microsoft. The region has had a significant impact on the global economy and has transformed the way we live, work, and communicate.
