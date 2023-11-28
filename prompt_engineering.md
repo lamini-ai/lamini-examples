@@ -97,23 +97,34 @@ Here are some additional system prompt examples:
 * `Imagine you are a poet inspired by nature.`
 * `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` (default system prompt in lamini's MistralRunner)
 
-## Mitigate output issues with prompt engineering
+## Mitigate Common Output Issues with Prompt Engineering
 
-### Incomplete output
+### Incomplete Output
 
-Consider the output to this prompt ```Write an article about the Supreme Court.```
+It is not uncommon for models to produce incomplete sentences, influenced by various factors such as prompt complexity and training data.
+Incomplete sentences could arise due to the model attempting to generate additional context or information.
+Refining prompts can help address this behavior.
 
-The output below has an incomplete sentence at the end.
+Consider the output to this prompt ```Discuss the consequences of the industrial revolution.```
+Note the output below has an incomplete sentence at the end.
+
 ```
- The Supreme Court of the United States is the highest court in the land, responsible for interpreting the Constitution and federal laws. It is located in Washington, D.C., and is made up of nine justices, including a chief justice and eight associate justices, who are nominated by the President and confirmed by the Senate for life tenure.
+The Industrial Revolution was a period of rapid technological and social change that began in the late 18th century and lasted until the mid-19th century. It was marked by the development of new machines and manufacturing processes that revolutionized the way goods were produced and consumed.
 
-The Supreme Court has the power to hear cases from all over the country, and its decisions have a far-reaching impact on American society. It has the authority to declare laws passed by Congress or state legislatures to be unconstitutional, and it can also set legal precedents that guide lower courts in their decision-making.
+One of the most significant consequences of the Industrial Revolution was the growth of the middle class. As more people moved from rural areas to cities to work in factories, there was an increase in the number of people with disposable income to spend on goods and services. This led to the growth of consumer culture and the rise of new forms of entertainment and leisure.
 
-One of the most important roles of the Supreme Court is to protect individual rights and liberties, as enshrined in the Constitution. This includes the right to free speech, the right to bear arms, the right to a fair trial, and the right to privacy. The court has also played a critical role in ensuring that the rights of marginalized groups, such as women, minorities, and the LGBTQ+ community, are protected under the law.
+Another consequence of the Industrial Revolution was the rise of urbanization. As more people moved to cities to work in factories, there was a rapid expansion of urban areas. This led to the development of new infrastructure, such as roads, railways, and public transportation systems, to support the growing population.
 
-Despite its important role in American society, the Supreme Court is not without controversy. Its decisions
+However, the Industrial Revolution also had its downsides. The working conditions in factories were often dangerous and unhealthy, and many workers were forced to work long hours for low wages. This led to widespread poverty and social unrest, as well as the rise of labor movements and calls
 ```
 
+To mitigate this issue, We can  update the prompt to
+```Discuss the consequences of the industrial revolution in a few sentences.```
+
+Now the output is brief but complete.
+```
+ The Industrial Revolution was a period of rapid technological advancement and economic growth that began in the late 18th century. It brought about significant changes in the way goods were produced, with the development of machines and factories that made it possible to produce goods on a larger scale and at a faster rate. This led to increased productivity and economic growth, but it also had negative consequences, such as the exploitation of workers and the destruction of traditional ways of life. It is important to consider both the positive and negative aspects of the Industrial Revolution when discussing its impact on society.
+ ```
 
 ## Iterate and Repeat
 
