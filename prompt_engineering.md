@@ -97,7 +97,7 @@ Here are some additional system prompt examples:
 * `Imagine you are a poet inspired by nature.`
 * `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` (default system prompt in lamini's MistralRunner)
 
-## Mitigate Common Output Issues with Prompt Engineering
+## Mitigating Common Output Issues with Prompt Engineering
 
 ### Output Incomoplete or Too Long
 
@@ -133,6 +133,39 @@ Output:
 ```
  Silicon Valley has revolutionized the world through technological innovation and entrepreneurship, creating unprecedented economic growth and transforming industries, while also raising concerns about privacy, inequality, and the potential negative impacts on society.
 ```
+
+### Output Too Short
+
+Similar to when the response is too long, we can add additional context to the prompt to get longer response.
+
+Consider this input:
+
+```
+Where is Palo Alto?
+```
+
+(Short) Output:
+
+```
+ Palo Alto is a city located in the Silicon Valley region of California, United States. It is known for its high-tech industry and is home to many well-known companies such as Google, Facebook, and Apple.
+```
+
+Input to ask for detail description:
+```
+Where is Palo Alto? Provide a detailed description.
+```
+
+New (longer) output:
+
+```
+ Palo Alto is a city located in the northern part of the San Francisco Bay Area in California, United States. It is known for its high-tech industry, with many major tech companies such as Google, Facebook, and Apple having their headquarters in the city. Palo Alto is also known for its beautiful parks and outdoor spaces, including the famous Stanford University campus, which is located in the city. The city has a population of approximately 18,000 people and is known for its vibrant arts and culture scene.
+```
+
+You can get an even longer reply with
+```
+"Where is Palo Alto? Describe in three paragraphs."
+```
+
 
 ## Iterate and Repeat
 
