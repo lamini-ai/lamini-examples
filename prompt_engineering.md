@@ -141,31 +141,51 @@ Similar to when the response is too long, we can add additional context to the p
 Consider this input:
 
 ```
-Where is Palo Alto?
+Where is Washington state?
 ```
 
 (Short) Output:
 
 ```
- Palo Alto is a city located in the Silicon Valley region of California, United States. It is known for its high-tech industry and is home to many well-known companies such as Google, Facebook, and Apple.
+ Washington state is located in the northwestern region of the United States. It is bordered by Canada to the north, Oregon to the south, and the Pacific Ocean to the west. The capital city of Washington state is Olympia.
 ```
 
 Input to ask for detail description:
 ```
-Where is Palo Alto? Provide a detailed description.
+Where is Washington state? Provide a detailed description.
 ```
 
-New (longer) output:
+New (long) output:
 
 ```
- Palo Alto is a city located in the northern part of the San Francisco Bay Area in California, United States. It is known for its high-tech industry, with many major tech companies such as Google, Facebook, and Apple having their headquarters in the city. Palo Alto is also known for its beautiful parks and outdoor spaces, including the famous Stanford University campus, which is located in the city. The city has a population of approximately 18,000 people and is known for its vibrant arts and culture scene.
+ Washington state is located in the northwestern region of the United States. It is bordered by Canada to the north, Oregon to the south, and the Pacific Ocean to the west. The state is known for its diverse landscapes, including mountains, forests, and coastlines.
+
+Washington state is home to several national parks, including Mount Rainier National Park, Olympic National Park, and North Cascade National Park. These parks offer a range of outdoor activities, including hiking, camping, skiing, and snowboarding.
+
+The state is also known for its technology industry, with companies such as Microsoft, Amazon, and Boeing based in the Seattle area. Washington state has a thriving startup scene, with many innovative companies emerging in recent years.
+
+In addition to its natural beauty and technology industry, Washington state is also known for its wine country. The state has several wine regions, including the Columbia Valley, which is home to many award-winning wineries.
+
+Overall, Washington state is a diverse and vibrant state with a lot to offer. Whether you're looking for outdoor adventure, technology, or wine, there's something for everyone in this beautiful state.
 ```
 
-You can get an even longer reply with
+### Rephrase Response
+
+The section above shows the response to `Where is Washington state?`.
 ```
-"Where is Palo Alto? Describe in three paragraphs."
+ Washington state is located in the northwestern region of the United States. It is bordered by Canada to the north, Oregon to the south, and the Pacific Ocean to the west. The capital city of Washington state is Olympia.
 ```
 
+What if we want a different response to the same question?
+One way is to tell the model to rephrase with this prompt:
+```
+Rephrase this:  Washington state is located in the northwestern region of the United States. It is bordered by Canada to the north, Oregon to the south, and the Pacific Ocean to the west. The capital city of Washington state is Olympia.
+```
+
+Output
+```
+ The state of Washington is situated in the northwestern part of the United States. It shares its northern border with Canada, its southern border with Oregon, and its western border with the Pacific Ocean. The capital city of Washington state is Olympia.
+```
 
 ## Iterate and Repeat
 
