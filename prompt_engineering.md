@@ -150,22 +150,18 @@ Output:
 You can guide the model to generate responses in the desired format,
 whether it be a list, a table, or a customized format.  Here are some key strategies:
 
-#### Instructional Clarity
+* Instructional Clarity - use explicit language to instruct the model on the desired format.
+  - Ex. Begin with phrases like `"Generate the response as a list"` or `"Present the information in table format"`.
+* Example Illustration - include a clear example of the desired output format within your prompt. Show a sample list or table and instruct the model to follow that structure, helping it understand your expectations.
+  - Ex.
+    ```
+    Describe the advantages of renewable energy. Provide the response in a bulleted list format. For instance:
+    Environmental Sustainability: Decreases carbon footprint and minimizes environmental impact.
+    Cost-Efficiency: Long-term savings through reduced reliance on fossil fuels.
+    Energy Independence: Reduces dependence on non-renewable resources.
 
-Use explicit language to instruct the model on the desired format. Begin with phrases like `"Generate the response as a list"` or `"Present the information in table format"`.
-
-#### Example Illustration
-
-Include a clear example of the desired output format within your prompt. Show a sample list or table and instruct the model to follow that structure, helping it understand your expectations.
-```
-"Describe the advantages of renewable energy. Provide the response in a bulleted list format. For instance:
-
-Environmental Sustainability: Decreases carbon footprint and minimizes environmental impact.
-Cost-Efficiency: Long-term savings through reduced reliance on fossil fuels.
-Energy Independence: Reduces dependence on non-renewable resources.
-
-Follow a similar structure in your response."
-```
+    Follow a similar structure in your response."
+    ```
 
 ### Creativity or Precision Level
 
