@@ -53,7 +53,7 @@ Although the response is factual, you may want the response to be phrased differ
 Perhaps you seek a more elaborate response?
 Perhaps you prefer the response tailored for a particular audience,
 or have other constraints?
-Please follow this tutorial to learn how to refine your prompts to generating excellent responses. :rocket:
+Follow this tutorial to learn how to refine your prompts to generating excellent responses. :rocket:
 
 Note that there's no need to include the
 special `[INST]` and `[/INST]` around the prompt.
