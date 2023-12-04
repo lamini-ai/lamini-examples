@@ -134,14 +134,14 @@ Output:
  ```
 
 We can get an even shorter response with
-```Describe the impacts of Silicon Valley in one sentence.```
+```Describe the impacts of Silicon Valley in a few words.```
 
 Output:
 ```
- Silicon Valley has revolutionized the world through technological innovation and entrepreneurship, creating unprecedented economic growth and transforming industries, while also raising concerns about privacy, inequality, and the potential negative impacts on society.
+ Silicon Valley has revolutionized technology, created jobs, and transformed industries.
 ```
 
-### Specify Output Format
+### Output Format
 
 You can guide the model to generate responses in the desired format,
 whether it be a list, a table, or a customized format.  Here are some key strategies:
