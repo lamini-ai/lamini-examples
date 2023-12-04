@@ -101,7 +101,7 @@ Additional system prompt examples:
 In prompt engineering, you can manipulate different attributes of the responses.
 Here are some key attributes you can control:
 
-### Repsonse Lengths
+### Repsonse Length
 
 It is not uncommon for a model to produce sentences that are too long or incomplete, influenced by various factors such as prompt complexity and training data.
 Similarly, the model may produce responses shorter than your desired length.
@@ -181,6 +181,24 @@ Here are some examples:
   - `"Try different approaches in your explanation."`
   - `"Adjust your writing style to see how it affects the output."`
 
+### Rephrase
+
+Consider this response
+
+```
+The decision in Nixon v. United States was that President Richard Nixon was ordered to release tapes of his conversations with his advisors, as part of a court order to comply with the Presidential Records Act.
+```
+
+We can ask it the model to rephrase this response in the prompt.
+```
+Rewrite this: The decision in Nixon v. United States was that President Richard Nixon was ordered to release tapes of his conversations with his advisors, as part of a court order to comply with the Presidential Records Act.
+```
+
+Output:
+```
+ The Nixon v. United States case resulted in a court order requiring President Richard Nixon to disclose recordings of his discussions with advisors, in accordance with the Presidential Records Act.
+```
+
 ## Iterate and Repeat
 
 The process of refining and improving prompts through successive iterations is cruical
@@ -222,7 +240,7 @@ for achieving desired results.  The key is to be adaptable and responsive to the
 ## Batching Prompts
 
 Batching involves grouping multiple input prompts together and processing them simultaneously as a
-batch.  This approach enhances efficiency and speed by allowing the model to handle several prompts
+batch.  This approach enhances efficiency by allowing the model to handle several prompts
 at once, optimizing resource utilization and potentially reducing response time.
 
 In lamini, you can easily batch a list of prompts like below:
@@ -252,7 +270,7 @@ Sample output:
 ## JSON Output with Lamini
 
 While you can ask a model to output a json in the prompt, the results may lack consistency and reliability.
-Hence, we've introduced a feature to guarantee valid JSON output.
+Hence, we've introduced a feature to guarantee valid JSON output through our API.
 See our [docs](https://lamini-ai.github.io/rest_api/completions)!
 
 If you are interested in the technical details, see our blog post
