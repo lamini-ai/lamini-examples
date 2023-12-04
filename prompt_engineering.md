@@ -4,7 +4,7 @@
 
 Prompt engineering involves designing prompts or inputs that elicit desired response
 from the model.
-It is possible to create prompts for a wide range of purposes, including
+You can create prompts for a wide range of purposes, including
 information retrieval, problem solving, creative/technical writing,
 coding assistance, language translation, opinion generation,
 text summerization, conversational agents, data analysis, and more.
