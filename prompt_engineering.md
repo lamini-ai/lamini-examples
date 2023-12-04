@@ -36,18 +36,18 @@ answer = runner(prompt)
 print(answer)
 ```
 
-It's important to note that there's no need to include
-special tokens like `[INST]` and `[/INST]` around the prompt.
-While the Mistral documentation indicates otherwise, our runner will
-automatically include these special tokens for you.
-
-Sample output:
+Output:
 
 ```
 The decision in Nixon v. United States was that President Richard Nixon was ordered to
 release tapes of his conversations with his advisors, as part of a court order to comply
 with the Presidential Records Act.
 ```
+
+It's important to note that there's no need to include
+special tokens like `[INST]` and `[/INST]` around the prompt.
+While the Mistral documentation indicates otherwise, our runner will
+automatically include these special tokens for you.
 
 ## User vs. System Prompts
 
