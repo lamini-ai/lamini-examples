@@ -254,8 +254,7 @@ Sample output:
 While manually crafting prompts for JSON output is possible,
 the results may lack consistency and reliability.
 Hence, we've introduced a feature to guarantee valid JSON output.
+See our [docs](https://lamini-ai.github.io/rest_api/completions)!
 
-TODO: add example using MistralRunner.
-
-For technical details, see our blog post
+If you are interested in the technical details, see our blog post
 [Guarantee Valid JSON Output with Lamini](https://www.lamini.ai/blog/guarantee-valid-json-output-with-lamini).
