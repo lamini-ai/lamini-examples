@@ -47,7 +47,7 @@ with the Presidential Records Act.
 ```
 
 Although the response is factual, you may want the response to be phrased differently.
-Perhaps you seek a more elaborate response?
+Perhaps you are looking for a more elaborate response?
 Perhaps you prefer the response tailored for a particular audience,
 or have other constraints?
 Follow this tutorial to learn how to refine your prompts to generating excellent responses. :rocket:
