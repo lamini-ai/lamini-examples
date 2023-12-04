@@ -27,10 +27,7 @@ results and harnessing the full potential of a language model.
 
 In this tutorial, we'll guide you through prompt engineering using lamini's
 `MistralRunner`, which uses the Mistral instruct model by default and allows
-you to obtain the response with just a few lines of code.
-
-The example below shows how to obtain the answer to
-`"What was the decision in Nixon v. United States? Answer in one sentence."`
+you to obtain the response with just a few lines of code, like below.
 
 ```python
 from llama import MistralRunner
