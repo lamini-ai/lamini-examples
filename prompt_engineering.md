@@ -21,12 +21,11 @@ Here are some simple prompt examples:
 * `Envision the world 100 years from now.`
 
 In this tutorial, we'll guide you through prompt engineering using lamini's
-`MistralRunner()`, which uses the Mistral instruct model by default.
+`MistralRunner`, which uses the Mistral instruct model by default and allows
+you to obtain the response with just a few lines of code.
 
 For example, you can write a prompt like
 `"What was the decision in Nixon v. United States? Answer in one sentence."`
-Lamini allows you to obtain the answer from the Mistral instruct model
-with just a few lines of code.
 
 ```python
 from llama import MistralRunner
