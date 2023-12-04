@@ -52,8 +52,8 @@ with the Presidential Records Act.
 Although the response is factual, you may want the response to be phrased differently.
 Perhaps you seek a more elaborate response?
 Perhaps you prefer the response tailored for a particular audience,
-or you have other constraints?
-Please follow this tutorial to acquire all key strategies for creating excellent prompts.
+or have other constraints?
+Please follow this tutorial to learn how to refine your prompts to generating excellent responses. :rocket:
 
 Note that there's no need to include the
 special `[INST]` and `[/INST]` around the prompt.
