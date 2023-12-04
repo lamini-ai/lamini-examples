@@ -44,7 +44,7 @@ release tapes of his conversations with his advisors, as part of a court order t
 with the Presidential Records Act.
 ```
 
-It's important to note that there's no need to include the
+Note that there's no need to include the
 special `[INST]` and `[/INST]` around the prompt.
 While the Mistral documentation indicates otherwise, our runner will
 automatically include these for you.
@@ -56,7 +56,7 @@ seeking specific information and tailored responses.
 On the other hand, a system prompt, an optional
 directive, sets the context and guides the language model's overall behavior and tone.
 
-You can add a system prompt to generate an output tailored to a legal ethics symposium,
+For example, you can add a system prompt to generate an output tailored to a legal ethics symposium,
 and provide insights relevant to legal professionals and ethicists, like below.
 
 ```python
@@ -90,7 +90,7 @@ decision helped to establish the principle of separation of powers, which holds 
 three branches of government - the legislative, executive, and judicial branches -
 ```
 
-Here are some additional system prompt examples:
+Additional system prompt examples:
 
 * `You are a patient and helpful customer service agent. Help the user troubleshoot.`
 * `Imagine you are a poet inspired by nature.`
