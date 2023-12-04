@@ -38,6 +38,14 @@ answer = runner(prompt)
 print(answer)
 ```
 
+To prompt the Mistral instruct model effectively and get optimal response,
+it is recommended to wrap
+`[INST]` and `[/INST]` around the prompt, like below.
+```
+"[INST]What was the decision in Nixon v. United States? Answer in one sentence.[/INST]"
+```
+Our runner will automatically wrap the prompt before passing it to the model.
+
 Output:
 
 ```
@@ -50,11 +58,6 @@ Although the response is factual, you may want the response to be phrased differ
 Perhaps you are looking for a more elaborate response?
 Perhaps you prefer the response tailored for a particular audience or have other constraints?
 Follow this tutorial to learn how to iterate and refine your prompts to generate excellent responses. :rocket:
-
-Note that there's no need to include the
-special `[INST]` and `[/INST]` around the prompt.
-While the Mistral documentation indicates otherwise, our runner will
-automatically include these for you.
 
 ## User vs. System Prompts
 
@@ -196,7 +199,7 @@ Consider this response
 The decision in Nixon v. United States was that President Richard Nixon was ordered to release tapes of his conversations with his advisors, as part of a court order to comply with the Presidential Records Act.
 ```
 
-We can ask it the model to rephrase this response in the prompt.
+We can ask the model to rephrase this response in the prompt.
 ```
 Rewrite this: The decision in Nixon v. United States was that President Richard Nixon was ordered to release tapes of his conversations with his advisors, as part of a court order to comply with the Presidential Records Act.
 ```
