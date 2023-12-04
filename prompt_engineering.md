@@ -160,7 +160,7 @@ whether it be a list, a table, or a customized format.  Here are some key strate
     Cost-Efficiency: Long-term savings through reduced reliance on fossil fuels.
     Energy Independence: Reduces dependence on non-renewable resources.
 
-    Follow a similar structure in your response."
+    Follow a similar structure in your response.
     ```
 
 ### Creativity or Precision Level
@@ -168,23 +168,19 @@ whether it be a list, a table, or a customized format.  Here are some key strate
 You can control your desired level of creativity or precision using alternative phrasing.
 Here are some examples:
 
-#### Higher Creativity
+* Higher Creativity
+  - `"Generate a narrative with a more exploratory tone."`
+  - `"Compose a story with a touch of unpredictability."`
+  - `"Provide a response that allows for a broader range of possibilities."`
+*  Lower Precision
 
-* `"Generate a narrative with a more exploratory tone."`
-* `"Compose a story with a touch of unpredictability."`
-* `"Provide a response that allows for a broader range of possibilities."`
-
-#### Lower Precision
-
-* `"Deliver a straightforward and concise explanation."`
-* `"Offer a focused and to-the-point response."`
-* `"Provide information with a higher level of certainty."`
-
-### Experimentation
-
-* `"Explore various perspectives in your response."`
-* `"Try different approaches in your explanation."`
-* `"Adjust your writing style to see how it affects the output."`
+  - `"Deliver a straightforward and concise explanation."`
+  - `"Offer a focused and to-the-point response."`
+  - `"Provide information with a higher level of certainty."`
+* Experimentation
+  - `"Explore various perspectives in your response."`
+  - `"Try different approaches in your explanation."`
+  - `"Adjust your writing style to see how it affects the output."`
 
 ## Iterate and Repeat
 
