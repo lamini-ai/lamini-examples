@@ -126,7 +126,9 @@ However, Silicon Valley has also been criticized for its impact on society. Some
 ```
 
 The prompt below produces a response that is brief and complete.
-```Describe the impacts of Silicon Valley in a few sentences.```
+```
+Describe the impacts of Silicon Valley in a few sentences.
+```
 
 Output:
 ```
@@ -134,7 +136,9 @@ Output:
  ```
 
 We can get an even shorter response with
-```Describe the impacts of Silicon Valley in a few words.```
+```
+Describe the impacts of Silicon Valley in a few words.
+```
 
 Output:
 ```
