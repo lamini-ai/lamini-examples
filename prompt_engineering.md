@@ -251,7 +251,7 @@ for achieving desired results.  The key is to be adaptable and responsive to the
 
 Batching involves grouping multiple input prompts together and processing them simultaneously as a
 batch.  This approach enhances efficiency by allowing the model to handle several prompts
-at once, optimizing resource utilization and potentially reducing response time.
+at once to optimizing resource utilization.
 
 In lamini, the first argument to the runner can either be a single prompt or a list of prompts.
 When using a list of prompts, our system will batch process them.
