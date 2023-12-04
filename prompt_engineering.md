@@ -251,8 +251,7 @@ Sample output:
 
 ## JSON Output with Lamini
 
-While manually crafting prompts for JSON output is possible,
-the results may lack consistency and reliability.
+While you can ask a model to output a json in the prompt, the results may lack consistency and reliability.
 Hence, we've introduced a feature to guarantee valid JSON output.
 See our [docs](https://lamini-ai.github.io/rest_api/completions)!
 
