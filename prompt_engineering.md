@@ -97,15 +97,25 @@ Here are some additional system prompt examples:
 * `Imagine you are a poet inspired by nature.`
 * `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` (default system prompt in lamini's MistralRunner)
 
-## Mitigating Common Output Issues with Prompt Engineering
+## Refining Prompts
 
-### Output Incomoplete or Too Long
+In prompt engineering, you can manipulate different attributes of the responses.
+Here are some key attributes:
 
-It is not uncommon for models to produce sentences that are incomplete or too long, influenced by various factors such as prompt complexity and training data.
-Such sentences could arise due to the model attempting to generate additional context or information.
-Refining prompts can help address this behavior.
+### Repsonse Lengths
 
-Consider the output to this prompt ```Describe the impacts of Silicon Valley.```
+TODO: define tokens
+
+It is not uncommon for models to produce sentences that are too long or incomplete, influenced by various factors such as prompt complexity and training data.
+Similarly, the model may produce a responses shorter than your desired length.
+
+Here are a few techniques to get the desired output lengths.
+* Specify desired length:
+  - Include information that indicates the desired length of the output. For example, you can explicitly state, `Generate a response with up to 50 tokens.` or `End reponse after 50 words.`
+* Use keywords and constraints:
+  - Include keywords or constraints in your prompt that guide the model to generate concise responses. For example,`"brief"`, `"succinct"` or `"Write a detailed paragraph on..."`.
+
+Consider the output to this prompt ```"Describe the impacts of Silicon Valley."```
 Note the output below is long and has an incomplete sentence at the end.
 
 ```
@@ -118,10 +128,10 @@ Silicon Valley has also had a significant impact on the global economy. The regi
 However, Silicon Valley has also been criticized for its impact on society. Some have argued that the region's
 ```
 
-To mitigate this issue, We can  update the prompt to
+To mitigate this issue, we can update the prompt to
 ```Describe the impacts of Silicon Valley in a few sentences.```
 
-Now the output is brief but complete.
+Now the output is brief and complete.
 ```
  Silicon Valley has had a significant impact on the world, driving innovation and technological advancements that have transformed industries and improved our lives in countless ways. The region is home to some of the world's largest and most influential tech companies, including Google, Facebook, and Apple, which have created millions of jobs and contributed billions of dollars to the global economy. However, Silicon Valley has also faced criticism for its impact on society, including concerns about privacy, social isolation, and the widening wealth gap. Overall, the region represents both incredible potential and challenges for the future.
  ```
@@ -134,58 +144,50 @@ Output:
  Silicon Valley has revolutionized the world through technological innovation and entrepreneurship, creating unprecedented economic growth and transforming industries, while also raising concerns about privacy, inequality, and the potential negative impacts on society.
 ```
 
-### Output Too Short
+### Specify Output Format
 
-Similar to when the response is too long, we can add additional context to the prompt to get longer response.
+You can guide the model to generate responses in the desired format,
+whether it be a list, a table, or a customized format.  Here are some key strategies:
 
-Consider this input:
+#### Instructional Clarity
 
+Use explicit language to instruct the model on the desired format. Begin with phrases like `"Generate the response as a list"` or `"Present the information in table format"`.
+
+#### Example Illustration
+
+Include a clear example of the desired output format within your prompt. Show a sample list or table and instruct the model to follow that structure, helping it understand your expectations.
 ```
-Where is Washington state?
-```
+"Describe the advantages of renewable energy. Provide the response in a bulleted list format. For instance:
 
-(Short) Output:
+Environmental Sustainability: Decreases carbon footprint and minimizes environmental impact.
+Cost-Efficiency: Long-term savings through reduced reliance on fossil fuels.
+Energy Independence: Reduces dependence on non-renewable resources.
 
-```
- Washington state is located in the northwestern region of the United States. It is bordered by Canada to the north, Oregon to the south, and the Pacific Ocean to the west. The capital city of Washington state is Olympia.
-```
-
-Input to ask for detail description:
-```
-Where is Washington state? Provide a detailed description.
-```
-
-New (long) output:
-
-```
- Washington state is located in the northwestern region of the United States. It is bordered by Canada to the north, Oregon to the south, and the Pacific Ocean to the west. The state is known for its diverse landscapes, including mountains, forests, and coastlines.
-
-Washington state is home to several national parks, including Mount Rainier National Park, Olympic National Park, and North Cascade National Park. These parks offer a range of outdoor activities, including hiking, camping, skiing, and snowboarding.
-
-The state is also known for its technology industry, with companies such as Microsoft, Amazon, and Boeing based in the Seattle area. Washington state has a thriving startup scene, with many innovative companies emerging in recent years.
-
-In addition to its natural beauty and technology industry, Washington state is also known for its wine country. The state has several wine regions, including the Columbia Valley, which is home to many award-winning wineries.
-
-Overall, Washington state is a diverse and vibrant state with a lot to offer. Whether you're looking for outdoor adventure, technology, or wine, there's something for everyone in this beautiful state.
+Follow a similar structure in your response."
 ```
 
-### Rephrase Response
+### Creativity or Precision Level
 
-The section above shows the response to `Where is Washington state?`.
-```
- Washington state is located in the northwestern region of the United States. It is bordered by Canada to the north, Oregon to the south, and the Pacific Ocean to the west. The capital city of Washington state is Olympia.
-```
+You can control your desired level of creativity or precision using alternative phrasing.
+Here are some examples:
 
-What if we want a different response to the same question?
-One way is to tell the model to rephrase with this prompt:
-```
-Rephrase this:  Washington state is located in the northwestern region of the United States. It is bordered by Canada to the north, Oregon to the south, and the Pacific Ocean to the west. The capital city of Washington state is Olympia.
-```
+#### Higher Creativity
 
-Output
-```
- The state of Washington is situated in the northwestern part of the United States. It shares its northern border with Canada, its southern border with Oregon, and its western border with the Pacific Ocean. The capital city of Washington state is Olympia.
-```
+* `"Generate a narrative with a more exploratory tone."`
+* `"Compose a story with a touch of unpredictability."`
+* `"Provide a response that allows for a broader range of possibilities."`
+
+#### Lower Precision
+
+* `"Deliver a straightforward and concise explanation."`
+* `"Offer a focused and to-the-point response."`
+* `"Provide information with a higher level of certainty."`
+
+### Experimentation
+
+* `"Explore various perspectives in your response."`
+* `"Try different approaches in your explanation."`
+* `"Adjust your writing style to see how it affects the output."`
 
 ## Iterate and Repeat
 
