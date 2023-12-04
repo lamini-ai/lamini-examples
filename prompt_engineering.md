@@ -78,7 +78,7 @@ sys_prompt = "You are a panelist on a legal ethics symposium. Aim to provide a c
 answer = runner(prompt, system_prompt=sys_prompt)
 print(answer)
 ```
-Sample Output:
+Output:
 
 ```
  Nixon v. United States was a landmark case in the United States that involved the President
@@ -253,8 +253,9 @@ Batching involves grouping multiple input prompts together and processing them s
 batch.  This approach enhances efficiency by allowing the model to handle several prompts
 at once to optimizing resource utilization.
 
-In lamini, the first argument to the runner can either be a single prompt or a list of prompts.
-When using a list of prompts, our system will batch process them.
+In lamini, the first argument to the runner can either be a single prompt string or a list of prompt strings.
+When a single prompt is used, our system will run in non-batching mode and return a string output.
+On the other hand, when a prompt list used, the system will run in batching mode and return a list of dictionaries as output, like below.
 
 ```python
 from llama import MistralRunner
@@ -268,7 +269,7 @@ answer = runner(prompts, system_prompt="Provide very short responses."))
 print(answer)
 ```
 
-Sample output:
+Output:
 ```
 [{'input': 'Is pizza nutritous?',
   'output': 'No, pizza is not typically considered a nutritious food due to its high calorie, carbohydrate, and fat content. However, it can be made healthier by using whole grain crust, lean protein toppings, and plenty of vegetables.'},
