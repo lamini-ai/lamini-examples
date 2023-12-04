@@ -99,16 +99,16 @@ Additional system prompt examples:
 ## Refining Prompts
 
 In prompt engineering, you can manipulate different attributes of the responses.
-Here are some key attributes you can control in the prompt.
+Here are some key attributes you can control:
 
 ### Repsonse Lengths
 
-It is not uncommon for models to produce sentences that are too long or incomplete, influenced by various factors such as prompt complexity and training data.
+It is not uncommon for a model to produce sentences that are too long or incomplete, influenced by various factors such as prompt complexity and training data.
 Similarly, the model may produce a responses shorter than your desired length.
 
 Here are a few techniques to get the desired output lengths.
 * Specify desired length:
-  - Include information that indicates the desired length of the output. For example, you can explicitly state, `Generate a response with up to 50 tokens.` or `End reponse after 50 words.`
+  - Include information that indicates the desired length of the output. For example, you can explicitly state, `"Generate a response with up to 50 tokens."` or `"End reponse after 50 words."`
 * Use keywords and constraints:
   - Include keywords or constraints in your prompt that guide the model to generate concise responses. For example,`"brief"`, `"succinct"` or `"Write a detailed paragraph on..."`.
 
