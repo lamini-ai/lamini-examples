@@ -41,7 +41,7 @@ print(answer)
 To prompt the Mistral instruct model effectively and get optimal responses,
 it is recommended to wrap
 `[INST]` and `[/INST]` around the prompt as shown below.
-Our runner will automatically wrap the prompt before passing it to the model.
+However, Our runner will automatically wrap the prompt before passing it to the model.
 ```
 "[INST]What was the decision in Nixon v. United States? Answer in one sentence.[/INST]"
 ```
