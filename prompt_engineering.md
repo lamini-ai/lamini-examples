@@ -52,7 +52,8 @@ automatically include these special tokens for you.
 ## User vs. System Prompts
 
 A query such as `"What was the decision in Nixon v. United States?"` represents a user prompt,
-seeking specific information and tailored responses, while a system prompt, an optional
+seeking specific information and tailored responses.
+On the other hand, a system prompt, an optional
 directive, sets the context and guides the language model's overall behavior and tone.
 
 You can add a system prompt to generate an output tailored to a legal ethics symposium,
