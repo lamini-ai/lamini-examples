@@ -24,7 +24,7 @@ In this tutorial, we'll guide you through prompt engineering using lamini's
 `MistralRunner`, which uses the Mistral instruct model by default and allows
 you to obtain the response with just a few lines of code.
 
-For example, you can write a prompt like
+The example below shows how to obtain the answer to
 `"What was the decision in Nixon v. United States? Answer in one sentence."`
 
 ```python
@@ -36,8 +36,8 @@ answer = runner(prompt)
 print(answer)
 ```
 
-It's important to note that there's no need for you to manually include the
-special tokens `[INST]` and `[/INST]` around the prompt.
+It's important to note that there's no need to include
+special tokens like `[INST]` and `[/INST]` around the prompt.
 While the Mistral documentation indicates otherwise, our runner will
 automatically include these special tokens for you.
 
