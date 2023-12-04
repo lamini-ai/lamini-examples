@@ -45,9 +45,9 @@ with the Presidential Records Act.
 ```
 
 It's important to note that there's no need to include the
-special tokens `[INST]` and `[/INST]` around the prompt.
+special `[INST]` and `[/INST]` around the prompt.
 While the Mistral documentation indicates otherwise, our runner will
-automatically include these special tokens for you.
+automatically include these for you.
 
 ## User vs. System Prompts
 
