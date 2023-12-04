@@ -99,11 +99,9 @@ Additional system prompt examples:
 ## Refining Prompts
 
 In prompt engineering, you can manipulate different attributes of the responses.
-Here are some key attributes:
+Here are some key attributes you can control in the prompt.
 
 ### Repsonse Lengths
-
-TODO: define tokens
 
 It is not uncommon for models to produce sentences that are too long or incomplete, influenced by various factors such as prompt complexity and training data.
 Similarly, the model may produce a responses shorter than your desired length.
