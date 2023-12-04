@@ -1,4 +1,4 @@
-# Simple Guide to Prompt Engineering
+# Simple Guide to Prompt Engineering :rocket:
 
 ## Introduction
 
