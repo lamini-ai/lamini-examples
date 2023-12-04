@@ -17,9 +17,8 @@ Here are some simple prompt examples:
 * `Translate "hello world, I am a llama" to French.`
 * `Suggest innovative solutions to address climate change.`
 * `Explain the principles of quantum computing in simple terms.`
-* `What would happen if a major historical event had a different outcome?`
+* `What would happen if WII had a different outcome?`
 * `Envision the world 100 years from now.`
-* `If you could time travel to any era, where would you go and why?`
 
 In this tutorial, we'll guide you through prompt engineering using lamini's
 `MistralRunner()`, which uses the Mistral instruct model by default.
