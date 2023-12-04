@@ -104,7 +104,7 @@ Here are some key attributes you can control:
 ### Repsonse Lengths
 
 It is not uncommon for a model to produce sentences that are too long or incomplete, influenced by various factors such as prompt complexity and training data.
-Similarly, the model may produce a responses shorter than your desired length.
+Similarly, the model may produce responses shorter than your desired length.
 
 Here are a few techniques to get the desired output lengths.
 * Specify desired length:
@@ -113,7 +113,7 @@ Here are a few techniques to get the desired output lengths.
   - Include keywords or constraints like `"brief"`, `"succinct"` and `"Write a detailed paragraph on..."`.
 
 Consider the output to this prompt ```"Describe the impacts of Silicon Valley."```
-Note the output below is long and has an incomplete sentence at the end.
+It is long and has an incomplete sentence at the end.
 
 ```
  Silicon Valley is a region in California that is known for its high-tech industry and innovation. It is home to some of the world's largest and most successful technology companies, including Google, Facebook, Apple, and Microsoft. The region has had a significant impact on the global economy and has transformed the way we live, work, and communicate.
