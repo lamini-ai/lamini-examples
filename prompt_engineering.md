@@ -2,23 +2,28 @@
 
 ## Introduction
 
-Prompt engineering involves designing prompts that elicit desired response
-from the model. You can create prompts for a wide range of purposes, including
+Prompt engineering involves designing prompts or inputs that elicit desired response
+from the model.
+It is possible to create prompts for a wide range of purposes, including
 information retrieval, problem solving, creative/technical writing,
 coding assistance, language translation, opinion generation,
 text summerization, conversational agents, data analysis, and more.
-It is important to clearly articulate the task or question in the prompt.
 
 Here are some simple prompt examples:
+
 * `How to convert inches to centimeters?`
 * `Summarize this story: once upon a time, there was a ...`
-* `Write java code for this problem.  Give an array of integers and an integer target, return the indices of the two numbers such that they add up to the target.  Also explain the runtime complexity of the code.`
+* `Write java code for this problem with optimal runtime complexity.  Give an array of integers and an integer target, return the indices of the two numbers such that they add up to the target.  Also explain the runtime complexity of the code.`
 * `Write a short story about a talking bear who lived in a treehouse.`
 * `Translate "hello world, I am a llama" to French.`
 * `Suggest innovative solutions to address climate change.`
 * `Explain the principles of quantum computing in simple terms.`
 * `What would happen if WII had a different outcome?`
 * `Envision the world 100 years from now.`
+
+It is very important to clearly articulate the task or question in the prompt.
+In addition, iterating and refining prompts is crucial for achieving optimal
+results and harnessing the full potential of a language model.
 
 In this tutorial, we'll guide you through prompt engineering using lamini's
 `MistralRunner`, which uses the Mistral instruct model by default and allows
@@ -43,6 +48,12 @@ The decision in Nixon v. United States was that President Richard Nixon was orde
 release tapes of his conversations with his advisors, as part of a court order to comply
 with the Presidential Records Act.
 ```
+
+Although the response is factual, you may want the response to be phrased differently.
+Perhaps you seek a more elaborate response?
+Perhaps you prefer the response tailored for a particular audience,
+or you have other constraints?
+Please follow this tutorial to acquire all key strategies for creating excellent prompts.
 
 Note that there's no need to include the
 special `[INST]` and `[/INST]` around the prompt.
