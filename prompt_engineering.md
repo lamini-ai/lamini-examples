@@ -9,10 +9,22 @@ coding assistance, language translation, opinion generation,
 text summerization, conversational agents, data analysis, and more.
 It is important to clearly articulate the task or question in the prompt.
 
+Here are some simple prompt examples:
+* `How to convert inches to centimeters?`
+* `Summarize this story: once upon a time, there was a ...`
+* `Write java code for this problem.  Give an array of integers and an integer target, return the indices of the two numbers such that they add up to the target.  Also explain the runtime complexity of the code.`
+* `Write a short story about a talking bear who lived in a treehouse.`
+* `Translate "hello world, I am a llama" to French.`
+* `Suggest innovative solutions to address climate change.`
+* `Explain the principles of quantum computing in simple terms.`
+* `What would happen if a major historical event had a different outcome?`
+* `Envision the world 100 years from now.`
+* `If you could time travel to any era, where would you go and why?`
+
 In this tutorial, we'll guide you through prompt engineering using lamini's
 `MistralRunner()`, which uses the Mistral instruct model by default.
 
-For example, You can write a prompt like
+For example, you can write a prompt like
 `"What was the decision in Nixon v. United States? Answer in one sentence."`
 Lamini allows you to obtain the answer from the Mistral instruct model
 with just a few lines of code.
@@ -38,18 +50,6 @@ The decision in Nixon v. United States was that President Richard Nixon was orde
 release tapes of his conversations with his advisors, as part of a court order to comply
 with the Presidential Records Act.
 ```
-
-Additional prompt examples:
-* `How to convert inches to centimeters?`
-* `Summarize this story: once upon a time, there was a ...`
-* `Write java code for this problem.  Give an array of integers and an integer target, return the indices of the two numbers such that they add up to the target.  Also explain the runtime complexity of the code.`
-* `Write a short story about a talking bear who lived in a treehouse.`
-* `Translate "hello world, I am a llama" to French.`
-* `Suggest innovative solutions to address climate change.`
-* `Explain the principles of quantum computing in simple terms.`
-* `What would happen if a major historical event had a different outcome?`
-* `Envision the world 100 years from now.`
-* `If you could time travel to any era, where would you go and why?`
 
 ## User vs. System Prompts
 
