@@ -173,7 +173,6 @@ Here are some examples:
   - `"Compose a story with a touch of unpredictability."`
   - `"Provide a response that allows for a broader range of possibilities."`
 *  Lower Precision
-
   - `"Deliver a straightforward and concise explanation."`
   - `"Offer a focused and to-the-point response."`
   - `"Provide information with a higher level of certainty."`
