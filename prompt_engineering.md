@@ -253,11 +253,7 @@ Batching involves grouping multiple input prompts together and processing them s
 batch.  This approach enhances efficiency by allowing the model to handle several prompts
 at once to optimizing resource utilization.
 
-In lamini, the first argument to the runner can either be a single prompt string or a list of prompt strings.
-
-When a single prompt is used, our system will run in non-batching mode and return a string output.
-
-On the other hand, when a prompt list used, the system will run in batching mode and return a list of dictionaries as output, like below.
+In lamini, the first argument to the runner can either be a single prompt string or a list of prompt strings.  When a single prompt is used, our system will run in non-batching mode and return a string output. On the other hand, when a prompt list used, the system will run in batching mode and return a list of dictionaries as output, like below.
 
 ```python
 from llama import MistralRunner
