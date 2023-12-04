@@ -44,14 +44,14 @@ release tapes of his conversations with his advisors, as part of a court order t
 with the Presidential Records Act.
 ```
 
-It's important to note that there's no need to include
-special tokens like `[INST]` and `[/INST]` around the prompt.
+It's important to note that there's no need to include the
+special tokens `[INST]` and `[/INST]` around the prompt.
 While the Mistral documentation indicates otherwise, our runner will
 automatically include these special tokens for you.
 
 ## User vs. System Prompts
 
-A query such as `What was the decision in Nixon v. United States?` represents a user prompt,
+A query such as `"What was the decision in Nixon v. United States?"` represents a user prompt,
 seeking specific information and tailored responses, while a system prompt, an optional
 directive, sets the context and guides the language model's overall behavior and tone.
 
