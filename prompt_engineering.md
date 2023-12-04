@@ -108,9 +108,9 @@ Similarly, the model may produce a responses shorter than your desired length.
 
 Here are a few techniques to get the desired output lengths.
 * Specify desired length:
-  - Include information that indicates the desired length of the output. For example, you can explicitly state, `"Generate a response with up to 50 tokens."` or `"End reponse after 50 words."`
+  - Explicitly state phrases like `"Generate a response with up to two paragraphs."` or `"End reponse after 50 words."`
 * Use keywords and constraints:
-  - Include keywords or constraints in your prompt that guide the model to generate concise responses. For example,`"brief"`, `"succinct"` or `"Write a detailed paragraph on..."`.
+  - Include keywords or constraints like `"brief"`, `"succinct"` and `"Write a detailed paragraph on..."`.
 
 Consider the output to this prompt ```"Describe the impacts of Silicon Valley."```
 Note the output below is long and has an incomplete sentence at the end.
