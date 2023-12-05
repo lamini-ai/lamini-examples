@@ -15,13 +15,15 @@ Then, RAG will perform the steps below:
    - User prompt `"Have we invested in any generative AI companies in the past year"`?
    - RAG searches the user's knowledge base, which includes the company's internal documents and databases to retrieve information relevant to the prompt, such as the recipent companies, funding amounts, equity stakes, investments dates, key personnel involved.
 2. <u>A</u>ugmentation - Augment the prompt with the retrieved data from step 1.
-3. <u>G</u>eneration - Generate a well-informed response for the prompt from step 2. Ex.
+3. <u>G</u>eneration - Generate a well-informed response for the prompt from step 2. Example response.
    - ```
-     Yes, in the past year, we have invested in two companies. Investment to Piped Piper
-     in Palo Alto was led by Erlich Bachman from the series A team and concluded in
-     Mar 2, 2023, for $1,000,000 and 10% equity.  Investment to SeeFood in Palo Alto was
-     led by Jian Yang from the seed round team  and concluded in Oct 1, 2023, for
-     $10,000,000 and 25% equity.
+     Yes, in the past year, we have invested in two generative AI companies.
+     Investment to Super Piped Piper in Palo Alto was led by Russe H. from the series A
+     team and concluded in Mar 2, 2023, for $1,000,000 and 10% equity. Super Piped Piper
+     focuses on ensuring responsible deployment of AI models.
+     Investment to SeeFood in Palo Alto was led by Erlich B. from the seed round team
+     and concluded in Oct 1, 2023, for $10,000,000 and 25% equity. SeeFood uses AI to
+     create octupus movies that you can see using Oculus headsets.
      ```
 
 In this tutorial, we will show you how to use lamini's
