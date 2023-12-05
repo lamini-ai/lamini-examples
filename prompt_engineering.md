@@ -111,7 +111,7 @@ Additional system prompt examples:
 In prompt engineering, you can manipulate different attributes of the responses.
 Here are some key attributes you can control:
 
-### Repsonse Length
+### Response Length
 
 It is not uncommon for a model to produce sentences that are too long or incomplete, influenced by various factors such as prompt complexity and training data.
 Similarly, the model may produce responses shorter than your desired length.
