@@ -27,13 +27,13 @@ Once ready, RAG will perform the steps below:
 1. :mag: Retrieval - Scan the knowledge base to retrieve info relevant to the user prompt. Ex.
    - User prompt `"Have we invested in any generative AI companies in the past year?"`
    - RAG searches the user's knowledge base, which includes the company's internal documents to retrieve information relevant to the prompt, such as the recipent companies, funding amounts, equity stakes, investments dates, and key personnel involved.
-2. :books: :heavy_plus_sign: :books: Augmentation - Augment the prompt with the retrieved data from step 1. Ex.
+2. :books: :heavy_plus_sign: :books: Augmentation - Augment the prompt with the retrieved info from step 1. Ex.
 3. :magic_wand: Generation - Generate a well-informed response for the prompt from step 2. Ex.
    - ```
      Yes, in the past year, we invested in two generative AI companies.
      Investment to Super Piped Piper in Palo Alto was led by Russe H. from the series A
      team and concluded in Mar 2, 2023, for $1,000,000 and 10% equity. Super Piped Piper
-     focuses on ensuring responsible deployment of AI models.
+     focuses on ensuring responsible deployment of generative AI models.
      Details can be found in https://my_company.com/private_docs/piped_piper
      Investment to SeeFood in Palo Alto was led by Erlich B. from the seed round team
      and concluded in Oct 1, 2023, for $10,000,000 and 25% equity. SeeFood uses AI to
@@ -53,11 +53,9 @@ llm.train()
 response = llm("Have we invested in any generative AI companies in the past year?")
 ```
 
-Now let's delve into how RAG works.
+Follow along this tutorial to learn how you can use RAG to generate high quality responses :rocket:
 
 ## Step 1: Retrieval
-
-### Knowledge Base Prepartion
 
 We begin by breaking the list of text files containing the internal knowledge into chunks,
 which will allow efficient and scalable processing, indexing and retrieval.
