@@ -8,7 +8,7 @@ I'm sorry, but my training only includes information up to Jan 2022...
 ```
 
 What if you want to know the list of products your company launched in 2020 that received
-high ratings, but the model replies
+high customer ratings, but the model replies
 ```
 I apologize, but I don't have access to real-time data or specific information about your company.
 ```
