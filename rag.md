@@ -16,7 +16,7 @@ Then, RAG will perform the steps below:
    - RAG searches the user's knowledge base, which includes the company's internal documents and databases to retrieve information relevant to the prompt, such as the recipent companies, funding amounts, equity stakes, investments dates, key personnel involved.
 2. :books: :heavy_plus_sign: :books: Augmentation - Augment the prompt with the retrieved data from step 1.
 3. :magic_wand: Generation - Generate a well-informed response for the prompt from step 2.
-   - ```
+   - Ex: ```
      Yes, in the past year, we have invested in two generative AI companies.
      Investment to Super Piped Piper in Palo Alto was led by Russe H. from the series A
      team and concluded in Mar 2, 2023, for $1,000,000 and 10% equity. Super Piped Piper
