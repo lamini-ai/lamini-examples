@@ -15,7 +15,7 @@ Then, RAG will perform the steps below:
    - User prompt `"Have we invested in any generative AI companies in the past year"`?
    - RAG searches the user's knowledge base, which includes the company's internal documents and databases to retrieve information relevant to the prompt, such as the recipent companies, funding amounts, equity stakes, investments dates, key personnel involved.
 2. <u>A</u>ugmentation - Augment the prompt with the retrieved data from step 1.
-3. <u>G</u>eneration - Generate a well-informed response for the prompt from step 2. Example response.
+3. <u>G</u>eneration - Generate a well-informed response for the prompt from step 2. Example response:
    - ```
      Yes, in the past year, we have invested in two generative AI companies.
      Investment to Super Piped Piper in Palo Alto was led by Russe H. from the series A
@@ -26,14 +26,16 @@ Then, RAG will perform the steps below:
      create octupus movies that you can see using Oculus headsets.
      ```
 
-In this tutorial, we will show you how to use lamini's
-`RetrievalAugmentedRunner` to obtain high quality results.
+Using lamini's `RetrievalAugmentedRunner`, you can get the result above with just
+a few lines of code.
 
 ```python
+import lamini
+
 llm = RetrievalAugmentedRunner()
 llm.load_data("my_data_dir")
 llm.train()
-response = llm("Who won ...?")
+response = llm("Have we invested in any generative AI companies in the past year?")
 ```
 
 =======================
