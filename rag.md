@@ -11,12 +11,12 @@ underlying model itself.
 
 To use RAG, the user will provide a knowledge base along with the prompt.
 Then, RAG will perform the steps below:
-1. :mag: Retrieval - Scan the knowledge base to retrieve info relevant to the user prompt. Ex:
+1. :mag: Retrieval - Scan the knowledge base to retrieve info relevant to the user prompt. Ex.
    - User prompt `"Have we invested in any generative AI companies in the past year"`?
    - RAG searches the user's knowledge base, which includes the company's internal documents and databases to retrieve information relevant to the prompt, such as the recipent companies, funding amounts, equity stakes, investments dates, key personnel involved.
 2. :books: :heavy_plus_sign: :books: Augmentation - Augment the prompt with the retrieved data from step 1.
-3. :magic_wand: Generation - Generate a well-informed response for the prompt from step 2.
-   - Ex: ```
+3. :magic_wand: Generation - Generate a well-informed response for the prompt from step 2. Ex.
+   - ```
      Yes, in the past year, we have invested in two generative AI companies.
      Investment to Super Piped Piper in Palo Alto was led by Russe H. from the series A
      team and concluded in Mar 2, 2023, for $1,000,000 and 10% equity. Super Piped Piper
