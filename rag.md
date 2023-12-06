@@ -60,7 +60,7 @@ Now let's delve into how RAG works.
 ### Knowledge Base Prepartion
 
 We begin by breaking the list of text files containing the internal knowledge into chunks,
-which will allow efficient and scalable processing during later stages.
+which will allow efficient and scalable processing, indexing and retrieval.
 
 ```python
 loader = DirectoryLoader(
@@ -79,9 +79,11 @@ for chunk in tqdm(loader):
 2. `batch_size` (optional) - default to 512.
 3. `chunker` (optional) - an object that can chunk the text. The default chunker is lamini's `DefaultChunker`.
 
-If you choose to use `DefaultChunker`, then you can optionally specify two arguments:
+If you use `DefaultChunker`, then you can optionally specify two arguments:
 1. `chunk_size` (optional)
    - Number of characters for each chunk.
+   - Smaller chunks tend to provide more precise results but can increase computationlly overhead.
+   - Larger chunks may improve efficiency but introduce more noise in the results.
    - Default to 512.
 2. `step_size` (optional)
    - Interval at which each chunk is obtained.
@@ -95,7 +97,7 @@ Consider this text:
 ```
 "Our firm invested in 10 AI startups in 2023."
 ```
-Let `chunk_size` = `step_size` = 20.
+For simplicity, let's try `chunk_size` = `step_size` = 20.
 In other words, for each index in [0, 20, 40], extract a substring of length 20.
 Output:
 ```
@@ -105,8 +107,8 @@ Output:
 ```
 
 Now let `chunk_size` = 20, `step_size` = 16.
-This means for each index in [0, 16, 32], extract a substring of length 20.
-Note the chunks contain overlapping characters.
+This means for each index in [0, 16, 32, 48], extract a substring of length 20.
+Since `chunk_size` > `step_size`, the resulting chunks contain overlapping subsequences.
 ```
 ["Our firm invested in",
  "ested in 10 AI start",
@@ -114,16 +116,11 @@ Note the chunks contain overlapping characters.
  "in 2023."
 ```
 
-loader = DirectoryLoader(
-    "directory_path_with_my knowledge 
-    batch_size=512,
-    chunker=DefaultChunker(chunk_size=512, step_size=512),
-)
+How to choose the right chunk and step sizes?
+TODO
 
-chunks = []
-for chunk in tqdm(loader):
-    chunks.extend(chunk)
-```
+=========================
+
 In this step, you simply need to provide a directory of text files that contains
 your internal knowledge.
 
