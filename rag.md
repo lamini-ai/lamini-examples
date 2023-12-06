@@ -60,7 +60,7 @@ Follow along this tutorial to learn how you can use RAG to generate high quality
 ### Preparing Knowledge Base as Chunks
 
 We begin by breaking the list of text files containing the internal knowledge into chunks,
-which will allow efficient and scalable processing, indexing and retrieval.
+which will allow efficient and scalable processing during later stages.
 
 ```python
 loader = DirectoryLoader(
@@ -75,9 +75,9 @@ for chunk in tqdm(loader):
 ```
 
 `DirectoryLoader(...)` has three arguments:
-1. `directory_path` (required) - path to the directory with internal data, the files will be read as text.  This step will fail if the directory contains files that cannot be read as text. TODO: does text from multiple files get combined.
-2. `batch_size` (optional) - default to 512.
-3. `chunker` (optional) - an object that can chunk the text. The default chunker is lamini's `DefaultChunker`.
+1. A directory path (required, string) - path to the directory with internal data, the files will be read as text.  This step will fail if the directory contains files that cannot be read as text. TODO: does text from multiple files get combined. TODO: does it have to be abs path.
+2. `batch_size` (optional keyword arg) - default to 512.
+3. `chunker` (optional keyword arg) - an object that can chunk the text. Default to lamini's `DefaultChunker`.
 
 If you use `DefaultChunker`, then you can optionally specify two arguments:
 1. `chunk_size` (optional)
