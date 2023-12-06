@@ -57,6 +57,8 @@ Follow along this tutorial to learn how you can use RAG to generate high quality
 
 ## Step 1: Retrieval
 
+### Preparing Knowledge Base as Chunks
+
 We begin by breaking the list of text files containing the internal knowledge into chunks,
 which will allow efficient and scalable processing, indexing and retrieval.
 
