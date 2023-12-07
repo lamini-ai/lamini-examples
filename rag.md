@@ -81,13 +81,13 @@ Our `DirectoryLoader` breaks the text into chunks based on these parameters:
    - An object that can chunk the text to a list of substrings.
    - Default to lamini's `DefaultChunker`.
 
-If you our `DefaultChunker`, the data load will fail if the input directory contains
+If you our `DefaultChunker`, the data will fail to load if the input directory contains
 files that cannot be read as text (TODO: double check).
-Our chunker depends on the paramters below and creates substrings of length `chunk_size`, except
-possibly for substrings at the end.  We will show examples :simple_smile:.
+The chunker depends on the paramters below and creates substrings of length `chunk_size`, except
+possibly shorter substrings at the end.  We will show some examples.
 
 1. `chunk_size`
-   - Number of characters for each chunk.
+   - Number of characters in each chunk.
    - Smaller chunks tend to provide more accurate results but can increase computationlly overhead.
    - Larger chunks may improve efficiency but reduce accuracy.
    - Default to 512.
@@ -101,7 +101,7 @@ Consider this text:
 ```
 "Our firm invested in 10 AI startups in 2023."
 ```
-For simplicity, let's say `chunk_size` = `step_size` = 20.
+For simplicity, let `chunk_size` = `step_size` = 20.
 In other words, for each index in [0, 20, 40], extract a substring of length 20.
 Output:
 ```
@@ -124,7 +124,7 @@ These overlaps will give each chunk some context from its neighbors and improve 
 ```
 
 You might need to experiment with adjusting these parameters to achieve optimal results.
-You can configure these parameters with an optional `config` to `RetrievalAugmentRunner`:
+You can configure these parameters with an optional `config` to `RetrievalAugmentRunner`, like below:
 
 ```python
 llm = RetrievalAugmentedRunner(
@@ -136,9 +136,10 @@ llm = RetrievalAugmentedRunner(
 
 
 TODO: double check the config works, looks like it should
+
 TODO: you can also specify k, what is k?
 
-### Steps 1.2: Chunks --> Embeddings
+### Steps 1.2: Chunks :arrow_right: Embeddings
 
 Now that we have the chunks, we must capture the semantic information
 and context of the chunks
