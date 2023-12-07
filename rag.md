@@ -184,45 +184,37 @@ Nucleus, released 8/2023, lead by Nelson B, received 2 stars.
 List the worst rated projects that my company launched in 2023.
 ```
 
+In (TODO: add location), line TODO
+```
+llm(prompt)
+```
+creates the augments prompt.
+
 ## Step 3 Generation
 
 The final step of RAG is to execute the Runner with the new prompt.
+`llm(prompt)` also runs this step and returns the respopnse.
 
-The output will look like:
+For the example augmented prompt from the previous step, the output may look like
 ```
 Based on the ratings, the worst projects launched by your company in 2023 are:
 
 Pied Piper Compression (Richard H) - 1 star
 Hooli Mobile Devices (Gavin B) - 1 star
-Nucleus (Nelson B) - 2 stars
 ```
 
-Awesome! :tada: Now, follow along the next topic to learn how to train models with
-[instruction, output] pairs to get even better responses!
+TODO: this output is from chat gpt, double check our model produces similiar response.
 
-==================== IGNORE STUFF BELOW =====
+Awesome :tada: Now, follow along the next topic to learn instruction
+fine tuning, another technique to get great responses!
 
-add figure?
+===========================
 
-We encode each chunk into an embedding vector and use that for retrieval
+TODO: add figure?
 
-Text can be chunked and vectorized externally and then indexed as vector fields in your index.
-To encode that data, we need to use an embedding model. 
+TODO: show you can change the model from RAG runner?
 
-LaminiIndex() builds the index, creates splits
-for each in split_batch, get embeddings
-  set index to faiss.IndexFlatL2
-
-
-=======================
-
-step 1: load, concat
-step 2: chunk fixed, show code
-step 3: run embedding
-
-TODO: runner default is mistral
-
-TODO add figure?
+TODO: add code that the user can run
 
 
 
