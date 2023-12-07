@@ -28,7 +28,7 @@ User Input:
 2. Internal knowledge base
 
 RAG Steps:
-1. :mag: :books: Retrieval - Scan the knowledge base to retrieve info relevant to the user prompt. Ex.
+1. :books: :mag: Retrieval - Scan the knowledge base to retrieve info relevant to the user prompt. Ex.
    - User prompt `"Have we invested in any generative AI companies in the past year?"`
    - Scan the user's knowledge base, which includes the company's internal documents. Retrieve information relevant to the prompt, such as company names, funding amounts, equity stakes, investments dates, and key personnel involved.
 2. :heavy_plus_sign: Augmentation - Augment the prompt with the data retrieved from step 1. 
