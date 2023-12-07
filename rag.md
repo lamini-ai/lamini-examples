@@ -175,13 +175,13 @@ List the worst rated projects that my company launched in 2023.
 
 Augmented prompt
 ```
-List the worst rated projects that my company launched in 2023.
-Consider these:
 Pied Piper Compression, released 3/2023, lead by Richard H, received 1 star.
 Not HotDog, released 1/2023, lead by Jian Y, received 3 stars.
 New Internet, released 2/2023, lead by Richard H, received 5 stars.
 Hooli Mobile Devices, released 12/2023, lead by Gavin B, received 1 star.
 Nucleus, released 8/2023, lead by Nelson B, received 2 stars.
+
+List the worst rated projects that my company launched in 2023.
 ```
 
 ## Step 3 Generation
