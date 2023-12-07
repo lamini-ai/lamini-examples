@@ -56,7 +56,9 @@ llm.train()
 prompt = "Have we invested in any generative AI companies in the past year?")
 response = llm(prompt)
 ```
-## Step 0: Prepare Input
+## Step 1. Retrieval
+
+### Step 1.1 Internal Knowledge Base to Chunks
 
 RAG requires the user to provide an internal knowledge base along with the prompt.
 Lamini expects this knowledge base to be a directory where all files can be read as text.
@@ -70,8 +72,6 @@ llm.load_data("path_to_knowledge_directory")
 Lamini then recursively reads all files in the directory and chunks the data
 into substrings, which will allow
 efficient processing during ater stages.
-
-### Chunking
 
 Our `DirectoryLoader` breaks the text into chunks based on these parameters:
 1. `batch_size`
@@ -124,7 +124,7 @@ These overlaps will give each chunk some context from its neighbors and improve 
 ```
 
 You might need to experiment with adjusting these parameters to achieve optimal results.
-You can configure these optional parameters with:
+You can configure these parameters with an optional `config` to `RetrievalAugmentRunner`:
 
 ```python
 llm = RetrievalAugmentedRunner(
@@ -134,43 +134,33 @@ llm = RetrievalAugmentedRunner(
            })
 ```
 
+
 TODO: double check the config works, looks like it should
 TODO: you can also specify k, what is k?
 
-## Step 1: Retrieval
+### Steps 1.2: Chunks --> Embeddings
 
-### Preparing Knowledge Base as Chunks
-
-### Chunks --> Embeddings and Index
-
-Now that we have the list of strings as chunks, we must capture the semantic information
+Now that we have the chunks, we must capture the semantic information
 and context of the chunks
-as numerical vectors known as embeddings.  This enables the data to be processed effectively
-by machine learning models.
+as numerical vectors known as embeddings.
+This enables the data to be processed effectively by machine learning models.
 
-TODO: add embedding example
+TODO: add details of how we do embedding?
+
+### Step 1.3: Embeddings --> Search Index
 
 Next, we must use the embeddings to build an index, a data structure that is crucial for
 efficient data retrieval in large datasets.  An index is essentially a map, helping you
 find specific information quickly, just like the index at the end of a book.
 Lamini builds an `faiss.IndexFlatL2` index (TODO: link), a
 simple and fast index for similarity search based on Euclidean distance.
+Lamini's `llm.train()` builds the index and saves the index file to the local machine.
 
-
-`llm.train()` will create an index
-```python
-self.index = LaminiIndex(self.loader, ...)
-````
-
-The index is saved.
-
-### Retrieve Relevant Information from Embedding Store
+### Step 1.4: Retrieve Relevant Information from Embedding Store
 
 We perform a similarity search using embeddings of the question
-again all embeddings in the embedding store.  This produces a list
+again all embeddings.  This produces a list
 of chunk IDs ranked by their similarity scores.
-
-TODO: pre/post filtering, see https://scale.com/blog/retrieval-augmented-generation-to-enhance-llms
 
 ## Step 2 Augmentation
 
