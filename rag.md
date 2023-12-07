@@ -20,12 +20,11 @@ This is where retrieval augmented generation (RAG) steps in, efficiently allowin
 incorporate their internal knowledge base for more accurate responses without modifying the
 underlying model itself :smiley: :thumbsup:.
 
-In later sections, we will describe the RAG steps and input preparation in detail.
-But first, Here is a high level overview of the RAG process.
+Here is a high level overview of the RAG process.
 
 User Input:
 1. Prompt
-2. Internal knowledge base
+2. Internal knowledge base - files containing internal knowledge
 
 RAG Steps:
 1. :books: :mag: Retrieval - Scan the knowledge base to retrieve info relevant to the user prompt. Ex.
@@ -45,17 +44,32 @@ RAG Steps:
      Details can be found on https://my_company.com/private_docs/see_food
      ```
 
-Once the knowledge base is ready, you can use lamini's `RetrievalAugmentedRunner`
-to get the result above with just a few lines of code.
+Lamini's `RetrievalAugmentedRunner` allows you to run RAG with just a few lines of code,
+like below.
+We will provide a detailed explanation of the RAG steps and the code in the upcoming sections.
 
 ```python
-import lamini
+from llama.retrieval.retrieval_augmented_runner import RetrievalAugmentedRunner
 
-llm = RetrievalAugmentedRunner() # default model is Mistral Instruct
-llm.load_data("private_knowledge_dir")
+llm = RetrievalAugmentedRunner()
+llm.load_data("path_to_knowledge_directory")
 llm.train()
-response = llm("Have we invested in any generative AI companies in the past year?")
+prompt = "Have we invested in any generative AI companies in the past year?")
+response = llm(prompt)
 ```
+
+## Step 0: Prepare Input
+
+RAG requires the user to provide an internal knowledge base along with the prompt.
+Lamini expects this knowledge base to be a directory where all files can be read as text.
+You can load the knowledge with
+
+```python
+llm = RetrievalAugmentedRunner()
+llm.load_data("path_to_knowledge_directory")
+```
+
+
 
 ## Step 1: Retrieval
 
@@ -223,5 +237,8 @@ step 3: run embedding
 TODO: runner default is mistral
 
 TODO add figure?
+
+
+
 
 
