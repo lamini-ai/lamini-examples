@@ -14,10 +14,9 @@ I apologize, but I don't have access to real-time data or specific information a
 
 Language models may lack recent data and do not have access to your
 private data, resulting in potentially uninformative or inaccurate replies.
-In addition, models can't learn new information without going through a computationally
-expensive and time consuming retraining process to modify the model :cry:.
 This is where retrieval augmented generation (RAG) steps in, efficiently allowing users to
-incorporate their internal knowledge base for more accurate responses without modifying the
+incorporate their internal knowledge base or real time data
+for more accurate responses without modifying the
 underlying model itself :smiley: :thumbsup:.
 
 Here is a high level overview of the RAG process.
@@ -57,7 +56,6 @@ llm.train()
 prompt = "Have we invested in any generative AI companies in the past year?")
 response = llm(prompt)
 ```
-
 ## Step 0: Prepare Input
 
 RAG requires the user to provide an internal knowledge base along with the prompt.
@@ -69,56 +67,41 @@ llm = RetrievalAugmentedRunner()
 llm.load_data("path_to_knowledge_directory")
 ```
 
+Lamini then recursively reads all files in the directory and chunks the data
+into substrings, which will allow
+efficient processing during ater stages.
 
+### Chunking
 
-## Step 1: Retrieval
+Our `DirectoryLoader` breaks the text into chunks based on these parameters:
+1. `batch_size`
+   - Default to 512.
+   - TODO: what does batch size do here?
+2. `chunker`
+   - An object that can chunk the text to a list of substrings.
+   - Default to lamini's `DefaultChunker`.
 
-### Preparing Knowledge Base as Chunks
+If you our `DefaultChunker`, the data load will fail if the input directory contains
+files that cannot be read as text (TODO: double check).
+Our chunker depends on the paramters below and creates substrings of length `chunk_size`, except
+possibly for substrings at the end.  We will show examples :simple_smile:.
 
-We begin by breaking the list of text files containing the internal knowledge into chunks,
-which will allow efficient and scalable processing during later stages.
-
-```python
-loader = DirectoryLoader(
-    parent_directory + "/data",
-    batch_size=512,                                       
-    chunker=DefaultChunker(chunk_size=512, step_size=512),
-)
-
-chunks = []
-for chunk in tqdm(loader):
-    chunks.extend(chunk) 
-```
-
-`DirectoryLoader(...)` has three arguments:
-1. A directory path (required, string)
-   - path to the directory with internal data, the files will be read as text.  This step will fail if the directory contains files that cannot be read as text. TODO: does text from multiple files get combined. TODO: does it have to be abs path.
-2. `batch_size` (optional keyword arg)
-   - default to 512.
-3. `chunker` (optional keyword arg)
-   - an object that can chunk the text. Default to lamini's `DefaultChunker`, which returns a list of strings, each a substring with chunk size as the length. TODO: except at the end.
-
-TODO: what is tqdm
-
-If you use `DefaultChunker`, then you may specify two arguments:
-1. `chunk_size` (optional keyword arg)
+1. `chunk_size`
    - Number of characters for each chunk.
    - Smaller chunks tend to provide more accurate results but can increase computationlly overhead.
    - Larger chunks may improve efficiency but reduce accuracy.
    - Default to 512.
-2. `step_size` (optional keyword arg)
+2. `step_size`
    - Interval at which each chunk is obtained.
    - Ex. if `step_size` = 5, then we will extract chunks from indices 0, 4, 9, 14, 19, ..., and each chunk will have length `chunk_size`.
    - Default to 128.
    - `step_size` should be less than or equal to `chunk_size`.
 
-`DefaultChunker` returns a list of strings, each a substring of the text with length `chunk_size`.
-
 Consider this text:
 ```
 "Our firm invested in 10 AI startups in 2023."
 ```
-For simplicity, let's try `chunk_size` = `step_size` = 20.
+For simplicity, let's say `chunk_size` = `step_size` = 20.
 In other words, for each index in [0, 20, 40], extract a substring of length 20.
 Output:
 ```
@@ -144,6 +127,14 @@ How to choose the right chunk and step sizes?
 TODO
 
 TODO: Smaller chunks often improve retrieval but may cause generation to suffer from a lack of surrounding context. Is this related to step size?
+
+
+
+
+
+## Step 1: Retrieval
+
+### Preparing Knowledge Base as Chunks
 
 ### Chunks --> Embeddings and Index
 
