@@ -194,7 +194,7 @@ creates the augments prompt.
 
 The final step of RAG is also very straightforward.
 Execute the Runner with the new prompt.
-`llm(prompt)` also runs this step and returns the respopnse.
+`llm(prompt)` also runs this step and returns the response.
 
 The response for the augmented prompt in the previous step may look like
 ```
