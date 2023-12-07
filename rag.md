@@ -157,7 +157,7 @@ The index is saved to the local machine.
 ### Step 1.3: Retrieve Relevant Information from Embeddings
 
 Using [faiss](https://github.com/facebookresearch/faiss),
-lamini perform a similarity search using embeddings of the question
+lamini performs a similarity search using embeddings of the question
 against all chunk embeddings, with the help of the index.
 This produces a list of chunk IDs ranked by their similarity scores.
 
@@ -166,13 +166,14 @@ Lamini's `llm.train()` also executes this step.
 ## Step 2 Augmentation
 
 This step is simple, we append the relevant chunks to the original prompt.
+For example:
 
-For example, original prompt:
+Original prompt
 ```
 List the worst rated projects that my company launched in 2023.
 ```
 
-Augmented prompt:
+Augmented prompt
 ```
 List the worst rated projects that my company launched in 2023.
 Consider these:
