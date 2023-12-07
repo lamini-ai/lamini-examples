@@ -139,7 +139,7 @@ TODO: double check the config works, looks like it should
 
 TODO: you can also specify k, what is k?
 
-### Step 1.2: Chunks --> Embeddings --> Search Index
+### Step 1.2: Chunk Embeddings --> Search Index
 
 Now that we have the chunks, we must capture the semantic information
 and context of the chunks
@@ -151,15 +151,17 @@ find specific information quickly, just like the index at the end of a book.
 Lamini builds an [faiss.IndexFlatL2](https://github.com/facebookresearch/faiss) index, a
 simple and fast index for similarity search based on Euclidean distance.
 
-In lamini, `llm.train()` creates the embeddings from the chunks and add the
-embeddings to the index.
+In lamini, `llm.train()` performs all tasks above.
+The index is saved to the local machine.
 
-### Step 1.4: Retrieve Relevant Information from Embedding Store
+### Step 1.4: Retrieve Relevant Information from Embeddings
 
-We perform a similarity search using embeddings of the question
-again all embeddings.  This produces a list
+Using [faiss](https://github.com/facebookresearch/faiss),
+lamini perform a similarity search using embeddings of the question
+against all chunk embeddings.  This produces a list
 of chunk IDs ranked by their similarity scores.
-Lamini's `llm.train()` builds the index and saves the index file to the local machine.
+
+Lamini's `llm.train()` also executes this step.
 
 ## Step 2 Augmentation
 
