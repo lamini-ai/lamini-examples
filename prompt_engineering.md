@@ -211,7 +211,7 @@ Output:
 
 ## Iterate and Repeat
 
-The process of refining and improving prompts through successive iterations is cruical
+The process of refining and improving prompts through successive iterations is crucial
 for achieving desired results.  The key is to be adaptable and responsive to the performance of the model and user needs. Here is an example:
 
 * **Observation**
@@ -285,3 +285,11 @@ See our [docs](https://lamini-ai.github.io/rest_api/completions)!
 
 If you are interested in the technical details, see our blog post
 [Guarantee Valid JSON Output with Lamini](https://www.lamini.ai/blog/guarantee-valid-json-output-with-lamini).
+
+=========================
+
+TODOs:
+
+Modifications suggested by Ayushi
+* add where to put "write in 3 sentences", like at the beginning or end of prompt.
+* add how to prevent hallucinations.
