@@ -154,22 +154,20 @@ simple and fast index for similarity search based on Euclidean distance.
 In lamini, `llm.train()` performs all tasks above.
 The index is saved to the local machine.
 
-### Step 1.4: Retrieve Relevant Information from Embeddings
+### Step 1.3: Retrieve Relevant Information from Embeddings
 
 Using [faiss](https://github.com/facebookresearch/faiss),
 lamini perform a similarity search using embeddings of the question
-against all chunk embeddings.  This produces a list
-of chunk IDs ranked by their similarity scores.
+against all chunk embeddings, with the help of the index.
+This produces a list of chunk IDs ranked by their similarity scores.
 
 Lamini's `llm.train()` also executes this step.
 
 ## Step 2 Augmentation
 
-Append the relevant chunks to the original prompt.
+This step is simple, we append the relevant chunks to the original prompt.
 
-The original prompt is augmented with the additional information from the knowledge base.
 For example, original prompt:
-
 ```
 List the worst rated projects that my company launched in 2023.
 ```
