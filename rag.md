@@ -2,31 +2,36 @@
 
 ## Introduction
 
-Let's say you want to the know the bitcoin price today, but the model responds
+Suppose you're interested in knowing today's Bitcoin price, but the model responds.
 ```
 I'm sorry, but my training only includes information up to Jan 2022...
 ```
 
-What if you want to know the worst-rated projects your company launched in 2023, but the model replies
+What if you want to know the worst products your company launched in 2023, but the model replies
 ```
 I apologize, but I don't have access to real-time data or specific information about your company.
 ```
 
 Language models may lack recent data and do not have access to your
-private data, resulting in uninformative replies or potential inaccuracies or hallucinations in the replies.
+private data, resulting in potentially uninformative or inaccurate replies.
 In addition, models can't learn new information without going through a computationally
 expensive and time consuming retraining process to modify the model :cry:.
 This is where retrieval augmented generation (RAG) steps in, efficiently allowing users to
-incorporate their knowledge base for more accurate answers without modifying the
+incorporate their internal knowledge base for more accurate responses without modifying the
 underlying model itself :smiley: :thumbsup:.
 
-To use RAG, the user will provide a knowledge base along with the prompt.
-In a later section, we will guide you through preparing the knowledge base.
-Once ready, RAG will perform the steps below:
+In later sections, we will describe the RAG steps and input preparation in detail.
+But first, below is a high level overview of RAG.
+
+User Input:
+1. Prompt
+2. Internal knowledge base
+
+RAG Steps:
 1. :mag: Retrieval - Scan the knowledge base to retrieve info relevant to the user prompt. Ex.
    - User prompt `"Have we invested in any generative AI companies in the past year?"`
-   - RAG searches the user's knowledge base, which includes the company's internal documents to retrieve information relevant to the prompt, such as the recipent companies, funding amounts, equity stakes, investments dates, and key personnel involved.
-2. :books: :heavy_plus_sign: :books: Augmentation - Augment the prompt with the retrieved info from step 1. Ex.
+   - Scan the user's knowledge base, which includes the company's internal documents. Retrieve information relevant to the prompt, such as company names, funding amounts, equity stakes, investments dates, and key personnel involved.
+2. :books: :heavy_plus_sign: :books: Augmentation - Augment the prompt with the data retrieved from step 1. 
 3. :magic_wand: Generation - Generate a well-informed response for the prompt from step 2. Ex.
    - ```
      Yes, in the past year, we invested in two generative AI companies.
@@ -51,8 +56,6 @@ llm.load_data("private_knowledge_dir")
 llm.train()
 response = llm("Have we invested in any generative AI companies in the past year?")
 ```
-
-Follow along this tutorial to learn how you can use RAG to generate high quality responses :rocket:
 
 ## Step 1: Retrieval
 
@@ -209,15 +212,6 @@ To encode that data, we need to use an embedding model.
 LaminiIndex() builds the index, creates splits
 for each in split_batch, get embeddings
   set index to faiss.IndexFlatL2
-
-
-
-
-
-## Step 2: Augmentation
-
-
-## Step 3: Generation
 
 
 =======================
