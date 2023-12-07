@@ -21,7 +21,7 @@ incorporate their internal knowledge base for more accurate responses without mo
 underlying model itself :smiley: :thumbsup:.
 
 In later sections, we will describe the RAG steps and input preparation in detail.
-But first, below is a high level overview of RAG.
+But first, Here is a high level overview of the RAG process.
 
 User Input:
 1. Prompt
@@ -36,13 +36,13 @@ RAG Steps:
    - ```
      Yes, in the past year, we invested in two generative AI companies.
      Investment to Super Piped Piper in Palo Alto was led by Russe H. from the series A
-     team and concluded in Mar 2, 2023, for $1,000,000 and 10% equity. Super Piped Piper
+     team and concluded on Mar 2, 2023, for $1,000,000 and 10% equity. Super Piped Piper
      focuses on ensuring responsible deployment of generative AI models.
      Details can be found in https://my_company.com/private_docs/piped_piper
      Investment to SeeFood in Palo Alto was led by Erlich B. from the seed round team
-     and concluded in Oct 1, 2023, for $10,000,000 and 25% equity. SeeFood uses AI to
+     and concluded on Oct 1, 2023, for $10,000,000 and 25% equity. SeeFood uses AI to
      create octupus cooking videos that you can see using Oculus headsets.
-     Details can be found in https://my_company.com/private_docs/see_food
+     Details can be found on https://my_company.com/private_docs/see_food
      ```
 
 Once the knowledge base is ready, you can use lamini's `RetrievalAugmentedRunner`
