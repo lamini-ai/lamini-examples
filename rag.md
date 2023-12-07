@@ -123,14 +123,19 @@ These overlaps will give each chunk some context from its neighbors and improve 
  "023"
 ```
 
-How to choose the right chunk and step sizes?
-TODO
+You might need to experiment with adjusting these parameters to achieve optimal results.
+You can configure these optional parameters with:
 
-TODO: Smaller chunks often improve retrieval but may cause generation to suffer from a lack of surrounding context. Is this related to step size?
+```python
+llm = RetrievalAugmentedRunner(
+    config={'chunk_size'=512,
+            'step_size'=512,
+            'batch_size'=512,
+           })
+```
 
-
-
-
+TODO: double check the config works, looks like it should
+TODO: you can also specify k, what is k?
 
 ## Step 1: Retrieval
 
