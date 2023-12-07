@@ -148,7 +148,7 @@ This enables the data to be processed effectively by machine learning models.
 
 TODO: add details of how we do embedding?
 
-### Step 1.3: Embeddings --> Search Index
+### Step 1.3: Embeddings :arrow_right: Search Index
 
 Next, we must use the embeddings to build an index, a data structure that is crucial for
 efficient data retrieval in large datasets.  An index is essentially a map, helping you
