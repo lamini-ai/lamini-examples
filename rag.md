@@ -192,10 +192,11 @@ creates the augments prompt.
 
 ## Step 3 Generation
 
-The final step of RAG is to execute the Runner with the new prompt.
+The final step of RAG is also very straightforward.
+Execute the Runner with the new prompt.
 `llm(prompt)` also runs this step and returns the respopnse.
 
-For the example augmented prompt from the previous step, the output may look like
+The response for the augmented prompt in the previous step may look like
 ```
 Based on the ratings, the worst projects launched by your company in 2023 are:
 
