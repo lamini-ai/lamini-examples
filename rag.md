@@ -148,11 +148,11 @@ This enables the data to be processed effectively by machine learning models.
 Then, we must use the embeddings to build an index, a data structure that is crucial for
 efficient data retrieval in large datasets.  An index is essentially a map, helping you
 find specific information quickly, just like the index at the end of a book.
-Lamini builds an [`faiss.IndexFlatL2`](https://github.com/facebookresearch/faiss) index, a
+Lamini builds an [faiss.IndexFlatL2](https://github.com/facebookresearch/faiss) index, a
 simple and fast index for similarity search based on Euclidean distance.
 
-In lamini, `llm.train()` loads the chunks and, creates the embeddings, and finally
-add the embeddings to the index.
+In lamini, `llm.train()` creates the embeddings from the chunks and add the
+embeddings to the index.
 
 ### Step 1.4: Retrieve Relevant Information from Embedding Store
 
