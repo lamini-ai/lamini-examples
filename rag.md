@@ -194,7 +194,10 @@ Hooli Mobile Devices (Gavin B) - 1 star
 Nucleus (Nelson B) - 2 stars
 ```
 
-=========================
+Awesome! :tada: Now, follow along the next topic to learn how to train models with
+[instruction, output] pairs to get even better responses!
+
+==================== IGNORE STUFF BELOW =====
 
 add figure?
 
@@ -223,14 +226,8 @@ step 1: load, concat
 step 2: chunk fixed, show code
 step 3: run embedding
 
-runner default is mistral
+TODO: runner default is mistral
 
-figure
+TODO add figure?
 
-
-Advantages of Retrieval Augmented Generation
-
-Scalability. Instead of having a monolithic model that tries to memorize every bit of information, RAG models can scale by simply updating or enlarging the external database.
-Memory efficiency. While traditional models like GPT have limits on the amount of data they can store and recall, RAG leverages external databases — allowing it to pull in fresh, updated or detailed information when needed.
-Flexibility. By changing or expanding the external knowledge source, you can adapt a RAG model for specific domains without retraining the underlying generative model.
 
