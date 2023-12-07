@@ -139,29 +139,27 @@ TODO: double check the config works, looks like it should
 
 TODO: you can also specify k, what is k?
 
-### Steps 1.2: Chunks :arrow_right: Embeddings
+### Step 1.2: Chunks --> Embeddings --> Search Index
 
 Now that we have the chunks, we must capture the semantic information
 and context of the chunks
 as numerical vectors known as embeddings.
 This enables the data to be processed effectively by machine learning models.
-
-TODO: add details of how we do embedding?
-
-### Step 1.3: Embeddings :arrow_right: Search Index
-
-Next, we must use the embeddings to build an index, a data structure that is crucial for
+Then, we must use the embeddings to build an index, a data structure that is crucial for
 efficient data retrieval in large datasets.  An index is essentially a map, helping you
 find specific information quickly, just like the index at the end of a book.
-Lamini builds an `faiss.IndexFlatL2` index (TODO: link), a
+Lamini builds an [`faiss.IndexFlatL2`](https://github.com/facebookresearch/faiss) index, a
 simple and fast index for similarity search based on Euclidean distance.
-Lamini's `llm.train()` builds the index and saves the index file to the local machine.
+
+In lamini, `llm.train()` loads the chunks and, creates the embeddings, and finally
+add the embeddings to the index.
 
 ### Step 1.4: Retrieve Relevant Information from Embedding Store
 
 We perform a similarity search using embeddings of the question
 again all embeddings.  This produces a list
 of chunk IDs ranked by their similarity scores.
+Lamini's `llm.train()` builds the index and saves the index file to the local machine.
 
 ## Step 2 Augmentation
 
