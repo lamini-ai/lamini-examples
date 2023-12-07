@@ -205,8 +205,7 @@ Hooli Mobile Devices (Gavin B) - 1 star
 
 TODO: this output is from chat gpt, double check our model produces similiar response.
 
-Awesome :tada: Now, follow along the next topic to learn instruction
-fine tuning, another technique to get great responses!
+Awesome! :tada:
 
 ===========================
 
