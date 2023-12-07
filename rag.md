@@ -7,8 +7,7 @@ Let's say you want to the know the bitcoin price today, but the model responds
 I'm sorry, but my training only includes information up to Jan 2022...
 ```
 
-What if you want to know the list of products your company launched in 2020 that received
-high customer ratings, but the model replies
+What if you want to know the worst-rated projects your company launched in 2023, but the model replies
 ```
 I apologize, but I don't have access to real-time data or specific information about your company.
 ```
@@ -75,17 +74,22 @@ for chunk in tqdm(loader):
 ```
 
 `DirectoryLoader(...)` has three arguments:
-1. A directory path (required, string) - path to the directory with internal data, the files will be read as text.  This step will fail if the directory contains files that cannot be read as text. TODO: does text from multiple files get combined. TODO: does it have to be abs path.
-2. `batch_size` (optional keyword arg) - default to 512.
-3. `chunker` (optional keyword arg) - an object that can chunk the text. Default to lamini's `DefaultChunker`.
+1. A directory path (required, string)
+   - path to the directory with internal data, the files will be read as text.  This step will fail if the directory contains files that cannot be read as text. TODO: does text from multiple files get combined. TODO: does it have to be abs path.
+2. `batch_size` (optional keyword arg)
+   - default to 512.
+3. `chunker` (optional keyword arg)
+   - an object that can chunk the text. Default to lamini's `DefaultChunker`, which returns a list of strings, each a substring with chunk size as the length. TODO: except at the end.
 
-If you use `DefaultChunker`, then you can optionally specify two arguments:
-1. `chunk_size` (optional)
+TODO: what is tqdm
+
+If you use `DefaultChunker`, then you may specify two arguments:
+1. `chunk_size` (optional keyword arg)
    - Number of characters for each chunk.
-   - Smaller chunks tend to provide more precise results but can increase computationlly overhead.
-   - Larger chunks may improve efficiency but introduce more noise in the results.
+   - Smaller chunks tend to provide more accurate results but can increase computationlly overhead.
+   - Larger chunks may improve efficiency but reduce accuracy.
    - Default to 512.
-2. `step_size` (optional)
+2. `step_size` (optional keyword arg)
    - Interval at which each chunk is obtained.
    - Ex. if `step_size` = 5, then we will extract chunks from indices 0, 4, 9, 14, 19, ..., and each chunk will have length `chunk_size`.
    - Default to 128.
@@ -106,44 +110,97 @@ Output:
  "023."
 ```
 
-Now let `chunk_size` = 20, `step_size` = 16.
-This means for each index in [0, 16, 32, 48], extract a substring of length 20.
-Since `chunk_size` > `step_size`, the resulting chunks contain overlapping subsequences.
+Now consider `chunk_size` = 20, `step_size` = 10, meaning
+for each index in [0, 10, 20, 30, 40], extract a substring of length 20.
+Notice this will result in overlaps at the boundaries of adjacent chunks, as shown below.
+These overlaps will give each chunk some context from its neighbors and improve result quality during later steps.
+
 ```
 ["Our firm invested in",
- "ested in 10 AI start",
- "AI startups in 2023.",
- "in 2023."
+ "nvested in 10 AI sta",
+ " 10 AI startups in 2",
+ "rtups in 2023.",
+ "023"
 ```
 
 How to choose the right chunk and step sizes?
 TODO
 
+TODO: Smaller chunks often improve retrieval but may cause generation to suffer from a lack of surrounding context. Is this related to step size?
+
+### Chunks --> Embeddings and Index
+
+Now that we have the list of strings as chunks, we must capture the semantic information
+and context of the chunks
+as numerical vectors known as embeddings.  This enables the data to be processed effectively
+by machine learning models.
+
+TODO: add embedding example
+
+Next, we must use the embeddings to build an index, a data structure that is crucial for
+efficient data retrieval in large datasets.  An index is essentially a map, helping you
+find specific information quickly, just like the index at the end of a book.
+Lamini builds an `faiss.IndexFlatL2` index (TODO: link), a
+simple and fast index for similarity search based on Euclidean distance.
+
+
+`llm.train()` will create an index
+```python
+self.index = LaminiIndex(self.loader, ...)
+````
+
+The index is saved.
+
+### Retrieve Relevant Information from Embedding Store
+
+We perform a similarity search using embeddings of the question
+again all embeddings in the embedding store.  This produces a list
+of chunk IDs ranked by their similarity scores.
+
+TODO: pre/post filtering, see https://scale.com/blog/retrieval-augmented-generation-to-enhance-llms
+
+## Step 2 Augmentation
+
+Append the relevant chunks to the original prompt.
+
+The original prompt is augmented with the additional information from the knowledge base.
+For example, original prompt:
+
+```
+List the worst rated projects that my company launched in 2023.
+```
+
+Augmented prompt:
+```
+List the worst rated projects that my company launched in 2023.
+Consider these:
+Pied Piper Compression, released 3/2023, lead by Richard H, received 1 star.
+Not HotDog, released 1/2023, lead by Jian Y, received 3 stars.
+New Internet, released 2/2023, lead by Richard H, received 5 stars.
+Hooli Mobile Devices, released 12/2023, lead by Gavin B, received 1 star.
+Nucleus, released 8/2023, lead by Nelson B, received 2 stars.
+```
+
+## Step 3 Generation
+
+The final step of RAG is to execute the Runner with the new prompt.
+
+The output will look like:
+```
+Based on the ratings, the worst projects launched by your company in 2023 are:
+
+Pied Piper Compression (Richard H) - 1 star
+Hooli Mobile Devices (Gavin B) - 1 star
+Nucleus (Nelson B) - 2 stars
+```
+
 =========================
 
-In this step, you simply need to provide a directory of text files that contains
-your internal knowledge.
-
-In this step, we will input a directory of text files and break the input text into
-a list of special substrings or chunks.
-
-
-Prepare a directory with your text files.
-RAG will recursively load all the files as text into a list of strings.
-Then chunk the data into
-a list of strings, each a substring of the text with length self.chunk_size.
- chunking is the process of breaking down the input text into smaller segments or chunks. A chunk could be defined simply by its size
- 
+add figure?
 
 We encode each chunk into an embedding vector and use that for retrieval
-If the chunk is small enough it allows for a more granular match between the user query and the content, whereas larger chunks result in additional noise in the text, reducing the accuracy of the retrieval step.
-
-chunk by token size
 
 Text can be chunked and vectorized externally and then indexed as vector fields in your index.
-
-add input ex, and out chunks
-
 To encode that data, we need to use an embedding model. 
 
 LaminiIndex() builds the index, creates splits
@@ -152,12 +209,6 @@ for each in split_batch, get embeddings
 
 
 
- In general, smaller chunks often improve retrieval but may cause generation to suffer from a lack of surrounding context.
- Chunking significantly influences the quality of the generated content.
-
-. The findings suggested that larger chunk sizes can be beneficial, but the benefits taper off after a certain point, indicating that too much context might introduce noise.
-
-Overlap in chunking refers to the intentional duplication of tokens at the boundaries of adjacent chunks. This ensures that when a chunk is passed to the LLM for generation, it contains some context from its neighboring chunks, enhancing the quality of the output.
 
 
 ## Step 2: Augmentation
