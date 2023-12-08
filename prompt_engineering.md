@@ -261,9 +261,25 @@ for achieving desired results.  The key is to be adaptable and responsive to the
 ## Reducing Hallucinations
 
 Hallucinations in language models refer to the generation of incorrect or fictional information that is not present in the training data.
-While achieving complete prevention is inherently difficult due to the dynamic and complex nature of natural language, there are strategies for effectively reducing hallucinations.
+While achieving complete prevention is inherently difficult due to the dynamic and complex nature of natural language, there are strategies for effectively reducing hallucinations through prompt engineering.
 
-TODO
+### Use Clear and Direct Language
+
+Clear and direct language in prompt engineering enhances model understanding, reduces ambiguity, and improves overall communication.
+It is advisable to avoid jargon, slang, ambiguous language, and overly complex terms.
+For example,
+
+Bad prompt :thumbsdown: Unclear and lack detail on what information is sought.
+```
+Too much diet cola.
+```
+
+Good prompt :thumbsup:
+```
+Explore the consequences of excessive diet cola consumption.
+```
+-----------
+TODO add more
 
 ## Batching Prompts
 
