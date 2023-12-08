@@ -286,6 +286,7 @@ Now consider the prompts below, where the first prompt is overly complex, while 
 Adding context provides a specific scenario, guiding the language model to produce a more detailed and tailored response. For example,
 
 :x: `"Describe San Francisco."`
+
 :white_check_mark: `"You are a travel blogger exploring San Francisco. Write a description highlighting its unique architecture, local cuisine, and lively atmosphere."`
  
 ### Encourage Truthful Reponse
