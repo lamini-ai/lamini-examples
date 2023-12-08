@@ -86,8 +86,8 @@ which uses the Mistral Instruct model.
 runner = MistralRunner()
 ```
 
-Next, we declare `Questions`, an object of lamini `Type`, that has
-three questions with type string.
+Next, we declare `Questions`, an object of lamini `Type` with
+three string fields: `question_1`, `question_2`, and `question_3`.
 
 ```python
 class Questions(Type):
@@ -96,14 +96,27 @@ class Questions(Type):
     question_3: str = Context("")
 ```
 
-For simplicity, we use the third chunk only to demonstrate the question generation
+For simplicity, we use the chunk at index 2 only to demonstrate the question generation
 ```python
-chunks = chunks[2:3]
+chunks = chunks[2:3] # range from index 2 to 3, but exclude item at index 3
 ```
 
+The code below iterates through the chunks (we only have one chunk now).
+For each chunk, it creates a new prompt, where the first part is
+the chunk wrapped in single quotes, the second part is newline `\n` followed
+by TODO.
+For example, TODO.
+We then execute `runner(...)` to generate `result` of type `Questions`
+based on the new prompt and the specific system prompt.
+
+The code also prints out each question, which are TODO.
+At the end, `questions ` contains a list of [chunk, question] pairs.
+For example, TODO.
+
 ```python
+questions = []
+...
 for chunk in chunks:
-    print(chunk)
     prompt = (
         "'"
         + chunk
