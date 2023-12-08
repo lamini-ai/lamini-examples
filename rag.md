@@ -79,7 +79,7 @@ Our `DirectoryLoader` breaks the text into chunks based on these parameters:
    - Each loader iteration will yield a chunk list of length `batch_size`.
 2. `chunker`
    - An object that can chunk the text to a list of substrings.
-   - Default to lamini's `DefaultChunker`.
+   - Default to Lamini's `DefaultChunker`.
 
 If you `DefaultChunker`, the data will fail to load if the input directory contains
 files that cannot be read as text.
@@ -149,13 +149,13 @@ find specific information quickly, just like the index at the end of a book.
 Lamini builds an [faiss.IndexFlatL2](https://github.com/facebookresearch/faiss) index, a
 simple and fast index for similarity search based on Euclidean distance.
 
-In lamini, `llm.train()` performs all tasks above.
+In Lamini, `llm.train()` performs all tasks above.
 The index is saved to the local machine.
 
 ### Step 1.3: Retrieve Relevant Information from Embeddings
 
 Using [faiss](https://github.com/facebookresearch/faiss),
-lamini performs a similarity search using embeddings of the question
+Lamini performs a similarity search using embeddings of the question
 against all chunk embeddings, with the help of the index.
 This produces a list of chunk IDs ranked by their similarity scores.
 
