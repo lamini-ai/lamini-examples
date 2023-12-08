@@ -70,7 +70,7 @@ for chunk in tqdm(loader):
 During each iteration, the loader yields a list of 512 (`batch_size`) chunks,
 each with a length of 512 (`chunk_size`), and we concatenate this new list
 to `chunks`.
-We use [tqdm](https://github.com/tqdm/tqdm] when iterating over the loader,
+We use [tqdm](https://github.com/tqdm/tqdm) when iterating over the loader,
 which displays a progress bar for iteration process.
 
 ## Step 2: Generate Questions
