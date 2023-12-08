@@ -270,7 +270,9 @@ It is advisable to avoid jargon, slang, ambiguous language, and overly complex t
 
 For example, the first prompt below is ambigous, while the second prompt clearly
 instructs the model to perform a specific task.
+
 :x: `"Too much diet cola."`
+
 :white_check_mark: `"Explore the consequences of excessive diet cola consumption."`
 
 -----------
