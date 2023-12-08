@@ -1,8 +1,10 @@
-# Instruction Fine Tuning
+# Instruction Fine Tuning (IFT)
 
 ## Introduction
 
 Instruction Fine-Tuning is used to make language models better at following instructions by training them on examples where instructions are paired with desired outcomes.
+
+TODO: check if this section even makes sense.
 
 Consider this prompt:
 ```
@@ -28,10 +30,10 @@ Improved Response (after fine-tuning): The model, having learned from these fine
 
 TODO: add more, mayb example
 
-In this tutorial, we will show you how to use Lamini for IFT.
-We will show a sample program that reads your data, chunks the data,
+In this tutorial, we guide you through program that uses lamini to
+read data, chunk the data,
 and generate a list of [question, answer] pairs based on the data.
-You can then use the pairs for training.
+The final result can then be submitted to the model for trainig.
 
 ## Step 1: Load and Chunk Input Data
 
@@ -171,7 +173,7 @@ for index, question in enumerate(questions):
     final_data_array.append([question[0], question[1], answer])
 ```
 
-## Step 5: Save the Questions, Answers, and Data
+## Step 4: Save the Questions, Answers, and Data
 
 You can save the results from the previous step to a csv file or a json file,
 as shown below.
