@@ -30,7 +30,7 @@ Improved Response (after fine-tuning): The model, having learned from these fine
 
 TODO: add more, mayb example
 
-In this tutorial, we guide you through program that uses lamini to
+In this tutorial, we guide you through program that uses Lamini to
 read data, chunk the data,
 and generate a list of [question, answer] pairs based on the data.
 The final result can then be submitted to the model for trainig.
@@ -85,7 +85,7 @@ which uses the Mistral Instruct model.
 runner = MistralRunner()
 ```
 
-Next, we declare `Questions`, an object of lamini `Type` with
+Next, we declare `Questions`, an object of Lamini `Type` with
 three string fields: `question_1`, `question_2`, and `question_3`.
 
 ```python
