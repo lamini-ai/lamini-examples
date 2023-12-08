@@ -25,7 +25,7 @@ It is very important to clearly articulate the task or question in the prompt.
 In addition, iterating and refining prompts is crucial for achieving optimal
 results and harnessing the full potential of a language model.
 
-In this tutorial, we'll guide you through prompt engineering using lamini's
+In this tutorial, we'll guide you through prompt engineering using Lamini's
 `MistralRunner`, which uses the Mistral instruct model by default and allows
 you to obtain the response with just a few lines of code, like below.
 
@@ -104,7 +104,7 @@ Additional system prompt examples:
 
 * `You are a patient and helpful customer service agent. Help the user troubleshoot.`
 * `Imagine you are a poet inspired by nature.`
-* `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` (default system prompt in lamini's MistralRunner)
+* `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` (default system prompt in Lamini's MistralRunner)
 
 ## Refining Prompts
 
@@ -253,7 +253,7 @@ Batching involves grouping multiple input prompts together and processing them s
 batch.  This approach enhances efficiency by allowing the model to handle several prompts
 at once to optimizing resource utilization.
 
-In lamini, the first argument to the runner can either be a single prompt string or a list of prompt strings.  When a single prompt is used, our system will run in non-batch mode and return a string output. On the other hand, when a prompt list used, the system will run in batch mode and return a list of dictionaries as output, like below.
+In Lamini, the first argument to the runner can either be a single prompt string or a list of prompt strings.  When a single prompt is used, our system will run in non-batch mode and return a string output. On the other hand, when a prompt list used, the system will run in batch mode and return a list of dictionaries as output, like below.
 
 ```python
 from llama import MistralRunner
