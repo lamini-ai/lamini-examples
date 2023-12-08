@@ -132,3 +132,42 @@ for chunk in chunks:
     questions.append([chunk, result.question_2])
     questions.append([chunk, result.question_3])
 ```
+
+## Step 3: Generate Answers
+
+In this step, we generate answers for `questions`, the list of [chunk, question] pairs from the previous step.
+
+For each question, we create a new prompt by concatenating the following:
+1. `question[0]` (the chunk) wrapped in single quotes.
+2. `\n` followed by TODO, followed by `\n\n`.
+3. `question[1]`, or the question that corresponds to the chunk.
+
+Next, similiarly to how questions are generated, we execute `runner`
+to generate `answer` based on the new prompt and the specified system prompt.
+Finally, we append triple that has the chunk, question, and answer to
+`final_data_array`.
+
+```python
+final_data_array = []
+# Generate Answers for each Answer
+
+for index, question in enumerate(questions):
+    # Run the model
+    prompt = (
+        "'"
+        + question[0]
+        + "'\nThe preceeding single-quoted text is an excerpt from a MSA contract between Lamini and XXXXXXX.  Answer the following question using information from the single-quoted text.  If you cannot answer the question using only the single-quoted text, respond only with the statement: \"I don't know.\"\n\n"
+        + question[1]
+    )
+    system_prompt = """You are a expert in the field of law."""
+    answer = runner(prompt, system_prompt=system_prompt)
+
+    print("---------------------- RUN PROMPT -------------------")
+    print(prompt)
+    print("---------------------- RUN PROMPT ------------------- DONE")    
+    
+    print(f"---------------------Answer for question {index}---------------------")
+    print(answer)
+    print(f"---------------------------------------------------------------------")
+    final_data_array.append([question[0], question[1], answer])
+```
