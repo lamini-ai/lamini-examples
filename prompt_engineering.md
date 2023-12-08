@@ -267,17 +267,12 @@ While achieving complete prevention is inherently difficult due to the dynamic a
 
 Clear and direct language in prompt engineering enhances model understanding, reduces ambiguity, and improves overall communication.
 It is advisable to avoid jargon, slang, ambiguous language, and overly complex terms.
-For example,
 
-Bad prompt :thumbsdown:
-```
-Too much diet cola.
-```
+For example, the first prompt below is ambigous, while the second prompt clearly
+instructs the model to perform a specific task.
+:x: `"Too much diet cola."`
+:white_check_mark: `"Explore the consequences of excessive diet cola consumption."`
 
-Good prompt :thumbsup:
-```
-Explore the consequences of excessive diet cola consumption.
-```
 -----------
 TODO add more
 
