@@ -275,6 +275,13 @@ instructs the model to perform a specific task.
 
 :white_check_mark: `"Explore the consequences of excessive diet cola consumption."`
 
+The first prompt below is overly complex, while the second one is concise.
+
+:x: `"Analyze the nuanced interactions among diverse technological elements and their implications on the optimization of organizational processes within the ever-changing landscape of industries, elucidating both positive outcomes and potential challenges."`
+
+:white_check_mark: `"Examine how the integration of diverse technologies impacts organizational processes, highlighting both positive outcomes and potential challenges in evolving industries."
+
+
 -----------
 TODO add more
 
