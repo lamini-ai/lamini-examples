@@ -300,6 +300,14 @@ In addition, you can instruct the model to not answer the question if it cannot 
 such as
 * `"If you cannot generate a confident or accurate response, please reply with \"I don't know\"."`
 
+### Use Correct Grammar and Syntax
+
+Using correct grammar and syntax is crucial in prompts to ensure the model understands the request accurately and generates coherent responses.
+
+:x: `"write me a poem about sunsets beautiful red and orange."` 
+
+:white_check_mark: `"compose a poem describing the beauty of red and orange sunsets."`
+
 ## Batching Prompts
 
 Batching involves grouping multiple input prompts together and processing them simultaneously as a
