@@ -258,6 +258,13 @@ for achieving desired results.  The key is to be adaptable and responsive to the
   - **Adjustment**: Incorporate new keywords or concepts based on the latest information.
   - **Observation**: Ensure that the model stays up-to-date with evolving topics.
 
+## Reducing Hallucinations
+
+Hallucinations in language models refer to the generation of incorrect or fictional information that is not present in the training data.
+While achieving complete prevention is inherently difficult due to the dynamic and complex nature of natural language, there are strategies for effectively reducing hallucinations.
+
+TODO
+
 ## Batching Prompts
 
 Batching involves grouping multiple input prompts together and processing them simultaneously as a
@@ -296,10 +303,3 @@ See our [docs](https://lamini-ai.github.io/rest_api/completions)!
 
 If you are interested in the technical details, see our blog post
 [Guarantee Valid JSON Output with Lamini](https://www.lamini.ai/blog/guarantee-valid-json-output-with-lamini).
-
-=========================
-
-TODOs:
-
-Modifications suggested by Ayushi
-* add how to prevent hallucinations.
