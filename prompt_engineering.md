@@ -269,7 +269,7 @@ Clear and direct language in prompt engineering enhances model understanding, re
 It is advisable to avoid jargon, slang, ambiguous language, and overly complex terms.
 For example,
 
-Bad prompt :thumbsdown: Unclear and lack detail on what information is sought.
+Bad prompt :thumbsdown:
 ```
 Too much diet cola.
 ```
