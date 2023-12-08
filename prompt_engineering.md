@@ -296,11 +296,9 @@ This can guide the model to prioritize accuracy and honesty in its responses.
 * `"Generate a response based on factual and honest content."`
 * `"Please avoid generating false or misleading information."`
 
-In addition, you can instruct the model to not answer the question if it cannot generate a good response, like
+In addition, you can instruct the model to not answer the question if it cannot generate a good response,
+such as
 * `"If you cannot generate a confident or accurate response, please reply with \"I don't know\"."`
-
------------
-TODO add more
 
 ## Batching Prompts
 
