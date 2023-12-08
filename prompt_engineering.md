@@ -300,9 +300,17 @@ In addition, you can instruct the model to not answer the question if it cannot 
 such as
 * `"If you cannot generate a confident or accurate response, please reply with \"I don't know\"."`
 
-### Use Correct Grammar and Syntax
+### Use Correct Spacing, Grammar and Syntax
 
-Using correct grammar and syntax is crucial in prompts to ensure the model understands the request accurately and generates coherent responses.
+Using correct spacing, grammar and syntax is crucial in prompts to ensure the model understands the request accurately and generates coherent responses.
+
+Bad Spacing
+
+:x: `"   Generate  a  paragraph  about  the  importance  of  recycling.   "`
+
+:white_check_mark: `Generate a paragraph about the importance of recycling."`
+
+Bad Grammar and Syntax
 
 :x: `"write me a poem about sunsets beautiful red and orange."` 
 
