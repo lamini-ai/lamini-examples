@@ -120,7 +120,7 @@ Here are a few techniques to get the desired output lengths.
 * Specify desired length:
   - Explicitly state phrases like `"Generate a response with up to two paragraphs."` or `"End reponse after 50 words."`
 * Use keywords and constraints:
-  - Include keywords or constraints like `"brief"`, `"succinct"` and `"Write a detailed paragraph on..."`.
+  - Include keywords or constraints like `"brief"`, `"succinct"` or `"Write a detailed paragraph."`.
 
 Consider the output to this prompt ```"Describe the impacts of Silicon Valley."```
 It is long and has an incomplete sentence at the end.
@@ -208,6 +208,16 @@ Output:
 ```
  The Nixon v. United States case resulted in a court order requiring President Richard Nixon to disclose recordings of his discussions with advisors, in accordance with the Presidential Records Act.
 ```
+
+### Where to Place Constraints?
+
+Placing instructions or constraints like `"Write in one sentence."` at the end
+of the prompt is often recommended.
+Giving the model the chance to understand the context before encountering constraints can generally lead to more contextually appropriate and coherent responses.
+On the other hand, when instructions are placed at the beginning, the model may be immediately restricted, potentially leading to incomplete or cut-off responses. 
+
+However, effectiveness of placing constraints at the beginning or end of a prompt can depend on the model and your specific use case.
+You may get comparable responses irrespective of whether the constraints are positioned at the beginning or the end.
 
 ## Iterate and Repeat
 
