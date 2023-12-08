@@ -76,7 +76,7 @@ efficient processing during ater stages.
 Our `DirectoryLoader` breaks the text into chunks based on these parameters:
 1. `batch_size`
    - Default to 512.
-   - TODO: what does batch size do here?
+   - Each loader iteration will yield a chunk list of length `batch_size`.
 2. `chunker`
    - An object that can chunk the text to a list of substrings.
    - Default to lamini's `DefaultChunker`.
