@@ -27,3 +27,95 @@ Let's try fine tuning with some example pairs.
 Improved Response (after fine-tuning): The model, having learned from these fine-tuned examples, generates vegetarian recipe suggestions that align with users' preferences, ensuring a more personalized and enjoyable cooking experience.
 
 TODO: add more, mayb example
+
+In this tutorial, we will show you how to use Lamini for IFT.
+We will show a sample program that reads your data, chunks the data,
+and generate a list of [question, answer] pairs based on the data.
+You can then use the pairs for training.
+
+## Step 1: Load and Chunk Input Data
+
+We start by loading the data files and segmenting the text into chunks,
+which will be appended to prompts at a later stage.
+Dividing the text into chunks (ex. 512 characters each) is necessary because
+appending a large text to prompts exceed the model's input limitations.
+
+The code below creates a loader that specifies the data path
+and how the data will be broken into chunks.
+The first argument is the path to the data directory, where files will
+be recursively loaded.
+This directory should only contain files that can be loaded as text.
+Otherwise, the loader will fail (TODO: double check).
+In addition, we optionally specify `batch_size`, `chunk_size`, and `step_size`
+in when initializing the loader.
+Please refer to [TODO: add link] for details on these optional parameters.
+
+TODO: find out what batch_size is here.
+
+```python
+loader = DirectoryLoader(
+    parent_directory + "/data",
+    batch_size=512,
+    chunker=DefaultChunker(chunk_size=512, step_size=512),
+)
+```
+
+We then iterate through the loader to generate and store the chunks.
+
+```python
+chunks = []
+for chunk in tqdm(loader):
+    chunks.extend(chunk)
+```
+
+During each iteration, the loader yields a list of 512 (`batch_size`) chunks,
+each with a length of 512 (`chunk_size`), and we concatenate this new list
+to `chunks`.
+We use [tqdm](https://github.com/tqdm/tqdm] when iterating over the loader,
+which displays a progress bar for iteration process.
+
+## Step 2: Generate Questions
+
+In this step, we will use the Mistral Instruct model to generate three
+questions.
+
+We specify that `MistralRunner` will be used to generate responses,
+which uses the Mistral Instruct model.
+
+```
+runner = MistralRunner()
+```
+
+Next, we declare `Questions`, an object of lamini `Type`, that has
+three questions with type string.
+
+```python
+class Questions(Type):
+    question_1: str = Context("")
+    question_2: str = Context("")
+    question_3: str = Context("")
+```
+
+For simplicity, we use the third chunk only to demonstrate the question generation
+```python
+chunks = chunks[2:3]
+```
+
+```python
+for chunk in chunks:
+    print(chunk)
+    prompt = (
+        "'"
+        + chunk
+        + "'\nThe preceeding single-quoted text is an excerpt from a MSA contract between Lamini and XXXXX. Generate three diverse questions about the MSA.  Only generate questions that can be answered using information from the preceeding single-quoted text.  Do not ask questions that require additional information outside of the preceeding single-quoted text."
+    )
+    system_prompt = """You are an expert contract analyst working at Point32 health."""
+
+    result = runner(prompt, output_type=Questions, system_prompt=system_prompt)
+    print("1.", result.question_1)
+    print("2.", result.question_2)
+    print("3.", result.question_3)
+    questions.append([chunk, result.question_1])
+    questions.append([chunk, result.question_2])
+    questions.append([chunk, result.question_3])
+```
