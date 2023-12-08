@@ -220,6 +220,4 @@ Awesome! :tada:
 
 ===========================
 
-TODO: show you can change the model from RAG runner?
-
 TODO: add code that the user can run
