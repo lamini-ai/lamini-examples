@@ -281,6 +281,23 @@ Now consider the prompts below, where the first prompt is overly complex, while 
 
 :white_check_mark: `"Examine how the integration of diverse technologies impacts organizational processes, highlighting both positive outcomes and potential challenges in evolving industries."`
 
+### Add Context
+
+Adding context provides a specific scenario, guiding the language model to produce a more detailed and tailored response. For example,
+
+:x: `"Describe San Francisco."`
+:white_check_mark: `"You are a travel blogger exploring San Francisco. Write a description highlighting its unique architecture, local cuisine, and lively atmosphere."`
+ 
+### Encourage Truthful Reponse
+
+You can explicitly include a statement like below in the prompt.
+This can guide the model to prioritize accuracy and honesty in its responses.
+* `"Provide accurate and truthful information."`
+* `"Generate a response based on factual and honest content."`
+* `"Please avoid generating false or misleading information."`
+
+In addition, you can instruct the model to not answer the question if it cannot generate a good response, like
+* `"If you cannot generate a confident or accurate response, please reply with \"I don't know\"."`
 
 -----------
 TODO add more
