@@ -81,8 +81,8 @@ Our `DirectoryLoader` breaks the text into chunks based on these parameters:
    - An object that can chunk the text to a list of substrings.
    - Default to lamini's `DefaultChunker`.
 
-If you our `DefaultChunker`, the data will fail to load if the input directory contains
-files that cannot be read as text (TODO: double check).
+If you `DefaultChunker`, the data will fail to load if the input directory contains
+files that cannot be read as text.
 The chunker depends on the paramters below and creates substrings of length `chunk_size`, except
 possibly shorter substrings at the end.  We will show some examples.
 
