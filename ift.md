@@ -51,8 +51,6 @@ In addition, we optionally specify `batch_size`, `chunk_size`, and `step_size`
 in when initializing the loader.
 Please refer to [TODO: add link] for details on these optional parameters.
 
-TODO: find out what batch_size is here.
-
 ```python
 loader = DirectoryLoader(
     parent_directory + "/data",
