@@ -128,16 +128,14 @@ You can configure these parameters with an optional `config` to `RetrievalAugmen
 
 ```python
 llm = RetrievalAugmentedRunner(
-    config={'chunk_size'=512,
-            'step_size'=512,
-            'batch_size'=512,
+    config={chunk_size=512,
+            step_size=512,
+            batch_size=512,
            })
 ```
 
 
 TODO: double check the config works, looks like it should
-
-TODO: you can also specify k, what is k?
 
 ### Step 1.2: Chunk Embeddings --> Search Index
 
@@ -162,6 +160,18 @@ against all chunk embeddings, with the help of the index.
 This produces a list of chunk IDs ranked by their similarity scores.
 
 Lamini's `llm.train()` also executes this step.
+
+By default, the search returns the top 5 IDs.  You can override this
+default value by specifying `k` in the `RetrievalAugmentedRunner` config, like
+
+```python
+llm = RetrievalAugmentedRunner(
+    config={chunk_size=512,
+            step_size=512,
+            batch_size=512,
+	    k=8,
+           })
+```
 
 ## Step 2 Augmentation
 
