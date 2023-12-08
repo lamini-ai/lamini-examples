@@ -44,10 +44,9 @@ appending a large text to prompts exceed the model's input limitations.
 
 The code below creates a loader that specifies the data path
 and how the data will be broken into chunks.
-The first argument is the path to the data directory, where files will
-be recursively loaded.
-This directory should only contain files that can be loaded as text.
-Otherwise, the loader will fail (TODO: double check).
+The first argument is the path to the data directory where the files will
+be recursively loaded as text.
+The loader will fail if any file cannot be read as text.
 In addition, we optionally specify `batch_size`, `chunk_size`, and `step_size`
 in when initializing the loader.
 Please refer to [TODO: add link] for details on these optional parameters.
