@@ -214,10 +214,10 @@ Output:
 Placing instructions or constraints like `"Write in one sentence."` at the end
 of the prompt is often recommended.
 Giving the model the chance to understand the context before encountering constraints can generally lead to more contextually appropriate and coherent responses.
-On the other hand, add constraints to the beginning of the prompt might lead to
+On the other hand, adding constraints to the beginning of the prompt might lead to
 responses that are incomplete, inflexible (giving the same answer even for different questions), incoherent or less accurate.
 
-However, effectiveness of placing constraints at the beginning or end of a prompt can depend on the model and your specific use case.
+However, the outcome of where you position constraints may depend on the model and your specific use case.
 You may get comparable responses irrespective of whether the constraints are positioned at the beginning or the end.
 
 ## Iterate and Repeat
