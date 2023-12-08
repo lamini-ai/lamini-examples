@@ -144,8 +144,7 @@ For each question, we create a new prompt by concatenating the following:
 
 Next, similiarly to how questions are generated, we execute `runner`
 to generate `answer` based on the new prompt and the specified system prompt.
-Finally, we append triple that has the chunk, question, and answer to
-`final_data_array`.
+Lastly, we add the triple containing the chunk, question, and answer to `final_data_array`.  This array holds the necessary data for model training.
 
 ```python
 final_data_array = []
@@ -170,4 +169,37 @@ for index, question in enumerate(questions):
     print(answer)
     print(f"---------------------------------------------------------------------")
     final_data_array.append([question[0], question[1], answer])
+```
+
+## Step 5: Save the Questions, Answers, and Data
+
+You can save the results from the previous step to a csv file or a json file,
+as shown below.
+
+```python
+# Save the questions, answers, and data in a csv file (logging)
+with open("qa_data/generated_data.csv", "w") as f:
+    writer = csv.writer(f)
+    writer.writerow(["Data", "Questions", "Answers"])
+    for data in final_data_array:
+        writer.writerow(data)
+
+# And save to a json file for logging
+with open("qa_data/generated_data.json", "w") as f:
+    json.dump(final_data_array, f, indent=4)
+```
+
+Finally, save the format that will actually be submitted to the model for finetuning.
+
+```python
+training_data = [
+    [
+        {"data": data[0], "question": data[1]},
+        {"answer": data[2]},
+    ]
+    for data in final_data_array
+]
+
+with open("qa_data/generated_data_finetuning.json", "w") as f:
+    json.dump(training_data, f, indent=4)
 ```
