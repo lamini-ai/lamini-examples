@@ -124,7 +124,7 @@ These overlaps will give each chunk some context from its neighbors and improve 
 ```
 
 You might need to experiment with adjusting these parameters to achieve optimal results.
-You can configure these parameters with an optional `config` to `RetrievalAugmentRunner`, like below:
+You can configure these parameters with an optional `config` to `RetrievalAugmentRunner`, as shown below:
 
 ```python
 llm = RetrievalAugmentedRunner(
