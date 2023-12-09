@@ -263,6 +263,10 @@ In addition, you can instruct the model to not answer the question if it cannot 
 such as
 * `"If you cannot generate a confident or accurate response, please reply with \"I don't know\"."`
 
+TODO: rewrite program generate.py
+
+TODO: clearly define where context is.
+
 ### Use Correct Spacing, Grammar and Syntax
 
 Using correct spacing, grammar and syntax is crucial in prompts to ensure the model understands the request accurately and generates coherent responses.
@@ -291,9 +295,9 @@ for achieving desired results.  The key is to be adaptable and responsive to the
 * **Iteration 1** - Refine User Prompt:
   - **Refined Prompt**: `"Explain the impact of human activities on rising global temperatures due to climate change."`
   - **Observation**: The model provides more detailed and focused information.
-* **Iteration 2** - Adjust Temperature:
-  - **Refined Prompt**: `"Describe the consequences of deforestation on biodiversity and climate change."`
-  - **Adjustment**: Lower the temperature for more deterministic responses.
+* **Iteration 2** - Adjust Creativity:
+  - **Refined Prompt**: `"In a concise and data-driven manner, explain the immediate and long-term effects of deforestation on plant and animal species, as well as its contribution to climate change."`
+  - **Adjustment**: Lower the creativity for deterministic responses.
   - **Observation**: The responses become more focused and less varied.
 * **Iteration 3** - Test Diverse Scenarios:
   - **Refined Prompt**: `"Discuss the role of renewable energy in mitigating climate change."`
