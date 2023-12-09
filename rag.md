@@ -19,7 +19,7 @@ incorporate their internal knowledge base and/or real time data
 for more accurate responses without modifying the
 underlying model itself :smiley: :thumbsup:.
 
-## High level overview of the RAG process
+## High Level Overview
 Lamini's `RetrievalAugmentedRunner` allows you to run RAG with just a few lines of code,
 like below.
 We will provide a detailed explanation of the RAG steps and the code in the upcoming sections.
@@ -56,7 +56,7 @@ response = llm(prompt)
      Yes, in the past year, we invested in two generative AI companies: Super Piped Piper and SeeFood.
      ```
 
-## Step 1. Retrieval
+## Step 1: Retrieval
 
 ### Step 1.1: Data to Chunks
 
@@ -99,16 +99,16 @@ Consider this text:
 ```
 "Our firm invested in 10 AI startups in 2023."
 ```
-For simplicity, let `chunk_size` = `step_size` = 20.
+For simplicity, let `chunk_size` and `step_size` to 20.
 In other words, for each index in [0, 20, 40], extract a substring of length 20.
-Output:
+This is what the output would look like:
 ```
 ["Our firm invested in",
  " 10 AI startups in 2",
- "023."
+ "023."]
 ```
 
-Now consider `chunk_size` = 20, `step_size` = 10, meaning
+Now consider `chunk_size = 20`, `step_size = 10`, meaning
 for each index in [0, 10, 20, 30, 40], extract a substring of length 20.
 Notice this will result in overlaps at the boundaries of adjacent chunks, as shown below.
 These overlaps will give each chunk some context from its neighbors and improve result quality during later steps.
@@ -118,7 +118,7 @@ These overlaps will give each chunk some context from its neighbors and improve 
  "nvested in 10 AI sta",
  " 10 AI startups in 2",
  "rtups in 2023.",
- "023"
+ "023"]
 ```
 
 You might need to experiment with adjusting these parameters to achieve optimal results.
@@ -126,9 +126,11 @@ You can configure these parameters with an optional `config` to `RetrievalAugmen
 
 ```python
 llm = RetrievalAugmentedRunner(
-    config={chunk_size=512,
-            step_size=512,
-           })
+   config={
+      chunk_size=512,
+      step_size=512,
+   }
+)
 ```
 
 
@@ -140,14 +142,16 @@ Now that we have the chunks, we must capture the semantic information
 and context of the chunks
 as numerical vectors known as embeddings.
 This enables the data to be processed effectively by machine learning models.
-Then, we must use the embeddings to build an index, a data structure that is crucial for
+
+We then use the embeddings to build an index, a data structure that is crucial for
 efficient data retrieval in large datasets.  An index is essentially a map, helping you
 find specific information quickly, just like the index at the end of a book.
-Lamini builds an [faiss.IndexFlatL2](https://github.com/facebookresearch/faiss) index, a
-simple and fast index for similarity search based on Euclidean distance.
 
-In Lamini, `llm.train()` performs all tasks above.
-The index is saved to the local machine.
+
+In Lamini, `llm.train()` performs all tasks above and saves the index to the local machine.
+
+> For those interested, Lamini builds an [faiss.IndexFlatL2](https://github.com/facebookresearch/faiss) index, a
+simple and fast index for similarity search based on Euclidean distance.
 
 ### Step 1.3: Retrieve Relevant Information from Embeddings
 
@@ -159,18 +163,19 @@ This produces a list of chunk IDs ranked by their similarity scores.
 Lamini's `llm.train()` also executes this step.
 
 By default, the search returns the top 5 IDs.  You can override this
-default value by specifying `k` in the `RetrievalAugmentedRunner` config, like
+default value by specifying `k` in the `RetrievalAugmentedRunner` config.
 
 ```python
 llm = RetrievalAugmentedRunner(
-    config={chunk_size=512,
-            step_size=512,
-            batch_size=512,
-	    k=8,
-           })
+   config={
+      chunk_size=512,
+      step_size=512,
+      k=5,
+   }
+)
 ```
 
-## Step 2 Augmentation
+## Step 2: Augmentation
 
 This step is simple, we append the relevant chunks to the original prompt.
 For example:
@@ -197,7 +202,7 @@ llm(prompt)
 ```
 creates the augments prompt.
 
-## Step 3 Generation
+## Step 3: Generation
 
 The final step of RAG is also very straightforward.
 Execute the Runner with the new prompt.
