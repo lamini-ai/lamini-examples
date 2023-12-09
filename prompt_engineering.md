@@ -289,6 +289,8 @@ Bad grammar and syntax
 The process of refining and improving prompts through successive iterations is crucial
 for achieving desired results.  The key is to be adaptable and responsive to the performance of the model and user needs. Here is an example:
 
+# TODO: FIXD THIS EXAMPLE
+
 * **Observation**
   - **Initial Prompt**: `"Tell me about climate change."`
   - **Observation**: The model provides general information, but the response lacks specificity.
@@ -307,7 +309,7 @@ for achieving desired results.  The key is to be adaptable and responsive to the
   - **Refined Prompt**: `"Examine the economic impact of climate change policies on developing nations."`
   - **Feedback**: Users express a desire for insights into economic aspects.
   - **Observation**: The model adapts to provide more information on economic considerations.
-* **Iteration 5** - Adjust Max Tokens:
+* **Iteration 5** - Adjust Response Length:
   - **Refined Prompt**: `"Summarize the key findings of the latest IPCC report on climate change."`
   - **Adjustment**: Set a higher max tokens limit for more comprehensive responses.
   - **Observation**: Ensure that longer documents, like summaries, are generated without being cut off.
