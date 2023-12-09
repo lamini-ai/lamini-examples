@@ -2,12 +2,12 @@
 
 ## Introduction
 
-Suppose you're interested in knowing today's Bitcoin price, but the model responds.
+Suppose you're interested in knowing today's Bitcoin price, but the model responds:
 ```
 I'm sorry, but my training only includes information up to Jan 2022...
 ```
 
-What if you want to know the worst products your company launched in 2023, but the model replies
+What if you want to know the most successful product your company has launched, but the model replies:
 ```
 I apologize, but I don't have access to real-time data or specific information about your company.
 ```
@@ -15,24 +15,31 @@ I apologize, but I don't have access to real-time data or specific information a
 Language models may lack recent data and do not have access to your
 private data, resulting in potentially uninformative or inaccurate replies.
 This is where retrieval augmented generation (RAG) steps in, efficiently allowing users to
-incorporate their internal knowledge base or real time data
+incorporate their internal knowledge base and/or real time data
 for more accurate responses without modifying the
 underlying model itself :smiley: :thumbsup:.
 
-Here is a high level overview of the RAG process.
+## High level overview of the RAG process
+Lamini's `RetrievalAugmentedRunner` allows you to run RAG with just a few lines of code,
+like below.
+We will provide a detailed explanation of the RAG steps and the code in the upcoming sections.
 
-User Input:
-1. Prompt
-2. Internal knowledge base - files containing internal knowledge
+```python
+from lamini import RetrievalAugmentedRunner
 
-RAG Steps:
-1. :books: :mag: Retrieval - Scan the knowledge base to retrieve info relevant to the user prompt. Ex.
-   - User prompt `"Have we invested in any generative AI companies in the past year?"`
-   - Scan the user's knowledge base, which includes the company's internal documents. Retrieve information relevant to the prompt, such as company names, funding amounts, equity stakes, investments dates, and key personnel involved.
-2. :heavy_plus_sign: Augmentation - Augment the prompt with the data retrieved from step 1. 
-3. :magic_wand: Generation - Generate a well-informed response for the prompt from step 2. Ex.
+llm = RetrievalAugmentedRunner()
+llm.load_data("~/path/to/knowledge_directory")
+llm.train()
+prompt = "Have we invested in any generative AI companies in the past year?")
+response = llm(prompt)
+```
+### How RAG works:
+1. :books: :mag: Retrieval - Scans the knowledge base to retrieve info relevant to the user's prompt. Ex:
+   - User prompt: `"Have we invested in any generative AI companies in the past year?"`
+   - Scan the the company's internal documents. Retrieve information relevant to the prompt, such as company names, funding amounts, equity stakes, investments dates, and key personnel involved.
+2. :heavy_plus_sign: Augmentation - Augment the prompt with the data retrieved from step 1. Ex:
    - ```
-     Yes, in the past year, we invested in two generative AI companies.
+     In the past year, we invested in two generative AI companies.
      Investment to Super Piped Piper in Palo Alto was led by Russe H. from the series A
      team and concluded on Mar 2, 2023, for $1,000,000 and 10% equity. Super Piped Piper
      focuses on ensuring responsible deployment of generative AI models.
@@ -41,21 +48,14 @@ RAG Steps:
      and concluded on Oct 1, 2023, for $10,000,000 and 25% equity. SeeFood uses AI to
      create octupus cooking videos that you can see using Oculus headsets.
      Details can be found on https://my_company.com/private_docs/see_food
+
+     Using the information above answer the following: Have we invested in any generative AI companies in the past year?
+     ```
+3. :magic_wand: Generation - Generate a well-informed response for the prompt from step 2. Ex:
+   - ```
+     Yes, in the past year, we invested in two generative AI companies: Super Piped Piper and SeeFood.
      ```
 
-Lamini's `RetrievalAugmentedRunner` allows you to run RAG with just a few lines of code,
-like below.
-We will provide a detailed explanation of the RAG steps and the code in the upcoming sections.
-
-```python
-from llama.retrieval.retrieval_augmented_runner import RetrievalAugmentedRunner
-
-llm = RetrievalAugmentedRunner()
-llm.load_data("path_to_knowledge_directory")
-llm.train()
-prompt = "Have we invested in any generative AI companies in the past year?")
-response = llm(prompt)
-```
 ## Step 1. Retrieval
 
 ### Step 1.1 Internal Knowledge Base to Chunks
