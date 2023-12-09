@@ -58,15 +58,15 @@ response = llm(prompt)
 
 ## Step 1. Retrieval
 
-### Step 1.1 Internal Knowledge Base to Chunks
+### Step 1.1: Data to Chunks
 
-RAG requires the user to provide an internal knowledge base along with the prompt.
-Lamini expects this knowledge base to be a directory where all files can be read as text.
+RAG requires the user to provide data which can be retrieved to augment the prompt.
+Lamini expects this to be a directory where all files can be read as text (e.g. txt, csv).
 You can load the knowledge with
 
 ```python
 llm = RetrievalAugmentedRunner()
-llm.load_data("path_to_knowledge_directory")
+llm.load_data("~/path/to/knowledge_directory")
 ```
 
 Lamini then recursively reads all files in the directory and chunks the data
@@ -81,10 +81,8 @@ Our `DirectoryLoader` breaks the text into chunks based on these parameters:
    - An object that can chunk the text to a list of substrings.
    - Default to Lamini's `DefaultChunker`.
 
-If you `DefaultChunker`, the data will fail to load if the input directory contains
-files that cannot be read as text.
-The chunker depends on the paramters below and creates substrings of length `chunk_size`, except
-possibly shorter substrings at the end.  We will show some examples.
+The `DefaultChunker` will fail to load the data if the input directory contains files that cannot be read as text.
+The chunker depends on the paramters below and creates substrings of length `chunk_size`, with the exception of the end substring which may be shorter.
 
 1. `chunk_size`
    - Number of characters in each chunk.
@@ -130,7 +128,6 @@ You can configure these parameters with an optional `config` to `RetrievalAugmen
 llm = RetrievalAugmentedRunner(
     config={chunk_size=512,
             step_size=512,
-            batch_size=512,
            })
 ```
 
