@@ -305,13 +305,13 @@ such as
 
 Using correct spacing, grammar and syntax is crucial in prompts to ensure the model understands the request accurately and generates coherent responses.
 
-Bad Spacing
+Bad spacing
 
 :x: `"   Generate  a  paragraph  about  the  importance  of  recycling.   "`
 
 :white_check_mark: `Generate a paragraph about the importance of recycling."`
 
-Bad Grammar and Syntax
+Bad grammar and syntax
 
 :x: `"write me a poem about sunsets beautiful red and orange."` 
 
