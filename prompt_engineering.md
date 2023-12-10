@@ -289,8 +289,6 @@ Bad grammar and syntax
 The process of refining and improving prompts through successive iterations is crucial
 for achieving desired results.  The key is to be adaptable and responsive to the performance of the model and user needs. Here is an example:
 
-# TODO: make sure code works
-
 * **Observation**
   - **Initial Prompt**: `"Tell me about climate change."`
   - **Observation**: The model provides general information, but the response lacks specificity.
