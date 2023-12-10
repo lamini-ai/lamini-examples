@@ -289,7 +289,7 @@ Bad grammar and syntax
 The process of refining and improving prompts through successive iterations is crucial
 for achieving desired results.  The key is to be adaptable and responsive to the performance of the model and user needs. Here is an example:
 
-# TODO: FIXD THIS EXAMPLE
+# TODO: make sure code works
 
 * **Observation**
   - **Initial Prompt**: `"Tell me about climate change."`
@@ -297,33 +297,34 @@ for achieving desired results.  The key is to be adaptable and responsive to the
 * **Iteration 1** - Refine User Prompt:
   - **Refined Prompt**: `"Explain the impact of human activities on rising global temperatures due to climate change."`
   - **Observation**: The model provides more detailed and focused information.
-* **Iteration 2** - Adjust Creativity:
-  - **Refined Prompt**: `"In a concise and data-driven manner, explain the immediate and long-term effects of deforestation on plant and animal species, as well as its contribution to climate change."`
-  - **Adjustment**: Lower the creativity for deterministic responses.
-  - **Observation**: The responses become more focused and less varied.
-* **Iteration 3** - Test Diverse Scenarios:
+* **Iteration 2** - Test Lower Creativity:
+  - **Refined Prompt**: `"In a clear and precise manner, elucidate the widely acknowledged effects of human activities on the upward trend in global temperatures as a consequence of climate change, highlighting established factors and scientific consensus."`
+  - **Observation**: The response become more focused and controlled.
+* **Iteration 3** - Test Higher Creativity:
+  - **Refined Prompt**: `"Illuminate the story of human impact, where our actions act as the architects of a warming world, crafting a narrative that unfolds in the evolving drama of climate change."`
+  - **Observation**: The response becomes more creative and random.
+* **Iteration 4** - Test Diverse Scenarios:
   - **Refined Prompt**: `"Discuss the role of renewable energy in mitigating climate change."`
   - **Testing Scenario**: Include prompts related to different renewable energy sources.
   - **Observation**: Evaluate how well the model generalizes across various aspects of the topic.
-* **Iteration 4** - Incorporate Feedback.
+* **Iteration 5** - Incorporate Feedback.
   - **Refined Prompt**: `"Examine the economic impact of climate change policies on developing nations."`
   - **Feedback**: Users express a desire for insights into economic aspects.
   - **Observation**: The model adapts to provide more information on economic considerations.
-* **Iteration 5** - Adjust Response Length:
-  - **Refined Prompt**: `"Summarize the key findings of the latest IPCC report on climate change."`
-  - **Adjustment**: Set a higher max tokens limit for more comprehensive responses.
-  - **Observation**: Ensure that longer documents, like summaries, are generated without being cut off.
-* **Iteration 6** - Explore Novel Prompts:
+* **Iteration 6** - Adjust Response Length:
+  - **Refined Prompt**: `"Summarize the key findings of the latest IPCC report on climate change in a few sentences."`
+  - **Refined Prompt**: `"Summarize the key findings of the latest IPCC report on climate change in three paragraphs."`
+  - **Observation**: Need to balance length and detail based on specific use case and preferences.
+* **Iteration 7** - Explore Novel Prompts:
   - **Refined Prompt**: `"Imagine you are a journalist reporting on climate change. Provide a news brief highlighting recent developments."`
   - **Observation**: Assess how well the model responds to prompts that simulate real-world scenarios.
-* **Iteration 7** - Fine-Tune System Prompts:
+* **Iteration 8** - Fine-Tune System Prompts:
   - **Refined System Prompt**: `"You are an expert scientist responding to inquiries about climate change. Maintain a scientific and informative tone."`
   - **Observation**: Evaluate if the refined system prompt influences the model's tone and style.
-* **Iteration 8** - Stay Informed:
+* **Iteration 9** - Stay Informed:
   - **Refined Prompt**: `"Considering recent advancements, discuss the emerging technologies for carbon capture and their potential impact on mitigating climate change."`
   - **Adjustment**: Incorporate new keywords or concepts based on the latest information.
-  - **Observation**: Ensure that the model stays up-to-date with evolving topics.
-  
+  - **Observation**: Ensure that the model stays up-to-date with evolving topics.  
 
 ## Batching Prompts
 
