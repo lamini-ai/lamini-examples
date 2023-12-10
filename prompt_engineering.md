@@ -182,7 +182,7 @@ Here are some examples:
   - `"Generate a narrative with a more exploratory tone."`
   - `"Compose a story with a touch of unpredictability."`
   - `"Provide a response that allows for a broader range of possibilities."`
-* Lower Precision
+* Lower Creativity
   - `"Deliver a straightforward and concise explanation."`
   - `"Offer a focused and to-the-point response."`
   - `"Provide information with a higher level of certainty."`
@@ -237,7 +237,7 @@ instructs the model to perform a specific task.
 
 :white_check_mark: `"Explore the consequences of excessive diet cola consumption."`
 
-Now consider the prompts below, where the first prompt is overly complex, while the second one is concise.
+Now consider the prompts below. The first prompt is overly complex, while the second one is concise.
 
 :x: `"Analyze the nuanced interactions among diverse technological elements and their implications on the optimization of organizational processes within the ever-changing landscape of industries, elucidating both positive outcomes and potential challenges."`
 
@@ -269,7 +269,7 @@ Using correct spacing, grammar and syntax is crucial in prompts to ensure the mo
 
 Bad spacing
 
-:x: `"   Generate  a  paragraph  about  the  importance  of  recycling.   "`
+:x: `"   Generate  a  paragraph  about  the  importance    of  recycling.   "`
 
 :white_check_mark: `Generate a paragraph about the importance of recycling."`
 
