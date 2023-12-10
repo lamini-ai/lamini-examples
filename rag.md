@@ -51,7 +51,7 @@ response = llm(prompt)
 
      Using the information above answer the following: Have we invested in any generative AI companies in the past year?
      ```
-3. :magic_wand: Generation - Generate a well-informed response for the prompt from step 2. Ex: 
+3. ✨ Generation - Generate a well-informed response for the prompt from step 2. Ex: 
    - ```
      Yes, in the past year, we invested in two generative AI companies: Super Piped Piper and SeeFood.
      ```
