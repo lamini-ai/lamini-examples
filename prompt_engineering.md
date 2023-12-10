@@ -336,7 +336,8 @@ user_prompt = ["Is pizza nutritous?",
            "Did Richard Nixon reisgn?",
            "Summarize the impact of global warming.",
           ]
-answer = runner(user_prompt, system_prompt="Provide very short responses."))
+sys_prompt = "Provide very short responses."
+answer = runner(user_prompt, system_prompt=sys_prompt)
 print(answer)
 ```
 
