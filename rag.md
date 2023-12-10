@@ -34,10 +34,10 @@ prompt = "Have we invested in any generative AI companies in the past year?")
 response = llm(prompt)
 ```
 ### How RAG works:
-1. :books: :mag: Retrieval - Scans the knowledge base to retrieve info relevant to the user's prompt. Ex:
+1. :books: :mag: Retrieval - Scans the knowledge base to retrieve info relevant to the user's prompt. Ex: 
    - User prompt: `"Have we invested in any generative AI companies in the past year?"`
    - Scan the the company's internal documents. Retrieve information relevant to the prompt, such as company names, funding amounts, equity stakes, investments dates, and key personnel involved.
-2. :heavy_plus_sign: Augmentation - Augment the prompt with the data retrieved from step 1. Ex:
+2. :heavy_plus_sign: Augmentation - Augment the prompt with the data retrieved from step 1. Ex: 
    - ```
      In the past year, we invested in two generative AI companies.
      Investment to Super Piped Piper in Palo Alto was led by Russe H. from the series A
@@ -51,7 +51,7 @@ response = llm(prompt)
 
      Using the information above answer the following: Have we invested in any generative AI companies in the past year?
      ```
-3. :magic_wand: Generation - Generate a well-informed response for the prompt from step 2. Ex:
+3. :magic_wand: Generation - Generate a well-informed response for the prompt from step 2. Ex: 
    - ```
      Yes, in the past year, we invested in two generative AI companies: Super Piped Piper and SeeFood.
      ```
