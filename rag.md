@@ -25,7 +25,7 @@ like below.
 We will provide a detailed explanation of the RAG steps and the code in the upcoming sections.
 
 ```python
-from lamini import RetrievalAugmentedRunner
+from llama import RetrievalAugmentedRunner
 
 llm = RetrievalAugmentedRunner()
 llm.load_data("~/path/to/knowledge_directory")
