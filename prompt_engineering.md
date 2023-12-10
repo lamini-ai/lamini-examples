@@ -332,11 +332,11 @@ In Lamini, the first argument to the runner can either be a single prompt string
 from llama import MistralRunner
 
 runner = MistralRunner()
-prompts = ["Is pizza nutritous?",
+user_prompt = ["Is pizza nutritous?",
            "Did Richard Nixon reisgn?",
            "Summarize the impact of global warming.",
           ]
-answer = runner(prompts, system_prompt="Provide very short responses."))
+answer = runner(user_prompt, system_prompt="Provide very short responses."))
 print(answer)
 ```
 
