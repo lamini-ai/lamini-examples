@@ -263,10 +263,6 @@ In addition, you can instruct the model to not answer the question if it cannot 
 such as
 * `"If you cannot generate a confident or accurate response, please reply with \"I don't know\"."`
 
-TODO: rewrite program generate.py
-
-TODO: clearly define where context is.
-
 ### Use Correct Spacing, Grammar and Syntax
 
 Using correct spacing, grammar and syntax is crucial in prompts to ensure the model understands the request accurately and generates coherent responses.
