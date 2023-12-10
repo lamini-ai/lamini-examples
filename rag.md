@@ -22,13 +22,13 @@ underlying model itself :smiley: :thumbsup:.
 ## High Level Overview
 Lamini's `RetrievalAugmentedRunner` allows you to run RAG with just a few lines of code,
 like below.
-We will provide a detailed explanation of the RAG steps and the code in the upcoming sections.
+In the upcoming sections, we will provide a detailed  explanation of the RAG steps, delve into the code, and provide guidance on configuring RAG.
 
 ```python
 from llama import RetrievalAugmentedRunner
 
 llm = RetrievalAugmentedRunner()
-llm.load_data("~/path/to/knowledge_directory")
+llm.load_data("path/to/knowledge_directory")
 llm.train()
 prompt = "Have we invested in any generative AI companies in the past year?")
 response = llm(prompt)
