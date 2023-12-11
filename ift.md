@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Imagine you have a robot that talks about bears but sometimes gets it a bit wrong. Fine-tuning is like showing the robot how to talk about bears in a way you like.
+Imagine you have a robot that talks about bears :bears: but sometimes gets it a bit wrong. Fine-tuning is like showing the robot how to talk about bears in a way you like.
 
 Consider this user prompt:
 
@@ -10,7 +10,7 @@ Consider this user prompt:
 Tell me about a bear.
 ```
 
-The robot produces a boring reply:
+The robot produces an uninteresting reply:
 ```
 Bears eat honey.
 ```
@@ -24,17 +24,18 @@ The `desired output` serves as a guiding example for the model. It helps the mod
 ]
 ```
 
-Let's try this prompt again:
+Now that we have trained the model, let's try this prompt again:
 ```
 Tell me about a bear.
 ```
 
-This time, the model produces an interesting response!
+This time, the model produces an interesting response! :star-wow:
 
 ```
-"Meet Thunderpaws, the daring bear who explored untamed forests, facing roaring rivers and scaling towering mountains!"
+Meet Thunderpaws, the daring bear who explored untamed forests, facing roaring rivers and scaling towering mountains!
 ```
 
+We have 
 In this tutorial, we guide you through program that uses Lamini to
 read data, chunk the data,
 and generate a list of [question, answer] pairs based on the data.
