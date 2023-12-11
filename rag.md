@@ -30,7 +30,7 @@ from llama import RetrievalAugmentedRunner
 llm = RetrievalAugmentedRunner()
 llm.load_data("path/to/knowledge_directory")
 llm.train()
-prompt = "Have we invested in any generative AI companies in the past year?")
+prompt = "Have we invested in any generative AI companies in 2023?")
 response = llm(prompt)
 ```
 ### How RAG works:
@@ -149,6 +149,8 @@ llm = RetrievalAugmentedRunner(
    }
 )
 ```
+
+Similar to adjusting `chunk_size` and `step_size`, you may need to experiment with modifying `k` to attain optimal results.
 
 ## Step 2: Augmentation
 
