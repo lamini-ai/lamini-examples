@@ -192,8 +192,8 @@ Awesome! :tada:
 ## Try Out RAG!
 
 You can find a RAG example to experiment with [here](https://github.com/lamini-ai/sdk/tree/main/rag).
-- `data` is a knowledge directory detailing our fictional company's
-recent investments.
+- `data` is a knowledge directory with our fictional company's
+recent investment data.
 - `rag.py` is a simple program that uses RAG with the investment data to answer
 `"Have we invested in any generative AI companies in 2023?"`
 
