@@ -56,44 +56,33 @@ response = llm(prompt)
      Yes, in the past year, we invested in two generative AI companies: Super Piped Piper and SeeFood.
      ```
 
+## Step 0: Prepare Knowledge Data
+
+RAG requires the user to provide knowledge data which can be retrieved to augment the prompt.
+Lamini requires the user to input a directory path where all files are readable as text (e.g. txt, csv). If any file within the specified directory cannot be read as text, then the directory loader will fail.
+
 ## Step 1: Retrieval
 
 ### Step 1.1: Data to Chunks
 
-RAG requires the user to provide data which can be retrieved to augment the prompt.
-Lamini expects this to be a directory where all files can be read as text (e.g. txt, csv).
-You can load the knowledge with
+To facilitate efficient processing in later stages, the initial step is to load files from the knowledge directory and segment the data into substrings.  The code below loads the files and
+then breaks the file contents into chunks based the optional arguments `chunk_size` and `step_size`.
 
 ```python
-llm = RetrievalAugmentedRunner()
-llm.load_data("~/path/to/knowledge_directory")
+llm = RetrievalAugmentedRunner(chunk_size=512, step_size=512)
+llm.load_data("path/to/knowledge_directory")
 ```
 
-Lamini then recursively reads all files in the directory and chunks the data
-into substrings, which will allow
-efficient processing during ater stages.
-
-Our `DirectoryLoader` breaks the text into chunks based on these parameters:
-1. `batch_size`
-   - Default to 512.
-   - Each loader iteration will yield a chunk list of length `batch_size`.
-2. `chunker`
-   - An object that can chunk the text to a list of substrings.
-   - Default to Lamini's `DefaultChunker`.
-
-The `DefaultChunker` will fail to load the data if the input directory contains files that cannot be read as text.
-The chunker depends on the paramters below and creates substrings of length `chunk_size`, with the exception of the end substring which may be shorter.
-
-1. `chunk_size`
-   - Number of characters in each chunk.
-   - Smaller chunks tend to provide more accurate results but can increase computationlly overhead.
-   - Larger chunks may improve efficiency but reduce accuracy.
-   - Default to 512.
-2. `step_size`
-   - Interval at which each chunk is obtained.
-   - Ex. if `step_size` = 5, then we will extract chunks from indices 0, 4, 9, 14, 19, ..., and each chunk will have length `chunk_size`.
-   - Default to 128.
-   - `step_size` should be less than or equal to `chunk_size`.
+* `chunk_size`
+  - Number of characters in each chunk.  All chunks will have the same ssize, with the exception of the chunks at the end, which may be shorter.
+  - Smaller chunks tend to provide more accurate results but can increase computationlly overhead.
+  - Larger chunks may improve efficiency but reduce accuracy.
+  - Default to 512.
+* `step_size`
+  - Interval at which each chunk is obtained.
+  - Ex. if `step_size` = 5, then we will extract chunks from indices 0, 4, 9, 14, 19, ..., and each chunk will have length `chunk_size`.
+  - Default to 128.
+  - `step_size` should be less than or equal to `chunk_size`.
 
 Consider this text:
 ```
