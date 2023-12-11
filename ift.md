@@ -83,15 +83,12 @@ for chunk in tqdm(loader):
 
 In this example, we get 7 chunks.  Here is one of the chunks:
 ```
-t only to their own growth but also to the broader discourse on responsible
-and ethical AI deployment.
+t only to their own growth but also to the broader discourse on responsible and ethical AI deployment.
 
-On a parallel trajectory, Erlich B. played a pivotal role in guiding the seed
-round investment for SeeFood, also situated in Palo Alto. The transaction
-concluded on October 1, 2023, with a substantial investment totaling
-$10,000,000 and a 25% equity share. SeeFood stands out for its innovative use
-of AI, creating engaging octopus cooking videos that can be experienced
-seamlessly through Oculus headsets. S
+On a parallel trajectory, Erlich B. played a pivotal role in guiding the seed round investment for
+SeeFood, also situated in Palo Alto. The transaction concluded on October 1, 2023, with a substantial
+investment totaling $10,000,000 and a 25% equity share. SeeFood stands out for its innovative use of
+AI, creating engaging octopus cooking videos that can be experienced seamlessly through Oculus headsets. S
 ```
 
 ## Step 2: Generate Questions
