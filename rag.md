@@ -84,7 +84,8 @@ llm.load_data("path/to/knowledge_directory")
   - Default to 128.
   - `step_size` should be less than or equal to `chunk_size`.
 
-Consider this text:
+You might need to experiment with adjusting these parameters to achieve optimal results.
+Consider the knowledge text below:
 ```
 "Our firm invested in 10 AI startups in 2023."
 ```
@@ -109,21 +110,6 @@ These overlaps will give each chunk some context from its neighbors and improve 
  "rtups in 2023.",
  "023"]
 ```
-
-You might need to experiment with adjusting these parameters to achieve optimal results.
-You can configure these parameters with an optional `config` to `RetrievalAugmentRunner`, as shown below:
-
-```python
-llm = RetrievalAugmentedRunner(
-   config={
-      chunk_size=512,
-      step_size=512,
-   }
-)
-```
-
-
-TODO: double check the config works, looks like it should
 
 ### Step 1.2: Chunk Embeddings --> Search Index
 
