@@ -2,33 +2,37 @@
 
 ## Introduction
 
-Instruction Fine-Tuning is used to make language models better at following instructions by training them on examples where instructions are paired with desired outcomes.
+Imagine you have a robot friend that talks about bears but sometimes gets it a bit wrong. Fine-tuning is like showing it how to talk about bears in a way you like.
 
-TODO: check if this section even makes sense.
-
-Consider this prompt:
-```
-Generate a recipe suggestion for a user interested in trying a vegetarian dish.
-```
-
-Without fine tuning, the model may respond with a recipe
-without considering the user's preferences or dietary restrictions. :thumbsdown:
-
-Let's try fine tuning with some example pairs.
+Consider this user prompt:
 
 ```
-[{"instruction": "Provide a vegetarian recipe option for someone who enjoys spicy flavors, with a focus on quick preparation and minimal ingredients.",
- "desired_output": "Encourage the model to consider user preferences for spice level, preparation time, and simplicity."
- },
- {"instruction": "Suggest a vegetarian recipe suitable for a user following a gluten-free diet, emphasizing diverse textures and flavors without compromising dietary restrictions."
- "desired_output": "Guide the model to consider specific dietary needs and preferences."
- }
+Tell me about a bear.
+```
+
+The robot replies:
+```
+Bears eat honey.
+```
+
+But what if you want the response to be more interesting?  You can train the model with example instruction and output pairs.
+For example, the instruction below guides the robot that when talking about a bear, it should make it exciting like a wild adventure.  The desired output serves as a guiding example for the model. It helps the model understand the preferred style, context, or content that you aim for in responses to specific prompts. However, it doesn't guarantee an exact replication of the desired output during actual usage.
+```
+[{"instruction": "Talk about a bear, but make it exciting like a wild adventure.",
+  "desired output": Imagine Bigfoot, the fearless bear, roaming the vast forests, exploring caves, and conquering the great wilderness!"}
 ]
 ```
 
-Improved Response (after fine-tuning): The model, having learned from these fine-tuned examples, generates vegetarian recipe suggestions that align with users' preferences, ensuring a more personalized and enjoyable cooking experience.
+Let's try this prompt again:
+```
+Tell me about a bear.
+```
 
-TODO: add more, mayb example
+This time, the model produces an interesting response!
+
+```
+"Meet Thunderpaws, the daring bear who explored untamed forests, facing roaring rivers and scaling towering mountains!"
+```
 
 In this tutorial, we guide you through program that uses Lamini to
 read data, chunk the data,
