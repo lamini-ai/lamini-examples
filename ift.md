@@ -39,8 +39,6 @@ The final result can then be submitted to the model for trainig.
 
 We start by loading the data files and segmenting the text into chunks,
 which will be appended to prompts at a later stage.
-Dividing the text into chunks (ex. 512 characters each) is necessary because
-appending a large text to prompts exceed the model's input limitations.
 
 The code below creates a loader that specifies the data path
 and how the data will be broken into chunks.
@@ -49,7 +47,7 @@ be recursively loaded as text.
 The loader will fail if any file cannot be read as text.
 In addition, we optionally specify `batch_size`, `chunk_size`, and `step_size`
 in when initializing the loader.
-Please refer to [TODO: add link] for details on these optional parameters.
+Please refer to [our RAG documentation] (TODO: add link to data to chunks section) for details on these optional parameters.
 
 ```python
 loader = DirectoryLoader(
