@@ -35,10 +35,13 @@ This time, the model produces an interesting response! 🤩
 Meet Thunderpaws, the daring bear who explored untamed forests, facing roaring rivers and scaling towering mountains!
 ```
 
-In this tutorial, we guide you through program that uses Lamini to
-read data, chunk the data,
-and generate a list of [question, answer] pairs based on the data.
-The final result can then be submitted to the model for trainig.
+In this tutorial, we will teach you instruction fine tuning through a
+program that uses Lamini to load our fictional company's recent investment data,
+chunks the data, and then
+generate a list of `question` and `answer` pairs based on the data.
+Each `answer` provides a guiding example for the corresponding `question`, similar to
+the `instruction` and `desired output` pairs in the example above.
+Navigate to the [sdk directory](https://github.com/lamini-ai/sdk/tree/main/ift) to view the program.
 
 ## Step 1: Load and Chunk Input Data
 
