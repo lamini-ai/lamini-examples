@@ -96,7 +96,7 @@ This is what the output would look like:
 Now consider `chunk_size = 20`, `step_size = 10`, meaning
 for each index in [0, 10, 20, 30, 40], extract a substring of length 20.
 Notice this will result in overlaps at the boundaries of adjacent chunks, as shown below.
-These overlaps will give each chunk some context from its neighbors and improve result quality during later steps.
+These overlaps will give each chunk some context from its neighbors and improve result quality during later steps. Though sometimes a larger `step_size` might lead to the response containing additional content that shouldn't be included.
 
 ```
 ["Our firm invested in",
