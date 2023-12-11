@@ -35,18 +35,18 @@ This time, the model produces an interesting response! 🤩
 Meet Thunderpaws, the daring bear who explored untamed forests, facing roaring rivers and scaling towering mountains!
 ```
 
-In this tutorial, we will teach you instruction fine tuning through a
-program that uses Lamini to load our fictional company's recent investment data,
+In this tutorial, we will teach you instruction fine tuning through
+[generate_data.py](https://github.com/lamini-ai/sdk/blob/main/ift/generate_data.py),
+a program
+that uses Lamini to load our fictional company's recent investment data,
 chunks the data, and then
 generate a list of `question` and `answer` pairs for training.
 Each `answer` provides a guiding example for the corresponding `question`, similar to
 the `instruction` and `desired output` pairs in the example above.
 
-We have included the program in the [sdk directory](https://github.com/lamini-ai/sdk/tree/main/ift).
-
 ## Step 1: Load and Chunk Input Data
 
-We start by loading the data files and segmenting the text into chunks,
+We start by loading the investment files and segmenting the text into chunks,
 which will be appended to prompts at a later stage.
 
 The code below creates a loader that specifies the data path
@@ -57,6 +57,10 @@ The loader will fail if any file cannot be read as text.
 In addition, we optionally specify `batch_size`, `chunk_size`, and `step_size`
 in when initializing the loader.
 Please refer to [our RAG documentation] (TODO: add link to data to chunks section) for details on these optional parameters.
+
+```markdown
+[mytest](https://github.com/lamini-ai/sdk/blob/main/ift/generate_data.py#L16-L20)
+```
 
 ```python
 loader = DirectoryLoader(
