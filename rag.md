@@ -37,23 +37,17 @@ response = llm(prompt)
 1. :books: :mag: Retrieval - Scans the knowledge base to retrieve info relevant to the user's prompt. Ex: 
    - User prompt: `"Have we invested in any generative AI companies in the past year?"`
    - Scan the the company's internal documents. Retrieve information relevant to the prompt, such as company names, funding amounts, equity stakes, investments dates, and key personnel involved.
-2. ➕ Augmentation - Augment the prompt with the data retrieved from step 1. Ex: 
+2. ➕ Augmentation - Augment the prompt with the data retrieved from step 1 like below:
    - ```
-     In the past year, we invested in two generative AI companies.
-     Investment to Super Piped Piper in Palo Alto was led by Russe H. from the series A
-     team and concluded on Mar 2, 2023, for $1,000,000 and 10% equity. Super Piped Piper
-     focuses on ensuring responsible deployment of generative AI models.
-     Details can be found in https://my_company.com/private_docs/piped_piper
-     Investment to SeeFood in Palo Alto was led by Erlich B. from the seed round team
-     and concluded on Oct 1, 2023, for $10,000,000 and 25% equity. SeeFood uses AI to
-     create octupus cooking videos that you can see using Oculus headsets.
-     Details can be found on https://my_company.com/private_docs/see_food
+     1/1/2023, we invested in company A...
+     1/2/2023, we invested in company B...
+     ...
 
      Using the information above answer the following: Have we invested in any generative AI companies in the past year?
      ```
 3. ✨ Generation - Generate a well-informed response for the prompt from step 2. Ex: 
    - ```
-     Yes, in the past year, we invested in two generative AI companies: Super Piped Piper and SeeFood.
+     Yes, in 2023, we invested in ...
      ```
 
 ## Step 0: Prepare Knowledge Data
