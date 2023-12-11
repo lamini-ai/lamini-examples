@@ -84,7 +84,7 @@ Consider the knowledge text below:
 ```
 "Our firm invested in 10 AI startups in 2023."
 ```
-For simplicity, let `chunk_size` and `step_size` to 20.
+For simplicity, let `chunk_size` = `step_size` = 20.
 In other words, for each index in [0, 20, 40], extract a substring of length 20.
 This is what the output would look like:
 ```
