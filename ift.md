@@ -46,31 +46,29 @@ the `instruction` and `desired output` pairs in the example above.
 
 ## Step 1: Load and Chunk Input Data
 
-We start by loading the investment files and segmenting the text into chunks,
-which will be appended to prompts at a later stage.
+We start by loading the investment files and segmenting the text into chunks, where each
+chunk will be used to create a new prompt.
+This step is necessary because the model has limitations on the amount of text it
+can process in a prompt.
 
 The code below creates a loader that specifies the data path
 and how the data will be broken into chunks.
 The first argument is the path to the data directory where the files will
-be recursively loaded as text.
-The loader will fail if any file cannot be read as text.
+be recursively loaded as text.  We use `../rag/data`, which contains the
+same fictional investment data as in the RAG tutorial.
 In addition, we optionally specify `batch_size`, `chunk_size`, and `step_size`
-in when initializing the loader.
-Please refer to [our RAG documentation] (TODO: add link to data to chunks section) for details on these optional parameters.
-
-```markdown
-[mytest](https://github.com/lamini-ai/sdk/blob/main/ift/generate_data.py#L16-L20)
-```
+when initializing the loader.
+Please refer to [our RAG documentation] (add url to data to chunks section) for details on these  parameters.
 
 ```python
 loader = DirectoryLoader(
-    parent_directory + "/data",
+    "../rag/data", # path to data directory
     batch_size=512,
     chunker=DefaultChunker(chunk_size=512, step_size=512),
 )
 ```
 
-We then iterate through the loader to generate and store the chunks.
+Next, we iterate through the loader to generate and store the chunks.
 During each iteration, the loader yields a list of 512 (`batch_size`) chunks,
 each with a length of 512 (`chunk_size`), and we concatenate this new list
 to `chunks`.
