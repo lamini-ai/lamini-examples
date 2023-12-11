@@ -54,8 +54,8 @@ can process in a prompt.
 The code below creates a loader that specifies the data path
 and how the data will be broken into chunks.
 The first argument is the path to the data directory where the files will
-be recursively loaded as text.  We use [../rag/data](https://github.com/lamini-ai/sdk/tree/main/rag/data), which contains the
-same fictional investment data as in the RAG tutorial.
+be recursively loaded as text.  We use [../rag/data](https://github.com/lamini-ai/sdk/tree/main/rag/data),
+the fictional investment data in the RAG tutorial.
 In addition, we optionally specify `batch_size`, `chunk_size`, and `step_size`
 when initializing the loader.
 Please refer to [our RAG documentation] (add url to data to chunks section) for details on these  parameters.
