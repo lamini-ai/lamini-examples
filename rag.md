@@ -189,6 +189,7 @@ Hooli Mobile Devices (Gavin B) - 1 star
 
 Awesome! :tada:
 
-===========================
+## Try Out RAG!
 
-TODO: add code that the user can run
+
+
