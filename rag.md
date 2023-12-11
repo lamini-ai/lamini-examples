@@ -191,5 +191,17 @@ Awesome! :tada:
 
 ## Try Out RAG!
 
+We have included a RAG example for you to experiment with in here.
+- data is a knowledge directory detailing our fictional company's
+recent investments.
+- rag.py is a simple program that uses RAG with the investment data to answer
+`"Have we invested in any generative AI companies in 2023?"`
 
+You can run rag.py with
+```
+python3 rag.py
+```
 
+Try to experiment with your own prompts or different parameters to
+`RetrievalAugmentedRunner`.
+Notice that updating `step_size` from 256 to the default 512 results in an incorrect response. It includes an additional investment in AquaTech Dynamics, which is not an AI company.
