@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Imagine you have a robot friend that talks about bears but sometimes gets it a bit wrong. Fine-tuning is like showing it how to talk about bears in a way you like.
+Imagine you have a robot that talks about bears but sometimes gets it a bit wrong. Fine-tuning is like showing the robot how to talk about bears in a way you like.
 
 Consider this user prompt:
 
@@ -16,7 +16,8 @@ Bears eat honey.
 ```
 
 But what if you want the response to be more interesting?  You can train the model with example instruction and output pairs.
-For example, the instruction below guides the robot that when talking about a bear, it should make it exciting like a wild adventure.  The desired output serves as a guiding example for the model. It helps the model understand the preferred style, context, or content that you aim for in responses to specific prompts. However, it doesn't guarantee an exact replication of the desired output during actual usage.
+For example, the `instruction` below guides the robot that when talking about a bear, describe it in an exciting manner, like a wild adventure.
+The `desired output` serves as a guiding example for the model. It helps the model understand the preferred style, context, or content that you aim for in responses to specific prompts. However, it doesn't guarantee an exact replication of the desired output during actual usage.
 ```
 [{"instruction": "Talk about a bear, but make it exciting like a wild adventure.",
   "desired output": Imagine Bigfoot, the fearless bear, roaming the vast forests, exploring caves, and conquering the great wilderness!"}
