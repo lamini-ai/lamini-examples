@@ -32,6 +32,7 @@ llm.load_data("path/to/knowledge_directory")
 llm.train()
 prompt = "Have we invested in any generative AI companies in 2023?")
 response = llm(prompt)
+print(response)
 ```
 ### How RAG works:
 1. :books: :mag: Retrieval - Scans the knowledge base to retrieve info relevant to the user's prompt. Ex: 
@@ -43,7 +44,7 @@ response = llm(prompt)
      2/1/2023, we invested in company B...
      ...
 
-     Using the information above answer the following: Have we invested in any generative AI companies in the past year?
+     Have we invested in any generative AI companies in 2023?
      ```
 3. ✨ Generation - Generate a well-informed response for the prompt from step 2. Ex: 
    - ```
@@ -124,7 +125,7 @@ simple and fast index for similarity search based on Euclidean distance.
 
 ### Step 1.3: Retrieve Relevant Information from Embeddings
 
-Using [faiss](https://github.com/facebookresearch/faiss),
+Using [FAISS](https://github.com/facebookresearch/faiss),
 Lamini performs a similarity search using embeddings of the question
 against all chunk embeddings, with the help of the index.
 This produces a list of chunk IDs ranked by their similarity scores.
@@ -148,7 +149,7 @@ Similar to adjusting `chunk_size` and `step_size`, you may need to experiment wi
 
 ## Step 2: Augmentation
 
-This step is simple, we append the relevant chunks to the original prompt.
+This step is simple, we prepend the relevant chunks to the original prompt.
 For example:
 
 Original prompt
@@ -167,11 +168,10 @@ Nucleus, released 8/2023, lead by Nelson B, received 2 stars.
 List the worst rated projects that my company launched in 2023.
 ```
 
-In (TODO: add location), line TODO
+The code below takes `prompt`, the original prompt as import and creates the augmented prompt.
 ```
 llm(prompt)
 ```
-creates the augments prompt.
 
 ## Step 3: Generation
 
@@ -186,8 +186,6 @@ Based on the ratings, the worst projects launched by your company in 2023 are:
 Pied Piper Compression (Richard H) - 1 star
 Hooli Mobile Devices (Gavin B) - 1 star
 ```
-
-TODO: this output is from chat gpt, double check our model produces similiar response.
 
 Awesome! :tada:
 
