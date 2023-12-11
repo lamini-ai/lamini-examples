@@ -10,12 +10,12 @@ Consider this user prompt:
 Tell me about a bear.
 ```
 
-The robot replies:
+The robot produces a boring reply:
 ```
 Bears eat honey.
 ```
 
-But what if you want the response to be more interesting?  You can train the model with example instruction and output pairs.
+But what if you want the response to be more interesting?  You can train the model to do so with example instruction and output pairs.
 For example, the `instruction` below guides the robot that when talking about a bear, describe it in an exciting manner, like a wild adventure.
 The `desired output` serves as a guiding example for the model. It helps the model understand the preferred style, context, or content that you aim for in responses to specific prompts. However, it doesn't guarantee an exact replication of the desired output during actual usage.
 ```
