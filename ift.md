@@ -62,7 +62,7 @@ During each iteration, the loader yields a list of 512 (`batch_size`) chunks,
 each with a length of 512 (`chunk_size`), and we concatenate this new list
 to `chunks`.
 We use [tqdm](https://github.com/tqdm/tqdm) when iterating over the loader,
-which displays a progress bar for iteration process.
+which displays a progress bar for the iteration process.
 
 ```python
 chunks = []
@@ -98,9 +98,9 @@ chunks = chunks[2:3] # range from index 2 to 3, but exclude item at index 3
 ```
 
 The code below iterates through the chunks (we only have one chunk now).
-For each chunk, it creates a new prompt, where the first part is
-the chunk wrapped in single quotes, the second part is newline `\n` followed
-by TODO.
+For each chunk, it creates a new prompt with two sections:
+1. The chunk wrapped in single quotes.
+2. Newline (`'\n'`) followed by TODO.
 For example, TODO.
 We then execute `runner(...)` to generate `result` of type `Questions`
 based on the new prompt and the specific system prompt.
