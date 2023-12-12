@@ -100,7 +100,7 @@ which uses the Mistral Instruct model.
 runner = MistralRunner()
 ```
 
-Next, we declare `Questions`, an object of Lamini `Type` with
+Next, we declare `Questions`, a class of Lamini `Type` with
 three string fields: `question_1`, `question_2`, and `question_3`.
 The string inside each `Context()` is an optional description of the
 field.
@@ -113,7 +113,7 @@ class Questions(Type):
 ```
 
 
-For simplicity, we only use the chunk at index 4 only to demonstrate question generation.
+For simplicity, we will use the chunk at index 4 only to demonstrate question generation.
 ```python
 chunks = chunks[4:5] # range from index 4 to 5, but exclude item at index 5
 ```
@@ -226,8 +226,7 @@ Answer: The name of the company that Erlich B. played a pivotal role in guiding 
 
 ## Step 4: Save the Questions, Answers, and Data
 
-You can save the results from the previous step to a csv file or a json file,
-as shown below.
+We save the results in different formats in `qa_data/`.
 
 ```python
 # Save the questions, answers, and data in a csv file (logging)
