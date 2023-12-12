@@ -255,3 +255,10 @@ training_data = [
 with open("qa_data/generated_data_finetuning.json", "w") as f:
     json.dump(training_data, f, indent=4)
 ```
+
+## Step 5: Try Out Instruction Fine Tuning
+
+Experiment with
+`python3 generate_data.py` to generate the output above.
+
+Explore by trying different prompts, adjusting chunk parameters, or modifying the data directory! 🚀
