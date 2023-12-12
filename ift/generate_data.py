@@ -47,6 +47,7 @@ for chunk in chunks:
         + "'\nThe preceding single-quoted text is an excerpt describing various investments made by BigMoney Ventures. Generate three diverse questions about the investments.  Only generate questions that can be answered using information from the preceding single-quoted text.  Do not ask questions that require additional information outside of the preceding single-quoted text."
     )
     system_prompt = "You are an expert investment analyst working at BigMoney Ventures."
+
     result = runner(prompt, output_type=Questions, system_prompt=system_prompt)
     print("1.", result.question_1)
     print("2.", result.question_2)
