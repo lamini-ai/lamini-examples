@@ -44,10 +44,9 @@ for chunk in chunks:
     prompt = (
         "'"
         + chunk
-        + "'\nThe preceeding single-quoted text is an excerpt describing various investments made by BigMoney Ventures. Generate three diverse questions about the investments.  Only generate questions that can be answered using information from the preceeding single-quoted text.  Do not ask questions that require additional information outside of the preceeding single-quoted text."
+        + "'\nThe preceding single-quoted text is an excerpt describing various investments made by BigMoney Ventures. Generate three diverse questions about the investments.  Only generate questions that can be answered using information from the preceding single-quoted text.  Do not ask questions that require additional information outside of the preceding single-quoted text."
     )
     system_prompt = "You are an expert investment analyst working at BigMoney Ventures."
-
     result = runner(prompt, output_type=Questions, system_prompt=system_prompt)
     print("1.", result.question_1)
     print("2.", result.question_2)
@@ -65,7 +64,7 @@ for index, question in enumerate(questions):
     prompt = (
         "'"
         + question[0]  # chunk
-        + "'\nThe preceeding single-quoted text is an excerpt describing various investment made by BigMoney Ventures.  Answer the following question using information from the single-quoted text.  If you cannot answer the question using only the single-quoted text, respond only with the statement: \"I don't know.\"\n\n"
+        + "'\nThe preceding single-quoted text is an excerpt describing various investment made by BigMoney Ventures.  Answer the following question using information from the single-quoted text.  If you cannot answer the question using only the single-quoted text, respond only with the statement: \"I don't know.\"\n\n"
         + question[1]  # question about the chunk
     )
     system_prompt = "You are an expert in the field of investments."
