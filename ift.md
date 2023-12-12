@@ -120,10 +120,9 @@ chunks = chunks[4:5] # range from index 4 to 5, but exclude item at index 5
 ```
 
 The code below iterates through the chunks (we only have one chunk now).
-For each chunk, it creates a new prompt with two sections:
+For each chunk, it creates an object of type `Questions` from a new prompt with two sections:
 1. The chunk wrapped in single quotes.
 2. Newline (`'\n'`) followed by an instruction to generate three diverse questions about the investments made by BigMoney Ventures based solely on the preceding single-quoted text.
-   -`"The preceding single-quoted text is an excerpt describing various investments made by BigMoney Ventures. Generate three diverse questions about the investments.  Only generate questions that can be answered using information from the preceding single-quoted text.  Do not ask questions that require additional information outside of the preceding single-quoted text."`
 
 We then execute `runner(...)` to generate `result` of type `Questions`
 based on the new prompt and the specific system prompt.  We also print out
