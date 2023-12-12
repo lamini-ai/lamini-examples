@@ -15,7 +15,7 @@ The robot produces an uninteresting reply:
 Bears eat honey.
 ```
 
-But what if you want the response to be more interesting?  You can train the model to do so with example instruction and output pairs.
+But what if we want the response to be more interesting?  We can train the model to do so with example instruction and output pairs.
 For example, the `instruction` below guides the robot that when talking about a bear, describe it in an exciting manner, like a wild adventure.
 The `desired output` serves as a guiding example for the model. It helps the model understand the preferred style, context, or content that you aim for in responses to specific prompts. However, it doesn't guarantee an exact replication of the desired output during actual usage.
 ```
@@ -37,10 +37,10 @@ Meet Thunderpaws, the daring bear who explored untamed forests, facing roaring r
 
 In this tutorial, we will teach you instruction fine tuning through
 [generate_data.py](https://github.com/lamini-ai/sdk/blob/main/ift/generate_data.py),
-a program
+a short program
 that uses Lamini to load our fictional company's recent investment data,
 chunks the data, and then
-generate a list of `question` and `answer` pairs for training.
+generate a list of `question` and `answer` pairs about the investments for training.
 Each `answer` provides a guiding example for the corresponding `question`, similar to
 the `instruction` and `desired output` pairs in the example above.
 
@@ -93,9 +93,8 @@ AI, creating engaging octopus cooking videos that can be experienced seamlessly 
 
 ## Step 2: Generate Questions
 
-In this step, we will use the Mistral Instruct model to generate three
-questions.
-
+In this step, we use the Mistral Instruct model to generate three
+questions based on the investment data.
 We specify that `MistralRunner` will be used to generate responses,
 which uses the Mistral Instruct model.
 
@@ -105,6 +104,8 @@ runner = MistralRunner()
 
 Next, we declare `Questions`, an object of Lamini `Type` with
 three string fields: `question_1`, `question_2`, and `question_3`.
+The string inside each `Context()` is an optional description of the
+field.
 
 ```python
 class Questions(Type):
@@ -113,33 +114,32 @@ class Questions(Type):
     question_3: str = Context("")
 ```
 
-For simplicity, we use the chunk at index 2 only to demonstrate the question generation
+For simplicity, we use the chunk at index 4 only to demonstrate the question generation
 ```python
-chunks = chunks[2:3] # range from index 2 to 3, but exclude item at index 3
+chunks = chunks[4:5] # range from index 4 to 5, but exclude item at index 5
 ```
 
 The code below iterates through the chunks (we only have one chunk now).
 For each chunk, it creates a new prompt with two sections:
 1. The chunk wrapped in single quotes.
-2. Newline (`'\n'`) followed by TODO.
-For example, TODO.
-We then execute `runner(...)` to generate `result` of type `Questions`
-based on the new prompt and the specific system prompt.
+2. Newline (`'\n'`) followed by an instruction to generate three diverse questions about the investments made by BigMoney Ventures based solely on the preceding single-quoted text.
+   -`"The preceding single-quoted text is an excerpt describing various investments made by BigMoney Ventures. Generate three diverse questions about the investments.  Only generate questions that can be answered using information from the preceding single-quoted text.  Do not ask questions that require additional information outside of the preceding single-quoted text."`
 
-The code also prints out each question, which are TODO.
-At the end, `questions ` contains a list of [chunk, question] pairs.
-For example, TODO.
+We then execute `runner(...)` to generate `result` of type `Questions`
+based on the new prompt and the specific system prompt.  We also print out
+the `questions` at the end.
 
 ```python
 questions = []
-...
+
 for chunk in chunks:
+    print(chunk)
     prompt = (
         "'"
         + chunk
-        + "'\nThe preceeding single-quoted text is an excerpt from a MSA contract between Lamini and XXXXX. Generate three diverse questions about the MSA.  Only generate questions that can be answered using information from the preceeding single-quoted text.  Do not ask questions that require additional information outside of the preceeding single-quoted text."
+        + "'\nThe preceeding single-quoted text is an excerpt describing various investments made by BigMoney Ventures. Generate three diverse questions about the investments.  Only generate questions that can be answered using information from the preceeding single-quoted text.  Do not ask questions that require additional information outside of the preceeding single-quoted text."
     )
-    system_prompt = """You are an expert contract analyst working at Point32 health."""
+    system_prompt = "You are an expert investment analyst working at BigMoney Ventures."
 
     result = runner(prompt, output_type=Questions, system_prompt=system_prompt)
     print("1.", result.question_1)
