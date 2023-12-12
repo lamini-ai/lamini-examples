@@ -121,7 +121,7 @@ chunks = chunks[4:5] # range from index 4 to 5, but exclude item at index 5
 The code below iterates through the chunks (we only have one chunk now).
 For each chunk, it generates an object of type `Questions` from a new prompt that is the concatenation the strings below:
 1. The chunk wrapped in single quotes.
-2. Newline (`'\n'`) to separate between the chunk and the next part.
+2. Newline (`\n`) to separate between the chunk and the next part.
 3. An instruction to generate three diverse questions about the investments made by BigMoney Ventures based solely on the preceding single-quoted text.
 
 We then execute `runner(...)` to generate `result` of type `Questions`
