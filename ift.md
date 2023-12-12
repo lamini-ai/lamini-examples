@@ -126,8 +126,8 @@ For each chunk, it creates an object of type `Questions` from a new prompt with 
 2. Newline (`'\n'`) followed by an instruction to generate three diverse questions about the investments made by BigMoney Ventures based solely on the preceding single-quoted text.
 
 We then execute `runner(...)` to generate `result` of type `Questions`
-based on the new prompt and the specific system prompt.  We also print out
-the `questions` at the end.
+based on the new prompt and the specific system prompt.  At the end, we print out
+the `questions` and append each chunk-question pair to `questions`.
 
 ```python
 questions = []
@@ -168,7 +168,6 @@ The result is a `Questions` object with three fields:
 * `question_1`: `What was the total investment amount for SeeFood and what was the equity share received by the investors` 
 * `question_2`: `What is the innovative use of AI that SeeFood is utilizing in their octopus cooking videos?`
 * `question_3`: `What is the name of the company that Erlich B. played a pivotal role in guiding the seed round investment for SeeFood`
-
 
 ## Step 3: Generate Answers
 
