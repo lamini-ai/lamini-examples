@@ -35,14 +35,14 @@ This time, the model produces an interesting response! 🤩
 Meet Thunderpaws, the daring bear who explored untamed forests, facing roaring rivers and scaling towering mountains!
 ```
 
-In this tutorial, we will teach you instruction fine tuning through
+In this tutorial, we will teach you instruction fine tuning using
 [generate_data.py](https://github.com/lamini-ai/sdk/blob/main/ift/generate_data.py),
 a short program
 that uses Lamini to load our fictional company's recent investment data,
 chunks the data, and then
-generate a list of `question` and `answer` pairs about the investments for training.
-Each `answer` provides a guiding example for the corresponding `question`, similar to
-the `instruction` and `desired output` pairs in the example above.
+generate a list of [question, answer] pairs about the investments for training.
+Each answer provides a guiding example for the corresponding question, similar to
+the [instruction, desired output] pairs in the example above.
 
 ## Step 1: Load and Chunk Input Data
 
