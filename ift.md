@@ -208,17 +208,22 @@ for index, question in enumerate(questions):
     final_data_array.append([question[0], question[1], answer])
 ```
 
-For this chunk
+Below is the prompt used to generate an answer for one of the questions:
 ```
-t only to their own growth but also to the broader discourse on responsible and ethical AI deployment.
+'t only to their own growth but also to the broader discourse on responsible and ethical AI deployment.
 
 On a parallel trajectory, Erlich B. played a pivotal role in guiding the seed round investment for
 SeeFood, also situated in Palo Alto. The transaction concluded on October 1, 2023, with a substantial
-investment totaling $10,000,000 and a 25% equity share. SeeFood stands out for its innovative use of
-AI, creating engaging octopus cooking videos that can be experienced seamlessly through Oculus headsets. S
+investment totaling $10,000,000 and a 25% equity share. SeeFood stands out for its innovative use of AI,
+creating engaging octopus cooking videos that can be experienced seamlessly through Oculus headsets. S'
+The preceding single-quoted text is an excerpt describing various investment made by BigMoney Ventures.
+Answer the following question using information from the single-quoted text.  If you cannot answer the
+question using only the single-quoted text, respond only with the statement: "I don't know."
+
+What is the innovative use of AI that SeeFood is utilizing in their octopus cooking videos?
 ```
 
-We generate the [question, answer] pairs below.
+At thend, we generate the three [question, answer] pairs below.
 ```
 Question 1: What was the total investment amount for SeeFood and what was the equity share received by the investors
 Answer: The total investment amount for SeeFood was $10,000,000 and the equity share received by the investors was 25%.
