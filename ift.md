@@ -51,13 +51,12 @@ chunk will be used to create a new prompt.
 This step is necessary because the model has limitations on the amount of text it
 can process in a prompt.
 
-The code below creates a loader that specifies the data path
+The code below initializes a loader that specifies the data path
 and how the data will be broken into chunks.
 The first argument is the path to the data directory where the files will
 be recursively loaded as text.  We use [../rag/data](https://github.com/lamini-ai/sdk/tree/main/rag/data),
 the fictional investment data in the RAG tutorial.
-In addition, we optionally specify `batch_size`, `chunk_size`, and `step_size`
-when initializing the loader.
+In addition, we optionally specify `batch_size`, `chunk_size`, and `step_size`.
 Please refer to [our RAG documentation] (add url to data to chunks section) for details on these  parameters.
 
 ```python
@@ -94,8 +93,7 @@ AI, creating engaging octopus cooking videos that can be experienced seamlessly 
 ## Step 2: Generate Questions
 
 In this step, we use the Mistral Instruct model to generate three
-questions based on the investment data.
-We specify that `MistralRunner` will be used to generate responses,
+questions based on the investment data,
 which uses the Mistral Instruct model.
 
 ```
