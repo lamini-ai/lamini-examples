@@ -267,6 +267,15 @@ with open("qa_data/generated_data_finetuning.json", "w") as f:
     json.dump(training_data, f, indent=4)
 ```
 
+## Traing the Model
+
+In this step we will train the model with the data from the previous step.
+
+TODO: figure out which function to call to load the data and train
+
+TODO: show an example prompt where we get good result
+
+
 ## Try Out Instruction Fine Tuning
 
 Experiment with
