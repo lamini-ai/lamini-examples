@@ -125,8 +125,11 @@ For each chunk, it generates a prompt that is the concatenation the strings belo
 3. An instruction to generate three diverse questions about the investments made by BigMoney Ventures based solely on the preceding single-quoted text.
 
 We then execute `runner(...)` to generate `result` of type `Questions`
-based on the new prompt and the specific system prompt.  At the end, we print out
-the `questions` and append each chunk-question pair to `questions`.
+based on the prompt above and the specified system prompt, where
+`result.question_1`, `result.question_2`, `result.question_3` will each
+contain a generated question.
+At the end, we print out
+the `questions` and append each [chunk, question] pair to `questions`.
 
 ```python
 questions = []
