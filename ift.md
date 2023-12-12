@@ -125,9 +125,9 @@ For each chunk, it generates a prompt that is the concatenation the strings belo
 3. An instruction to generate three diverse questions about the investments made by BigMoney Ventures based solely on the preceding single-quoted text.
 
 We then execute `runner(...)` to generate `result` of type `Questions`
-based on the prompt above and the specified system prompt, where
-`result.question_1`, `result.question_2`, `result.question_3` will each
-contain a generated question.
+based on the prompt above and the specified system prompt, where each of
+`result.question_1`, `result.question_2`, and `result.question_3` will
+be a generated question.
 At the end, we print out
 the `questions` and append each [chunk, question] pair to `questions`.
 
@@ -167,9 +167,10 @@ information outside of the preceding single-quoted text.
 ```
 
 The result is a `Questions` object with three fields:
-* `question_1`: `What was the total investment amount for SeeFood and what was the equity share received by the investors` 
-* `question_2`: `What is the innovative use of AI that SeeFood is utilizing in their octopus cooking videos?`
-* `question_3`: `What is the name of the company that Erlich B. played a pivotal role in guiding the seed round investment for SeeFood`
+```
+question_1: What was the total investment amount for SeeFood and what was the equity share received by the investors 
+question_2: What is the innovative use of AI that SeeFood is utilizing in their octopus cooking videos?`
+question_3: What is the name of the company that Erlich B. played a pivotal role in guiding the seed round investment for SeeFood`
 
 ## Step 3: Generate Answers
 
