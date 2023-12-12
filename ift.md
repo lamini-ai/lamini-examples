@@ -38,7 +38,7 @@ Meet Thunderpaws, the daring bear who explored untamed forests, facing roaring r
 In this tutorial, we will teach you instruction fine tuning using
 [generate_data.py](https://github.com/lamini-ai/sdk/blob/main/ift/generate_data.py),
 a short program
-that uses Lamini to load our fictional company's recent investment data,
+that uses Lamini to load our fictional company BigMoney Venture's recent investment data,
 chunks the data, and then
 generate a list of [question, answer] pairs about the investments for training.
 Each answer provides a guiding example for the corresponding question, similar to
@@ -169,13 +169,13 @@ information outside of the preceding single-quoted text.
 The result is a `Questions` object with three fields:
 ```
 question_1: What was the total investment amount for SeeFood and what was the equity share received by the investors 
-question_2: What is the innovative use of AI that SeeFood is utilizing in their octopus cooking videos?`
+question_2: What is the innovative use of AI that SeeFood is utilizing in their octopus cooking videos?
 question_3: What is the name of the company that Erlich B. played a pivotal role in guiding the seed round investment for SeeFood
 ```
 
 ## Step 3: Generate Answers
 
-In this step, we generate answers for `questions`, which is the list of [chunk, question] pairs from the previosus step.
+In this step, we generate answers for the three questions.
 
 For each question, we create a new prompt by concatenating the following:
 1. `question[0]` (the chunk) wrapped in single quotes.
@@ -208,7 +208,7 @@ for index, question in enumerate(questions):
     final_data_array.append([question[0], question[1], answer])
 ```
 
-Below is the chunk and the list of [question, answer] pairs we generated.
+For this chunk
 ```
 t only to their own growth but also to the broader discourse on responsible and ethical AI deployment.
 
@@ -218,6 +218,7 @@ investment totaling $10,000,000 and a 25% equity share. SeeFood stands out for i
 AI, creating engaging octopus cooking videos that can be experienced seamlessly through Oculus headsets. S
 ```
 
+We generate the [question, answer] pairs below.
 ```
 Question 1: What was the total investment amount for SeeFood and what was the equity share received by the investors
 Answer: The total investment amount for SeeFood was $10,000,000 and the equity share received by the investors was 25%.
