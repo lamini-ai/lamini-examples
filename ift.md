@@ -10,7 +10,7 @@ Consider this user prompt:
 Tell me about a bear.
 ```
 
-The robot produces an uninteresting reply:
+The robot replies:
 ```
 Bears eat honey.
 ```
