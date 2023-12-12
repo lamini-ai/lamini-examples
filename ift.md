@@ -223,7 +223,7 @@ question using only the single-quoted text, respond only with the statement: "I 
 What is the innovative use of AI that SeeFood is utilizing in their octopus cooking videos?
 ```
 
-At thend, we generate the three [question, answer] pairs below.
+At the end, we generate the three [question, answer] pairs below.
 ```
 Question 1: What was the total investment amount for SeeFood and what was the equity share received by the investors
 Answer: The total investment amount for SeeFood was $10,000,000 and the equity share received by the investors was 25%.
