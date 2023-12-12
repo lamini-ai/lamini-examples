@@ -92,7 +92,7 @@ AI, creating engaging octopus cooking videos that can be experienced seamlessly 
 
 ## Step 2: Generate Questions
 
-In this step, we use the Mistral Instruct model to generate three
+In this step, we use `MistralRunner` to generate three
 questions based on the investment data,
 which uses the Mistral Instruct model.
 
@@ -119,7 +119,7 @@ chunks = chunks[4:5] # range from index 4 to 5, but exclude item at index 5
 ```
 
 The code below iterates through the chunks (we only have one chunk now).
-For each chunk, it creates an object of type `Questions` from a new prompt with two sections:
+For each chunk, it generates an object of type `Questions` from a new prompt by concatenating the strings below:
 1. The chunk wrapped in single quotes.
 2. Newline (`'\n'`) to separate between the chunk and the next part.
 3. An instruction to generate three diverse questions about the investments made by BigMoney Ventures based solely on the preceding single-quoted text.
@@ -256,7 +256,7 @@ with open("qa_data/generated_data_finetuning.json", "w") as f:
     json.dump(training_data, f, indent=4)
 ```
 
-## Step 5: Try Out Instruction Fine Tuning
+## Try Out Instruction Fine Tuning
 
 Experiment with
 `python3 generate_data.py` to generate the output above.
