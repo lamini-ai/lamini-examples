@@ -114,7 +114,8 @@ class Questions(Type):
     question_3: str = Context("")
 ```
 
-For simplicity, we use the chunk at index 4 only to demonstrate the question generation
+
+For simplicity, we only use the chunk at index 4 only to demonstrate question generation.
 ```python
 chunks = chunks[4:5] # range from index 4 to 5, but exclude item at index 5
 ```
@@ -148,6 +149,26 @@ for chunk in chunks:
     questions.append([chunk, result.question_2])
     questions.append([chunk, result.question_3])
 ```
+
+Using the chunk containing investment data, the code passes the new prompt below to `runner`.
+```
+'t only to their own growth but also to the broader discourse on responsible and ethical AI deployment.
+
+On a parallel trajectory, Erlich B. played a pivotal role in guiding the seed round investment for
+SeeFood, also situated in Palo Alto. The transaction concluded on October 1, 2023, with a substantial
+investment totaling $10,000,000 and a 25% equity share. SeeFood stands out for its innovative use of AI,
+creating engaging octopus cooking videos that can be experienced seamlessly through Oculus headsets. S'
+The preceding single-quoted text is an excerpt describing various investments made by BigMoney Ventures.
+Generate three diverse questions about the investments.  Only generate questions that can be answered
+using information from the preceding single-quoted text.  Do not ask questions that require additional
+information outside of the preceding single-quoted text.
+```
+
+The result is a `Questions` object with three fields:
+* `question_1`: `What was the total investment amount for SeeFood and what was the equity share received by the investors` 
+* `question_2`: `What is the innovative use of AI that SeeFood is utilizing in their octopus cooking videos?`
+* `question_3`: `What is the name of the company that Erlich B. played a pivotal role in guiding the seed round investment for SeeFood`
+
 
 ## Step 3: Generate Answers
 
