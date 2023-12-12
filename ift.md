@@ -170,7 +170,8 @@ The result is a `Questions` object with three fields:
 ```
 question_1: What was the total investment amount for SeeFood and what was the equity share received by the investors 
 question_2: What is the innovative use of AI that SeeFood is utilizing in their octopus cooking videos?`
-question_3: What is the name of the company that Erlich B. played a pivotal role in guiding the seed round investment for SeeFood`
+question_3: What is the name of the company that Erlich B. played a pivotal role in guiding the seed round investment for SeeFood
+```
 
 ## Step 3: Generate Answers
 
