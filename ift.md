@@ -24,7 +24,7 @@ The `desired output` serves as a guiding example for the model. It helps the mod
 ]
 ```
 
-Now that we have trained the model, let's try this prompt again:
+Suppose we have trained the model with the example above, let's try this prompt again:
 ```
 Tell me about a bear.
 ```
