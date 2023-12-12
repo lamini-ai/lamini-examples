@@ -205,7 +205,26 @@ for index, question in enumerate(questions):
     final_data_array.append([question[0], question[1], answer])
 ```
 
+Below is the chunk and the list of [question, answer] pairs we generated.
+```
+t only to their own growth but also to the broader discourse on responsible and ethical AI deployment.
 
+On a parallel trajectory, Erlich B. played a pivotal role in guiding the seed round investment for
+SeeFood, also situated in Palo Alto. The transaction concluded on October 1, 2023, with a substantial
+investment totaling $10,000,000 and a 25% equity share. SeeFood stands out for its innovative use of
+AI, creating engaging octopus cooking videos that can be experienced seamlessly through Oculus headsets. S
+```
+
+```
+Question 1: What was the total investment amount for SeeFood and what was the equity share received by the investors
+Answer: The total investment amount for SeeFood was $10,000,000 and the equity share received by the investors was 25%.
+
+Question 2. What is the innovative use of AI that SeeFood is utilizing in their octopus cooking videos?
+Answer: SeeFood is utilizing AI to create engaging octopus cooking videos that can be experienced seamlessly through Oculus headsets.
+
+Question 3. What is the name of the company that Erlich B. played a pivotal role in guiding the seed round investment for SeeFood
+Answer: The name of the company that Erlich B. played a pivotal role in guiding the seed round investment for SeeFood is SeeFood.
+```
 
 ## Step 4: Save the Questions, Answers, and Data
 
