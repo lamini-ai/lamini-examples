@@ -123,7 +123,8 @@ chunks = chunks[4:5] # range from index 4 to 5, but exclude item at index 5
 The code below iterates through the chunks (we only have one chunk now).
 For each chunk, it creates an object of type `Questions` from a new prompt with two sections:
 1. The chunk wrapped in single quotes.
-2. Newline (`'\n'`) followed by an instruction to generate three diverse questions about the investments made by BigMoney Ventures based solely on the preceding single-quoted text.
+2. Newline (`'\n'`) to separate between the chunk and the next part.
+3. An instruction to generate three diverse questions about the investments made by BigMoney Ventures based solely on the preceding single-quoted text.
 
 We then execute `runner(...)` to generate `result` of type `Questions`
 based on the new prompt and the specific system prompt.  At the end, we print out
@@ -171,41 +172,40 @@ The result is a `Questions` object with three fields:
 
 ## Step 3: Generate Answers
 
-In this step, we generate answers for `questions`, the list of [chunk, question] pairs from the previous step.
+In this step, we generate answers for `questions`, which is the list of [chunk, question] pairs from the previosus step.
 
 For each question, we create a new prompt by concatenating the following:
 1. `question[0]` (the chunk) wrapped in single quotes.
-2. `\n` followed by TODO, followed by `\n\n`.
-3. `question[1]`, or the question that corresponds to the chunk.
+2. New line `\n` to separate between the chunk in quotes and the next part.
+3. A instruction that first describes the preceding text in single quotes as investment data from BigMoney Ventures, then directs the model to either answer the question or respond with "I don't know".
+4. New lines `\n\n` to separate between the above from the next section.
+5. `question[1]`, or a question generated from the previous step.
 
-Next, similiarly to how questions are generated, we execute `runner`
+
+Next, similarly to how questions are generated, we proceed with executing `runner`
 to generate `answer` based on the new prompt and the specified system prompt.
 Lastly, we add the triple containing the chunk, question, and answer to `final_data_array`.  This array holds the necessary data for model training.
 
 ```python
 final_data_array = []
 # Generate Answers for each Answer
-
 for index, question in enumerate(questions):
     # Run the model
     prompt = (
         "'"
-        + question[0]
-        + "'\nThe preceeding single-quoted text is an excerpt from a MSA contract between Lamini and XXXXXXX.  Answer the following question using information from the single-quoted text.  If you cannot answer the question using only the single-quoted text, respond only with the statement: \"I don't know.\"\n\n"
-        + question[1]
+        + question[0]  # chunk
+        + "'\nThe preceding single-quoted text is an excerpt describing various investment made by BigMoney Ventures.  Answer the following question using information from the single-quoted text.  If you cannot answer the question using only the single-quoted text, respond only with the statement: \"I don't know.\"\n\n"
+        + question[1]  # question about the chunk
     )
-    system_prompt = """You are a expert in the field of law."""
+    system_prompt = "You are an expert in the field of investments."
     answer = runner(prompt, system_prompt=system_prompt)
-
-    print("---------------------- RUN PROMPT -------------------")
-    print(prompt)
-    print("---------------------- RUN PROMPT ------------------- DONE")    
-    
     print(f"---------------------Answer for question {index}---------------------")
     print(answer)
     print(f"---------------------------------------------------------------------")
     final_data_array.append([question[0], question[1], answer])
 ```
+
+
 
 ## Step 4: Save the Questions, Answers, and Data
 
