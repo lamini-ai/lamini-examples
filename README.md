@@ -10,7 +10,7 @@ In this SDK, we include three tutorials for achieving high-quality results with 
 
 Before you start, please get your Lamini API key and install the python library.
 
-First, get <YOUR-LAMINI-API-KEY> at https://app.lamini.ai/account.
+First, get `<YOUR-LAMINI-API-KEY>` at https://app.lamini.ai/account.
 Add the key as an environment variable.
 ```
 export LAMINI_API_KEY="<YOUR-LAMINI-API-KEY>"
