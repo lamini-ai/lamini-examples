@@ -30,7 +30,7 @@ In this tutorial, we'll guide you through prompt engineering using Lamini's
 you to obtain the response with just a few lines of code, like below.
 
 ```python
-from llama import MistralRunner
+from lamini import MistralRunner
 
 runner = MistralRunner()
 prompt = "What was the decision in Nixon v. United States? Answer in one sentence."
@@ -70,7 +70,7 @@ For example, you can add a system prompt to generate an output tailored to a leg
 and provide insights relevant to legal professionals and ethicists, like below.
 
 ```python
-from llama import MistralRunner
+from lamini import MistralRunner
 
 runner = MistralRunner()
 user_prompt = "What was the decision in Nixon v. United States?"
@@ -329,7 +329,7 @@ at once to optimizing resource utilization.
 In Lamini, the first argument to the runner can either be a single prompt string or a list of prompt strings.  When a single prompt is used, our system will run in non-batch mode and return a string output. On the other hand, when a prompt list used, the system will run in batch mode and return a list of dictionaries as output, like below.
 
 ```python
-from llama import MistralRunner
+from lamini import MistralRunner
 
 runner = MistralRunner()
 user_prompt = ["Is pizza nutritous?",

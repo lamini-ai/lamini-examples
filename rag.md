@@ -25,13 +25,13 @@ like below.
 In the upcoming sections, we will provide a detailed  explanation of the RAG steps, delve into the code, and provide guidance on configuring RAG.
 
 ```python
-from llama import RetrievalAugmentedRunner
+from lamini import RetrievalAugmentedRunner
 
 llm = RetrievalAugmentedRunner()
 llm.load_data("path/to/knowledge_directory")
 llm.train()
-prompt = "Have we invested in any generative AI companies in 2023?")
-response = llm(prompt)
+prompt = "Have we invested in any generative AI companies in 2023?"
+response = llm.call(prompt)
 print(response)
 ```
 ### How RAG works:
@@ -170,14 +170,14 @@ List the worst rated projects that my company launched in 2023.
 
 The code below takes `prompt`, the original prompt as import and creates the augmented prompt.
 ```
-llm(prompt)
+llm.call(prompt)
 ```
 
 ## Step 3: Generation
 
 The final step of RAG is also very straightforward.
 Execute the Runner with the new prompt.
-`llm(prompt)` also runs this step and returns the response.
+`llm.call(prompt)` also runs this step and returns the response.
 
 The response for the augmented prompt in the previous step may look like
 ```
@@ -196,6 +196,8 @@ You can find a RAG example to experiment with [here](https://github.com/lamini-a
 recent investment data.
 - `rag.py` is a simple program that uses RAG with the investment data to answer
 `"Have we invested in any generative AI companies in 2023?"`
+
+Please follow the [installation instructions](https://github.com/lamini-ai/sdk?tab=readme-ov-file#installation-instructions) if you haven't already.
 
 You can run `rag.py` with
 ```
