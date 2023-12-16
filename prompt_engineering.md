@@ -21,6 +21,9 @@ Here are some simple prompt examples:
 * `What would happen if WII had a different outcome?`
 * `Envision the world 100 years from now.`
 
+
+====================== IGNORE STUFF BELOW ============
+
 It is very important to clearly articulate the task or question in the prompt.
 In addition, iterating and refining prompts is crucial for achieving optimal
 results and harnessing the full potential of a language model.
