@@ -21,6 +21,104 @@ Here are some simple prompt examples:
 * `What would happen if WII had a different outcome?`
 * `Envision the world 100 years from now.`
 
+However, crafting prompts is not always simple.
+Consider scenarios where a more elaborate response is desired, tailoring the response for a specific audience is crucial, pertinent information is within private documents not available to the models, or the response needs to adhere to a specific format.
+
+In fact, it is recommended to include all five sections below in a prompt.
+Otherwise, the response quality may significantly decrease.
+We will delve into the details of the sections in this tutorial.
+
+1. Task description
+2. Task parameters
+3. Training data
+4. Retrieval augmented data
+5. Actual query
+
+## Prompt Template
+
+It's important to note that to get optimal outputs from a model, you must
+use the model's prompt template.
+
+For example, the Mistral 7B model recommends the template below:
+```
+[INST] instruction [/INST]
+```
+
+TODO: add example showing what happens if you don't use template?
+
+## Task Description
+
+The prompt should always begin with a task description. For exaple,
+
+```
+You are an attorney with extensive experience in various areas of law.
+Answer the following the question.
+```
+
+The task description should be hardcoded for similar types of queries.
+
+## Task Parameters
+
+```
+The parameters of the court case are provided below.
+title: United States v. Nixon
+Plaintiff: United States
+Defedant: Richard Nixon
+Legal Issues: Executive privilege, the balance between presidential power and judicial authority
+Outcome: The Supreme Court ruled against President Nixon, asserting that executive privilege is not absolute and can be overridden in the interest of justice.
+```
+
+## Training Data
+
+Few-shot learning is a machine learning approach where a model is trained to perform tasks with minimal examples, typically requiring only a small number of instances for each class or category. This allows the model to generalize and make accurate predictions even with limited labeled data.
+
+TODO: add link to few shot learning
+
+```
+Here are some other court cases:
+
+Clinton v. Jones (1997):
+Although not directly related, Clinton v. Jones underscores presidential accountability, affirming that a sitting president can be subject to civil litigation for actions taken before taking office.
+
+United States v. Curtiss-Wright Corporation (1936):
+
+While not directly addressing executive privilege, this case delves into the expansive scope of presidential power in foreign affairs, contributing to the broader discussion of presidential authority.
+```
+
+As you incorporate more training data, the output quality improves, but only up to a specific threshold; beyond that point, the quality diminishes.
+The limitation on the amount of training data in a prompt is largely due to the practical
+constraint on the input size that the model can handle.
+* Memory limitation - A prompt is first converted to a tensor, or a multi-dimensional array of numerical values that can be efficiently processed by machine learning models.
+  This takes up a signficant amount of memory because the tensor representation includes
+  numerical values that capture the semantic and contextual information of the prompt.
+* Position encoding limitation - Models use positional encodings to understand the order of tokens. Very long prompts may cause positional information to go out of distribution, where the model
+encounters data that is significiantly different from what it has been trained on,
+potentially leading to inaccurate or unreliable predictions.
+
+
+Different models have different prompt length restrictions. To identify the limit for a specific model, visit 🤗[Hugging Face](huggingface.co) and check the `max_position_embeddings` parameter in the model's `config.json` file.
+For example, this [config](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1/blob/main/config.json#L11) shows `max_position_embeddings = 32768`for the Mistral-7B-Instruct-v0.1 model.
+
+## Retrieval Augmented Data
+
+
+Retrieval augmented data refers to additional information retrieved outside the models and incorporated into the prompt to enhance the context and improve the quality of responses from a language model.
+
+In the upcoming tutorial, we will delve into retrieval augmented generation.
+For now, let's assume that we already possess some retrieval augmented data.
+
+```
+To provide a comprehensive overview of the impact of United States v. Nixon, consider these additional court cases related to executive privilege and its evolving interpretation:
+
+Nixon v. Fitzgerald (1982): Explores presidential immunity from civil lawsuits for official actions.
+United States v. Reynolds (1953): Addresses the state secrets privilege, contributing to the discourse on government secrecy.
+```
+
+## Actual Query
+
+```
+Examine the legal intricacies, outcomes, and broader implications of the United States v. Nixon case and its lasting impact on executive privilege. 
+```
 
 ====================== IGNORE STUFF BELOW ============
 
