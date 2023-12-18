@@ -34,7 +34,9 @@ We will delve into the details of prompt templates and the components in upcomin
 4. Retrieval augmented data
 5. Actual query
 
-## Prompt Template
+## Components of a Full Prompt
+
+### Prompt Template
 
 A prompt template is like a standardized format for asking questions or providing input to the model. It helps the model understand the context and type of information you're seeking, improving the chances of getting relevant and accurate responses.
 
@@ -55,8 +57,6 @@ We will delve into the details of system instruction and user instruction in a l
 TODO: add example showing what happens if you don't use template?
 
 TODO: move user vs system prompts here?
-
-## Components of a Full Prompt
 
 ### 1. Task Description
 
