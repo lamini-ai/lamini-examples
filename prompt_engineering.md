@@ -71,6 +71,8 @@ The task description should be hardcoded for similar types of queries.
 
 ### 2. Task Parameters
 
+Specifying task parameters in a prompt helps guide the model's understanding and context, ensuring it produces relevant and accurate responses tailored to the specific requirements of the task or query.
+
 ```
 The parameters of the court case are provided below.
 title: United States v. Nixon
