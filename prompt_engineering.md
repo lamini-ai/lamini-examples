@@ -40,8 +40,15 @@ A prompt template is like a standardized format for asking questions or providin
 
 For example, the Mistral 7B model recommends the template below:
 ```
-[INST] instruction [/INST]
+[INST] {instruction} [/INST]
 ```
+
+Llama 2 usees the following template:
+```
+<s>[INST] <<SYS>>\n{system_instruction}\n<</SYS>>\n\n{user_instruction} [/INST]
+```
+
+We will delve into the details of system instruction and user instruction in a later section.
 
 TODO: add example showing what happens if you don't use template?
 
