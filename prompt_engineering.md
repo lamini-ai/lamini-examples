@@ -60,11 +60,11 @@ TODO: move user vs system prompts here?
 
 ### 1. Task Description
 
-The prompt should always begin with a task description. For exaple,
+The prompt should always begin with a task description. For example,
 
 ```
 You are an attorney with extensive experience in various areas of law.
-Answer the following the question.
+Answer the following question.
 ```
 
 The task description should be hardcoded for similar types of queries.
@@ -84,7 +84,7 @@ Outcome: The Supreme Court ruled against President Nixon, asserting that executi
 
 Few-shot learning is a machine learning approach where a model is trained to perform tasks with minimal examples, typically requiring only a small number of instances for each class or category. This allows the model to generalize and make accurate predictions even with limited labeled data.
 
-If you are interested to learn more about few-shot learning, here is a great [5 minute video tututorial](https://www.linkedin.com/learning/introduction-to-prompt-engineering-for-generative-ai/few-shot-learning).
+If you are interested in learning more about few-shot learning, here is a great [5 minute video tututorial](https://www.linkedin.com/learning/introduction-to-prompt-engineering-for-generative-ai/few-shot-learning).
 
 TODO: double check if tutorial is good.
 
