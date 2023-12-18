@@ -36,8 +36,7 @@ We will delve into the details of the sections in this tutorial.
 
 ## Prompt Template
 
-It's important to note that to get optimal outputs from a model, you must
-use the model's prompt template.
+A prompt template is like a standardized format for asking questions or providing input to the model. It helps the model understand the context and type of information you're seeking, improving the chances of getting relevant and accurate responses.
 
 For example, the Mistral 7B model recommends the template below:
 ```
@@ -72,7 +71,10 @@ Outcome: The Supreme Court ruled against President Nixon, asserting that executi
 
 Few-shot learning is a machine learning approach where a model is trained to perform tasks with minimal examples, typically requiring only a small number of instances for each class or category. This allows the model to generalize and make accurate predictions even with limited labeled data.
 
-TODO: add link to few shot learning
+If you are interested to learn more about few-shot learning, here is a great [5 minute video tututorial](https://www.linkedin.com/learning/introduction-to-prompt-engineering-for-generative-ai/few-shot-learning).
+
+TODO: double check if tutorial is good.
+
 
 ```
 Here are some other court cases:
@@ -97,7 +99,11 @@ potentially leading to inaccurate or unreliable predictions.
 
 
 Different models have different prompt length restrictions. To identify the limit for a specific model, visit 🤗[Hugging Face](huggingface.co) and check the `max_position_embeddings` parameter in the model's `config.json` file.
-For example, this [config](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1/blob/main/config.json#L11) shows `max_position_embeddings = 32768`for the Mistral-7B-Instruct-v0.1 model.
+Note `max_position_embeddings` is specified as the number of tokens, not number of characters.
+A token is a unit of text, which can be individual words, subwords, or characters.
+If you are interested in learning more about tokens, please visit the
+[Hugging Face Tokenizers tutorial](https://huggingface.co/learn/nlp-course/chapter2/4?fw=pt).
+For example, this [config](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1/blob/main/config.json#L11) shows `max_position_embeddings = 32768` (tokens) for the Mistral-7B-Instruct-v0.1 model.
 
 ## Retrieval Augmented Data
 
