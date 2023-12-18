@@ -24,9 +24,9 @@ Here are some simple prompt examples:
 However, crafting prompts is not always simple.
 Consider scenarios where a more elaborate response is desired, tailoring the response for a specific audience is crucial, pertinent information is within private documents not available to the models, or the response needs to adhere to a specific format.
 
-In fact, it is recommended to include all five sections below in a prompt.
-Otherwise, the response quality may significantly decrease.
-We will delve into the details of the sections in this tutorial.
+In fact, it is recommended to include all five components below wrapped in a prompt template.
+Otherwise, there could be a substantial reduction in response quality.
+We will delve into the details of prompt templates and the components in upcoming sections.
 
 1. Task description
 2. Task parameters
@@ -48,9 +48,13 @@ Llama 2 usees the following template:
 <s>[INST] <<SYS>>\n{system_instruction}\n<</SYS>>\n\n{user_instruction} [/INST]
 ```
 
+To find the prompt template for each model, you can refer to the model's documentation.
+
 We will delve into the details of system instruction and user instruction in a later section.
 
 TODO: add example showing what happens if you don't use template?
+
+TODO: move user vs system prompts here?
 
 ## Task Description
 
