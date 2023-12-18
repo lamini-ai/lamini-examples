@@ -56,7 +56,9 @@ TODO: add example showing what happens if you don't use template?
 
 TODO: move user vs system prompts here?
 
-## Task Description
+## Components of a Full Prompt
+
+### 1. Task Description
 
 The prompt should always begin with a task description. For exaple,
 
@@ -67,7 +69,7 @@ Answer the following the question.
 
 The task description should be hardcoded for similar types of queries.
 
-## Task Parameters
+### 2. Task Parameters
 
 ```
 The parameters of the court case are provided below.
@@ -78,7 +80,7 @@ Legal Issues: Executive privilege, the balance between presidential power and ju
 Outcome: The Supreme Court ruled against President Nixon, asserting that executive privilege is not absolute and can be overridden in the interest of justice.
 ```
 
-## Training Data
+### 3. Training Data
 
 Few-shot learning is a machine learning approach where a model is trained to perform tasks with minimal examples, typically requiring only a small number of instances for each class or category. This allows the model to generalize and make accurate predictions even with limited labeled data.
 
@@ -116,8 +118,7 @@ If you are interested in learning more about tokens, please visit the
 [Hugging Face Tokenizers tutorial](https://huggingface.co/learn/nlp-course/chapter2/4?fw=pt).
 For example, this [config](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1/blob/main/config.json#L11) shows `max_position_embeddings = 32768` (tokens) for the Mistral-7B-Instruct-v0.1 model.
 
-## Retrieval Augmented Data
-
+### 4. Retrieval Augmented Data
 
 Retrieval augmented data refers to additional information retrieved outside the models and incorporated into the prompt to enhance the context and improve the quality of responses from a language model.
 
@@ -131,7 +132,7 @@ Nixon v. Fitzgerald (1982): Explores presidential immunity from civil lawsuits f
 United States v. Reynolds (1953): Addresses the state secrets privilege, contributing to the discourse on government secrecy.
 ```
 
-## Actual Query
+### 5. Actual Query
 
 ```
 Examine the legal intricacies, outcomes, and broader implications of the United States v. Nixon case and its lasting impact on executive privilege. 
