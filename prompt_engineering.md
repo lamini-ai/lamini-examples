@@ -57,7 +57,7 @@ and may not have the recent data.
 
 If you intend to query the model about United States v. Elizabeth A. Holmes, you may incorporate the parameters below.
 You are expected to generate the metadata with a program, potentially
-connecting to an internal database of court cases, and extracting the fields
+connecting to an internal database of court cases and extracting the fields
 with the most views.
 
 ```
