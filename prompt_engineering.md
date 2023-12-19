@@ -34,72 +34,64 @@ We will delve into the details of prompt templates and the components in upcomin
 4. Retrieval augmented data
 5. Actual query
 
-## Prompt Template
-
-A prompt template is like a standardized format for asking questions or providing input to the model. It helps the model understand the context and type of information you're seeking, improving the chances of getting relevant and accurate responses.
-
-For example, the Mistral 7B model recommends the template below:
-```
-[INST] {instruction} [/INST]
-```
-
-Llama 2 usees the following template:
-```
-<s>[INST] <<SYS>>\n{system_instruction}\n<</SYS>>\n\n{user_instruction} [/INST]
-```
-
-To find the prompt template for each model, you can refer to the model's documentation.
-
-We will delve into the details of system instruction and user instruction in a later section.
-
-TODO: add example showing what happens if you don't use template?
-
-TODO: move user vs system prompts here?
-
 ## Components of a Full Prompt
 
 ### 1. Task Description
 
-The prompt should always begin with a task description. For example,
+A task description sets the context and establishes a role or scenario for the model, guiding its responses.
+
+For example,
 
 ```
 You are an attorney with extensive experience in various areas of law.
-Answer the following question.
 ```
 
-The task description should be hardcoded for similar types of queries.
+The task description should be hardcoded for similar types of tasks or requests.
 
 ### 2. Task Parameters
 
-Specifying task parameters in a prompt helps guide the model's understanding and context, ensuring it produces relevant and accurate responses tailored to the specific requirements of the task or query.
+The task parameters should include the key metadata of the subject you are querying.
+This is especially important if the subject is not well known or too recent, as
+LLMs have typically only been trained on < 1% of the public data on the internet,
+and may not have the recent data.
+
+If you intend to query the model about United States v. Elizabeth A. Holmes, you may incorporate the parameters below.
+You are expected to generate the metadata with a program, potentially
+connecting to an internal database of court cases, and extracting the fields
+with the most views.
 
 ```
-The parameters of the court case are provided below.
-title: United States v. Nixon
+Below are the key aspects of the court case.
+Title: United States v. Elizabeth Holmes, et al.
+Year: 2023
 Plaintiff: United States
-Defedant: Richard Nixon
-Legal Issues: Executive privilege, the balance between presidential power and judicial authority
-Outcome: The Supreme Court ruled against President Nixon, asserting that executive privilege is not absolute and can be overridden in the interest of justice.
+Main defedant: Elizabeth Holmes
+Legal Issues: The case involves charges of wire fraud and conspiracy to commit wire fraud, with accusations that Holmes engaged in a years-long fraud by making false statements about Theranos' technology, business, and financial performance. The legal proceedings are related to the accuracy and legitimacy of Theranos' blood-testing technology and the alleged misrepresentation of the company's capabilities.
+Outcome: Holmes was found guilty on four counts of defrauding investors – three counts of wire fraud, and one of conspiracy to commit wire fraud. She was found not guilty on four counts of defrauding patients – three counts of wire fraud and one of conspiracy to commit wire fraud.
 ```
+
+Specifying task parameters in a prompt helps guide the model's understanding and context, ensuring it produces relevant and accurate responses tailored to the specific requirements of the task or query.
+
 
 ### 3. Training Data
 
-Few-shot learning is a machine learning approach where a model is trained to perform tasks with minimal examples, typically requiring only a small number of instances for each class or category. This allows the model to generalize and make accurate predictions even with limited labeled data.
+Few-shot learning is a machine learning approach where a model is trained to perform tasks with minimal examples, typically requiring only a small number of instances for each class or category. This allows the model to generalize and make accurate predictions even with limited labeled data.  If you are interested in learning more about few-shot learning, here is a great [5 minute video tututorial](https://www.linkedin.com/learning/introduction-to-prompt-engineering-for-generative-ai/few-shot-learning).
 
-If you are interested in learning more about few-shot learning, here is a great [5 minute video tututorial](https://www.linkedin.com/learning/introduction-to-prompt-engineering-for-generative-ai/few-shot-learning).
+TODO: how to get training data.
 
 TODO: double check if tutorial is good.
 
+TODO: format
 
 ```
-Here are some other court cases:
+Here are some related court cases:
 
-Clinton v. Jones (1997):
-Although not directly related, Clinton v. Jones underscores presidential accountability, affirming that a sitting president can be subject to civil litigation for actions taken before taking office.
+United States v. Bernard L. Madoff -
+Bernie Madoff, a former NASDAQ chairman, orchestrated one of the largest Ponzi schemes in history. Arrested in 2008, Madoff pleaded guilty in 2009 to 11 federal felonies, including securities and wire fraud. He received a 150-year prison sentence and was ordered to forfeit $170.8 billion. The case exposed regulatory failures, led to financial reforms, and stands as a cautionary tale of massive financial fraud.
 
-United States v. Curtiss-Wright Corporation (1936):
+United States v Standford -
+R. Allen Stanford faced charges of securities fraud, wire fraud, and money laundering for orchestrating a massive Ponzi scheme through Stanford Financial Group. Stanford attracted investors with fictitious high-return certificates of deposit from an offshore bank. The scheme collapsed in 2009, leading to civil and criminal charges. In 2012, Stanford was found guilty on multiple counts, receiving a 110-year prison sentence. The case emphasized the risks associated with offshore banking and the importance of stringent financial oversight.
 
-While not directly addressing executive privilege, this case delves into the expansive scope of presidential power in foreign affairs, contributing to the broader discussion of presidential authority.
 ```
 
 As you incorporate more training data, the output quality improves, but only up to a specific threshold; beyond that point, the quality diminishes.
@@ -122,23 +114,74 @@ For example, this [config](https://huggingface.co/mistralai/Mistral-7B-Instruct-
 
 ### 4. Retrieval Augmented Data
 
-Retrieval augmented data refers to additional information retrieved outside the models and incorporated into the prompt to enhance the context and improve the quality of responses from a language model.
-
-In the upcoming tutorial, we will delve into retrieval augmented generation.
+Retrieval augmented data refers to additional data obtained outside the model
+using special information retrieval on an internal knowledge base.
+In [the upcoming tutorial](https://github.com/lamini-ai/sdk/blob/main/rag.md),
+we will delve into retrieval augmented generation.
 For now, let's assume that we already possess some retrieval augmented data.
 
 ```
-To provide a comprehensive overview of the impact of United States v. Nixon, consider these additional court cases related to executive privilege and its evolving interpretation:
-
-Nixon v. Fitzgerald (1982): Explores presidential immunity from civil lawsuits for official actions.
-United States v. Reynolds (1953): Addresses the state secrets privilege, contributing to the discourse on government secrecy.
+In March 2023, Elizabeth Holmes requested bail post-conviction, but the judge denied it, stating it wasn't an attempt to flee. In April, she appealed her conviction, seeking a delay in her prison term, which was rejected. Prosecutors sought $878 million in restitution. Her appeal against the denial was rejected in May 2023.
 ```
 
 ### 5. Actual Query
 
 ```
-Examine the legal intricacies, outcomes, and broader implications of the United States v. Nixon case and its lasting impact on executive privilege. 
+Conduct a succinct analysis of the legal case United States v. Elizabeth Holmes, focusing on wire fraud charges. Examine recent developments and compare the case with relevant precedents.
 ```
+
+Now that we have all five components, our full prompt is
+
+```
+TODO
+```
+
+TODO: show what happens when parts of prompt are missing.
+
+## Prompt Template
+
+A prompt template is like a standardized format for asking questions or providing input to the model. It helps the model understand the context and type of information you're seeking, improving the chances of getting relevant and accurate responses.
+
+For example, Llama 2 usees the following template,
+where we replace `{system_prompt}` with the system prompt and
+`{user_prompt}` with the user prompt:
+```
+<s>[INST] <<SYS>>\n{system_prompt}\n<</SYS>>\n\n{user_prompt} [/INST]
+```
+
+A query such as `"Conduct a succinct analysis of the legal case United States v. Elizabeth Holmes, focusing on wire fraud charges. Examine recent developments and compare the case with relevant precedents."` represents a user prompt,
+seeking specific information and tailored responses.
+On the other hand, a system prompt, an optional
+directive, sets the context and guides the language model's overall behavior and tone.
+
+For example,
+
+```
+You are an attorney with extensive experience in various areas of law.
+```
+
+or
+
+```
+You are a panelist on a legal ethics symposium. Aim to provide a comprehensive
+analysis suitable for an audience of legal professionals and ethicists.
+```
+
+On the other hand, the Mistral 7B model does not distinguish between user and system prompts.
+```
+[INST] {prompt} [/INST]
+```
+
+To find the prompt template for each model, you can refer to the model's documentation.
+It is crucial to insert the five prompt components we previously discussed into the
+appropriate sections of the prompt template.
+For example, for Llama 2, we would replace `{system_prompt}` with the task description
+and task parameters, and replace `{user_prompt}` with the rest of the components.
+For Mistral, all five prompt components would be placed in `{prompt}`.
+
+
+TODO: add example showing what happens if you don't use template?
+
 
 ====================== IGNORE STUFF BELOW ============
 
