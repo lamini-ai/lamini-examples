@@ -1,4 +1,4 @@
-from lamini import RetrievalAugmentedRunner
+from retrieval_augmented_runner import RetrievalAugmentedRunner
 
 llm = RetrievalAugmentedRunner(chunk_size=512, step_size=256, k=5)
 llm.load_data("data")
