@@ -1,5 +1,4 @@
 from lamini.api.embedding import Embedding
-#from llama.program.util.run_ai import query_run_embedding
 
 from tqdm import tqdm
 
