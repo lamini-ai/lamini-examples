@@ -25,10 +25,10 @@ like below.
 In the upcoming sections, we will provide a detailed  explanation of the RAG steps, delve into the code, and provide guidance on configuring RAG.
 
 ```python
-from lamini import RetrievalAugmentedRunner
+from retrieval_augmented_runner import RetrievalAugmentedRunner
 
-llm = RetrievalAugmentedRunner()
-llm.load_data("path/to/knowledge_directory")
+llm = RetrievalAugmentedRunner(chunk_size=512, step_size=256)
+llm.load_data("data")
 llm.train()
 prompt = "Have we invested in any generative AI companies in 2023?"
 response = llm.call(prompt)
@@ -137,11 +137,9 @@ default value by specifying `k` in the `RetrievalAugmentedRunner` config.
 
 ```python
 llm = RetrievalAugmentedRunner(
-   config={
       chunk_size=512,
       step_size=512,
       k=5,
-   }
 )
 ```
 
