@@ -36,6 +36,9 @@ class RetrievalAugmentedRunner:
         self.index = LaminiIndex(self.loader, self.config)
 
     def __call__(self, query):
+        return self.call(query)
+
+    def call(self, query):        
         query_engine = QueryEngine(
             self.index,
             k=self.k,
