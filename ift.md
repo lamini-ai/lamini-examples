@@ -100,16 +100,13 @@ which uses the Mistral Instruct model.
 runner = MistralRunner()
 ```
 
-Next, we declare `Questions`, a class of Lamini `Type` with
+Next, we declare `questions_type`, a hash with
 three string fields: `question_1`, `question_2`, and `question_3`.
-The string inside each `Context()` is an optional description of the
-field.
 
 ```python
-class Questions(Type):
-    question_1: str = Context("")
-    question_2: str = Context("")
-    question_3: str = Context("")
+questions_type = {'question_1': 'str',
+                  'question_2': 'str',
+                  'question_3': 'str'}
 ```
 
 
@@ -124,9 +121,9 @@ For each chunk, it generates a prompt that is the concatenation the strings belo
 2. Newline (`\n`) to separate between the chunk and the next part.
 3. An instruction to generate three diverse questions about the investments made by BigMoney Ventures based solely on the preceding single-quoted text.
 
-We then execute `runner(...)` to generate `result` of type `Questions`
+We then execute `runner(...)` to generate `result` of `question_type`
 based on the prompt above and the specified system prompt, where each of
-`result.question_1`, `result.question_2`, and `result.question_3` will
+`result['question_1']`, `result['question_2']`, and `result['question_3']` will
 be a generated question.
 At the end, we print out
 the `questions` and append each [chunk, question] pair to `questions`.
@@ -139,17 +136,17 @@ for chunk in chunks:
     prompt = (
         "'"
         + chunk
-        + "'\nThe preceeding single-quoted text is an excerpt describing various investments made by BigMoney Ventures. Generate three diverse questions about the investments.  Only generate questions that can be answered using information from the preceeding single-quoted text.  Do not ask questions that require additional information outside of the preceeding single-quoted text."
+        + "'\nThe preceding single-quoted text is an excerpt describing various investments made by BigMoney Ventures. Generate three diverse questions about the investments.  Only generate questions that can be answered using information from the preceding single-quoted text.  Do not ask questions that require additional information outside of the preceding single-quoted text."
     )
     system_prompt = "You are an expert investment analyst working at BigMoney Ventures."
 
-    result = runner(prompt, output_type=Questions, system_prompt=system_prompt)
-    print("1.", result.question_1)
-    print("2.", result.question_2)
-    print("3.", result.question_3)
-    questions.append([chunk, result.question_1])
-    questions.append([chunk, result.question_2])
-    questions.append([chunk, result.question_3])
+    result = runner(prompt, output_type=questions_type, system_prompt=system_prompt)
+    print("1.", result['question_1'])
+    print("2.", result['question_2'])
+    print("3.", result['question_3'])
+    questions.append([chunk, result['question_1']])
+    questions.append([chunk, result['question_2']])
+    questions.append([chunk, result['question_3']])
 ```
 
 Using the chunk containing investment data, the code passes the new prompt below to `runner`.
