@@ -1,0 +1,6 @@
+uvicorn[standard]
+fastapi==0.99.*
+fastapi-utils
+lamini-configuration[yaml]
+requests
+jinja2

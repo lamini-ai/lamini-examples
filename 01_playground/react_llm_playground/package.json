@@ -1,0 +1,59 @@
+{
+  "name": "llm-playground",
+  "version": "1.0.0",
+  "description": "An example LLM playground",
+  "main": "index.tsx",
+  "author": "Lamini",
+  "private": true,
+  "dependencies": {
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
+    "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-popover": "^1.0.6",
+    "@react-oauth/google": "latest",
+    "@tailwindcss/forms": "^0.5.4",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "latest",
+    "env-cmd": "latest",
+    "lodash": "^4.17.21",
+    "postcss": "^8.4.28",
+    "postcss-cli": "latest",
+    "postcss-loader": "latest",
+    "react": "latest",
+    "react-charts": "^2.0.0-beta.7",
+    "react-dom": "^18.2.0",
+    "react-dropzone": "latest",
+    "react-markdown": "latest",
+    "react-router-dom": "^6.15.0",
+    "react-scripts": "latest",
+    "react-syntax-highlighter": "latest",
+    "statsig-js": "^4.39.0",
+    "typescript": "^5.1.6"
+  },
+  "scripts": {
+    "start": "env-cmd -f ./configs/env.development react-scripts start",
+    "build-development": "env-cmd -f ./configs/env.development react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "autoprefixer": "^10.4.15",
+    "dotenv": "latest",
+    "tailwindcss": "^3.3.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
+
