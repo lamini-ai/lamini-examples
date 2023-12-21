@@ -1,9 +1,5 @@
-from lamini import (
-    MistralRunner,
-    Type,
-    Context,
-)
-from llama.retrieval.directory_loader import DefaultChunker, DirectoryLoader
+from lamini import MistralRunner
+from directory_loader import DefaultChunker, DirectoryLoader
 
 import os
 import csv
@@ -14,7 +10,7 @@ from tqdm import tqdm
 
 # Load the data
 loader = DirectoryLoader(
-    "../rag/data", # path to data directory
+    "data", # path to data directory
     batch_size=512,
     chunker=DefaultChunker(chunk_size=512, step_size=512),
 )
@@ -28,12 +24,9 @@ print(len(chunks))
 # Generate questions for each chunk
 runner = MistralRunner()
 
-
-class Questions(Type):
-    question_1: str = Context("")
-    question_2: str = Context("")
-    question_3: str = Context("")
-
+questions_type = {'question_1': 'str',
+                  'question_2': 'str',
+                  'question_3': 'str'}
 
 print("---------------------\nGenerating Questions\n---------------------")
 chunks = chunks[4:5]
@@ -48,15 +41,14 @@ for chunk in chunks:
     )
     system_prompt = "You are an expert investment analyst working at BigMoney Ventures."
 
-    result = runner(prompt, output_type=Questions, system_prompt=system_prompt)
-    print("1.", result.question_1)
-    print("2.", result.question_2)
-    print("3.", result.question_3)
-    questions.append([chunk, result.question_1])
-    questions.append([chunk, result.question_2])
-    questions.append([chunk, result.question_3])
-
-
+    result = runner(prompt, output_type=questions_type, system_prompt=system_prompt)
+    print("1.", result['question_1'])
+    print("2.", result['question_2'])
+    print("3.", result['question_3'])
+    questions.append([chunk, result['question_1']])
+    questions.append([chunk, result['question_2']])
+    questions.append([chunk, result['question_3']])    
+    
 print("---------------------\nGenerating Answers\n---------------------")
 final_data_array = []
 # Generate Answers for each Answer
