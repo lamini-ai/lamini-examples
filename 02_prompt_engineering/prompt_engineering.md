@@ -190,18 +190,14 @@ seeking specific information and tailored responses.
 On the other hand, a system prompt, an optional
 directive, sets the context and guides the language model's overall behavior and tone.
 
-For example,
+Here are some examples of system prompts.
 
-```
-You are an attorney with extensive experience in various areas of law.
-```
+* `You are an attorney with extensive experience in various areas of law.`
+* `You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists.`
+* `Imagine you are a poet inspired by nature.`
+* `You are a patient and helpful customer service agent. Help the user troubleshoot.`
+* `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` ()
 
-or
-
-```
-You are a panelist on a legal ethics symposium. Aim to provide a comprehensive
-analysis suitable for an audience of legal professionals and ethicists.
-```
 
 On the other hand, the Mistral 7B model does not distinguish between user and system prompts.
 ```
