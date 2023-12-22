@@ -452,7 +452,7 @@ from lamini import MistralRunner
 runner = MistralRunner()
 user_prompt = "What was the decision in Nixon v. United States?"
 sys_prompt = "You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists."
-answer = runner(user_prompt, system_prompt=sys_prompt)
+answer = runner.call(user_prompt, system_prompt=sys_prompt)
 print(answer)
 ```
 
@@ -481,7 +481,7 @@ user_prompt = ["Is pizza nutritous?",
            "Summarize the impact of global warming.",
           ]
 sys_prompt = "Provide very short responses."
-answer = runner(user_prompt, system_prompt=sys_prompt)
+answer = runner.call(user_prompt, system_prompt=sys_prompt)
 print(answer)
 ```
 
