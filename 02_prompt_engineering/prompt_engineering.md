@@ -89,7 +89,9 @@ Suppose we plan to use the actual query below:
 Conduct a succinct analysis of the legal case United States v. Elizabeth Holmes, focusing on wire fraud charges. Examine the latest developments.
 ```
 
-The training data should include similar queries on related court cases, like below.
+The training data should include similar queries on related court cases.
+Since the actual query focuses on wire fraud charges, the question-answer
+pairs should also focus on wired fraud charges, like below:
 ```
 Here are some related court case:
 
