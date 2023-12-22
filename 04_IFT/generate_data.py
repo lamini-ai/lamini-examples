@@ -1,3 +1,5 @@
+import sys
+sys.path.append('../03_RAG')
 from lamini import MistralRunner
 from directory_loader import DefaultChunker, DirectoryLoader
 
@@ -10,7 +12,7 @@ from tqdm import tqdm
 
 # Load the data
 loader = DirectoryLoader(
-    "data", # path to data directory
+    "../03_RAG/data", # path to data directory
     batch_size=512,
     chunker=DefaultChunker(chunk_size=512, step_size=512),
 )
