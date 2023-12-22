@@ -196,7 +196,6 @@ Here are some examples of system prompts.
 * `You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists.`
 * `Imagine you are a poet inspired by nature.`
 * `You are a patient and helpful customer service agent. Help the user troubleshoot.`
-* `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` (This is the recommeded system prompt for the Mistral instruct model)
 
 
 On the other hand, the Mistral 7B model does not distinguish between user and system prompts in the template. So you can replace `{prompt}` with the concatenation of the system prompt and the user prompt.
@@ -436,6 +435,29 @@ for achieving desired results.  The key is to be adaptable and responsive to the
   - **Adjustment**: Incorporate new keywords or concepts based on the latest information.
   - **Observation**: Ensure that the model stays up-to-date with evolving topics.  
 
+## Excecuting Prompts using Lamini
+
+We've created model runners to simplify the process of executing prompts.
+Our `MistralRunner` uses the Mistral instruct model by default and allows
+you to obtain the response with just a few lines of code, like below.
+
+```python
+from lamini import MistralRunner
+
+runner = MistralRunner()
+user_prompt = "What was the decision in Nixon v. United States?"
+sys_prompt = "You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists."
+answer = runner(user_prompt, system_prompt=sys_prompt)
+print(answer)
+```
+
+Behind the scenes, `MistralRunner` automatically wraps the user and system prompts
+in Mistral's prompt template.
+The `system_prompt` is optional. The default system prompt is Mistral's recommended system prompt.
+
+```
+Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.
+```
 
 ====================== IGNORE STUFF BELOW ============
 
@@ -443,18 +465,6 @@ It is very important to clearly articulate the task or question in the prompt.
 In addition, iterating and refining prompts is crucial for achieving optimal
 results and harnessing the full potential of a language model.
 
-In this tutorial, we'll guide you through prompt engineering using Lamini's
-`MistralRunner`, which uses the Mistral instruct model by default and allows
-you to obtain the response with just a few lines of code, like below.
-
-```python
-from lamini import MistralRunner
-
-runner = MistralRunner()
-prompt = "What was the decision in Nixon v. United States? Answer in one sentence."
-answer = runner(prompt)
-print(answer)
-```
 
 To prompt the Mistral instruct model effectively and get optimal responses,
 it is recommended to wrap
