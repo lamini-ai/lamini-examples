@@ -199,7 +199,7 @@ Here are some examples of system prompts.
 * `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` (This is the recommeded system prompt for the Mistral instruct model)
 
 
-On the other hand, the Mistral 7B model does not distinguish between user and system prompts.
+On the other hand, the Mistral 7B model does not distinguish between user and system prompts in the template. So you can replace `{prompt}` with a concatenation of the system prompt and the user prompt.
 ```
 [INST] {prompt} [/INST]
 ```
