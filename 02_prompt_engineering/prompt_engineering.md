@@ -215,94 +215,7 @@ For Mistral, all five prompt components would be placed in `{prompt}`.
 TODO: add example showing what happens if you don't use template?
 
 
-====================== IGNORE STUFF BELOW ============
-
-It is very important to clearly articulate the task or question in the prompt.
-In addition, iterating and refining prompts is crucial for achieving optimal
-results and harnessing the full potential of a language model.
-
-In this tutorial, we'll guide you through prompt engineering using Lamini's
-`MistralRunner`, which uses the Mistral instruct model by default and allows
-you to obtain the response with just a few lines of code, like below.
-
-```python
-from lamini import MistralRunner
-
-runner = MistralRunner()
-prompt = "What was the decision in Nixon v. United States? Answer in one sentence."
-answer = runner(prompt)
-print(answer)
-```
-
-To prompt the Mistral instruct model effectively and get optimal responses,
-it is recommended to wrap
-`[INST]` and `[/INST]` around the prompt as shown below.
-However, our runner will automatically wrap the prompt before passing it to the model.
-```
-"[INST]What was the decision in Nixon v. United States? Answer in one sentence.[/INST]"
-```
-
-Output:
-
-```
-The decision in Nixon v. United States was that President Richard Nixon was ordered to
-release tapes of his conversations with his advisors, as part of a court order to comply
-with the Presidential Records Act.
-```
-
-Although the response is factual, you may want the response to be phrased differently.
-Perhaps you are looking for a more elaborate response?
-Perhaps you prefer the response tailored for a particular audience or have other constraints?
-Follow this tutorial to learn how to iterate and refine your prompts to generate excellent responses. :rocket:
-
-## User vs. System Prompts
-
-A query such as `"What was the decision in Nixon v. United States?"` represents a user prompt,
-seeking specific information and tailored responses.
-On the other hand, a system prompt, an optional
-directive, sets the context and guides the language model's overall behavior and tone.
-
-For example, you can add a system prompt to generate an output tailored to a legal ethics symposium,
-and provide insights relevant to legal professionals and ethicists, like below.
-
-```python
-from lamini import MistralRunner
-
-runner = MistralRunner()
-user_prompt = "What was the decision in Nixon v. United States?"
-sys_prompt = "You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists."
-answer = runner(user_prompt, system_prompt=sys_prompt)
-print(answer)
-```
-Output:
-
-```
- Nixon v. United States was a landmark case in the United States that involved the President
-of the United States, Richard Nixon, and his efforts to cover up illegal activities by his
-administration. The case was decided by the Supreme Court of the United States in 1974 and
-is considered a significant milestone in the development of legal ethics and the rule of law
-in the United States.
-
-In Nixon v. United States, the Supreme Court held that President Nixon had committed a high
-crime or misdemeanor in office by covering up illegal activities by his administration,
-including the break-in at the Democratic National Committee headquarters during the 1972
-presidential campaign. The Court also held that Nixon's actions constituted an abuse of
-power and violated his constitutional duty to uphold the law.
-
-The decision in Nixon v. United States was significant for several reasons. First, it
-established the principle that no one, not even the President of the United States, is abov
-the law and that the rule of law must be upheld regardless of who is in power. Second, the
-decision helped to establish the principle of separation of powers, which holds that the
-three branches of government - the legislative, executive, and judicial branches -
-```
-
-Additional system prompt examples:
-
-* `You are a patient and helpful customer service agent. Help the user troubleshoot.`
-* `Imagine you are a poet inspired by nature.`
-* `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` (default system prompt in Lamini's MistralRunner)
-
-## Refining Prompts
+# Refining Prompts
 
 In prompt engineering, you can manipulate different attributes of the responses.
 Here are some key attributes you can control:
@@ -515,6 +428,95 @@ for achieving desired results.  The key is to be adaptable and responsive to the
   - **Refined Prompt**: `"Considering recent advancements, discuss the emerging technologies for carbon capture and their potential impact on mitigating climate change."`
   - **Adjustment**: Incorporate new keywords or concepts based on the latest information.
   - **Observation**: Ensure that the model stays up-to-date with evolving topics.  
+
+
+====================== IGNORE STUFF BELOW ============
+
+It is very important to clearly articulate the task or question in the prompt.
+In addition, iterating and refining prompts is crucial for achieving optimal
+results and harnessing the full potential of a language model.
+
+In this tutorial, we'll guide you through prompt engineering using Lamini's
+`MistralRunner`, which uses the Mistral instruct model by default and allows
+you to obtain the response with just a few lines of code, like below.
+
+```python
+from lamini import MistralRunner
+
+runner = MistralRunner()
+prompt = "What was the decision in Nixon v. United States? Answer in one sentence."
+answer = runner(prompt)
+print(answer)
+```
+
+To prompt the Mistral instruct model effectively and get optimal responses,
+it is recommended to wrap
+`[INST]` and `[/INST]` around the prompt as shown below.
+However, our runner will automatically wrap the prompt before passing it to the model.
+```
+"[INST]What was the decision in Nixon v. United States? Answer in one sentence.[/INST]"
+```
+
+Output:
+
+```
+The decision in Nixon v. United States was that President Richard Nixon was ordered to
+release tapes of his conversations with his advisors, as part of a court order to comply
+with the Presidential Records Act.
+```
+
+Although the response is factual, you may want the response to be phrased differently.
+Perhaps you are looking for a more elaborate response?
+Perhaps you prefer the response tailored for a particular audience or have other constraints?
+Follow this tutorial to learn how to iterate and refine your prompts to generate excellent responses. :rocket:
+
+## User vs. System Prompts
+
+A query such as `"What was the decision in Nixon v. United States?"` represents a user prompt,
+seeking specific information and tailored responses.
+On the other hand, a system prompt, an optional
+directive, sets the context and guides the language model's overall behavior and tone.
+
+For example, you can add a system prompt to generate an output tailored to a legal ethics symposium,
+and provide insights relevant to legal professionals and ethicists, like below.
+
+```python
+from lamini import MistralRunner
+
+runner = MistralRunner()
+user_prompt = "What was the decision in Nixon v. United States?"
+sys_prompt = "You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists."
+answer = runner(user_prompt, system_prompt=sys_prompt)
+print(answer)
+```
+Output:
+
+```
+ Nixon v. United States was a landmark case in the United States that involved the President
+of the United States, Richard Nixon, and his efforts to cover up illegal activities by his
+administration. The case was decided by the Supreme Court of the United States in 1974 and
+is considered a significant milestone in the development of legal ethics and the rule of law
+in the United States.
+
+In Nixon v. United States, the Supreme Court held that President Nixon had committed a high
+crime or misdemeanor in office by covering up illegal activities by his administration,
+including the break-in at the Democratic National Committee headquarters during the 1972
+presidential campaign. The Court also held that Nixon's actions constituted an abuse of
+power and violated his constitutional duty to uphold the law.
+
+The decision in Nixon v. United States was significant for several reasons. First, it
+established the principle that no one, not even the President of the United States, is abov
+the law and that the rule of law must be upheld regardless of who is in power. Second, the
+decision helped to establish the principle of separation of powers, which holds that the
+three branches of government - the legislative, executive, and judicial branches -
+```
+
+Additional system prompt examples:
+
+* `You are a patient and helpful customer service agent. Help the user troubleshoot.`
+* `Imagine you are a poet inspired by nature.`
+* `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` (default system prompt in Lamini's MistralRunner)
+
 
 ## Batching Prompts
 
