@@ -22,17 +22,19 @@ Here are some simple prompt examples:
 * `Envision the world 100 years from now.`
 
 However, crafting prompts is not always simple.
-Consider scenarios where a more elaborate response is desired, tailoring the response for a specific audience is crucial, pertinent information is within private documents not available to the models, or the response needs to adhere to a specific format.
-
 In fact, it is recommended to include all five components below wrapped in a prompt template.
 Otherwise, there could be a substantial reduction in response quality.
-We will delve into the details of prompt templates and the components in upcoming sections.
 
 1. Task description
 2. Task parameters
 3. Training data
 4. Retrieval augmented data
 5. Actual query
+
+In this tutorial, we will first delve into the details of prompt templates and prompt components.
+Then, we will teach you how to iterate and refine prompts
+to achieve optimal results and harness the full potential of a language model.
+Finally, we will show you how to use Lamini to execute prompts.
 
 ## Components of a Full Prompt
 
@@ -214,7 +216,7 @@ For Mistral, all five prompt components would be placed in `{prompt}`.
 TODO: add example showing what happens if you don't use template?
 
 
-# Refining Prompts
+## Refining Prompts
 
 In prompt engineering, you can manipulate different attributes of the responses.
 Here are some key attributes you can control:
@@ -460,34 +462,6 @@ The `system_prompt` is optional. The default system prompt is Mistral's recommen
 ```
 Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.
 ```
-
-====================== IGNORE STUFF BELOW ============
-
-It is very important to clearly articulate the task or question in the prompt.
-In addition, iterating and refining prompts is crucial for achieving optimal
-results and harnessing the full potential of a language model.
-
-
-To prompt the Mistral instruct model effectively and get optimal responses,
-it is recommended to wrap
-`[INST]` and `[/INST]` around the prompt as shown below.
-However, our runner will automatically wrap the prompt before passing it to the model.
-```
-"[INST]What was the decision in Nixon v. United States? Answer in one sentence.[/INST]"
-```
-
-Output:
-
-```
-The decision in Nixon v. United States was that President Richard Nixon was ordered to
-release tapes of his conversations with his advisors, as part of a court order to comply
-with the Presidential Records Act.
-```
-
-Although the response is factual, you may want the response to be phrased differently.
-Perhaps you are looking for a more elaborate response?
-Perhaps you prefer the response tailored for a particular audience or have other constraints?
-Follow this tutorial to learn how to iterate and refine your prompts to generate excellent responses. :rocket:
 
 ### Batching Prompts
 
