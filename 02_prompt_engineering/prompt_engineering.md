@@ -196,7 +196,7 @@ Here are some examples of system prompts.
 * `You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists.`
 * `Imagine you are a poet inspired by nature.`
 * `You are a patient and helpful customer service agent. Help the user troubleshoot.`
-* `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` ()
+* `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` (This is the recommeded system prompt for the Mistral instruct model)
 
 
 On the other hand, the Mistral 7B model does not distinguish between user and system prompts.
