@@ -286,6 +286,9 @@ The model will generally make an effort to adhere to the specific format, especi
 the instructions are clear.  However, there is no guarantee of adherence to the format
 due to model limitations and other factors.
 
+We will show you you how to use Lamini to guarantee valid JSON output in
+[a later section](https://github.com/lamini-ai/sdk/blob/main/02_prompt_engineering/prompt_engineering.md#json-output-with-lamini).
+
 ### Creativity or Precision Level
 
 You can control your desired level of creativity or precision using alternative phrasing.
