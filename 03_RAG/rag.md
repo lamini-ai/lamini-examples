@@ -79,6 +79,21 @@ llm.load_data("path/to/knowledge_directory")
   - Default to 128.
   - `step_size` should be less than or equal to `chunk_size`.
 
+The code to load the files is very straightforward. We simply load all the files in the
+directory recursively as text into a list of strings.
+```python
+    def load(self):
+        # load all of the files in the directory recursively as text into a list of strings
+        # return the list of strings
+        for root, dirs, files in os.walk(self.directory):
+            for file in files:
+                with open(os.path.join(root, file), 'r') as f:
+                    logger.debug("Loading file: %s", os.path.join(root, file))
+                    yield f.read()
+```
+
+#### Experiment with Chunks
+
 You might need to experiment with adjusting these parameters to achieve optimal results.
 Consider the knowledge text below:
 ```
