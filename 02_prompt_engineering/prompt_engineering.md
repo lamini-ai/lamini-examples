@@ -328,14 +328,15 @@ Output:
 
 ### Where to Place Constraints?
 
-Placing instructions or constraints like `"Write in one sentence."` at the end
+Models tend to be more sensitive to prompt content than the ordering of instructions.
+However, placing instructions or constraints like `"Write in one sentence."` at the end
 of the prompt is often recommended.
 Giving the model the chance to understand the context before encountering constraints can generally lead to more contextually appropriate and coherent responses.
 On the other hand, adding constraints to the beginning of the prompt might lead to
 responses that are incomplete, inflexible (giving the same answer even for different questions), incoherent or less accurate.
 
-However, the outcome of where you position constraints may depend on the model and your specific use case.
-You may get comparable responses irrespective of whether the constraints are positioned at the beginning or the end.
+The outcome of where you position constraints may also depend on the model and your specific use case.
+You may get comparable responses irrespective of where the constraints are positioned.
 
 ## Reducing Hallucinations
 
