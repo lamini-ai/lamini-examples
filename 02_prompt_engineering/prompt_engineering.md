@@ -143,8 +143,32 @@ Conduct a succinct analysis of the legal case United States v. Elizabeth Holmes,
 Now that we have all five components, our full prompt is
 
 ```
-TODO
+You are an attorney with extensive experience in various areas of law.
+
+Below are the key aspects of the court case.
+Title: United States v. Elizabeth Holmes, et al.
+Year: 2023
+Plaintiff: United States
+Main defedant: Elizabeth Holmes
+Legal Issues: The case involves charges of wire fraud and conspiracy to commit wire fraud, with accusations that Holmes engaged in a years-long fraud by making false statements about Theranos' technology, business, and financial performance. The legal proceedings are related to the accuracy and legitimacy of Theranos' blood-testing technology and the alleged misrepresentation of the company's capabilities.
+Outcome: Holmes was found guilty on four counts of defrauding investors – three counts of wire fraud, and one of conspiracy to commit wire fraud. She was found not guilty on four counts of defrauding patients – three counts of wire fraud and one of conspiracy to commit wire fraud.
+
+Here are some related court case:
+
+Question: Conduct a succinct analysis of the legal case United States v. Bernard L. Madoff, focusing on wire fraud charges. Examine the latest developments.
+
+Answer: Bernie Madoff, a former NASDAQ chairman, orchestrated one of the largest Ponzi schemes in history. Arrested in 2008, Madoff pleaded guilty in 2009 to 11 federal felonies, including securities and wire fraud. He received a 150-year prison sentence and was ordered to forfeit $170.8 billion. The case exposed regulatory failures, led to financial reforms, and stands as a cautionary tale of massive financial fraud. In January 2022, Bernard Madoff passed away on April 14, 2021, while serving a 150-year prison sentence.
+
+Question: Conduct a succinct analysis of the legal case United States v. Stanford, focusing on wire fraud charges. Examine the latest developments.
+
+Answer: R. Allen Stanford faced charges of securities fraud, wire fraud, and money laundering for orchestrating a massive Ponzi scheme through Stanford Financial Group. Stanford attracted investors with fictitious high-return certificates of deposit from an offshore bank. The scheme collapsed in 2009, leading to civil and criminal charges. In 2012, Stanford was found guilty on multiple counts, receiving a 110-year prison sentence. The case emphasized the risks associated with offshore banking and the importance of stringent financial oversight.
+
+In March 2023, Elizabeth Holmes requested bail post-conviction, but the judge denied it, stating it wasn't an attempt to flee. In April, she appealed her conviction, seeking a delay in her prison term, which was rejected. Prosecutors sought $878 million in restitution. Her appeal against the denial was rejected in May 2023.
+
+Conduct a succinct analysis of the legal case United States v. Elizabeth Holmes, focusing on wire fraud charges. Examine the latest developments.
 ```
+
+TODO: show result
 
 TODO: show what happens when parts of prompt are missing.
 
