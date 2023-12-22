@@ -437,6 +437,8 @@ for achieving desired results.  The key is to be adaptable and responsive to the
 
 ## Excecuting Prompts using Lamini
 
+### Model Runners
+
 We've created model runners to simplify the process of executing prompts.
 Our `MistralRunner` uses the Mistral instruct model by default and allows
 you to obtain the response with just a few lines of code, like below.
@@ -487,55 +489,7 @@ Perhaps you are looking for a more elaborate response?
 Perhaps you prefer the response tailored for a particular audience or have other constraints?
 Follow this tutorial to learn how to iterate and refine your prompts to generate excellent responses. :rocket:
 
-## User vs. System Prompts
-
-A query such as `"What was the decision in Nixon v. United States?"` represents a user prompt,
-seeking specific information and tailored responses.
-On the other hand, a system prompt, an optional
-directive, sets the context and guides the language model's overall behavior and tone.
-
-For example, you can add a system prompt to generate an output tailored to a legal ethics symposium,
-and provide insights relevant to legal professionals and ethicists, like below.
-
-```python
-from lamini import MistralRunner
-
-runner = MistralRunner()
-user_prompt = "What was the decision in Nixon v. United States?"
-sys_prompt = "You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists."
-answer = runner(user_prompt, system_prompt=sys_prompt)
-print(answer)
-```
-Output:
-
-```
- Nixon v. United States was a landmark case in the United States that involved the President
-of the United States, Richard Nixon, and his efforts to cover up illegal activities by his
-administration. The case was decided by the Supreme Court of the United States in 1974 and
-is considered a significant milestone in the development of legal ethics and the rule of law
-in the United States.
-
-In Nixon v. United States, the Supreme Court held that President Nixon had committed a high
-crime or misdemeanor in office by covering up illegal activities by his administration,
-including the break-in at the Democratic National Committee headquarters during the 1972
-presidential campaign. The Court also held that Nixon's actions constituted an abuse of
-power and violated his constitutional duty to uphold the law.
-
-The decision in Nixon v. United States was significant for several reasons. First, it
-established the principle that no one, not even the President of the United States, is abov
-the law and that the rule of law must be upheld regardless of who is in power. Second, the
-decision helped to establish the principle of separation of powers, which holds that the
-three branches of government - the legislative, executive, and judicial branches -
-```
-
-Additional system prompt examples:
-
-* `You are a patient and helpful customer service agent. Help the user troubleshoot.`
-* `Imagine you are a poet inspired by nature.`
-* `Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.` (default system prompt in Lamini's MistralRunner)
-
-
-## Batching Prompts
+### Batching Prompts
 
 Batching involves grouping multiple input prompts together and processing them simultaneously as a
 batch.  This approach enhances efficiency by allowing the model to handle several prompts
@@ -566,7 +520,7 @@ Output:
   'output': " Global warming has significant impacts on the Earth's environment, including rising sea levels, more frequent and intense heatwaves, droughts, and extreme weather events. It also affects wildlife, agriculture, and human health. The main cause of global warming is the increase in greenhouse gases in the atmosphere, primarily from human activities such as burning fossil fuels and deforestation. Addressing global warming requires reducing greenhouse gas emissions and transitioning to renewable energy sources."}]
 ```
 
-## JSON Output with Lamini
+### JSON Output with Lamini
 
 While you can ask a model to output a json in the prompt, the results may lack consistency and reliability.
 Hence, we've introduced a feature to guarantee valid JSON output through our web API.
