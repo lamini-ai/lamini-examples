@@ -3,9 +3,9 @@
 An important first step to building a new LLM is setting up an interface for experimentation with new users.
 These tutorials will teach you how to call the LLM programitcally:
 
-1. [Python Client](https://github.com/lamini-ai/sdk/blob/main/01_playground/python_client/python_client.md) - Learn how to call the LLM from python.
-2. [React](https://github.com/lamini-ai/sdk/blob/main/01_playground/react_llm_playground/playground.md) - Learn how to call the LLM from a react web app similar to ChatGPT.
-3. [Slackbot](https://github.com/lamini-ai/sdk/blob/main/01_playground/slackbot/slackbot.md) - Learn how to call the LLM from a slackbot.
+1. [Python Client](python_client/python_client.md) - Learn how to call the LLM from python.
+2. [React](react_llm_playground/playground.md) - Learn how to call the LLM from a react web app similar to ChatGPT.
+3. [Slackbot](slackbot/slackbot.md) - Learn how to call the LLM from a slackbot.
 
 Once you have your own LLM application running, you can share it with a small
 number of initial developers or test users to understand their queries and get
