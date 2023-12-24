@@ -27,7 +27,7 @@ const models = [
  */
 export const Playground = (props: PlaygroundProps) => {
   const [selectedModel, setSelectedModel] = React.useState(models[0]);
-  const [outputLength, setOutputLength] = React.useState(256); // Default value for output length
+  const [outputLength, setOutputLength] = React.useState(2048); // Default value for output length
 
   return (
     <FullScreen>

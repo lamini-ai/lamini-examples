@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # Safely execute this bash script
 # e exit on first failure
@@ -12,4 +12,12 @@ set -Eeuoxa pipefail
 # Get the directory of this script
 LOCAL_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-PYTHONPATH="$LOCAL_DIRECTORY/.." python3 $LOCAL_DIRECTORY/../slack/app.py
+# Build the container
+$LOCAL_DIRECTORY/scripts/build.sh
+
+docker run -it \
+    -v ~/.lamini:/root/.lamini \
+    -p 3000:3000 \
+lamini-slackbot:latest
+
+

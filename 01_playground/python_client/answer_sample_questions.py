@@ -1,6 +1,7 @@
 
 import lamini
 import jsonlines
+from tqdm import tqdm
 
 lamini.api_key = "<YOUR-LAMINI-API-KEY>"
 
@@ -20,7 +21,7 @@ def load_questions():
 def answer_questions(questions):
     answers = []
 
-    for question in questions:
+    for question in tqdm(questions):
         llm = lamini.LlamaV2Runner()
 
         answer = llm(question["question"])
@@ -33,7 +34,7 @@ def answer_questions(questions):
     return answers
 
 def save_answers(answers):
-    with jsonlines.open("sample_answers.jsonl", mode="w") as writer:
+    with jsonlines.open("data/sample_answers.jsonl", mode="w") as writer:
         writer.write_all(answers)
 
 if __name__ == "__main__":
