@@ -217,6 +217,20 @@ llm = RetrievalAugmentedRunner(
 
 Similar to adjusting `chunk_size` and `step_size`, you may need to experiment with modifying `k` to attain optimal results.
 
+This is the query code:
+
+```python
+    def query(self, query, k=5):
+        embedding = self.get_embeddings([query])[0]
+
+        embedding_array = np.array([embedding])
+
+        # get the k nearest neighbors
+        distances, indices = self.index.search(embedding_array, k)
+
+        return [self.splits[i] for i in indices[0]]
+```
+
 ## Step 2: Augmentation
 
 This step is simple, we prepend the relevant chunks to the original prompt.
@@ -241,6 +255,17 @@ List the worst rated projects that my company launched in 2023.
 The code below takes `prompt`, the original prompt as import and creates the augmented prompt.
 ```
 llm.call(prompt)
+```
+
+This is the code that builds the new prompt.
+
+```python
+    def _build_prompt(self, question):
+        most_similar = self.index.query(question, k=self.k)
+
+        prompt = "\n".join(reversed(most_similar)) + "\n\n" + question
+
+        return prompt
 ```
 
 ## Step 3: Generation
