@@ -1,17 +1,16 @@
-from lamini import Lamini, LaminiIndex
-import gzip
+from lamini import Lamini
+
 import logging
 import json
 import re
 import requests
 import time
 
-import boto3
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 
 # Initializes your app with your bot token and socket mode handler
-with open("./config.json", "r") as f:
+with open("/app/lamini-slackbot/slack/config.json", "r") as f:
     config = json.load(f)
 
 SLACK_BOT_TOKEN = config["SLACK_BOT_TOKEN"]
@@ -29,6 +28,8 @@ def main_event(client, event, say):
     thread_ts = event.get("thread_ts", None) or event["ts"]
     question = re.sub("<[^>]+>", "", event["text"])  # Remove the @mention tag
 
+    print("Mentioned in channel " + channel_id + " with question " + question)
+
     try:
         model_names = config["channel_token_mappings"][channel_id][
             "model_names"
@@ -40,38 +41,45 @@ def main_event(client, event, say):
         )
         return
 
+    print("Model names: " + str(model_names))
+
     for index, model in enumerate(model_names):
-        loading = say("_Typing..._", thread_ts=thread_ts)
-        answer = ask_model_question(channel_id, model, question)
-        clean_answer = post_process(answer)
+        try:
+            loading = say("_Typing..._", thread_ts=thread_ts)
 
-        if len(model_names) == 1:
-            text = clean_answer
-        else:
-            text = f"*Model {index + 1}:*\n" + clean_answer
+            answer = ask_model_question(channel_id, model, question)
+            clean_answer = post_process(answer)
 
-        print(clean_answer)
-        reply = client.chat_update(
-            channel=loading["channel"],
-            ts=loading["ts"],
-            text=text,
-        )
-        print(reply)
-        client.reactions_add(
-            name="thumbsup",
-            channel=reply["channel"],
-            timestamp=reply["ts"],
-        )
-        client.reactions_add(
-            name="neutral_face",
-            channel=reply["channel"],
-            timestamp=reply["ts"],
-        )
-        client.reactions_add(
-            name="thumbsdown",
-            channel=reply["channel"],
-            timestamp=reply["ts"],
-        )
+            if len(model_names) == 1:
+                text = clean_answer
+            else:
+                text = f"*Model {index + 1}:*\n" + clean_answer
+
+            print(clean_answer)
+            reply = client.chat_update(
+                channel=loading["channel"],
+                ts=loading["ts"],
+                text=text,
+            )
+            print(reply)
+            client.reactions_add(
+                name="thumbsup",
+                channel=reply["channel"],
+                timestamp=reply["ts"],
+            )
+            client.reactions_add(
+                name="neutral_face",
+                channel=reply["channel"],
+                timestamp=reply["ts"],
+            )
+            client.reactions_add(
+                name="thumbsdown",
+                channel=reply["channel"],
+                timestamp=reply["ts"],
+            )
+        except Exception as e:
+            print(e)
+            continue
 
 
 @app.event("reaction_added")
@@ -210,17 +218,15 @@ If a question does not make any sense, or is not factually coherent, explain why
         "Content-Type": "application/json",
     }
 
+    prompt = f"<s>[INST] <<SYS>>\n{system_prompt}\n<</SYS>>\n\n{question} [/INST]"
+
     body = {
-        "id": "LaminiSlackbot",
+        "id": "LaminiSDKSlackbot",
         "model_name": model,
-        "in_value": {
-            "question": question,
-            "system": system_prompt,
-            },
+        "prompt": prompt,
         "out_type": {
             "Answer": "string",
-        },
-        "prompt_template": f"<s>[INST] <<SYS>>\n{input:system}\n<</SYS>>\n\n{input:question} [/INST]",
+        }
     }
 
     response = requests.post(

@@ -1,6 +1,6 @@
-FROM python:3.9 as base
+FROM python:3.11 as base
 
-ARG PACKAGE_NAME="slackbot"
+ARG PACKAGE_NAME="lamini-slackbot"
 
 # Install python packages
 WORKDIR /app/${PACKAGE_NAME}

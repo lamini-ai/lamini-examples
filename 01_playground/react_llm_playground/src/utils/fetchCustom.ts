@@ -45,10 +45,7 @@ export async function fetchStreamingCustom(
     //id: "website",
     model_name: baseModel,
     out_type: { answer: "string" },
-    in_value: [{
-      question: finalQuestion,
-    }],
-    prompt_template: "{input:question}",
+    prompt: [finalQuestion],
     max_tokens: output_len,
   };
 
