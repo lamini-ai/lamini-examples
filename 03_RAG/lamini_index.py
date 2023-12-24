@@ -56,7 +56,6 @@ class LaminiIndex:
             self.splits.extend(split_batch)
 
     def get_embeddings(self, examples):
-        #embeddings = query_run_embedding(examples, self.config)
         ebd = Embedding(config=self.config)
         embeddings = ebd.generate(examples)
         embedding_list = [embedding[0] for embedding in embeddings]
