@@ -102,7 +102,6 @@ directory recursively as text into a list of strings, but ignore files that [fnm
                 if exclude:
                     continue
                 with open(os.path.join(root, file), 'r') as f:
-                    logger.debug("Loading file: %s", os.path.join(root, file))
                     yield f.read()
 ```
 
