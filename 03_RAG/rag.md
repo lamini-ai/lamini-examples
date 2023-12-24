@@ -79,7 +79,7 @@ llm.load_data("path/to/knowledge_directory")
   - Default to 128.
   - `step_size` should be less than or equal to `chunk_size`.
 
-The code to load the files is very straightforward. We simply load all the files in the
+The code to load the files is very straightforward. Simply load all the files in the
 directory recursively as text into a list of strings.
 ```python
     def load(self):
@@ -88,8 +88,36 @@ directory recursively as text into a list of strings.
         for root, dirs, files in os.walk(self.directory):
             for file in files:
                 with open(os.path.join(root, file), 'r') as f:
-                    logger.debug("Loading file: %s", os.path.join(root, file))
                     yield f.read()
+```
+
+The code to divide the text into chunks is also straightforward.
+`DefaultChunker get_chunks` generates text chunks of a specified size, and `DirectoryLoader get_chunk_batches` uses `DefaultChunker get_chunks` to yield batches of these chunks with a specified batch size. The last batch may have shorter chunks.
+
+```python
+class DefaultChunker:
+    def get_chunks(self, data):
+        # return a list of strings, each a substring of the text with length self.chunk_size
+        # the last element of the list may be shorter than self.chunk_size
+        for text in data:
+            for i in range(0, len(text), self.step_size):
+                max_size = min(self.chunk_size, len(text) - i)
+                yield text[i:i+max_size]
+
+class DirectoryLoader:
+    def get_chunk_batches(self):
+        # A generator that yields batches of chunks
+        # Each batch is a list of strings, each a substring of the text with length self.chunk_size
+        # the last element of the list may be shorter than self.chunk_size
+        chunks = []
+        for chunk in self.get_chunks():
+            chunks.append(chunk)
+            if len(chunks) == self.batch_size:
+                yield chunks
+                chunks = []
+
+        if len(chunks) > 0:
+            yield chunks
 ```
 
 #### Experiment with Chunks
