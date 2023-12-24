@@ -166,6 +166,35 @@ In Lamini, `llm.train()` performs all tasks above and saves the index to the loc
 > For those interested, Lamini builds an [faiss.IndexFlatL2](https://github.com/facebookresearch/faiss) index, a
 simple and fast index for similarity search based on Euclidean distance.
 
+This is the code that builds the index of the embeddings.
+
+```python
+    def build_index(self):
+        self.splits = []
+        self.index = None
+
+        # load a batch of splits from a generator 
+        for split_batch in tqdm(self.loader):
+            embeddings = self.get_embeddings(split_batch)
+
+            if self.index is None:
+                # initialize the index
+                logger.info(f"Creating index with dimension {len(embeddings[0])}")
+                self.index = faiss.IndexFlatL2(len(embeddings[0]))
+
+            # add the embeddings to the index
+            self.index.add(embeddings)
+            # save the splits
+            self.splits.extend(split_batch)
+
+    def get_embeddings(self, examples):
+        ebd = Embedding(config=self.config)
+        embeddings = ebd.generate(examples)
+        embedding_list = [embedding[0] for embedding in embeddings]
+
+        return np.array(embedding_list)
+```
+
 ### Step 1.3: Retrieve Relevant Information from Embeddings
 
 Using [FAISS](https://github.com/facebookresearch/faiss),
