@@ -208,25 +208,19 @@ def get_count_command(ack, body, respond):
 def ask_model_question(channel_id, model, question):
     token = config["channel_token_mappings"][channel_id]["token"]
 
-    system_prompt = """\
-You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.
-
-If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information."""
+    system_prompt = "You are a helpful medical assistant."
 
     headers = {
         "Authorization": "Bearer " + token,
         "Content-Type": "application/json",
     }
 
-    prompt = f"<s>[INST] <<SYS>>\n{system_prompt}\n<</SYS>>\n\n{question} [/INST]"
+    prompt = f"<s>[INST] {system_prompt}\n\nAnswer the following question.\n\n{question} [/INST]"
 
     body = {
         "id": "LaminiSDKSlackbot",
         "model_name": model,
         "prompt": prompt,
-        "out_type": {
-            "Answer": "string",
-        }
     }
 
     response = requests.post(
@@ -236,7 +230,7 @@ If a question does not make any sense, or is not factually coherent, explain why
     )
 
     if response.status_code == 200:
-        answer = response.json()["Answer"]
+        answer = response.json()['output']
         return answer
     else:
         print(response.status_code, response.reason)

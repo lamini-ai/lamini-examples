@@ -6,7 +6,7 @@
         "C048PLYJ3U2": {
             "_channel_name": "<YOUR CHANNEL NAME HERE>",
             "token": "<YOUR LAMINI TOKEN HERE>",
-            "model_names": ["meta-llama/Llama-2-7b-chat-hf"]
+            "model_names": ["mistralai/Mistral-7B-Instruct-v0.1"]
         }
     }
 }

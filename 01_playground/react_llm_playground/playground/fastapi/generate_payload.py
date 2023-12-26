@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 
 class GeneratePayload_InValue(BaseModel):
-    in_value: Dict[str, Union[int, float, str, bool, Dict, List]]
+    prompt: str
 
 
 class GeneratePayload_OutType(BaseModel):

@@ -3,7 +3,7 @@ import lamini
 import jsonlines
 from tqdm import tqdm
 
-lamini.api_key = "<YOUR-LAMINI-API-KEY>"
+lamini.api_key = "7feadf6707d1bb22ab2a7f75a8b0f6b70610fee7"
 
 def main():
     questions = load_questions()
