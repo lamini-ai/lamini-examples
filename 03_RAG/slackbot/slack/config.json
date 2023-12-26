@@ -1,0 +1,12 @@
+{
+    "api_endpoint": "https://api.powerml.co",
+    "SLACK_BOT_TOKEN": "xoxb-3977457035072-6391891533975-GQuZdqnJbbalwZinig2ZvSBa",
+    "SLACK_APP_TOKEN": "xapp-1-A06BU76NH28-6430118680549-3608184b39f8fa4b7e2758f23b368f5e159d14c5e859b7d85829d9838a028187",
+    "channel_token_mappings": {
+        "C048PLYJ3U2": {
+            "_channel_name": "#stream-greg",
+            "token": "d7a819304efa41578f5b6d120b6257bd",
+            "model_names": ["mistralai/Mistral-7B-Instruct-v0.1", "rag"]
+        }
+    }
+}

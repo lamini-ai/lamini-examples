@@ -1,0 +1,12 @@
+{
+    "api_endpoint": "https://api.lamini.ai",
+    "SLACK_BOT_TOKEN": "xoxb-3977457035072-6391891533975-rROPGuQjZLzkVyDjATcEnlEB",
+    "SLACK_APP_TOKEN": "xapp-1-A06BU76NH28-6422576376688-a9aadeaeed6d7f2c4d3d00c1355e3a003cb106dfefe00dac8cde4839bb007876",
+    "channel_token_mappings": {
+        "C048PLYJ3U2": {
+            "_channel_name": "#stream-greg",
+            "token": "24654addad04447bad3b1281c8db6115",
+            "model_names": ["mistralai/Mistral-7B-Instruct-v0.1"]
+        }
+    }
+}

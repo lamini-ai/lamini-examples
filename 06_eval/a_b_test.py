@@ -1,4 +1,4 @@
-from quorum.lamini_modules.neural_chat_runner import NeuralChatRunner
+from lamini import MistralRunner
 
 import argparse
 import random
@@ -23,7 +23,7 @@ def main():
         "--golden-input",
         nargs="?",
         help="The path to the golden input questions and answers.",
-        default="/app/quorum/platform/answer_scoring//data/gold/answers.jsonlines",
+        default="/app/lamini-eval/data/gold/answers.jsonl",
     )
 
     # The input to the program is a jsonlines file containing the model-a answers
@@ -31,7 +31,7 @@ def main():
         "--model-a",
         nargs="?",
         help="The path to the model-a input questions and answers.",
-        default="/app/quorum-eval/data/model-a/answers.jsonlines",
+        default="/app/lamini-eval/data/model-a/answers.jsonl",
     )
 
     # The input of the program is a jsonlines file containing the model-b answers
@@ -39,7 +39,7 @@ def main():
         "--model-b",
         nargs="?",
         help="The path to the model-b input questions and answers.",
-        default="/app/quorum-eval/data/model-b/answers.jsonlines",
+        default="/app/lamini-eval/data/model-b/answers.jsonl",
     )
 
     # The output of the program is a jsonlines file containing the comparisons
@@ -47,7 +47,7 @@ def main():
         "--output-answers",
         nargs="?",
         help="The path to the output questions and answers.",
-        default="/app/quorum-eval/data/comparisons.jsonlines",
+        default="/app/lamini-eval/data/comparisons.jsonl",
     )
 
     # The batch size
@@ -85,12 +85,12 @@ def load_answers(path):
 
 def run_model(golden_answers, model_a_answers, model_b_answers, batch_size):
     """Run the model to compare the answers."""
-    runner = NeuralChatRunner(config={})
+    runner = MistralRunner()
 
     # Form a prompt for each pair of answers
     questions = []
     for golden_answer, model_a_answer, model_b_answer in zip(golden_answers, model_a_answers, model_b_answers):
-        question = "Two models (A and B) are going to answer the same question about a US legislative bill. Your job is to rate their answers, comparing them to a golden reference.  You are an expert rater.\n\n"
+        question = "Two models (A and B) are going to answer the same question about the WHO ICD11 standard. Your job is to rate their answers, comparing them to a golden reference.  You are an expert rater.\n\n"
         question += (
             f"Rate the answers using a similarity scale from 1 (lowest similarity) to 5 (highest similarity). Use the full range. Read the gold answer carefully. Prefer answers that are most similar to the gold answer, even if the gold answer refused to answer the question.\n\n"
         )

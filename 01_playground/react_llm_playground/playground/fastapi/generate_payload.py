@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 
 class GeneratePayload_InValue(BaseModel):
-    in_value: Dict[str, Union[int, float, str, bool, Dict, List]]
+    prompt: str
 
 
 class GeneratePayload_OutType(BaseModel):
@@ -15,23 +15,20 @@ class GeneratePayload_OutType(BaseModel):
 
 
 class GeneratePayload(BaseModel, smart_union=True):
-    in_value: List[Dict]  # further type checking with @validator
+    prompt: List[str]  # further type checking with @validator
     out_type: Dict[str, str]
     model_name: str
     prompt_template: Optional[str] = None
     max_tokens: Optional[int] = None
 
-    @validator("in_value")
+    @validator("prompt")
     def check_type(cls, v):
         try:
-            if isinstance(v, dict):
-                GeneratePayload_InValue(in_value=v)
-            elif isinstance(v, list):
-                for d in v:
-                    GeneratePayload_InValue(in_value=d)
+            for d in v:
+                GeneratePayload_InValue(prompt=d)
         except ValidationError as e:
             err_msg = (
-                "Each key must be str and each value must be int, float, str, or bool"
+                "Prompt must be a list of strings"
             )
             raise TypeError(err_msg)
 

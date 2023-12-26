@@ -1,8 +1,10 @@
 from lamini import Lamini
 
 llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
-llm.generate(
-    "How old are you?",
-    output_type={"age": "int", "units": "str"}
+result = llm.generate(
+    "What is the ICD11 code for swelling of the liver?",
+    output_type={"icd11_code": "str", "explanation": "str"}
 )
+
+print(result)
 

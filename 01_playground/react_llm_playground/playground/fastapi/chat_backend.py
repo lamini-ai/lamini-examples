@@ -53,7 +53,7 @@ def startup():
 def edit_prompts(payload):
     new_payload = copy.deepcopy(payload)
 
-    new_payload.in_value = [edit_prompt(prompt) for prompt in payload.in_value]
+    new_payload.prompt = [edit_prompt(prompt) for prompt in payload.prompt]
 
     return new_payload
 
@@ -66,7 +66,7 @@ def edit_prompt(prompt_object):
     prompt_object = copy.deepcopy(prompt_object)
 
     for key, value in new_prompt.items():
-        prompt_object["question"] = prompt_object["question"].replace(key, value)
+        prompt_object = prompt_object.replace(key, value)
 
     return prompt_object
 

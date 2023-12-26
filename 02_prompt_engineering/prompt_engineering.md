@@ -21,7 +21,8 @@ Here are some simple prompt examples:
 * `What would happen if WII had a different outcome?`
 * `Envision the world 100 years from now.`
 
-However, crafting prompts is not always simple.
+However, crafting prompts is not always simple.  You must follow the prompt template syntax, which is
+different for each model.
 In fact, it is recommended to include all five components below wrapped in a prompt template.
 Otherwise, there could be a substantial reduction in response quality.
 
@@ -45,7 +46,7 @@ A task description sets the context and establishes a role or scenario for the m
 For example,
 
 ```
-You are an attorney with extensive experience in various areas of law.
+You are an attorney who graduate top of class in from Harvard Law with 20 years of experience in patent law.
 ```
 
 The task description should be hardcoded for similar types of tasks or requests.
@@ -128,7 +129,7 @@ For example, this [config](https://huggingface.co/mistralai/Mistral-7B-Instruct-
 
 Retrieval augmented data refers to additional data obtained outside the model
 using special information retrieval on an internal knowledge base.
-In [the upcoming tutorial](https://github.com/lamini-ai/sdk/blob/main/rag.md),
+In [the upcoming RAG tutorial](https://github.com/lamini-ai/sdk/blob/main/rag.md),
 we will delve into retrieval augmented generation.
 For now, let's assume that we already possess some retrieval augmented data.
 
@@ -145,7 +146,7 @@ Conduct a succinct analysis of the legal case United States v. Elizabeth Holmes,
 Now that we have all five components, our full prompt is:
 
 ```
-You are an attorney with extensive experience in various areas of law.
+You are an attorney who graduate top of class in from Harvard Law with 20 years of experience in patent law.
 
 Below are the key aspects of the court case.
 Title: United States v. Elizabeth Holmes, et al.
@@ -179,6 +180,8 @@ TODO: show what happens when parts of prompt are missing.
 ## Prompt Template
 
 A prompt template is like a standardized format for asking questions or providing input to the model. It helps the model understand the context and type of information you're seeking, improving the chances of getting relevant and accurate responses.
+
+WARNING.  Models are trained to assume specifc prompt template syntax.  If you forget the prompt template, it will make the model's answers much lower quality.
 
 For example, Llama 2 usees the following template,
 where we replace `{system_prompt}` with the system prompt and
@@ -368,7 +371,7 @@ Adding context provides a specific scenario, guiding the language model to produ
 :x: `"Describe San Francisco."`
 
 :white_check_mark: `"You are a travel blogger exploring San Francisco. Write a description highlighting its unique architecture, local cuisine, and lively atmosphere."`
- 
+
 ### Encourage Truthful Reponse
 
 You can explicitly include a statement like below in the prompt.
@@ -393,7 +396,7 @@ Bad spacing
 
 Bad grammar and syntax
 
-:x: `"write me a poem about sunsets beautiful red and orange."` 
+:x: `"write me a poem about sunsets beautiful red and orange."`
 
 :white_check_mark: `"compose a poem describing the beauty of red and orange sunsets."`
 
@@ -401,7 +404,8 @@ Bad grammar and syntax
 ## Iterate and Repeat
 
 The process of refining and improving prompts through successive iterations is crucial
-for achieving desired results.  The key is to be adaptable and responsive to the performance of the model and user needs. Here is an example:
+for achieving desired results.  The key is to be adaptable and responsive to the
+performance of the model and user needs. Here is an example:
 
 * **Observation**
   - **Initial Prompt**: `"Tell me about climate change."`
@@ -436,7 +440,12 @@ for achieving desired results.  The key is to be adaptable and responsive to the
 * **Iteration 9** - Stay Informed:
   - **Refined Prompt**: `"Considering recent advancements, discuss the emerging technologies for carbon capture and their potential impact on mitigating climate change."`
   - **Adjustment**: Incorporate new keywords or concepts based on the latest information.
-  - **Observation**: Ensure that the model stays up-to-date with evolving topics.  
+  - **Observation**: Ensure that the model stays up-to-date with evolving topics.
+
+WARNING.  A common mistake we see users make is to not iterate fast enough.
+Instead of spending 10 minutes or more writing a perfect prompt, spend 1-2
+minutes writing a rough draft and then run it.  Iterate on the prompt
+based on what the model does.  Try to iterate as quickly as possible.
 
 ## Excecuting Prompts using Lamini
 
