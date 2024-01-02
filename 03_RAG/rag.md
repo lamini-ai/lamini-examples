@@ -166,7 +166,17 @@ In Lamini, `llm.train()` performs all tasks above and saves the index to the loc
 > For those interested, Lamini builds an [faiss.IndexFlatL2](https://github.com/facebookresearch/faiss) index, a
 simple and fast index for similarity search based on Euclidean distance.
 
-This is the code that builds the index of the embeddings.
+Below is the code that builds the index of the embeddings.
+
+`build_index` initializes a Faiss index.  For each data batch, it generates the embeddings and
+add the embeddings to the index. The loop also uses `tqdm` display a progress bar.
+In addition, it keeps track of the data batches processed in `self.splits`.
+
+In `get_embeddings`, `ebd.generate` invokes Lamini's embedding endpoint to generate the embeddings
+for the text.
+
+TODO: why take embedding[0]
+TODO: why convert to np.array?
 
 ```python
     def build_index(self):
