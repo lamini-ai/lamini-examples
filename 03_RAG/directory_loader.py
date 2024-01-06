@@ -18,11 +18,11 @@ class DefaultChunker:
                 yield text[i:i+max_size]
 
 class DirectoryLoader:
-    def __init__(self, directory, batch_size=512, chunker=DefaultChunker(), exclude_patterns=[]):
+    def __init__(self, directory, batch_size=512, chunker=DefaultChunker(), exclude_files=[]):
         self.directory = directory
         self.chunker = chunker
         self.batch_size = batch_size
-        self.exclude_patterns = exclude_patterns
+        self.exclude_files = exclude_files
 
     def load(self):
         # load all of the files in the directory recursively as text into a list of strings
@@ -30,7 +30,7 @@ class DirectoryLoader:
         for root, dirs, files in os.walk(self.directory):
             for file in files:
                 exclude = False
-                for pattern in self.exclude_patterns:
+                for pattern in self.exclude_files:
                     if fnmatch.fnmatch(file, pattern):
                         exclude = True
                         break

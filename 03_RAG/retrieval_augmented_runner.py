@@ -23,14 +23,14 @@ class RetrievalAugmentedRunner:
         self.batch_size = batch_size
         self.system_prompt = system_prompt
 
-    def load_data(self, path, exclude_patterns=[]):
+    def load_data(self, path, exclude_files=[]):
         self.loader = DirectoryLoader(
             path,
             batch_size=self.batch_size,
             chunker=DefaultChunker(
                 chunk_size=self.chunk_size, step_size=self.step_size
             ),
-            exclude_patterns=exclude_patterns,
+            exclude_files=exclude_files,
         )
 
     def train(self):
