@@ -83,11 +83,11 @@ llm.load_data("path/to/knowledge_directory")
 You can optionally specify a list of file patterns to ignore with `load_data`.
 For example, the code below ignores files that end in `*.bin` and `*.exe`.
 ```python
-llm.load_data("path/to/knowledge_directory", exclude_patterns=["*.bin", "*.exe"])
+llm.load_data("path/to/knowledge_directory", exclude_files=["*.bin", "*.exe"])
 ```
 
 The code to load the files is very straightforward. Simply load all the files in the
-directory recursively as text into a list of strings, but ignore files that [fnmatches](https://docs.python.org/3/library/fnmatch.html) `exclude_patterns`.
+directory recursively as text into a list of strings, but ignore files that [fnmatches](https://docs.python.org/3/library/fnmatch.html) `exclude_files`.
 ```python
     def load(self):
         # load all of the files in the directory recursively as text into a list of strings
@@ -95,7 +95,7 @@ directory recursively as text into a list of strings, but ignore files that [fnm
         for root, dirs, files in os.walk(self.directory):
             for file in files:
                 exclude = False
-                for pattern in self.exclude_patterns:
+                for pattern in self.exclude_files:
                     if fnmatch.fnmatch(file, pattern):
                         exclude = True
                         break
