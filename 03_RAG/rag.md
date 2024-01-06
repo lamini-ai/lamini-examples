@@ -80,14 +80,22 @@ llm.load_data("path/to/knowledge_directory")
   - `step_size` should be less than or equal to `chunk_size`.
 
 The code to load the files is very straightforward. Simply load all the files in the
-directory recursively as text into a list of strings.
+directory recursively as text into a list of strings, but ignore files that [fnmatches](https://docs.python.org/3/library/fnmatch.html) `exclude_patterns`.
 ```python
     def load(self):
         # load all of the files in the directory recursively as text into a list of strings
         # return the list of strings
         for root, dirs, files in os.walk(self.directory):
             for file in files:
+                exclude = False
+                for pattern in self.exclude_patterns:
+                    if fnmatch.fnmatch(file, pattern):
+                        exclude = True
+                        break
+                if exclude:
+                    continue
                 with open(os.path.join(root, file), 'r') as f:
+                    logger.debug("Loading file: %s", os.path.join(root, file))
                     yield f.read()
 ```
 
