@@ -54,7 +54,8 @@ print(response)
 ## Step 0: Prepare Knowledge Data
 
 RAG requires the user to provide knowledge data which can be retrieved to augment the prompt.
-Lamini requires the user to input a directory path where all files are readable as text (e.g. txt, csv). If any file within the specified directory cannot be read as text, then the directory loader will fail.
+Lamini requires the user to input a directory path where all files are readable as text (e.g. txt, csv).  The user can optionally specify a list of file patterns to exclude.
+If any file within the specified directory cannot be read as text and is not explicity excluded, then the directory loader will fail.
 
 ## Step 1: Retrieval
 
