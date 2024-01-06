@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+
+
+@layer base {
+  html {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #121212;
+    color: #ececec;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    color: #ececec;
+  }
+  p {
+    font-family: 'DM Sans', sans-serif;
+    color: #d4d4d4;
+    font-size: 14px;
+  }
+  code {
+    font-family: 'DM Mono', monospace;
+    color: #121212;
+  }
+}
+
+.loading {
+  width: 24px;
+  aspect-ratio: 2;
+  --_g: no-repeat radial-gradient(circle closest-side,#FF6C71 90%,#0000);
+  background:
+    var(--_g) 0%   50%,
+    var(--_g) 50%  50%,
+    var(--_g) 100% 50%;
+  background-size: calc(100%/3) 50%;
+  animation: l 1s infinite linear;
+}
+@keyframes l {
+    20%{background-position:0%   0%, 50%  50%,100%  50%}
+    40%{background-position:0% 100%, 50%   0%,100%  50%}
+    60%{background-position:0%  50%, 50% 100%,100%   0%}
+    80%{background-position:0%  50%, 50%  50%,100% 100%}
+}
+

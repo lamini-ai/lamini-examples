@@ -1,0 +1,14 @@
+**/llama_config_local.yaml
+**/*.swp
+.env
+
+**/node_modules/**
+*.DS_Store
+**/llama_llm.egg-info/
+**/lamini.egg-info/
+**/__pycache__/
+**/Training\ Data*
+platform/llama/examples/dataset/
+platform/llama/dist/
+platform/slackbot/configure_llama.yaml
+platform/slackbot/config.json

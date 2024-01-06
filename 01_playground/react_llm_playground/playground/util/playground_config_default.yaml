@@ -1,0 +1,4 @@
+playground:
+  home_path: "/app/chat-playground"
+
+verbose: True
