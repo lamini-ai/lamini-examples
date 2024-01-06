@@ -1,5 +1,6 @@
 import os
 import logging
+import fnmatch
 
 logger = logging.getLogger(__name__)
 
@@ -17,16 +18,24 @@ class DefaultChunker:
                 yield text[i:i+max_size]
 
 class DirectoryLoader:
-    def __init__(self, directory, batch_size=512, chunker=DefaultChunker()):
+    def __init__(self, directory, batch_size=512, chunker=DefaultChunker(), exclude_patterns=[]):
         self.directory = directory
         self.chunker = chunker
         self.batch_size = batch_size
+        self.exclude_patterns = exclude_patterns
 
     def load(self):
         # load all of the files in the directory recursively as text into a list of strings
         # return the list of strings
         for root, dirs, files in os.walk(self.directory):
             for file in files:
+                exclude = False
+                for pattern in self.exclude_patterns:
+                    if fnmatch.fnmatch(file, pattern):
+                        exclude = True
+                        break
+                if exclude:
+                    continue
                 with open(os.path.join(root, file), 'r') as f:
                     logger.debug("Loading file: %s", os.path.join(root, file))
                     yield f.read()
