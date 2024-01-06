@@ -23,7 +23,7 @@ class RetrievalAugmentedRunner:
         self.batch_size = batch_size
         self.system_prompt = system_prompt
 
-    def load_data(self, path, exclude_patterns):
+    def load_data(self, path, exclude_patterns=[]):
         self.loader = DirectoryLoader(
             path,
             batch_size=self.batch_size,
