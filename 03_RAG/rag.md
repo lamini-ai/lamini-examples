@@ -35,7 +35,7 @@ response = llm.call(prompt)
 print(response)
 ```
 ### How RAG works:
-1. :books: :mag: Retrieval - Scans the knowledge base to retrieve info relevant to the user's prompt. Ex: 
+1. :books: :mag: Retrieval - Scans the knowledge base to retrieve info relevant to the user's prompt. Ex:
    - User prompt: `"Have we invested in any generative AI companies in the past year?"`
    - Scan the the company's internal documents. Retrieve information relevant to the prompt, such as company names, funding amounts, equity stakes, investments dates, and key personnel involved.
 2. ➕ Augmentation - Augment the prompt with the data retrieved from step 1 like below:
@@ -46,7 +46,7 @@ print(response)
 
      Have we invested in any generative AI companies in 2023?
      ```
-3. ✨ Generation - Generate a well-informed response for the prompt from step 2. Ex: 
+3. ✨ Generation - Generate a well-informed response for the prompt from step 2. Ex:
    - ```
      Yes, in 2023, we invested in A and B.
      ```
@@ -102,7 +102,6 @@ directory recursively as text into a list of strings, but ignore files that [fnm
                 if exclude:
                     continue
                 with open(os.path.join(root, file), 'r') as f:
-                    logger.debug("Loading file: %s", os.path.join(root, file))
                     yield f.read()
 ```
 
@@ -164,17 +163,24 @@ These overlaps will give each chunk some context from its neighbors and improve 
  "023"]
 ```
 
+You may also want to implement your own loader or chunking logic, e.g. if you are loading
+data from a database instead of a set of files.  We have found that there are many different
+ways of storing, loading, and transforming data.  This data loading logic usually requires
+some new data wrangling.
+
 ### Step 1.2: Chunk Embeddings --> Search Index
 
 Now that we have the chunks, we must capture the semantic information
-and context of the chunks
-as numerical vectors known as embeddings.
-This enables the data to be processed effectively by machine learning models.
+and context of the chunks as numerical vectors known as embeddings.  A large language model
+is used to convert the chunk into an embedding.  Some popular embedding LLMs are listed on
+the (massive text embedding benchmark leaderboard)[https://huggingface.co/spaces/mteb/leaderboard].
 
 We then use the embeddings to build an index, a data structure that is crucial for
-efficient data retrieval in large datasets.  An index is essentially a map, helping you
-find specific information quickly, just like the index at the end of a book.
-
+efficient data retrieval in large datasets.  A simple index could just be implemented as
+a list of embedding vectors.  To search through the index, a vector dot product between
+the query embedding and each of the embedding vectors from the list could be used to
+determine the distance in the embedding space.  An optimized library like FAISS can improve
+upon this simple index by compressing it.
 
 In Lamini, `llm.train()` performs all tasks above and saves the index to the local machine.
 
