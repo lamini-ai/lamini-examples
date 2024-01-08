@@ -21,7 +21,8 @@ Here are some simple prompt examples:
 * `What would happen if WII had a different outcome?`
 * `Envision the world 100 years from now.`
 
-However, crafting prompts is not always simple.
+However, crafting prompts is not always simple.  You must follow the prompt template syntax, which is
+different for each model.
 In fact, it is recommended to include all five components below wrapped in a prompt template.
 Otherwise, there could be a substantial reduction in response quality.
 
@@ -128,7 +129,7 @@ For example, this [config](https://huggingface.co/mistralai/Mistral-7B-Instruct-
 
 Retrieval augmented data refers to additional data obtained outside the model
 using special information retrieval on an internal knowledge base.
-In [the upcoming tutorial](https://github.com/lamini-ai/sdk/blob/main/rag.md),
+In [the upcoming RAG tutorial](https://github.com/lamini-ai/sdk/blob/main/rag.md),
 we will delve into retrieval augmented generation.
 For now, let's assume that we already possess some retrieval augmented data.
 

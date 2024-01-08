@@ -326,6 +326,57 @@ model, e.g. BERT, at this point.
 ## 4. Calibration
 
 Finally, we have a classifier.  It takes a string as an input, and outputs a
-score for each class.  In this final step, we calibrate the model so that
-we can make decisions using the scores from the model.
+score for each class.  What do you do with the score?
+
+In this final step, we calibrate the model so that we can make decisions
+using the scores from the model.
+
+Let's say that we want to make sure that we only keep the answers that we are
+90% confident are correct.  What would we set the score to?  Scores are normalized
+between 0.0 and 1.0.  If we increase the threshold, that is like imposing a higher
+bar on the samples, so we should end up with fewer examples that we are more
+confident about.  How do we quantify that?
+
+We can use a precision recall curve.  This curve plots precision vs recall at
+different thresholds.
+
+Precision is how many correct answers the model predicted.  Let's say we want
+90% of the answers selected by our model to be correct, we should target a precision of
+90%.
+
+Recall is how many correct answers the model found.  Let's say that we want to
+find 50% of all correct answers to include in our training dataset.  Then we
+should set recall to 50%.
+
+Precision and recall tradeoff against each other.  A great model will have
+high precision and high recall, but a more modest model may have to sacrifice
+high recall to achieve high precision.
+
+You can see the tradeoff by plotting the precision/recall curve.
+
+```python
+from sklearn.metrics import PrecisionRecallDisplay
+
+def plot_precision_recall_curve(examples):
+    y_true = []
+    y_score = []
+
+    for example in examples:
+        if not "predictions" in example:
+            continue
+
+        if not "label" in example:
+            continue
+
+        y_true.append(example["label"])
+        y_score.append(get_positive_class(example["predictions"])["prob"])
+
+    print("plotting precision-recall curve using {} examples".format(len(y_true)))
+
+    display = PrecisionRecallDisplay.from_predictions(y_true, y_score)
+
+    # Save the plot to a file.
+    display.figure_.savefig("/app/lamini-classify/data/precision-recall-curve.png")
+```
+
 
