@@ -317,7 +317,7 @@ Awesome! :tada:
 
 ## Try Out RAG!
 
-You can find a RAG example to experiment with [here](https://github.com/lamini-ai/sdk/tree/main/rag).
+You can find a RAG example to experiment with [here](https://github.com/lamini-ai/lamini-sdk/tree/main/03_RAG).
 - `data` is a knowledge directory with our fictional company's
 recent investment data.
 - `rag.py` is a simple program that uses RAG with the investment data to answer
