@@ -323,9 +323,18 @@ recent investment data.
 - `rag.py` is a simple program that uses RAG with the investment data to answer
 `"Have we invested in any generative AI companies in 2023?"`
 
-Please follow the [installation instructions](https://github.com/lamini-ai/sdk?tab=readme-ov-file#installation-instructions) if you haven't already.
+To run the RAG program:
 
-You can run `rag.py` with
+1. Please follow the [installation instructions](https://github.com/lamini-ai/sdk?tab=readme-ov-file#installation-instructions) if you haven't already.
+2. Clone the repository
+```
+git clone git@github.com:lamini-ai/lamini-sdk.git
+```
+3. Go to the RAG directory
+```
+cd lamini-sdk/03_RAG
+```
+4. Run the RAG program
 ```
 python3 rag.py
 ```
