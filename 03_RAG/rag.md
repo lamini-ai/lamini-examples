@@ -325,19 +325,19 @@ recent investment data.
 
 To run the RAG program:
 
-1. Please follow the [installation instructions](https://github.com/lamini-ai/sdk?tab=readme-ov-file#installation-instructions) if you haven't already.
+1. Please follow the [installation instructions](https://github.com/lamini-ai/sdk?tab=readme-ov-file#installation-instructions) to install Lamini if you haven't already.
 2. Clone the repository
-```
-git clone git@github.com:lamini-ai/lamini-sdk.git
-```
+   ```
+   git clone git@github.com:lamini-ai/lamini-sdk.git
+   ```
 3. Go to the RAG directory
-```
-cd lamini-sdk/03_RAG
-```
+   ```
+   cd lamini-sdk/03_RAG
+   ```
 4. Run the RAG program
-```
-python3 rag.py
-```
+   ```
+   python3 rag.py
+   ```
 
 Experiment with your own prompts or modify the parameters for
 `RetrievalAugmentedRunner`.
