@@ -16,5 +16,6 @@ llm.generate(
 
 
 [1] JSONformer: https://github.com/1rgs/jsonformer
+
 ‍[2] OpenAI JSON Mode: https://platform.openai.com/docs/guides/text-generation/json-mode
 
