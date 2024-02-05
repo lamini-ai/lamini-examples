@@ -268,9 +268,41 @@ with open("qa_data/generated_data_finetuning.json", "w") as f:
 
 In this step we will train the model with the data from the previous step.
 
-TODO: figure out which function to call to load the data and train
+Load the data that was generated in the previous step:
 
-TODO: show an example prompt where we get good result
+```python
+def load_data():
+    path = "/app/lamini-ift/data/questions_and_answers.jsonl"
+
+    with jsonlines.open(path) as reader:
+        for obj in reader:
+            yield {"question": obj["question"], "answer": obj["answer"] + "</s>"}
+```
+
+Be careful to adhere to the prompt template.  Note the `</s>` at the end of the answer to indicate
+that the training example has ended and the model should stop generating text after completing
+the answer.
+
+Next create a runner, e.g. MistralRunner, and add the data to it.  Finally call the `train()` method
+on the runner to submit the training job to Lamini.
+
+```python
+    from lamini import MistralRunner
+
+    llm = MistralRunner(
+        system_prompt=" ",
+    )
+
+    data = list(load_data())
+
+    llm.load_data(
+        data=data,
+        input_key="question",
+        output_key="answer",
+    )
+
+    llm.train()
+```
 
 
 ## Try Out Instruction Fine Tuning
