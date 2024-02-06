@@ -15,7 +15,7 @@ def load_examples():
             yield example
 
 def save_filtered_examples(examples):
-    threshold = 0.49831711334318995
+    threshold = 0.52
 
     positive_examples = []
     for example in tqdm(examples):

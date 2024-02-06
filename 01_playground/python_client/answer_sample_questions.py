@@ -3,7 +3,7 @@ import lamini
 import jsonlines
 from tqdm import tqdm
 
-lamini.api_key = "<YOUR-LAMINI-API-KEY>"
+#lamini.api_key = "<YOUR-LAMINI-API-KEY>"
 
 def main():
     questions = load_questions()
@@ -22,7 +22,7 @@ def answer_questions(questions):
     answers = []
 
     for question in tqdm(questions):
-        llm = lamini.LlamaV2Runner()
+        llm = lamini.MistralRunner()
 
         answer = llm(question["question"])
 

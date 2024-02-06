@@ -48,7 +48,7 @@ def plot_precision_recall_curve(examples):
     # Save the plot to a file.
     display.figure_.savefig("/app/lamini-classify/data/precision-recall-curve.png")
 
-    precision_target = 0.9
+    precision_target = 0.8
 
     # Find the threshold for the precision target
     precision, recall, thresholds = precision_recall_curve(y_true, y_score)

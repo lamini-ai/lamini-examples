@@ -1,4 +1,6 @@
 from lamini_classifier import LaminiClassifier
+
+import csv
 import jsonlines
 
 import logging
@@ -6,23 +8,46 @@ import logging
 def main():
     #logging.basicConfig(level=logging.DEBUG)
 
-    classifier = LaminiClassifier(augmented_example_count=32)
+    classifier = LaminiClassifier(augmented_example_count=8)
 
     examples = load_examples()
 
     add_data(classifier, examples)
 
     prompts={
-      "incorrect": "Questions with incorrect answers.  Imagine that you are a medical expert reading the question and answers about the ICD11 standard.",
-      "correct": "Questions with correct answers.  Imagine that you are a medical expert reading the question and answers about the ICD11 standard."
+      "incorrect": "Questions with incorrect answers. Imagine you are a legislative analyst reading a bill.",
+      "correct": "Questions with correct answers. Imagine you are a legislative analyst reading a bill."
     }
 
     classifier.prompt_train(prompts)
 
     classifier.save("models/classifier.lamini")
 
+def load_examples_2():
+    path = "/app/lamini-classify/data/qa_pairs__2024_01_13__05_47_59.csv"
+
+    return read_csv_as_list_of_dicts(path)
+
+def read_csv_as_list_of_dicts(path):
+    rows = []
+    with open(path) as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=",")
+        first_line = True
+        headers = None
+        for row in csv_reader:
+            if first_line:
+                headers = row
+                first_line = False
+                continue
+            else:
+                dictt = {}
+                for idx, column_data in enumerate(row):
+                    dictt[headers[idx]] = column_data
+
+    return rows
+
 def load_examples():
-    path = "/app/lamini-classify/data/questions_and_answers.jsonl"
+    path = "/app/lamini-classify/data/predictions.jsonl"
 
     with jsonlines.open(path) as reader:
         for example in reader:
