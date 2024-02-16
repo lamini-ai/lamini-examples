@@ -69,8 +69,12 @@ class LaminiIndex:
 
         # get the k nearest neighbors
         distances, indices = self.index.search(embedding_array, k)
+        if indices.size == 0:
+            return []
+        indices = indices[0]
+        indices = [i for i in indices if i != -1]
 
-        return [self.splits[i] for i in indices[0]]
+        return [self.splits[i] for i in indices]
 
     def save_index(self, path):
         faiss_path = os.path.join(path, "index.faiss")
