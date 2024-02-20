@@ -6,9 +6,8 @@ export async function fetchStreamingCustom(
   output_len: number
 ) {
   var myHeaders = new Headers();
-  //myHeaders.append("Authorization", "Bearer " + token);
+  myHeaders.append("Authorization", "Bearer " + token);
   myHeaders.append("Content-Type", "application/json");
-  // TODO: remove this hack so our finetuned model can also get data context
 
   let finalQuestion = question;
   if (
@@ -42,7 +41,6 @@ export async function fetchStreamingCustom(
       ` [/INST]`;
   }
   const body = {
-    //id: "website",
     model_name: baseModel,
     out_type: { answer: "string" },
     prompt: [finalQuestion],

@@ -196,15 +196,14 @@ In addition, it keeps track of the data batches processed in `self.splits`.
 In `get_embeddings`, `ebd.generate` invokes Lamini's embedding endpoint to generate the embeddings
 for the text.
 
-TODO: why take embedding[0]
-TODO: why convert to np.array?
+_Coming soon: explain why we take embedding[0] and convert to np.array._
 
 ```python
     def build_index(self):
         self.splits = []
         self.index = None
 
-        # load a batch of splits from a generator 
+        # load a batch of splits from a generator
         for split_batch in tqdm(self.loader):
             embeddings = self.get_embeddings(split_batch)
 
