@@ -482,7 +482,7 @@ from lamini import MistralRunner
 
 runner = MistralRunner()
 user_prompt = ["Is pizza nutritous?",
-           "Did Richard Nixon reisgn?",
+           "Did Richard Nixon resign?",
            "Summarize the impact of global warming.",
           ]
 sys_prompt = "Provide very short responses."
