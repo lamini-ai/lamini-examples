@@ -1,7 +1,7 @@
 **/llama_config_local.yaml
 **/*.swp
 .env
-
+.idea
 **/node_modules/**
 *.DS_Store
 **/llama_llm.egg-info/
