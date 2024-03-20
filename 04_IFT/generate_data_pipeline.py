@@ -8,7 +8,7 @@ import asyncio
 from tqdm import tqdm
 
 from typing import Union, Iterator, AsyncIterator
-
+import lamini
 import logging
 
 logger = logging.getLogger(__name__)
@@ -20,7 +20,7 @@ logging.basicConfig(
 
 max_examples = 2
 model_name = "mistralai/Mistral-7B-Instruct-v0.2"
-
+lamini.api_key = ""
 
 async def load_icd_dataset():
     i = 0
@@ -158,7 +158,6 @@ async def save_answers(answers):
     with jsonlines.open(path, "w") as writer:
         pbar = tqdm(desc="Saving answers", unit=" answers")
         async for answer in answers:
-            print("answer:", answer.data)
             answer = {
                 "question": answer.data["question"],
                 "entity": answer.data,
