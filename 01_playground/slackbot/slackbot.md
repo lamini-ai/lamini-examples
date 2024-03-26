@@ -1,4 +1,4 @@
-# React Playground
+# Slackbot
 
 It is straightforward to call a LLM from Slack using Lamini.
 
