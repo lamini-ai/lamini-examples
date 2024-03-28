@@ -4,7 +4,6 @@
 <div align="center">
 
 [![Latest Release](https://img.shields.io/badge/Latest%20Version-1.4.3-blue?logo=github)](https://github.com/lamini-ai/lamini-sdk/commits/main)
-![a.k.a](https://img.shields.io/badge/a.k.a%20-%2335-blue)
 [![GitHub License](https://img.shields.io/github/license/lamini-ai/lamini)](https://github.com/lamini-ai/lamini-sdk/blob/main/LICENSE)</div>
 
 # Retrieval Augmented Generation (RAG)
