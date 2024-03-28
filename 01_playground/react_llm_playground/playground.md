@@ -1,3 +1,7 @@
+<div align="center">
+<img src="https://avatars.githubusercontent.com/u/130713213?s=200&v=4" width="110"><img src="https://huggingface.co/lamini/instruct-peft-tuned-12b/resolve/main/Lamini_logo.png?max-height=110" height="110">
+</div>
+
 # React Playground
 
 It is straightforward to call a LLM from a web app using Lamini.
@@ -26,3 +30,13 @@ Navigate to the playground [http://localhost:5001](http://localhost:5001).
 
 Edit the prompt in the [python backend](playground/fastapi/chat_backend.py#L59C1-L60C1)
 
+---
+
+</div>
+<div align="center">
+
+![GitHub forks](https://img.shields.io/github/forks/lamini-ai/lamini-sdk) &ensp; © Lamini. &ensp; ![GitHub stars](https://img.shields.io/github/stars/lamini-ai/lamini-sdk) 
+
+</div>
+
+--------
