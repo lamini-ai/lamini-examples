@@ -3,6 +3,7 @@ import sys
 
 sys.path.append("../03_RAG")
 import csv
+import logging
 
 import jsonlines
 from directory_loader import DefaultChunker, DirectoryLoader
@@ -11,15 +12,24 @@ from lamini.generation.generation_node import GenerationNode
 from lamini.generation.generation_pipeline import GenerationPipeline
 from tqdm import tqdm
 
+logger = logging.getLogger(__name__)
+
+logging.basicConfig(
+    level=logging.WARNING,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+)
+
 
 class QuestionAnswerPipeline(GenerationPipeline):
     def __init__(self):
         super(QuestionAnswerPipeline, self).__init__()
 
         self.question_generator = QuestionGenerator(
-            "mistralai/Mistral-7B-Instruct-v0.1"
+            "mistralai/Mistral-7B-Instruct-v0.1", max_new_tokens=200
         )
-        self.asnwer_generator = AnswerGenerator("mistralai/Mistral-7B-Instruct-v0.1")
+        self.asnwer_generator = AnswerGenerator(
+            "mistralai/Mistral-7B-Instruct-v0.1", max_new_tokens=100
+        )
 
     def forward(self, x):
         x = self.question_generator(
@@ -66,7 +76,8 @@ class AnswerGenerator(GenerationNode):
 
 def get_prompt_generator(loader):
     for example in loader:
-        yield PromptObject("", data={"text": example[0]})
+        for chunk in example:
+            yield PromptObject("", data={"text": chunk})
 
 
 async def save_predictions(results):

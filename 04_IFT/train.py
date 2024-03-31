@@ -1,5 +1,5 @@
-from lamini import MistralRunner
 import jsonlines
+from lamini import MistralRunner
 
 
 def main():
@@ -19,7 +19,7 @@ def main():
 
 
 def load_data():
-    path = "/app/lamini-ift/data/questions_and_answers.jsonl"
+    path = "/app/lamini-ift/data/generated_data_finetuning.jsonl"
 
     with jsonlines.open(path) as reader:
         for obj in reader:
