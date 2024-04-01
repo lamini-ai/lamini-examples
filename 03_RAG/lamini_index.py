@@ -40,6 +40,10 @@ class LaminiIndex:
 
         self.index = None
 
+        total_batches = len(self.loader)
+
+        logger.info(f"Building index with {total_batches} batches")
+
         # load a batch of splits from a generator
         for split_batch in tqdm(self.loader):
             embeddings = self.get_embeddings(split_batch)
@@ -69,12 +73,59 @@ class LaminiIndex:
 
         # get the k nearest neighbors
         distances, indices = self.index.search(embedding_array, k)
-        if indices.size == 0:
-            return []
-        indices = indices[0]
-        indices = [i for i in indices if i != -1]
 
-        return [self.splits[i] for i in indices]
+        return [self.splits[i] for i in indices[0]]
+
+    def mmr_query(self, query, k=20, n=5):
+        embedding = self.get_embeddings([query])[0]
+
+        embedding_array = np.array([embedding])
+
+        # get the k nearest neighbors
+        distances, indices = self.index.search(embedding_array, k)
+
+        # get the n most diverse results
+        most_diverse = self.most_diverse_results(embedding, indices[0], n)
+
+        return most_diverse
+
+    def most_diverse_results(self, query_embedding, indices, n):
+        # get the embeddings for the indices
+        split_batch = [self.splits[i] for i in indices]
+
+        embeddings = self.get_embeddings(split_batch)
+
+        # calculate the similarity between the query and the results
+        similarities = [np.dot(query_embedding, embedding) for embedding in embeddings]
+
+        # initialize the results
+        results = [indices[0]]
+
+        # iterate through the results
+        for i in range(1, n):
+            # initialize the best result
+            best_result = None
+            best_result_similarity = 0
+
+            # iterate through the remaining results
+            for j in range(len(indices)):
+                # skip the result if it is already in the results
+                if indices[j] in results:
+                    continue
+
+                # calculate the similarity between the result and the other results
+                similarity = np.mean([np.dot(embeddings[j], embeddings[k]) for k in range(len(results))])
+
+                # update the best result
+                if similarity > best_result_similarity:
+                    best_result = indices[j]
+                    best_result_similarity = similarity
+
+            # add the best result to the results
+            results.append(best_result)
+
+        return [self.splits[i] for i in results]
+
 
     def save_index(self, path):
         faiss_path = os.path.join(path, "index.faiss")
@@ -91,3 +142,4 @@ class LaminiIndex:
         # Save the splits to a file
         with open(splits_path, "w") as f:
             json.dump(self.splits, f)
+
