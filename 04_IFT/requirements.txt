@@ -1,1 +1,1 @@
-lamini
+lamini>=2.1.4
