@@ -7,13 +7,14 @@ RUN apt-get -yq update
 
 # Install python packages
 WORKDIR /app/${PACKAGE_NAME}
-COPY ./requirements.txt /app/${PACKAGE_NAME}/requirements.txt
+COPY ./04_IFT/requirements.txt /app/${PACKAGE_NAME}/requirements.txt
 RUN pip install -r requirements.txt
 
 # Copy all files to the container
-COPY ./docker/scripts /app/${PACKAGE_NAME}/scripts
-COPY ./generate_data.py /app/${PACKAGE_NAME}/generate_data.py
-COPY ./train.py /app/${PACKAGE_NAME}/train.py
+COPY ./04_IFT/docker/scripts /app/${PACKAGE_NAME}/scripts
+COPY ./04_IFT/generate_data.py /app/${PACKAGE_NAME}/generate_data.py
+COPY ./04_IFT/train.py /app/${PACKAGE_NAME}/train.py
+COPY ./03_RAG/directory_loader.py /app/${PACKAGE_NAME}/directory_loader.py
 
 WORKDIR /app/${PACKAGE_NAME}
 
