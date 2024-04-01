@@ -1,3 +1,11 @@
+<div align="center">
+<img src="https://avatars.githubusercontent.com/u/130713213?s=200&v=4" width="110"><img src="https://huggingface.co/lamini/instruct-peft-tuned-12b/resolve/main/Lamini_logo.png?max-height=110" height="110">
+</div>
+<div align="center">
+
+[![Latest Release](https://img.shields.io/badge/Latest%20Version-1.4.3-blue?logo=github)](https://github.com/lamini-ai/lamini-sdk/commits/main)
+[![GitHub License](https://img.shields.io/github/license/lamini-ai/lamini)](https://github.com/lamini-ai/lamini-sdk/blob/main/LICENSE)</div>
+
 # Retrieval Augmented Generation (RAG)
 
 ## Introduction
@@ -341,3 +349,14 @@ To run the RAG program:
 Experiment with your own prompts or modify the parameters for
 `RetrievalAugmentedRunner`.
 Notice that updating `step_size` from 256 to the default 512 results in an incorrect response. It includes an additional investment in AquaTech Dynamics, which is not an AI company.
+
+---
+
+</div>
+<div align="center">
+
+![GitHub forks](https://img.shields.io/github/forks/lamini-ai/lamini-sdk) &ensp; © Lamini. &ensp; ![GitHub stars](https://img.shields.io/github/stars/lamini-ai/lamini-sdk) 
+
+</div>
+
+--------

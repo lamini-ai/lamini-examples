@@ -1,3 +1,7 @@
+<div align="center">
+<img src="https://avatars.githubusercontent.com/u/130713213?s=200&v=4" width="110"><img src="https://huggingface.co/lamini/instruct-peft-tuned-12b/resolve/main/Lamini_logo.png?max-height=110" height="110">
+</div>
+
 # Simple Guide to Prompt Engineering :rocket:
 
 ## Introduction
@@ -508,3 +512,14 @@ See our [docs](https://lamini-ai.github.io/rest_api/completions)!
 
 If you are interested in the technical details, see our blog post
 [Guarantee Valid JSON Output with Lamini](https://www.lamini.ai/blog/guarantee-valid-json-output-with-lamini).
+
+---
+
+</div>
+<div align="center">
+
+![GitHub forks](https://img.shields.io/github/forks/lamini-ai/lamini-sdk) &ensp; © Lamini. &ensp; ![GitHub stars](https://img.shields.io/github/stars/lamini-ai/lamini-sdk) 
+
+</div>
+
+--------
