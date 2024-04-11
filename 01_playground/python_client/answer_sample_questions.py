@@ -1,9 +1,6 @@
-
 import lamini
 import jsonlines
 from tqdm import tqdm
-
-#lamini.api_key = "<YOUR-LAMINI-API-KEY>"
 
 def main():
     questions = load_questions()

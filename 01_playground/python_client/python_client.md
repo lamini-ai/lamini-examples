@@ -36,10 +36,16 @@ print(llm_runner.call("How are you?"))
 
 </details>
 
-Instead of the environment variable, you can also pass your key in Python:
+Add the key to a config file ~/.lamini/configure.yaml
 
-```python
-lamini.api_key = "<YOUR-LAMINI-API-KEY>"
+```yaml
+production:
+  key: <YOUR-LAMINI-API-KEY>
+```
+
+Run the Python Client example.
+```
+./answer_sample_questions.sh 
 ```
 
 That's it! 🎉
