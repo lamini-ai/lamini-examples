@@ -40,9 +40,9 @@ class LaminiIndex:
 
         self.index = None
 
-        total_batches = len(self.loader)
+#        total_batches = len(self.loader)
 
-        logger.info(f"Building index with {total_batches} batches")
+#        logger.info(f"Building index with {total_batches} batches")
 
         # load a batch of splits from a generator
         for split_batch in tqdm(self.loader):

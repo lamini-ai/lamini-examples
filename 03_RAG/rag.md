@@ -78,7 +78,7 @@ llm.load_data("path/to/knowledge_directory")
 ```
 
 * `chunk_size`
-  - Number of characters in each chunk.  All chunks will have the same ssize, with the exception of the chunks at the end, which may be shorter.
+  - Number of characters in each chunk.  All chunks will have the same size, with the exception of the chunks at the end, which may be shorter.
   - Smaller chunks tend to provide more accurate results but can increase computationlly overhead.
   - Larger chunks may improve efficiency but reduce accuracy.
   - Default to 512.
@@ -341,9 +341,15 @@ To run the RAG program:
    ```
    cd lamini-sdk/03_RAG
    ```
-4. Run the RAG program
+4. Add the key to a config file ~/.lamini/configure.yaml
+
+   ```yaml
+     production:
+       key: <YOUR-LAMINI-API-KEY>
    ```
-   python3 rag.py
+5. Run the RAG program
+   ```
+   ./rag.sh
    ```
 
 Experiment with your own prompts or modify the parameters for

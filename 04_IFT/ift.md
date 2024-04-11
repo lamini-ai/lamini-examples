@@ -311,8 +311,18 @@ on the runner to submit the training job to Lamini.
 
 ## Try Out Instruction Fine Tuning
 
-Experiment with
-`python3 generate_data.py` to generate the output above.
+Add the key to a config file ~/.lamini/configure.yaml
+
+   ```yaml
+   production:
+     key: <YOUR-LAMINI-API-KEY>
+   ```
+
+
+Experiment with generating the output above.
+   ```
+   ./generate_data.sh
+   ```
 
 Explore by trying different prompts, adjusting chunk parameters, or modifying the data directory! 🚀
 

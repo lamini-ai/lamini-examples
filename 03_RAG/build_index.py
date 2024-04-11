@@ -5,7 +5,8 @@ import jsonlines
 
 def main():
     loader = ICDEntityLoader(
-        path="/app/lamini-rag/data/best_entities_with_descriptions.jsonl"
+#        path="/app/lamini-rag/data/best_entities_with_descriptions.jsonl"
+        path="/app/lamini-rag/data/icd11.jsonl"
     )
 
     index = LaminiIndex(loader=loader)
