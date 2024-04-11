@@ -43,6 +43,12 @@ production:
   key: <YOUR-LAMINI-API-KEY>
 ```
 
+Instead of the environment variable, you can also pass your key in Python:
+
+```python
+lamini.api_key = "<YOUR-LAMINI-API-KEY>"
+```
+
 Run the Python Client example.
 ```
 ./answer_sample_questions.sh 

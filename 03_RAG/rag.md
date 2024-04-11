@@ -344,8 +344,8 @@ To run the RAG program:
 4. Add the key to a config file ~/.lamini/configure.yaml
 
    ```yaml
-     production:
-       key: <YOUR-LAMINI-API-KEY>
+   production:
+     key: <YOUR-LAMINI-API-KEY>
    ```
 5. Run the RAG program
    ```
