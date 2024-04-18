@@ -20,5 +20,5 @@ docker run \
     -v $LOCAL_DIRECTORY/data:/app/lamini-ift/data \
     -v $LOCAL_DIRECTORY/../03_RAG/data:/app/03_RAG/data \
     -v $LOCAL_DIRECTORY/qa_data:/app/lamini-ift/qa_data \
+    --entrypoint /app/lamini-ift/scripts/train.sh \
     -it lamini-ift:latest $@
-

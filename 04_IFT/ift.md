@@ -319,6 +319,11 @@ Add the key to a config file ~/.lamini/configure.yaml
    ```
 
 
+Experiment with generating the data.
+   ```
+   ./generate_data.sh
+   ```
+
 Experiment with Instruction Fine Tuning.
    ```
    ./train.sh
