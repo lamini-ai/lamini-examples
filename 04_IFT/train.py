@@ -3,23 +3,23 @@ from lamini import MistralRunner
 
 
 def main():
-    llm = MistralRunner(
+    runner = MistralRunner(
         system_prompt=" ",
     )
 
     data = list(load_data())
 
-    llm.load_data(
+    runner.load_data(
         data=data,
         input_key="question",
         output_key="answer",
     )
 
-    llm.train()
+    runner.train()
 
 
 def load_data():
-    path = "/app/lamini-ift/data/generated_data_finetuning.jsonl"
+    path = "/app/lamini-ift/qa_data/generated_data_finetuning.jsonl"
 
     with jsonlines.open(path) as reader:
         for obj in reader:

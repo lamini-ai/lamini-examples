@@ -40,10 +40,6 @@ class LaminiIndex:
 
         self.index = None
 
-#        total_batches = len(self.loader)
-
-#        logger.info(f"Building index with {total_batches} batches")
-
         # load a batch of splits from a generator
         for split_batch in tqdm(self.loader):
             embeddings = self.get_embeddings(split_batch)

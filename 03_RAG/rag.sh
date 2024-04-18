@@ -18,6 +18,7 @@ $LOCAL_DIRECTORY/docker/scripts/build.sh
 docker run \
     -v ~/.lamini:/root/.lamini \
     -v $LOCAL_DIRECTORY/data:/app/lamini-rag/data \
+    -v $LOCAL_DIRECTORY/index:/app/lamini-rag/index \
     -v $LOCAL_DIRECTORY/models:/app/lamini-rag/models \
     -it lamini-rag:latest $@
 
