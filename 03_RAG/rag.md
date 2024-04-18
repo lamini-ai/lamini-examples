@@ -313,7 +313,7 @@ The final step of RAG is also very straightforward.
 Execute the Runner with the new prompt.
 
 ```
-response = runner.generate(prompt)
+response = runner.generate(augmented_prompt)
 ```
 
 The response for the augmented prompt in the previous step may look like
