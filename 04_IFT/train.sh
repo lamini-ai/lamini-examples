@@ -12,6 +12,13 @@ set -Eeuoxa pipefail
 # Get the directory of this script
 LOCAL_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-PYTHONPATH="${LOCAL_DIRECTORY}/.." python3 "${LOCAL_DIRECTORY}/../generate_data.py"
-PYTHONPATH="${LOCAL_DIRECTORY}/.." python3 "${LOCAL_DIRECTORY}/../train.py"
+# Build the container
+$LOCAL_DIRECTORY/docker/scripts/build.sh
+
+docker run \
+    -v ~/.lamini:/root/.lamini \
+    -v $LOCAL_DIRECTORY/data:/app/lamini-ift/data \
+    -v $LOCAL_DIRECTORY/../03_RAG/data:/app/03_RAG/data \
+    -v $LOCAL_DIRECTORY/qa_data:/app/lamini-ift/qa_data \
+    -it lamini-ift:latest $@
 

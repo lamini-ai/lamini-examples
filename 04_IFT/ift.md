@@ -293,19 +293,19 @@ on the runner to submit the training job to Lamini.
 ```python
     from lamini import MistralRunner
 
-    llm = MistralRunner(
+    ruuner = MistralRunner(
         system_prompt=" ",
     )
 
     data = list(load_data())
 
-    llm.load_data(
+    ruuner.load_data(
         data=data,
         input_key="question",
         output_key="answer",
     )
 
-    llm.train()
+    runner.train()
 ```
 
 
@@ -319,9 +319,9 @@ Add the key to a config file ~/.lamini/configure.yaml
    ```
 
 
-Experiment with generating the output above.
+Experiment with Instruction Fine Tuning.
    ```
-   ./generate_data.sh
+   ./train.sh
    ```
 
 Explore by trying different prompts, adjusting chunk parameters, or modifying the data directory! 🚀
