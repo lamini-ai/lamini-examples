@@ -22,6 +22,7 @@ class RetrievalAugmentedRunner:
         self.step_size = step_size
         self.batch_size = batch_size
         self.system_prompt = system_prompt
+        self.query_engine = None
 
     def load_data(self, path, exclude_files=[]):
         self.loader = DirectoryLoader(
@@ -51,3 +52,16 @@ class RetrievalAugmentedRunner:
             system_prompt=self.system_prompt,
         )
         return query_engine.answer_question(query)
+
+    def query(self, query):
+        self.query_engine = QueryEngine(
+            self.index,
+            k=self.k,
+            model_name=self.model_name,
+            config=self.config,
+            system_prompt=self.system_prompt,
+        )
+        return self.query_engine.most_similar(query)
+
+    def generate(self, query):
+        return self.query_engine.generate(query)
