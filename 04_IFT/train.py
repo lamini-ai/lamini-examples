@@ -19,7 +19,7 @@ def main():
 
 
 def load_data():
-    path = "/app/lamini-ift/qa_data/generated_data_finetuning.jsonl"
+    path = "qa_data/generated_data_finetuning.jsonl"
 
     with jsonlines.open(path) as reader:
         for obj in reader:
