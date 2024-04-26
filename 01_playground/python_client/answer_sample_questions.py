@@ -1,4 +1,4 @@
-import lamini
+from lamini import Lamini
 import jsonlines
 from tqdm import tqdm
 
@@ -21,9 +21,9 @@ def answer_questions(questions):
     answers = []
 
     for question in tqdm(questions):
-        runner = lamini.MistralRunner()
+        llm = Lamini(model_name="mistralai/Mistral-7B-Instruct-v0.2")
 
-        answer = runner(question["question"])
+        answer = llm.generate(question["question"])
 
         answers.append({
             "question": question["question"],

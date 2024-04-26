@@ -34,7 +34,7 @@ export async function fetchStreamingCustom(
       question +
       `
     ### Assistant:`;
-  } else if (baseModel == "mistralai/Mistral-7B-Instruct-v0.1") {
+  } else if (baseModel == "mistralai/Mistral-7B-Instruct-v0.2") {
     finalQuestion =
       `<s>[INST {input:task_description}` +
       question +

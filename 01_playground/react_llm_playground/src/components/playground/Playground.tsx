@@ -14,7 +14,7 @@ interface PlaygroundProps {
 }
 
 const models = [
-  { name: "Mistral 7B", value: "mistralai/Mistral-7B-Instruct-v0.1" },
+  { name: "Mistral 7B", value: "mistralai/Mistral-7B-Instruct-v0.2" },
   { name: "Intel Neural Chat 7B", value: "Intel/neural-chat-7b-v3-1" },
   { name: "Meta Llama-2 7B", value: "meta-llama/Llama-2-7b-chat-hf" },
   { name: "Meta Llama-2 70B", value: "meta-llama/Llama-2-70b-chat-hf" },
