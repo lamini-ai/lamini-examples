@@ -1,4 +1,4 @@
-from lamini import MistralRunner
+from lamini import Lamini
 
 import argparse
 import random
@@ -85,7 +85,7 @@ def load_answers(path):
 
 def run_model(golden_answers, model_a_answers, model_b_answers, batch_size):
     """Run the model to compare the answers."""
-    runner = MistralRunner()
+    llm = Lamini()
 
     # Form a prompt for each pair of answers
     questions = []
@@ -109,7 +109,7 @@ def run_model(golden_answers, model_a_answers, model_b_answers, batch_size):
     total_questions = 0
 
     for question_batch in question_batches:
-        answers_batch = runner(
+        answers_batch = llm.generate(
             question_batch,
             output_type={"model_a_similarity": "int", "model_b_similarity": "int"},
         )
