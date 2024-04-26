@@ -1,8 +1,4 @@
 import asyncio
-import sys
-
-sys.path.append("../03_RAG")
-import csv
 import logging
 
 import jsonlines
@@ -15,7 +11,7 @@ from tqdm import tqdm
 logger = logging.getLogger(__name__)
 
 logging.basicConfig(
-    level=logging.WARNING,
+    level=logging.DEBUG,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 
@@ -25,10 +21,10 @@ class QuestionAnswerPipeline(GenerationPipeline):
         super(QuestionAnswerPipeline, self).__init__()
 
         self.question_generator = QuestionGenerator(
-            "mistralai/Mistral-7B-Instruct-v0.1", max_new_tokens=200
+            "mistralai/Mistral-7B-Instruct-v0.2", max_new_tokens=200
         )
         self.asnwer_generator = AnswerGenerator(
-            "mistralai/Mistral-7B-Instruct-v0.1", max_new_tokens=100
+            "mistralai/Mistral-7B-Instruct-v0.2", max_new_tokens=100
         )
 
     def forward(self, x):
@@ -45,82 +41,126 @@ class QuestionAnswerPipeline(GenerationPipeline):
 
 
 class QuestionGenerator(GenerationNode):
-    def preprocess(self, obj: PromptObject):
-        prompt = (
-            "<s>[INST] You are an expert investment analyst working at BigMoney Ventures. "
-            + "'"
-            + obj.data["text"]
-            + "'\nThe preceding single-quoted text is an excerpt describing various investments made by BigMoney Ventures. Generate three diverse questions about the investments.  Only generate questions that can be answered using information from the preceding single-quoted text.  Do not ask questions that require additional information outside of the preceding single-quoted text. [/INST]"
-        )
-        obj.prompt = prompt
 
-    def postprocess(self, result: PromptObject):
-        response = result.response
+    def preprocess(self, obj: PromptObject):
+        obj.prompt = self.make_prompt(obj)
+        logger.info(f"Generating question for {obj.data['ticker']}, {obj.data['q']}")
+
+    def postprocess(self, obj: PromptObject):
+        response = obj.response
         questions = [
             response["question_1"],
             response["question_2"],
             response["question_3"],
         ]
         for question in questions:
-            data = result.data.copy()
-            data["question"] = question
-            ans = PromptObject(prompt="", data=data)
+            ans = PromptObject(prompt=question, data=obj.data.copy())
             yield ans
+
+    def make_prompt(self, obj):
+        prompt = "<s>[INSTR]You are a financial analyst with extensive experience at Goldman Sachs."
+        prompt += "You are reading the earnings call transcript for the following company:\n\n"
+        prompt += "====================\n\n"
+        prompt += get_company_info(obj) + "\n"
+        prompt += "====================\n\n"
+        prompt += (
+            "You are reading the following section of the earnings call transcript:\n\n"
+        )
+        prompt += "====================\n\n"
+        prompt += obj.data["transcript"]
+        prompt += "====================\n\n"
+        prompt += "Consider the numbers in the transscript. "
+        prompt += "Ask three questions about the numbers in the transcript that require precise answers. "
+        prompt += "Only ask questions that can be answered using the transcript."
+        prompt += "[/INSTR]"
+
+        return prompt
 
 
 class AnswerGenerator(GenerationNode):
+
+    def postprocess(self, obj: PromptObject):
+        logger.info(f"Generated answer for {obj}")
+
     def preprocess(self, obj: PromptObject):
-        prompt = f"""<s>[INST] You are an expert in the field of investments. '{obj.data["text"]}' The preceding single-quoted text is an excerpt describing various investment made by BigMoney Ventures.  Answer the following question using information from the single-quoted text.  If you cannot answer the question using only the single-quoted text, respond only with the statement: \"I don't know.\" {obj.data["question"]}[/INST]"""
-        obj.prompt = prompt
+        obj.data["question"] = obj.prompt
+        obj.prompt = self.make_prompt(obj)
 
-
-def get_prompt_generator(loader):
-    for example in loader:
-        for chunk in example:
-            yield PromptObject("", data={"text": chunk})
-
-
-async def save_predictions(results):
-    # Save the questions, answers, and data in a csv file (logging)
-    csv_file = open("qa_data/generated_data.csv", "w")
-    writer = csv.writer(csv_file)
-    writer.writerow(["Data", "Questions", "Answers"])
-
-    # And finally, save the format that will actually be submitted to the model for finetuning
-    training_file = jsonlines.open("qa_data/generated_data_finetuning.jsonl", "w")
-    pbar = tqdm(desc="Saving predictions", unit=" predictions")
-    async for obj in results:
-        writer.writerow(
-            [obj.data["text"], obj.data["question"], obj.response["output"]]
+    def make_prompt(self, obj: PromptObject):
+        prompt = "<s>[INSTR] You are a financial analyst with extensive experience at Goldman Sachs."
+        prompt += "You are reading the earnings call transcript for the following company:\n\n"
+        prompt += "====================\n\n"
+        prompt += get_company_info(obj)
+        prompt += "====================\n\n"
+        prompt += (
+            "You are reading the following section of the earnings call transcript:\n\n"
         )
-        training_data = {
-            "data": obj.data["text"],
-            "question": obj.data["question"],
-            "answer": obj.response["output"],
-        }
+        prompt += "====================\n\n"
+        prompt += obj.data["transcript"] + "\n"
+        prompt += "====================\n\n"
+        prompt += "Consider the numbers in the transscript. "
+        prompt += "If the answer to the question cannot be found in the transcript, reply that you do not know. "
+        prompt += "Answer the following questions about the numbers in the transcript. "
+        prompt += obj.prompt
+        prompt += "[/INSTR]"
 
-        training_file.write(training_data)
-        pbar.update()
-
-    csv_file.close()
-    training_file.close()
-
-
-async def main():
-    # Load the data with the DirectoryLoader
-    loader = DirectoryLoader(
-        "../03_RAG/data",  # path to data directory
-        batch_size=512,
-        chunker=DefaultChunker(chunk_size=512, step_size=512),
-    )
-
-    # Construct a stream of Prompt Objects
-    prompts = get_prompt_generator(loader)
-
-    pipeline = QuestionAnswerPipeline()
-    results = pipeline.call(prompts)
-
-    await save_predictions(results)
+        return prompt
 
 
-asyncio.run(main())
+def chunk_prompt(obj: PromptObject):
+    transcript = obj.data["transcript"]
+    chunk_size = 4096
+    chunk_step = 2048
+
+    for i in range(0, len(transcript), chunk_step):
+        chunk = transcript[i : i + chunk_size]
+        chunked_data = obj.data.copy()
+        chunked_data["transcript"] = chunk
+        prompt_object = PromptObject(prompt=obj.prompt, data=chunked_data)
+        yield prompt_object
+
+
+def get_company_info(obj: PromptObject):
+    info = f"Ticker: {obj.data['ticker']}\n"
+    info += f"Date: {obj.data['date']}\n"
+    info += f"Quarter: {obj.data['q']}\n"
+    return info
+
+
+async def save_answers(answers):
+    path = "qa_data/generated_data_finetuning.jsonl"
+
+    with jsonlines.open(path, "w") as writer:
+        pbar = tqdm(desc="Saving answers", unit=" answers")
+        async for answer in answers:
+            answer = {
+                "ticker": answer.data["ticker"],
+                "q": answer.data["q"],
+                "date": answer.data["date"],
+                "transcript": answer.data["transcript"],
+                "prompt": answer.prompt,
+                "question": answer.data["question"],
+                "answer": answer.response["output"],
+            }
+            writer.write(answer)
+            pbar.update()
+
+
+async def load_earnings_calls():
+    path = "data/earnings_calls.jsonl"
+
+    with jsonlines.open(path) as reader:
+        for line in reader:
+            logger.info(f"Loaded earnings call for {line['ticker']}")
+            yield PromptObject(prompt="", data=line)
+
+
+async def run_pipeline():
+    earnings_calls = load_earnings_calls()
+
+    answers = QuestionAnswerPipeline().call(earnings_calls)
+
+    await save_answers(answers)
+
+
+asyncio.run(run_pipeline())
