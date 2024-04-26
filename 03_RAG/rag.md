@@ -172,12 +172,12 @@ These overlaps will give each chunk some context from its neighbors and improve 
  "023"]
 ```
 
-You can view the chunks by outputting the llm.loader using the tqdm code after calling `llm.save_index`.
+You can view the chunks by outputting the rag.loader using the tqdm code after calling `rag.index.save_index`.
 
 ```
 from tqdm import tqdm
 
-for split_batch in tqdm(llm.loader):
+for split_batch in tqdm(rag.loader):
     logger.info(split_batch)
 ```
 
@@ -201,7 +201,7 @@ the query embedding and each of the embedding vectors from the list could be use
 determine the distance in the embedding space.  An optimized library like FAISS can improve
 upon this simple index by compressing it.
 
-In Lamini, `llm.train()` performs all tasks above and saves the index to the local machine.
+In Lamini, `rag.train()` performs all tasks above and saves the index to the local machine.
 
 > For those interested, Lamini builds an [faiss.IndexFlatL2](https://github.com/facebookresearch/faiss) index, a
 simple and fast index for similarity search based on Euclidean distance.
@@ -251,7 +251,7 @@ Lamini performs a similarity search using embeddings of the question
 against all chunk embeddings, with the help of the index.
 This produces a list of chunk IDs ranked by their similarity scores.
 
-Lamini's `llm.train()` also executes this step.
+Lamini's `rag.train()` also executes this step.
 
 By default, the search returns the top 5 IDs.  You can override this
 default value by specifying `k` in the `RetrievalAugmentedRunner` config.

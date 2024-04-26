@@ -98,7 +98,7 @@ AI, creating engaging octopus cooking videos that can be experienced seamlessly 
 
 In this step, we use `Lamini` to generate three
 questions based on the investment data,
-which uses the Mistral Instruct model.
+which uses the model Instruct model.
 
 ```
 llm = Lamini()
