@@ -6,13 +6,12 @@ from query_engine import QueryEngine
 class RetrievalAugmentedRunner:
     def __init__(
         self,
-        model_name="mistralai/Mistral-7B-Instruct-v0.1",
+        model_name="mistralai/Mistral-7B-Instruct-v0.2",
         config={},
         k=5,
         chunk_size=512,
         step_size=128,
         batch_size=512,
-        system_prompt=None,
     ):
         self.config = config
         self.model_name = model_name
@@ -21,7 +20,6 @@ class RetrievalAugmentedRunner:
         self.chunk_size = chunk_size
         self.step_size = step_size
         self.batch_size = batch_size
-        self.system_prompt = system_prompt
         self.query_engine = None
 
     def load_data(self, path, exclude_files=[]):
@@ -49,7 +47,6 @@ class RetrievalAugmentedRunner:
             k=self.k,
             model_name=self.model_name,
             config=self.config,
-            system_prompt=self.system_prompt,
         )
         return query_engine.answer_question(query)
 
@@ -59,7 +56,6 @@ class RetrievalAugmentedRunner:
             k=self.k,
             model_name=self.model_name,
             config=self.config,
-            system_prompt=self.system_prompt,
         )
         return self.query_engine.most_similar(query)
 

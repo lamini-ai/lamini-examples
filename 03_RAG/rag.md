@@ -28,19 +28,19 @@ for more accurate responses without modifying the
 underlying model itself :smiley: :thumbsup:.
 
 ## High Level Overview
-Lamini's `RetrievalAugmentedRunner` allows you to run RAG with just a few lines of code,
+Lamini LLM runner allows you to run RAG with just a few lines of code,
 like below.
 In the upcoming sections, we will provide a detailed  explanation of the RAG steps, delve into the code, and provide guidance on configuring RAG.
 
 ```python
 from retrieval_augmented_runner import RetrievalAugmentedRunner
 
-runner = RetrievalAugmentedRunner(chunk_size=512, step_size=256)
-runner.load_data("data")
-runner.train()
+rag = RetrievalAugmentedRunner(chunk_size=512, step_size=256)
+rag.load_data("data")
+rag.train()
 prompt = "Have we invested in any generative AI companies in 2023?"
 augmented_prompt = "\n".join(reversed(most_similar)) + "\n\n" + prompt
-response = runner.generate(augmented_prompt)
+response = rag.generate(augmented_prompt)
 print(response)
 ```
 ### How RAG works:
@@ -74,8 +74,8 @@ To facilitate efficient processing in later stages, the initial step is to load 
 then breaks the file contents into chunks based the optional arguments `chunk_size` and `step_size`.
 
 ```python
-runner = RetrievalAugmentedRunner(chunk_size=512, step_size=512)
-runner.load_data("path/to/knowledge_directory")
+rag = RetrievalAugmentedRunner(chunk_size=512, step_size=512)
+reg.load_data("path/to/knowledge_directory")
 ```
 
 * `chunk_size`
@@ -92,7 +92,7 @@ runner.load_data("path/to/knowledge_directory")
 You can optionally specify a list of file patterns to ignore with `load_data`.
 For example, the code below ignores files that end in `*.bin` and `*.exe`.
 ```python
-runner.load_data("path/to/knowledge_directory", exclude_files=["*.bin", "*.exe"])
+rag.load_data("path/to/knowledge_directory", exclude_files=["*.bin", "*.exe"])
 ```
 
 The code to load the files is very straightforward. Simply load all the files in the
@@ -172,12 +172,12 @@ These overlaps will give each chunk some context from its neighbors and improve 
  "023"]
 ```
 
-You can view the chunks by outputting the runner.loader using the tqdm code after calling `runner.save_index`.
+You can view the chunks by outputting the llm.loader using the tqdm code after calling `llm.save_index`.
 
 ```
 from tqdm import tqdm
 
-for split_batch in tqdm(runner.loader):
+for split_batch in tqdm(llm.loader):
     logger.info(split_batch)
 ```
 
@@ -201,7 +201,7 @@ the query embedding and each of the embedding vectors from the list could be use
 determine the distance in the embedding space.  An optimized library like FAISS can improve
 upon this simple index by compressing it.
 
-In Lamini, `runner.train()` performs all tasks above and saves the index to the local machine.
+In Lamini, `llm.train()` performs all tasks above and saves the index to the local machine.
 
 > For those interested, Lamini builds an [faiss.IndexFlatL2](https://github.com/facebookresearch/faiss) index, a
 simple and fast index for similarity search based on Euclidean distance.
@@ -251,13 +251,13 @@ Lamini performs a similarity search using embeddings of the question
 against all chunk embeddings, with the help of the index.
 This produces a list of chunk IDs ranked by their similarity scores.
 
-Lamini's `runner.train()` also executes this step.
+Lamini's `llm.train()` also executes this step.
 
 By default, the search returns the top 5 IDs.  You can override this
 default value by specifying `k` in the `RetrievalAugmentedRunner` config.
 
 ```python
-runner = RetrievalAugmentedRunner(
+rag = RetrievalAugmentedRunner(
       chunk_size=512,
       step_size=512,
       k=5,
@@ -303,17 +303,17 @@ List the worst rated projects that my company launched in 2023.
 
 The code below takes `prompt`, the original prompt as import and creates the augmented prompt.
 ```
-most_similar = runner.query(prompt)
+most_similar = rag.query(prompt)
 augmented_prompt = "\n".join(reversed(most_similar)) + "\n\n" + prompt
 ```
 
 ## Step 3: Generation
 
 The final step of RAG is also very straightforward.
-Execute the Runner with the new prompt.
+Execute the `rag` with the new prompt.
 
 ```
-response = runner.generate(augmented_prompt)
+response = rag.generate(augmented_prompt)
 ```
 
 The response for the augmented prompt in the previous step may look like

@@ -1,6 +1,6 @@
 import logging
 
-from lamini import MistralRunner
+from lamini import Lamini
 
 logger = logging.getLogger(__name__)
 
@@ -9,14 +9,13 @@ class QueryEngine:
     def __init__(
         self,
         index,
-        model_name="mistralai/Mistral-7B-Instruct-v0.1",
+        model_name="mistralai/Mistral-7B-Instruct-v0.2",
         config={},
-        k=5,
-        system_prompt=None,
+        k=5
     ):
         self.index = index
-        self.model = MistralRunner(
-            model_name=model_name, config=config, system_prompt=system_prompt
+        self.model = Lamini(
+            model_name=model_name, config=config
         )
         self.k = k
 
@@ -44,4 +43,4 @@ class QueryEngine:
         return self.index.query(question, k=self.k)
 
     def generate(self, prompt):
-        return self.model(prompt)
+        return self.model.generate(prompt)

@@ -452,20 +452,20 @@ based on what the model does.  Try to iterate as quickly as possible.
 ### Model Runners
 
 We've created model runners to simplify the process of executing prompts.
-Our `MistralRunner` uses the Mistral instruct model by default and allows
+Our `Lamini` uses the Mistral instruct model by default and allows
 you to obtain the response with just a few lines of code, like below.
 
 ```python
-from lamini import MistralRunner
+from lamini import Lamini
 
-runner = MistralRunner()
+llm = Lamini()
 user_prompt = "What was the decision in Nixon v. United States?"
 sys_prompt = "You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists."
-answer = runner.call(user_prompt, system_prompt=sys_prompt)
+answer = llm.call(user_prompt, system_prompt=sys_prompt)
 print(answer)
 ```
 
-Behind the scenes, `MistralRunner` automatically wraps the user and system prompts
+Behind the scenes, `Lamini` automatically wraps the user and system prompts
 in Mistral's prompt template.
 The `system_prompt` is optional. The default system prompt is Mistral's recommended system prompt.
 
@@ -479,18 +479,18 @@ Batching involves grouping multiple input prompts together and processing them s
 batch.  This approach enhances efficiency by allowing the model to handle several prompts
 at once to optimizing resource utilization.
 
-In Lamini, the first argument to the runner can either be a single prompt string or a list of prompt strings.  When a single prompt is used, our system will run in non-batch mode and return a string output. On the other hand, when a prompt list used, the system will run in batch mode and return a list of dictionaries as output, like below.
+In Lamini, the first argument to the llm can either be a single prompt string or a list of prompt strings.  When a single prompt is used, our system will run in non-batch mode and return a string output. On the other hand, when a prompt list used, the system will run in batch mode and return a list of dictionaries as output, like below.
 
 ```python
-from lamini import MistralRunner
+from lamini import Lamini
 
-runner = MistralRunner()
+llm = Lamini()
 user_prompt = ["Is pizza nutritous?",
            "Did Richard Nixon resign?",
            "Summarize the impact of global warming.",
           ]
 sys_prompt = "Provide very short responses."
-answer = runner.call(user_prompt, system_prompt=sys_prompt)
+answer = llm.call(user_prompt, system_prompt=sys_prompt)
 print(answer)
 ```
 

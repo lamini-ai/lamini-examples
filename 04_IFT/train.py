@@ -1,29 +1,14 @@
 import jsonlines
-from lamini import MistralRunner
-
+from lamini import Lamini
 
 def main():
-    runner = MistralRunner(
-        system_prompt=" ",
-    )
-
+    llm = Lamini(model_name="mistralai/Mistral-7B-Instruct-v0.2")
     data = list(load_data())
-
-    runner.load_data(
-        data=data,
-        input_key="question",
-        output_key="answer",
-    )
-
-    runner.train()
-
+    result = llm.train(data)
 
 def load_data():
     path = "qa_data/generated_data_finetuning.jsonl"
-
     with jsonlines.open(path) as reader:
         for obj in reader:
-            yield {"question": obj["question"], "answer": obj["answer"] + "</s>"}
-
-
+            yield {"input": obj["question"], "output": obj["answer"] + "</s>"}
 main()

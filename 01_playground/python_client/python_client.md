@@ -25,8 +25,8 @@ Run an LLM with a few lines of code.
 ```python
 import lamini
 
-runner = lamini.LlamaV2Runner()
-print(runner.call("How are you?"))
+llm = lamini.Lamini()
+print(llm.call("How are you?"))
 ```
 
 <details>

@@ -96,12 +96,12 @@ AI, creating engaging octopus cooking videos that can be experienced seamlessly 
 
 ## Step 2: Generate Questions
 
-In this step, we use `MistralRunner` to generate three
+In this step, we use `Lamini` to generate three
 questions based on the investment data,
 which uses the Mistral Instruct model.
 
 ```
-runner = MistralRunner()
+llm = Lamini()
 ```
 
 Next, we declare `questions_type`, a hash with
@@ -125,7 +125,7 @@ For each chunk, it generates a prompt that is the concatenation the strings belo
 2. Newline (`\n`) to separate between the chunk and the next part.
 3. An instruction to generate three diverse questions about the investments made by BigMoney Ventures based solely on the preceding single-quoted text.
 
-We then execute `runner(...)` to generate `result` of `question_type`
+We then execute `llm.generate(...)` to generate `result` of `question_type`
 based on the prompt above and the specified system prompt, where each of
 `result['question_1']`, `result['question_2']`, and `result['question_3']` will
 be a generated question.
@@ -144,7 +144,7 @@ for chunk in chunks:
     )
     system_prompt = "You are an expert investment analyst working at BigMoney Ventures."
 
-    result = runner(prompt, output_type=questions_type, system_prompt=system_prompt)
+    result = llm.generate(prompt, output_type=questions_type, system_prompt=system_prompt)
     print("1.", result['question_1'])
     print("2.", result['question_2'])
     print("3.", result['question_3'])
@@ -153,7 +153,7 @@ for chunk in chunks:
     questions.append([chunk, result['question_3']])
 ```
 
-Using the chunk containing investment data, the code passes the new prompt below to `runner`.
+Using the chunk containing investment data, the code passes the new prompt below to `llm`.
 ```
 't only to their own growth but also to the broader discourse on responsible and ethical AI deployment.
 
@@ -186,7 +186,7 @@ For each question, we create a new prompt by concatenating the following:
 5. `question[1]`, or a question generated from the previous step.
 
 
-Next, similarly to how questions are generated, we proceed with executing `runner`
+Next, similarly to how questions are generated, we proceed with executing `llm`
 to generate `answer` based on the new prompt and the specified system prompt.
 Lastly, we add the triple containing the chunk, question, and answer to `final_data_array`.  This array holds the necessary data for model training.
 
@@ -202,7 +202,7 @@ for index, question in enumerate(questions):
         + question[1]  # question about the chunk
     )
     system_prompt = "You are an expert in the field of investments."
-    answer = runner(prompt, system_prompt=system_prompt)
+    answer = llm.generate(prompt, system_prompt=system_prompt)
     print(f"---------------------Answer for question {index}---------------------")
     print(answer)
     print(f"---------------------------------------------------------------------")
@@ -287,25 +287,25 @@ Be careful to adhere to the prompt template.  Note the `</s>` at the end of the 
 that the training example has ended and the model should stop generating text after completing
 the answer.
 
-Next create a runner, e.g. MistralRunner, and add the data to it.  Finally call the `train()` method
-on the runner to submit the training job to Lamini.
+Next create a Lamini runner, e.g. llm, and add the data to it.  Finally call the `train()` method
+on the llm to submit the training job to Lamini.
 
 ```python
-    from lamini import MistralRunner
+    from lamini import Lamini
 
-    ruuner = MistralRunner(
+    llm = Lamini(
         system_prompt=" ",
     )
 
     data = list(load_data())
 
-    ruuner.load_data(
+    llm.load_data(
         data=data,
         input_key="question",
         output_key="answer",
     )
 
-    runner.train()
+    llm.train()
 ```
 
 
