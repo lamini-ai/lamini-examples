@@ -125,7 +125,7 @@ Note `max_position_embeddings` is specified as the number of tokens, not number 
 A token is a unit of text, which can be individual words, subwords, or characters.
 If you are interested in learning more about tokens, please visit the
 [Hugging Face Tokenizers tutorial](https://huggingface.co/learn/nlp-course/chapter2/4?fw=pt).
-For example, this [config](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1/blob/main/config.json#L11) shows `max_position_embeddings = 32768` (tokens) for the Mistral-7B-Instruct-v0.1 model.
+For example, this [config](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2/blob/main/config.json#L12) shows `max_position_embeddings = 32768` (tokens) for the Mistral-7B-Instruct-v0.2 model.
 
 ### 4. Retrieval Augmented Data
 
@@ -203,7 +203,7 @@ Here are some examples of system prompts.
 * `You are a patient and helpful customer service agent. Help the user troubleshoot.`
 
 
-On the other hand, the Mistral 7B model does not distinguish between user and system prompts in the template. So you can replace `{prompt}` with the concatenation of the system prompt and the user prompt.
+For example, the Mistral 7B model does not distinguish between user and system prompts in the template. So you can replace `{prompt}` with the concatenation of the system prompt and the user prompt.
 ```
 [INST] {prompt} [/INST]
 ```
@@ -211,9 +211,9 @@ On the other hand, the Mistral 7B model does not distinguish between user and sy
 To find the prompt template for each model, you can refer to the model's documentation.
 It is crucial to insert the five prompt components we previously discussed into the
 appropriate sections of the prompt template.
-For example, for Llama 2, we would replace `{system_prompt}` with the task description
+For example, for Llama 3, we would replace `{system_prompt}` with the task description
 and task parameters, and replace `{user_prompt}` with the rest of the components.
-For Mistral, all five prompt components would be placed in `{prompt}`.
+For another example, for Mistral, all five prompt components would be placed in `{prompt}`.
 
 
 _Coming soon: examples showing what happens if you don't use a template_
@@ -451,8 +451,8 @@ based on what the model does.  Try to iterate as quickly as possible.
 
 ### Model Runners
 
-We've created model runners to simplify the process of executing prompts.
-Our `Lamini` uses the Mistral instruct model by default and allows
+We've created model runner, llm, to simplify the process of executing prompts.
+Our `Lamini` uses the latest available instruct model by default and allows
 you to obtain the response with just a few lines of code, like below.
 
 ```python
@@ -466,8 +466,8 @@ print(answer)
 ```
 
 Behind the scenes, `Lamini` automatically wraps the user and system prompts
-in Mistral's prompt template.
-The `system_prompt` is optional. The default system prompt is Mistral's recommended system prompt.
+in model prompt template.
+The `system_prompt` is optional. The default system prompt is model's recommended system prompt.
 
 ```
 Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.
@@ -490,7 +490,7 @@ user_prompt = ["Is pizza nutritous?",
            "Summarize the impact of global warming.",
           ]
 sys_prompt = "Provide very short responses."
-answer = llm.call(user_prompt, system_prompt=sys_prompt)
+answer = llm.generate(user_prompt, system_prompt=sys_prompt)
 print(answer)
 ```
 

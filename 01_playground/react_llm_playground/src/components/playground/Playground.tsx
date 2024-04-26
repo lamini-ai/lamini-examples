@@ -14,10 +14,12 @@ interface PlaygroundProps {
 }
 
 const models = [
+  { name: "Llama 3", value: "meta-llama/Meta-Llama-3-8B-Instruct" },
   { name: "Mistral 7B", value: "mistralai/Mistral-7B-Instruct-v0.2" },
-  { name: "Intel Neural Chat 7B", value: "Intel/neural-chat-7b-v3-1" },
-  { name: "Meta Llama-2 7B", value: "meta-llama/Llama-2-7b-chat-hf" },
-  { name: "Meta Llama-2 70B", value: "meta-llama/Llama-2-70b-chat-hf" },
+  { name: "Phi 3", value: "microsoft/Phi-3-mini-4k-instruct" },
+  //  { name: "Intel Neural Chat 7B", value: "Intel/neural-chat-7b-v3-1" },
+//  { name: "Meta Llama-2 7B", value: "meta-llama/Llama-2-7b-chat-hf" },
+//  { name: "Meta Llama-2 70B", value: "meta-llama/Llama-2-70b-chat-hf" },
   // { name: "test model", value: "hf-internal-testing/tiny-random-gpt2" },
   // Add more models as needed - if you add a new model, make sure to add it to the FetchQuestionAnswer.ts file as well
 ];

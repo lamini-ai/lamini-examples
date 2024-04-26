@@ -19,7 +19,7 @@ Add the key to a config file:
         "<YOUR-SLACK-CHANNEL-ID>": {
             "_channel_name": "#stream-greg",
             "token": "<YOUR-LAMINI-API-KEY>",
-            "model_names": ["mistralai/Mistral-7B-Instruct-v0.1"]
+            "model_names": ["mistralai/Mistral-7B-Instruct-v0.2"]
         }
     }
 }
