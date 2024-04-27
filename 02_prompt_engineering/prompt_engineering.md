@@ -183,11 +183,11 @@ A prompt template is like a standardized format for asking questions or providin
 
 WARNING.  Models are trained to assume specifc prompt template syntax.  If you forget the prompt template, it will make the model's answers much lower quality.
 
-For example, Llama 2 usees the following template,
+For example, Llama 3 usees the following template,
 where we replace `{system_prompt}` with the system prompt and
 `{user_prompt}` with the user prompt:
 ```
-<s>[INST] <<SYS>>\n{system_prompt}\n<</SYS>>\n\n{user_prompt} [/INST]
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{user}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n
 ```
 
 A query such as `"Conduct a succinct analysis of the legal case United States v. Elizabeth Holmes, focusing on wire fraud charges."` represents a user prompt,
@@ -455,22 +455,38 @@ We've created model runner, llm, to simplify the process of executing prompts.
 Our `Lamini` uses the latest available instruct model by default and allows
 you to obtain the response with just a few lines of code, like below.
 
-```python
+```
 from lamini import Lamini
 
 llm = Lamini()
-user_prompt = "What was the decision in Nixon v. United States?"
-sys_prompt = "You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists."
-answer = llm.call(user_prompt, system_prompt=sys_prompt)
+prompt = "<s>[INSTR]"
+prompt += "You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists.\n"
+prompt += "What was the decision in Nixon v. United States?\n"
+prompt += "[/INSTR]"
+answer = llm.generate(prompt)
 print(answer)
 ```
 
 Behind the scenes, `Lamini` automatically wraps the user and system prompts
-in model prompt template.
-The `system_prompt` is optional. The default system prompt is model's recommended system prompt.
+in model prompt template. The default system prompt is model's recommended system prompt.
 
 ```
 Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.
+```
+
+Llama 3 example:
+
+```
+from lamini import Lamini
+
+llm = Lamini(model_name=)
+prompt = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
+prompt += "You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists.\n"
+prompt = "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
+prompt += "What was the decision in Nixon v. United States?\n"
+prompt += "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+answer = llm.generate(prompt)
+print(answer)
 ```
 
 ### Batching Prompts
@@ -485,12 +501,13 @@ In Lamini, the first argument to the llm can either be a single prompt string or
 from lamini import Lamini
 
 llm = Lamini()
-user_prompt = ["Is pizza nutritous?",
-           "Did Richard Nixon resign?",
-           "Summarize the impact of global warming.",
-          ]
-sys_prompt = "Provide very short responses."
-answer = llm.generate(user_prompt, system_prompt=sys_prompt)
+prompt = "<s>[INSTR]"
+prompt += "Provide very short responses.\n"
+prompt += "Is pizza nutritous?\n"
+prompt += "Did Richard Nixon resign?\n"
+prompt += "Summarize the impact of global warming.\n"
+prompt += "[/INSTR]"
+answer = llm.generate(prompt)
 print(answer)
 ```
 
