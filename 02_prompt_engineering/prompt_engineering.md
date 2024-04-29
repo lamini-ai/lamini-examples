@@ -479,7 +479,7 @@ Llama 3 example:
 ```
 from lamini import Lamini
 
-llm = Lamini(model_name=)
+llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
 prompt = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
 prompt += "You are a panelist on a legal ethics symposium. Aim to provide a comprehensive analysis suitable for an audience of legal professionals and ethicists.\n"
 prompt = "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
