@@ -26,7 +26,7 @@ Run an LLM with a few lines of code.
 import lamini
 
 llm = lamini.Lamini()
-print(llm.call("How are you?"))
+print(llm.generate("How are you?"))
 ```
 
 <details>
