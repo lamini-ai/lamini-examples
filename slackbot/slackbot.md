@@ -8,7 +8,7 @@ It is straightforward to call a LLM from Slack using Lamini.
 
 First, get `<YOUR-LAMINI-API-KEY>` at [https://app.lamini.ai/account](https://app.lamini.ai/account).
 
-Add the key to a config file:
+Add the key to a config file (`slack/config.json`):
 
 ```json
 {
@@ -17,7 +17,7 @@ Add the key to a config file:
     "SLACK_APP_TOKEN": "xapp-<YOUR SLACK APP TOKEN>",
     "channel_token_mappings": {
         "<YOUR-SLACK-CHANNEL-ID>": {
-            "_channel_name": "#stream-greg",
+            "_channel_name": "#channel-name",
             "token": "<YOUR-LAMINI-API-KEY>",
             "model_names": ["mistralai/Mistral-7B-Instruct-v0.2"]
         }
@@ -30,8 +30,7 @@ Add the key to a config file:
 Start the slack bot.
 
 ```bash
-cd 01_playground/slackbot
-./bot-up.sh
+./slackbot/bot-up.sh
 ```
 
 Now mention your slackbot in a conversation.
@@ -45,7 +44,7 @@ Edit the prompt in the [app](slack/app.py#L209C1-L220C1)
 </div>
 <div align="center">
 
-![GitHub forks](https://img.shields.io/github/forks/lamini-ai/lamini-sdk) &ensp; © Lamini. &ensp; ![GitHub stars](https://img.shields.io/github/stars/lamini-ai/lamini-sdk) 
+![GitHub forks](https://img.shields.io/github/forks/lamini-ai/lamini-sdk) &ensp; © Lamini. &ensp; ![GitHub stars](https://img.shields.io/github/stars/lamini-ai/lamini-sdk)
 
 </div>
 
