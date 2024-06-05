@@ -21,10 +21,7 @@ These examples show effective tools for building LLMs. We strongly encourage fol
 5. [JSON](05_json/json.md) - extract structured output from an LLM, following a guaranteed JSON schema.
 6. [Evaluation](06_eval) - evaluate the quality of your LLM.
 7. [Classify](07_classify/classify.md) - classify data using an LLM, e.g. to filter out low quality training data
-8. [Domain Adaptation](#) - continue training your LLM using a large amount of new data. COMING SOON.
-9. [Pretraining](#) - Train an LLM from scratch.  Make sure you have 1,000s of GPUs allocated. COMING SOON.
-
-[Slackbot](slackbot/slackbot.md) - learn how to create a Slack bot that calls an LLM.
+8. [Slackbot](slackbot/slackbot.md) - learn how to create a Slack bot that calls an LLM.
 
 ### Notes
 
