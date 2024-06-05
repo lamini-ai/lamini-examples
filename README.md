@@ -22,7 +22,7 @@ In this repo, we include tutorials for achieving high-quality results with Langu
 
 ### Notes
 
-The goal of this repo is to teach and provide examples of important tools for building LLMs.</br>  The examples emphasize simplicitly and readibility, not heavy optimization.</br>  Once you have mastered a module from this repo, consider forking it and adapting it to your own application.</br>  All of the code in this repository is licensed Apache 2. You are free to use it for any purpose including commercial applications.
+The goal of this repo is to teach and provide examples of important tools for building LLMs; the examples emphasize simplicitly and readibility, not heavy optimization.</br>  Once you have mastered a module from this repo, consider forking it and adapting it to your own application.</br>  All of the code in this repository is licensed Apache 2. You are free to use it for any purpose including commercial applications.
 
 ### Installation Instructions
 
