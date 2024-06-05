@@ -6,9 +6,9 @@
 [![Latest Release](https://img.shields.io/badge/Latest%20Version-1.4.3-blue?logo=github)](https://github.com/lamini-ai/lamini-sdk/commits/main)
 [![GitHub License](https://img.shields.io/github/license/lamini-ai/lamini)](https://github.com/lamini-ai/lamini-sdk/blob/main/LICENSE)</div>
 
-## Lamini SDK
+## Lamini Examples
 
-In this SDK, we include tutorials for achieving high-quality results with Language Models (LLMs) using Lamini.</br>  With Lamini, you own the LLM you create -- you can deploy it or release it open source.</br>  This SDK teaches effective tools for building LLMs.</br>  We strongly encourage following the SDK *in order* as the concepts build on each other and are sorted by difficulty.
+In this repo, we include tutorials for achieving high-quality results with Language Models (LLMs) using Lamini.</br>  With Lamini, you own the LLM you create -- you can deploy it or release it open source.</br>  These examples show effective tools for building LLMs.</br>  We strongly encourage following the examples *in order* as the concepts build on each other and are sorted by difficulty.
 
 1. [Playground](01_playground/playground.md) - learn how to create a chat app that calls an LLM.  We include examples using slack, python, and react.
 2. [Prompt Engineering](02_prompt_engineering/prompt_engineering.md) - crafting and refining input queries or instructions to achieve desired responses from language models.
@@ -22,7 +22,7 @@ In this SDK, we include tutorials for achieving high-quality results with Langua
 
 ### Notes
 
-The goal of this SDK is to teach and provide examples of important tools for building LLMs.</br>  The examples emphasize simplicitly and readibility, not heavy optimization.</br>  Once you have mastered a module from this SDK, consider forking it and adapting it to your own application.</br>  All of the code in this repository is licensed Apache 2. You are free to use it for any purpose including commercial applications.
+The goal of this repo is to teach and provide examples of important tools for building LLMs.</br>  The examples emphasize simplicitly and readibility, not heavy optimization.</br>  Once you have mastered a module from this repo, consider forking it and adapting it to your own application.</br>  All of the code in this repository is licensed Apache 2. You are free to use it for any purpose including commercial applications.
 
 ### Installation Instructions
 
@@ -41,7 +41,7 @@ pip install --upgrade lamini
 
 ### GitHub Repository
 ---
-The source code for SDK can be found on GitHub at [lamini-ai/lamini-sdk](https://github.com/lamini-ai/lamini-sdk). Feel free to explore and contribute!
+The source code for this repo can be found on GitHub at [lamini-ai/lamini-sdk](https://github.com/lamini-ai/lamini-sdk). Feel free to explore and contribute!
 
 ### About Lamini
 ---
@@ -52,7 +52,7 @@ Lamini is the LLM platform for developers to specialize LLMs on their own data a
 </div>
 <div align="center">
 
-![GitHub forks](https://img.shields.io/github/forks/lamini-ai/lamini-sdk) &ensp; © Lamini &ensp; ![GitHub stars](https://img.shields.io/github/stars/lamini-ai/lamini-sdk) 
+![GitHub forks](https://img.shields.io/github/forks/lamini-ai/lamini-sdk) &ensp; © Lamini &ensp; ![GitHub stars](https://img.shields.io/github/stars/lamini-ai/lamini-sdk)
 
 </div>
 
