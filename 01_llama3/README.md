@@ -16,7 +16,7 @@ pip install lamini
 
 Run Llama3 with a few lines of code.
 
-https://github.com/lamini-ai/lamini-sdk/tree/main/01_llama3/llama3.py?plain=1
+https://github.com/lamini-ai/lamini-sdk/blob/main/01_llama3/llama3.py?plain=1
 
 You can run this script using up a clean environment in Docker:
 
