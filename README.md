@@ -8,6 +8,8 @@
 
 ## Lamini Examples
 
+*Note that this repo is currently being re-worked. Please excuse our appearance as we improve our docs and examples!*
+
 In this repo, we include tutorials for achieving high-quality results with Language Models (LLMs) using Lamini.</br>  With Lamini, you own the LLM you create -- you can deploy it or release it open source.</br>  These examples show effective tools for building LLMs.</br>  We strongly encourage following the examples *in order* as the concepts build on each other and are sorted by difficulty.
 
 1. [Playground](01_playground/playground.md) - learn how to create a chat app that calls an LLM.  We include examples using slack, python, and react.
