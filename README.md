@@ -13,12 +13,14 @@ In this repo, we include tutorials for achieving high-quality results with Langu
 These examples show effective tools for building LLMs. We strongly encourage following the examples *in order* as the concepts build on each other and are sorted by difficulty.
 
 1. [Llama3](01_llama3/README.md) - generate text with Llama3, a powerful LLM.
-2. [Evaluation](02_eval) - evaluate the quality of your LLM.
+2. [Evaluation](02_eval/README.md) - evaluate the quality of your LLM.
+3. [Prompt Tuning](03_prompt_tuning/README.md) - improve the quality of your LLM by tuning the prompts you use.
+4. [RAG Tuning](04_rag_tuning/README.md) - Retrieval Augmented Generation (RAG), improve the quality of your LLM by tuning the retrieval component.
+5. [Data Pipeline](05_data_pipeline/README.md) - prepare your data for training an LLM.
+6. [Instruction Fine Tuning (IFT)](06_fine_tuning/README.md) - instruction fine tune an LLM on your data.
+7. [Memory Tuning](LINK TO BLOGPOST) - embed facts into an LLM and improve factual accuracy on your data.
 
 
-2. [Prompt Engineering](02_prompt_engineering/prompt_engineering.md) - crafting and refining input queries or instructions to achieve desired responses from language models.
-3. [Retrieval Augmented Generation (RAG)](03_RAG/rag.md) - combining information retrieval with text generation to improve language models.
-4. [Instruction Fine Tuning (IFT)](04_IFT/ift.md) - train your LLM using data in a question and answer format.
 5. [JSON](05_json/json.md) - extract structured output from an LLM, following a guaranteed JSON schema.
 7. [Classify](07_classify/classify.md) - classify data using an LLM, e.g. to filter out low quality training data
 8. [Slackbot](slackbot/slackbot.md) - learn how to create a Slack bot that calls an LLM.
