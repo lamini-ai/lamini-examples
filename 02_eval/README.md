@@ -28,6 +28,9 @@ Run on the example test set using Docker:
 ./scripts/eval.sh
 ```
 
+You can view the detailed results at `data/results/earnings_meta-llama_Meta-Llama-3-8B-Instruct_results.json`!
+
+
 ## Standard metrics
 
 The [HELM LLM benchmark](https://crfm.stanford.edu/helm/) is a popular benchmark for evaluating the performance of large language models (LLMs) in natural language processing tasks. It's a suite of tests that assess the language understanding and generation capabilities of a model.

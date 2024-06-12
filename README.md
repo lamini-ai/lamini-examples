@@ -8,18 +8,18 @@
 
 ## Lamini Examples
 
-*Note that this repo is currently being re-worked. Please excuse our appearance as we improve our docs and examples!*
-
 In this repo, we include tutorials for achieving high-quality results with Language Models (LLMs), like Llama3, using Lamini. With Lamini, you own the LLM you create -- you can deploy it or release it open source.
 
 These examples show effective tools for building LLMs. We strongly encourage following the examples *in order* as the concepts build on each other and are sorted by difficulty.
 
 1. [Llama3](01_llama3/README.md) - generate text with Llama3, a powerful LLM.
+2. [Evaluation](02_eval) - evaluate the quality of your LLM.
+
+
 2. [Prompt Engineering](02_prompt_engineering/prompt_engineering.md) - crafting and refining input queries or instructions to achieve desired responses from language models.
 3. [Retrieval Augmented Generation (RAG)](03_RAG/rag.md) - combining information retrieval with text generation to improve language models.
 4. [Instruction Fine Tuning (IFT)](04_IFT/ift.md) - train your LLM using data in a question and answer format.
 5. [JSON](05_json/json.md) - extract structured output from an LLM, following a guaranteed JSON schema.
-6. [Evaluation](06_eval) - evaluate the quality of your LLM.
 7. [Classify](07_classify/classify.md) - classify data using an LLM, e.g. to filter out low quality training data
 8. [Slackbot](slackbot/slackbot.md) - learn how to create a Slack bot that calls an LLM.
 

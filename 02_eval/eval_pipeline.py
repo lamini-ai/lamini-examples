@@ -80,7 +80,7 @@ class ModifyStage(ModifyNode):
                 logging.error(
                     f"Error evaluating example {result.data.get_id()}: {result.error}"
                 )
-                result.response = example.get_default_response()
+                result.response = result.error
 
             result.data.response = result.response
 
