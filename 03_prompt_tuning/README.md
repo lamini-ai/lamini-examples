@@ -35,7 +35,7 @@ def get_company_info(example):
 
     return prompt
 ```
-For example, try changing `"You are an expert analyst from Goldman Sachs with 15 years of experience."` to `"You are an 5th grader working on a school project."` and see what happens!
+For example, try changing `"You are an expert analyst from Goldman Sachs with 15 years of experience."` to `"You are an influencer who loves emojis."` and see what happens!
 
 # Guidelines
 
