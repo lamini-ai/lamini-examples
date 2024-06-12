@@ -12,6 +12,8 @@ Run Llama 3 on a few example questions:
 ./scripts/prompt_tune.sh
 ```
 
+You can view the results in [data/results/spot_check_results.jsonl](data/results/spot_check_results.jsonl).
+
 # Editing the prompt
 
 Quicky iterate on different prompts by editing the [Prompt code](spot_check.py#L94), and running the spot check.
