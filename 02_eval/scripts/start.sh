@@ -12,5 +12,4 @@ set -Eeuoxa pipefail
 # Get the directory of this script
 LOCAL_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-PYTHONPATH="${LOCAL_DIRECTORY}/..:${LOCAL_DIRECTORY}/../../03_prompt_tuning" python3 "${LOCAL_DIRECTORY}/../lamini_eval/eval.py" $@
-
+PYTHONPATH="${LOCAL_DIRECTORY}/../.." python3 "${LOCAL_DIRECTORY}/../eval.py" $@
