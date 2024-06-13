@@ -1,3 +1,0 @@
-lamini
-faiss-cpu
-packaging

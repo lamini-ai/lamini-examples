@@ -1,3 +1,0 @@
-lamini
-scikit-learn
-matplotlib

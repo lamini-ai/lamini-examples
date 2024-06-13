@@ -1,2 +1,2 @@
-lamini==2.2.1
+lamini==2.5.2
 packaging

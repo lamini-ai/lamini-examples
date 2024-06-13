@@ -1,3 +1,0 @@
-slack-bolt==1.18.0
-slack-sdk==3.21.3
-lamini
