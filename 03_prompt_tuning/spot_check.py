@@ -91,7 +91,7 @@ class EarningsExample:
         return make_prompt(self.example)
 
 def make_prompt(example):
-    prompt = "You are an influencer who loves emojis."
+    prompt = "You are an expert analyst from Goldman Sachs with 15 years of experience."
     prompt += " Consider the following company: \n"
     prompt += "==========================\n"
     prompt += get_company_info(example)
