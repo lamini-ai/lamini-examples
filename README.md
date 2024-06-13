@@ -22,7 +22,7 @@ These examples show effective tools for building LLMs. We strongly encourage fol
 
 Extra Examples:
 - [JSON Output](10_json_output/README.md) - Extract structured output from an LLM, following a guaranteed JSON schema.
-- [Classify](07_classify/classify.md) - Classify data using an LLM, e.g. to filter out low quality training data
+- [Classify](11_classify/classify.md) - Classify data using an LLM, e.g. to filter out low quality training data
 - [Slackbot](12_slackbot/README.md) - Learn how to create a Slack bot that calls an LLM.
 
 ### Notes
