@@ -12,18 +12,18 @@ Run a RAG spot check:
 ./scripts/rag_tuning.sh
 ```
 
-View the results at [data/results/rag_spot_check_results.jsonl](data/results/rag_spot_check_results.jsonl).
+The RAG index will be stored in `04_rag_tuning/rag_model`.
+View the RAG results at [data/results/rag_spot_check_results.jsonl](data/results/rag_spot_check_results.jsonl).
 
 # Tune it
 Similar to prompt tuning, you can tune the RAG parameters and the surrounding prompt:
 - `k`: number of nearest neighbors
 - `n`: number of most diverse results
     - Set to be the same as `k` to return all `k` nearest neighbors
-- `batch_size`: length of each chunk returned
+- `batch_size` (needs to be changed before generating the index): length of each chunk returned
     - Smaller chunks tend to provide more accurate results but can increase computational overhead, larger chunks may improve efficiency but reduce accuracy.
 
 [lamini_rag/lamini_rag_model_stage.py#L38](lamini_rag/lamini_rag_model_stage.py#L38)
-
 ```python
     async def add_template(self, prompts):
         async for prompt in prompts:
@@ -39,6 +39,17 @@ Similar to prompt tuning, you can tune the RAG parameters and the surrounding pr
             new_prompt += "<|start_header_id|>assistant<|end_header_id|>"
 
             yield PromptObject(prompt=new_prompt, data=prompt.data)
+```
+
+[lamini_rag/earnings_call_loader.py#L5](lamini_rag/earnings_call_loader.py#L5)
+```python
+class EarningsCallLoader:
+    def __init__(self, path):
+        self.path = path
+        self.batch_size = 128
+        self.limit = 100
+        self.embedding_size=384
+        self.chunker = EarningsCallChunker()
 ```
 
 # How does it work?

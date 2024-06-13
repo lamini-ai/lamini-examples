@@ -18,7 +18,6 @@ $LOCAL_DIRECTORY/../../scripts/build.sh
 docker run -it \
     -v ~/.lamini:/root/.lamini \
     -v $LOCAL_DIRECTORY/../../data:/app/lamini-earnings-sdk/data \
-    -v $LOCAL_DIRECTORY/../../models:/app/lamini-earnings-sdk/models \
+    -v $LOCAL_DIRECTORY/../rag_model:/app/lamini-earnings-sdk/models \
     --entrypoint /app/lamini-earnings-sdk/04_rag_tuning/scripts/start.sh \
     lamini-earnings-sdk:latest $@
-

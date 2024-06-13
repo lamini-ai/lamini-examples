@@ -58,7 +58,7 @@ def parse_arguments():
     return parser.parse_args()
 
 async def build_rag_index(args):
-    model_path = "/app/lamini-earnings-sdk/models/llama3_rag"
+    model_path = "/app/lamini-earnings-sdk/models/"
 
     if os.path.exists(os.path.join(model_path, "index.faiss")):
         logger.info("Index already exists, loading it...")

@@ -15,7 +15,7 @@ class LaminiRAGModelStage(GenerationNode):
 
         self.dataset = dataset
 
-        model_path = "/app/lamini-earnings-sdk/models/llama3_rag"
+        model_path = "/app/lamini-earnings-sdk/04_rag_tuning/rag_model"
         self.index = LaminiIndex.load_index(model_path)
 
     def generate(
@@ -49,4 +49,3 @@ class LaminiRAGModelStage(GenerationNode):
             new_prompt += "<|start_header_id|>assistant<|end_header_id|>"
 
             yield PromptObject(prompt=new_prompt, data=prompt.data)
-
