@@ -10,7 +10,7 @@ It is straightforward to call powerful LLMs like Llama3 from Python using Lamini
 
 2. Add your key to `llama3.py`.
 
-https://github.com/lamini-ai/lamini-sdk/blob/4c76b3c6ff959e5914c5671c760d20a6e85f5976/01_llama3/llama3.py#L1-L6
+https://github.com/lamini-ai/lamini-sdk/blob/main/01_llama3/llama3.py#L1-L6
 
 3. Run using Docker:
 
