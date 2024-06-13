@@ -18,7 +18,7 @@ These examples show effective tools for building LLMs. We strongly encourage fol
 4. [RAG Tuning](04_rag_tuning/README.md) - Retrieval Augmented Generation (RAG), improve the quality of your LLM by tuning the retrieval component.
 5. [Data Pipeline](05_data_pipeline/README.md) - prepare your data for training an LLM.
 6. [Instruction Fine Tuning (IFT)](06_fine_tuning/README.md) - instruction fine tune an LLM on your data.
-7. [Memory Tuning](LINK TO BLOGPOST) - embed facts into an LLM and improve factual accuracy on your data.
+7. [Memory Tuning](http://www.lamini.ai/blog/lamini-memory-tuning) - embed facts into an LLM and improve factual accuracy on your data.
 
 Extra Examples:
 - [JSON Output](10_json_output/README.md) - extract structured output from an LLM, following a guaranteed JSON schema.

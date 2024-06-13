@@ -17,7 +17,7 @@ source text.
 ./scripts/generate-data.sh
 ```
 
-We are only generating QA for the first row for this example.
+We are only generating QA for the first line for this example since the transcript is massive.
 https://github.com/lamini-ai/sdk/blob/ez-merge-earnings/05_data_pipeline/generate_data.py#L35
 
 ```json
