@@ -12,18 +12,18 @@ In this repo, we include tutorials for achieving high-quality results with Langu
 
 These examples show effective tools for building LLMs. We strongly encourage following the examples *in order* as the concepts build on each other and are sorted by difficulty.
 
-1. [Llama3](01_llama3/README.md) - generate text with Llama3, a powerful LLM.
-2. [Evaluation](02_eval/README.md) - evaluate the quality of your LLM.
-3. [Prompt Tuning](03_prompt_tuning/README.md) - improve the quality of your LLM by tuning the prompts you use.
+1. [Llama3](01_llama3/README.md) - Generate text with Llama3, a powerful LLM.
+2. [Evaluation](02_eval/README.md) - Evaluate the quality of your LLM.
+3. [Prompt Tuning](03_prompt_tuning/README.md) - Improve the quality of your LLM by tuning the prompts you use.
 4. [RAG Tuning](04_rag_tuning/README.md) - Retrieval Augmented Generation (RAG), improve the quality of your LLM by tuning the retrieval component.
-5. [Data Pipeline](05_data_pipeline/README.md) - prepare your data for training an LLM.
-6. [Instruction Fine Tuning (IFT)](06_fine_tuning/README.md) - instruction fine tune an LLM on your data.
-7. [Memory Tuning](http://www.lamini.ai/blog/lamini-memory-tuning) - embed facts into an LLM and improve factual accuracy on your data.
+5. [Data Pipeline](05_data_pipeline/README.md) - Prepare your data for training an LLM.
+6. [Instruction Fine Tuning (IFT)](06_ift/README.md) - Instruction fine tune an LLM on your data.
+7. [Memory Tuning](http://www.lamini.ai/blog/lamini-memory-tuning) - Embed facts into an LLM and improve factual accuracy on your data.
 
 Extra Examples:
-- [JSON Output](10_json_output/README.md) - extract structured output from an LLM, following a guaranteed JSON schema.
-- [Classify](07_classify/classify.md) - classify data using an LLM, e.g. to filter out low quality training data
-- [Slackbot](12_slackbot/README.md) - learn how to create a Slack bot that calls an LLM.
+- [JSON Output](10_json_output/README.md) - Extract structured output from an LLM, following a guaranteed JSON schema.
+- [Classify](07_classify/classify.md) - Classify data using an LLM, e.g. to filter out low quality training data
+- [Slackbot](12_slackbot/README.md) - Learn how to create a Slack bot that calls an LLM.
 
 ### Notes
 

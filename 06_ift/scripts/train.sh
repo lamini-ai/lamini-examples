@@ -13,12 +13,10 @@ set -Eeuoxa pipefail
 LOCAL_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # Build the container
-$LOCAL_DIRECTORY/scripts/build.sh
+$LOCAL_DIRECTORY/../../scripts/build.sh
 
-docker run \
+docker run -it \
     -v ~/.lamini:/root/.lamini \
-    -v $LOCAL_DIRECTORY/../data:/app/lamini-eval/data \
-    -it lamini-eval:latest $@
-
-
-
+    -v $LOCAL_DIRECTORY/../../data:/app/lamini-earnings-sdk/data \
+    --entrypoint /app/lamini-earnings-sdk/06_ift/scripts/start.sh \
+    lamini-earnings-sdk:latest $@
