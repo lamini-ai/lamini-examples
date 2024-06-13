@@ -21,9 +21,9 @@ These examples show effective tools for building LLMs. We strongly encourage fol
 7. [Memory Tuning](LINK TO BLOGPOST) - embed facts into an LLM and improve factual accuracy on your data.
 
 Extra Examples:
-- [JSON Output](json_output/README.md) - extract structured output from an LLM, following a guaranteed JSON schema.
+- [JSON Output](10_json_output/README.md) - extract structured output from an LLM, following a guaranteed JSON schema.
 - [Classify](07_classify/classify.md) - classify data using an LLM, e.g. to filter out low quality training data
-- [Slackbot](slackbot/README.md) - learn how to create a Slack bot that calls an LLM.
+- [Slackbot](12_slackbot/README.md) - learn how to create a Slack bot that calls an LLM.
 
 ### Notes
 
