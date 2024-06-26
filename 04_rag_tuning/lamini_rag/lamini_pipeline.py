@@ -10,7 +10,7 @@ class DatasetDescriptor:
 
 
 class SpotCheckPipeline(GenerationPipeline):
-    def __init__(self, dataset):
+    def __init__(self, dataset: DatasetDescriptor):
         super().__init__()
         self.embedding_stage = LaminiEmbeddingModelStage(dataset)
         self.model_stage = LaminiRAGModelStage(dataset)
