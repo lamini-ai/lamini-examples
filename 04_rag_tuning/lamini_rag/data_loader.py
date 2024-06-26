@@ -1,6 +1,7 @@
 from typing import List, Tuple
 import jsonlines
 
+from lamini_rag.data_chunker import BaseDataChunker
 
 class DataLoader:
     """ 
@@ -51,7 +52,7 @@ class DataLoader:
         self.path = path
         self.batch_size = batch_size
         self.limit = limit
-        self.chunker = chunker()
+        self.chunker = chunker
         if loader_keys:
             self.loader_keys = loader_keys
         else:

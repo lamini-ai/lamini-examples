@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import Tuple, Generator
 
 class BaseDataChunker:
     """ 
@@ -53,16 +53,20 @@ class EarningsCallChunker(BaseDataChunker):
     order.
     """
 
-    def get_chunks(self, data: Tuple[str, str]) -> str:
-        """ A generator that yields return a list of strings, each a 
+    def get_chunks(self, data: Tuple[str, str]) -> Generator[str]:
+        """ A generator that yields a list of strings, each a 
         substring of the text with length self.chunk_size the last 
-        element of the list may be shorter than self.chunk_size
+        element of the list may be shorter than self.chunk_size. 
+        self.step_size is the size that the text is traversed.
 
         This function is hard coded to work with the text and ticket
         earnings call example, this can be seen in the unpacking of the
         data parameter within the for loop below. 
 
-        To customize this 
+        To customized this to your application, ensure the provided data
+        matches the tuple of data returned from the DataLoader.load function.
+        You can see in the example DataLoader using this Chunker in that
+        both text and ticker are extracted and passed to this function. 
 
         Parameters
         ----------

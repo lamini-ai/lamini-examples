@@ -1,7 +1,8 @@
 from typing import List
 
 from lamini_rag.lamini_index import LaminiIndex
-from lamini_rag.earnings_call_loader import EarningsCallLoader
+from lamini_rag.data_loader import DataLoader
+from lamini_rag.data_chunker import EarningsCallChunker
 from lamini_rag.example_prompt_formater import EarningsExample
 from lamini_rag.lamini_pipeline import SpotCheckPipeline, DatasetDescriptor
 
@@ -137,7 +138,12 @@ async def build_rag_index(args: Namespace) -> None:
 
     logger.info("Building index")
     # Build the index if it doesn't exist
-    index = LaminiIndex(loader=EarningsCallLoader(path=args.index_data))
+    index = LaminiIndex(
+        loader=DataLoader(
+            path=args.index_data,
+            chunker=EarningsCallChunker()
+            )
+        )
     await index.build_index()
 
     os.makedirs(args.rag_path, exist_ok=True)
