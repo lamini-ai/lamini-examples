@@ -2,8 +2,6 @@ from lamini.generation.base_prompt_object import PromptObject
 from lamini.generation.embedding_node import EmbeddingNode
 from lamini.generation.generation_pipeline import GenerationPipeline
 
-import lamini
-
 import asyncio
 
 from tqdm import tqdm

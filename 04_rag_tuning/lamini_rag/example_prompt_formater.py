@@ -1,3 +1,5 @@
+
+
 class EarningsExample:
     def __init__(self, example):
         self.example = example

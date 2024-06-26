@@ -1,5 +1,3 @@
-
-
 from lamini.generation.base_prompt_object import PromptObject
 from lamini.generation.embedding_node import EmbeddingNode
 
