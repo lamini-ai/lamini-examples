@@ -11,13 +11,30 @@ import json
 import os
 import numpy as np
 
+from lamini_rag.data_loader import DataLoader
+
 import logging
 
 logger = logging.getLogger(__name__)
 
 
 class LaminiIndex:
-    def __init__(self, loader=None, config={}):
+    """ 
+    This class is intended for the building and quering of a Faiss
+    vector database, with the intention of being used for RAG queries 
+    in a generation pipeline.
+        
+    Parameters
+    ----------
+    loader: DataLoader
+        Object used to handle data ingestion for building an Index
+
+    config: Dict[str, Any]
+        Configuration parameters 
+        
+    """
+
+    def __init__(self, loader: DataLoader = None, config = {}):
         self.loader = loader
         self.config = config
 
