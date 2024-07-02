@@ -1,12 +1,19 @@
 from lamini import Lamini
 
+import argparse
 import jsonlines
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Lamini training script.")
+    parser.add_argument('--dataset-path', type=str,
+                        default="data/results/generated_q_a.jsonl",
+                        help='Path to the training dataset')
+    args = parser.parse_args()
+
     llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
 
-    dataset = list(load_training_data()) * 10
+    dataset = list(load_training_data(args.dataset_path)) * 10
 
     llm.train(
         data_or_dataset_id=dataset,
@@ -18,9 +25,7 @@ def main():
     )
 
 
-def load_training_data():
-    path = "/app/lamini-earnings-sdk/data/results/generated_q_a.jsonl"
-
+def load_training_data(path: str):
     limit = 10
 
     with jsonlines.open(path) as reader:
