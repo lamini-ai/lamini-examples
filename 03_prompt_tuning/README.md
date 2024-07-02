@@ -18,25 +18,9 @@ You can view the results in [data/results/spot_check_results.jsonl](data/results
 
 Quicky iterate on different prompts by editing the [Prompt code](spot_check.py#L94), and running the spot check.
 
-```python
-def make_prompt(example):
-    prompt = "You are an expert analyst from Goldman Sachs with 15 years of experience."
-    prompt += " Consider the following company: \n"
-    prompt += "==========================\n"
-    prompt += get_company_info(example)
-    prompt += "==========================\n"
-    prompt += "Answer the following question: \n"
-    prompt += example["question"]
-    return prompt
+https://github.com/lamini-ai/lamini-examples/blob/d01af0bcd91d135098f4e099f82b24b44f52d414/03_prompt_tuning/spot_check.py#L93-L109
 
 
-def get_company_info(example):
-    prompt = f"Date of the call: {example['date']}\n"
-    prompt += f"Ticker: {example['ticker']}\n"
-    prompt += f"Quarter: {example['q']}\n"
-
-    return prompt
-```
 For example, try changing `"You are an expert analyst from Goldman Sachs with 15 years of experience."` to `"You are an influencer who loves emojis."` and see what happens!
 
 # Guidelines
