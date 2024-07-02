@@ -10,8 +10,9 @@ It's easy to finetue Llama 3 on the question & answer dataset we just created.
 ./scripts/train.sh
 ```
 
-The python is as follows:
-https://github.com/lamini-ai/lamini-examples/blob/main/06_ift/train.py
+The python is as follows
+
+https://github.com/lamini-ai/lamini-examples/blob/03f35d3baaa3580c10b2f71c1b225985f3df2a30/06_ift/train.py#L1-L48
 
 # Monitoring your job
 
