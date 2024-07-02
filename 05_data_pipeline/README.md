@@ -47,20 +47,7 @@ data processing with more than ~100 LLM calls.
 
 Use [the following code](generate_data.py#L40) to define a pipeline:
 
-```python
-class QuestionAnswerPipeline(GenerationPipeline):
-    def __init__(self):
-        super(QuestionAnswerPipeline, self).__init__()
-
-        self.question_generator = QuestionGenerator()
-        self.answer_generator = AnswerGenerator()
-
-    def forward(self, x):
-        x = self.question_generator(x)
-        x = self.answer_generator(x)
-        return x
-
-```
+https://github.com/lamini-ai/lamini-examples/blob/fd355126bb73f7167098a2f7ba15488e23b7f945/05_data_pipeline/generate_data.py#L40-L50
 
 It has two stages, QuestionGenerator, and AnswerGenerator.
 
@@ -69,89 +56,14 @@ It has two stages, QuestionGenerator, and AnswerGenerator.
 The first stage reads a passage from an earnings call, and asks three questions about it.
 Note how the code uses the output_type of the LLM to force it to generate three questions and automatically parse them.
 
-```python
-class QuestionGenerator(GenerationNode):
-    def __init__(self):
-        super(QuestionGenerator, self).__init__(
-            model_name="meta-llama/Meta-Llama-3-8B-Instruct", max_new_tokens=150
-        )
-
-    def generate(
-        self,
-        prompt: Union[Iterator[PromptObject], AsyncIterator[PromptObject]],
-        *args,
-        **kwargs,
-    ):
-        prompt = self.add_template(prompt)
-
-        results = super(QuestionGenerator, self).generate(
-            prompt,
-            output_type={
-                "question_1": "string",
-                "question_2": "string",
-                "question_3": "string",
-            },
-            *args,
-            **kwargs,
-        )
-        return results
-
-```
+https://github.com/lamini-ai/lamini-examples/blob/fd355126bb73f7167098a2f7ba15488e23b7f945/05_data_pipeline/generate_data.py#L53-L77
 
 The question generator can be controlled by editing it's prompt.
 
-```python
-    def make_prompt(self, chunk):
-        prompt = "<|begin_of_text|><|start_header_id|>user<|end_header_id|>"
-
-        prompt += (
-            "You are a financial analyst with extensive experience at Goldman Sachs."
-        )
-        prompt += "You are reading the earnings call transcript for the following company:\n\n"
-        prompt += "====================\n\n"
-        prompt += get_company_info(chunk) + "\n"
-        prompt += "====================\n\n"
-        prompt += (
-            "You are reading the following section of the earnings call transcript:\n\n"
-        )
-        prompt += "====================\n\n"
-        prompt += chunk.data["transcript"]
-        prompt += "====================\n\n"
-        prompt += "Consider the numbers in the transscript. "
-        prompt += "Ask three questions about the numbers in the transcript that require precise answers. "
-        prompt += "Only ask questions that can be answered using the transcript."
-        prompt += "<|eot_id|>"
-        prompt += "<|start_header_id|>assistant<|end_header_id|>"
-
-        return prompt
-```
+https://github.com/lamini-ai/lamini-examples/blob/fd355126bb73f7167098a2f7ba15488e23b7f945/05_data_pipeline/generate_data.py#L113-L135
 
 ## AnswerGenerator
 
 The answer generator is similar, just with a different prompt.  You can control it by editing the prompt.
 
-```python
-    def make_prompt(self, chunk):
-        prompt = "<|begin_of_text|><|start_header_id|>user<|end_header_id|>"
-
-        prompt += (
-            "You are a financial analyst with extensive experience at Goldman Sachs."
-        )
-        prompt += "You are reading the earnings call transcript for the following company:\n\n"
-        prompt += "====================\n\n"
-        prompt += get_company_info(chunk) + "\n"
-        prompt += "====================\n\n"
-        prompt += (
-            "You are reading the following section of the earnings call transcript:\n\n"
-        )
-        prompt += "====================\n\n"
-        prompt += chunk.data["transcript"]
-        prompt += "====================\n\n"
-        prompt += "Consider the numbers in the transscript. "
-        prompt += "Ask three questions about the numbers in the transcript that require precise answers. "
-        prompt += "Only ask questions that can be answered using the transcript."
-        prompt += "<|eot_id|>"
-        prompt += "<|start_header_id|>assistant<|end_header_id|>"
-
-        return prompt
-```
+https://github.com/lamini-ai/lamini-examples/blob/fd355126bb73f7167098a2f7ba15488e23b7f945/05_data_pipeline/generate_data.py#L192-L215
