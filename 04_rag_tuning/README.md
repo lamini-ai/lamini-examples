@@ -23,34 +23,9 @@ Similar to prompt tuning, you can tune the RAG parameters and the surrounding pr
 - `batch_size` (needs to be changed before generating the index): length of each chunk returned
     - Smaller chunks tend to provide more accurate results but can increase computational overhead, larger chunks may improve efficiency but reduce accuracy.
 
-[lamini_rag/lamini_rag_model_stage.py#L38](lamini_rag/lamini_rag_model_stage.py#L38)
-```python
-    async def add_template(self, prompts):
-        async for prompt in prompts:
-            query_embedding = prompt.response
+https://github.com/lamini-ai/lamini-examples/blob/d01af0bcd91d135098f4e099f82b24b44f52d414/04_rag_tuning/lamini_rag/lamini_rag_model_stage.py#L38-L51
 
-            results = self.index.mmr_query(query_embedding, k=40, n=3)
-
-            new_prompt = "<|begin_of_text|><|start_header_id|>user<|end_header_id|>"
-            new_prompt += "Consider the following:\n\n"
-            for result in results:
-                new_prompt += result + "\n\n"
-            new_prompt += prompt.data.get_prompt() + "<|eot_id|>"
-            new_prompt += "<|start_header_id|>assistant<|end_header_id|>"
-
-            yield PromptObject(prompt=new_prompt, data=prompt.data)
-```
-
-[lamini_rag/earnings_call_loader.py#L5](lamini_rag/earnings_call_loader.py#L5)
-```python
-class EarningsCallLoader:
-    def __init__(self, path):
-        self.path = path
-        self.batch_size = 128
-        self.limit = 100
-        self.embedding_size=384
-        self.chunker = EarningsCallChunker()
-```
+https://github.com/lamini-ai/lamini-examples/blob/6dc1564847e293e98182f0875e1c82bb996be20e/04_rag_tuning/lamini_rag/earnings_call_loader.py#L5-L11
 
 # How does it work?
 
