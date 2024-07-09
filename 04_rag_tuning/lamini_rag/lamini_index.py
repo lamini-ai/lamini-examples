@@ -39,11 +39,37 @@ class LaminiIndex:
         self.config = config
 
     @staticmethod
-    def load_index(path):
+    def load_index(
+        path: str,
+        faiss_file_name: str = "index.faiss",
+        splits_file_name: str = "splits.json"
+        ):
+        """Factory function for constructing a LaminiIndex object
+        from existing faiss and splits files from the provided
+        path. 
+
+        Parameters
+        ----------
+        path: str
+            Directory path to find the faiss and splits files
+
+        faiss_file_name: str = "index.faiss"
+            Faiss file name
+
+        splits_file_name: str = "splits.json"
+            Splits file name
+
+        Returns
+        -------
+        lamini_index: LaminiIndex
+            Instantiated LaminiIndex object from provided data
+            files
+
+        """
         lamini_index = LaminiIndex()
 
-        faiss_path = os.path.join(path, "index.faiss")
-        splits_path = os.path.join(path, "splits.json")
+        faiss_path = os.path.join(path, faiss_file_name)
+        splits_path = os.path.join(path, splits_file_name)
 
         # Load the index from a file
         lamini_index.index = faiss.read_index(faiss_path)
@@ -55,15 +81,91 @@ class LaminiIndex:
         return lamini_index
 
     async def build_index(self):
+        """ 
+
+        Parameters
+        ----------
+        
+        
+        Returns
+        -------
+        
+        """
         self.splits = []
 
         total_batches = len(self.loader)
 
         logger.info(f"Building index with {total_batches} batches")
 
-        self.index, self.splits = await build_index(self.loader)
+        # Initialize the index
+        self.index = faiss.IndexFlatL2(self.loader.embedding_size)
+
+        await self.build_index_async()
+
+
+    async def build_index_async(self):
+        """ 
+
+        Parameters
+        ----------
+        
+        
+        Returns
+        -------
+        
+        """
+        total_chunks = len(self.loader)
+
+        chunks = self.get_embedding_prompts(self.loader.get_chunks())
+
+        embeddings = EmbeddingPipeline().call(chunks)
+
+        await self.update_index(embeddings, total_chunks)
+
+
+    async def get_embedding_prompts(self, chunks):
+        """ 
+
+        Parameters
+        ----------
+        
+        
+        Returns
+        -------
+        
+        """
+        for chunk in chunks:
+            yield PromptObject(prompt=chunk)
+
+    async def update_index(self, embeddings, total_chunks):
+        """ 
+
+        Parameters
+        ----------
+        
+        
+        Returns
+        -------
+        
+        """
+        pbar = tqdm(desc="Building index", unit=" chunks", total=total_chunks)
+
+        async for embedding in embeddings:
+            self.index.add(np.array([embedding.response]))
+            self.splits.append(embedding.prompt)
+            pbar.update()
 
     def mmr_query(self, query_embedding, k=20, n=5):
+        """ 
+
+        Parameters
+        ----------
+        
+        
+        Returns
+        -------
+        
+        """
         embedding = query_embedding
 
         embedding_array = np.array([embedding])
@@ -77,6 +179,16 @@ class LaminiIndex:
         return most_diverse
 
     def most_diverse_results(self, query_embedding, indices, n):
+        """ 
+
+        Parameters
+        ----------
+        
+        
+        Returns
+        -------
+        
+        """
         # get the embeddings for the indices
         embeddings = [self.index.reconstruct(int(i)) for i in indices]
 
@@ -114,6 +226,16 @@ class LaminiIndex:
         return [self.splits[i] for i in results]
 
     def save_index(self, path):
+        """ 
+
+        Parameters
+        ----------
+        
+        
+        Returns
+        -------
+        
+        """
         faiss_path = os.path.join(path, "index.faiss")
         splits_path = os.path.join(path, "splits.json")
 
@@ -130,40 +252,31 @@ class LaminiIndex:
             json.dump(self.splits, f)
 
 
-async def build_index(loader):
-    # Initialize the index
-    index = faiss.IndexFlatL2(loader.embedding_size)
-
-    splits = []
-
-    await build_index_async(loader, index, splits)
-
-    return index, splits
-
-
-async def build_index_async(loader, index, splits):
-
-    total_chunks = len(loader)
-
-    chunks = get_embedding_prompts(loader.get_chunks())
-
-    embeddings = EmbeddingPipeline().call(chunks)
-
-    await update_index(index, splits, embeddings, total_chunks)
-
-
-async def get_embedding_prompts(chunks):
-    for chunk in chunks:
-        yield PromptObject(prompt=chunk)
-
-
 class EmbeddingPipeline(GenerationPipeline):
+    """ 
+    This class is  
+        
+    Parameters
+    ----------
+    None
+        
+    """
     def __init__(self):
         super().__init__()
 
         self.embedding_generator = EmbeddingGenerator()
 
     def forward(self, x):
+        """ 
+
+        Parameters
+        ----------
+        
+        
+        Returns
+        -------
+        
+        """
         x = self.embedding_generator(
             x, model_name="sentence-transformers/all-MiniLM-L6-v2"
         )
@@ -171,17 +284,14 @@ class EmbeddingPipeline(GenerationPipeline):
 
 
 class EmbeddingGenerator(EmbeddingNode):
+    """ 
+    This class is  
+        
+    Parameters
+    ----------
+    None
+        
+    """
+    
     def __init__(self):
         super().__init__(model_name="meta-llama/Llama-2-7b-chat-hf", max_tokens=5)
-
-
-async def update_index(index, splits, embeddings, total_chunks):
-    pbar = tqdm(desc="Building index", unit=" chunks", total=total_chunks)
-
-    async for embedding in embeddings:
-        index.add(np.array([embedding.response]))
-        splits.append(embedding.prompt)
-        pbar.update()
-
-    return index, splits
-

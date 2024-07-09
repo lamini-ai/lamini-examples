@@ -125,7 +125,11 @@ class DataLoader:
                     break
 
     def __iter__(self):
+        """Iterator definition to yield chunk batches
+        """
         return self.get_chunk_batches()
 
     def __len__(self):
+        """Length definition returning the number of chunks
+        """
         return len(list(self.get_chunks()))

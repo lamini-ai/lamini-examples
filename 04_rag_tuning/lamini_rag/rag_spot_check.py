@@ -3,7 +3,7 @@ from typing import List
 from lamini_rag.lamini_index import LaminiIndex
 from lamini_rag.data_loader import DataLoader
 from lamini_rag.data_chunker import EarningsCallChunker
-from lamini_rag.example_prompt_formater import EarningsExample
+from lamini_rag.example_prompt_formatter import EarningsExample
 from lamini_rag.lamini_pipeline import SpotCheckPipeline, DatasetDescriptor
 
 from lamini.generation.base_prompt_object import PromptObject
