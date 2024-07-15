@@ -18,7 +18,7 @@ source text.
 
 We are only generating QA for the first line for this example since the transcript is massive.
 Below is a sample of the output of the data pipeline.
-The source code is in [generate_data.py](generate_data.py).
+The source code is in [generate_data.py](generate_data.py), and we'll walk through the code in the rest of this guide.
 
 ```json
 {
@@ -93,3 +93,11 @@ https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a74
 The answer generator is similar, just with a different prompt.  You can control it by editing the prompt.
 
 https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a745f085a7b70/05_data_pipeline/generate_data.py#L85-L118
+
+## Saving results
+
+The output of the final `GenerationNode` is an `AsyncGenerator` that should be saved somewhere.
+This is done in `save_answers()`, which uses `async for` to iterator through the results,
+and write them into an output file.
+
+https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a745f085a7b70/05_data_pipeline/generate_data.py#L129-L145
