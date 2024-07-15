@@ -47,17 +47,21 @@ data processing with more than ~100 LLM calls.
 
 ## Overview
 
-The pipeline is defined in the `QuestionAnswerPipeline` class.
-A pipeline is a series of stages.
+
+A Lamini LLM pipeline is a series of stages.
+Each stage is implemented as a subclass of `GenerationNode` class.
 Each stage accepts an `AsyncGenerator` and produces another `AsyncGenerator`.
-This is shown in the `forward()` function below.
+
+In this guide, the pipeline is defined in `QuestionAnswerPipeline`.
+It has two stages: `QuestionGenerator` and `AnswerGenerator`, as shown in the `forward()` function below.
 
 https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a745f085a7b70/05_data_pipeline/generate_data.py#L19-L33
 
-It has two stages, QuestionGenerator, and AnswerGenerator.
-The input to the pipeline was provided by `load_earnings_call()`:
+We need to provide input to and save the results from the pipeline.
+This is shown in `run_pipeline()` below, where the input was provided by `load_earnings_call()`,
+and the results are saved by `save_answers()`:
 
-https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a745f085a7b70/05_data_pipeline/generate_data.py#L121-L127
+https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a745f085a7b70/05_data_pipeline/generate_data.py#L148-L151
 
 ## QuestionGenerator
 
