@@ -63,6 +63,14 @@ and the results are saved by `save_answers()`:
 
 https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a745f085a7b70/05_data_pipeline/generate_data.py#L148-L151
 
+## Data Loading
+
+The input to the pipeline is provided by `load_earnings_call()`, which is an `AsyncGenerator`,
+because `GenerationNode` subclasses requires an input as `AsyncGenerator`.
+
+https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a745f085a7b70/05_data_pipeline/generate_data.py#L121-L127
+
+
 ## QuestionGenerator
 
 The first stage reads a passage from an earnings call, and generate three questions about it.
