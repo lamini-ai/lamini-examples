@@ -12,13 +12,13 @@ Run the follow script to have Llama 3 read through earnings calls, pretend to
 be a financial analyst, and ask relevant questions, and answer them using the
 source text.
 
-
 ```bash
 ./scripts/generate-data.sh
 ```
 
 We are only generating QA for the first line for this example since the transcript is massive.
 Below is a sample of the output of the data pipeline.
+The source code is in [generate_data.py](generate_data.py).
 
 ```json
 {
