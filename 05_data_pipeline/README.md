@@ -45,9 +45,9 @@ data processing with more than ~100 LLM calls.
 
 # Building Lamini pipeline
 
-Use [the following code](generate_data.py#L40) to define a pipeline:
+Use [the following code](generate_data.py#L19) to define a pipeline:
 
-https://github.com/lamini-ai/lamini-examples/blob/fd355126bb73f7167098a2f7ba15488e23b7f945/05_data_pipeline/generate_data.py#L40-L50
+https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a745f085a7b70/05_data_pipeline/generate_data.py#L19-L33
 
 It has two stages, QuestionGenerator, and AnswerGenerator.
 
