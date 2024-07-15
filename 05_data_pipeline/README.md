@@ -70,17 +70,13 @@ because `GenerationNode` subclasses requires an input as `AsyncGenerator`.
 
 https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a745f085a7b70/05_data_pipeline/generate_data.py#L121-L127
 
-
 ## QuestionGenerator
 
-The first stage reads a passage from an earnings call, and generate three questions about it.
-Note how the code uses the output_type of the LLM to force it to generate three questions and automatically parse them.
+The first stage reads a passage from an earnings call, and ask LLMs to generate three questions about it.
+This is achieved by a custom prompt in `make_prompt()` and `output_type` in `postprocess()`
+to force it to generate three questions and automatically parse them:
 
-https://github.com/lamini-ai/lamini-examples/blob/fd355126bb73f7167098a2f7ba15488e23b7f945/05_data_pipeline/generate_data.py#L53-L77
-
-The question generator can be controlled by editing it's prompt.
-
-https://github.com/lamini-ai/lamini-examples/blob/fd355126bb73f7167098a2f7ba15488e23b7f945/05_data_pipeline/generate_data.py#L113-L135
+https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a745f085a7b70/05_data_pipeline/generate_data.py#L52-L83
 
 ## AnswerGenerator
 
