@@ -34,7 +34,7 @@ Below is a sample of the output of the data pipeline.
 
 ```
 
-# Pipelines for performance
+# Pipelines for performance and fault-tolerance
 
 The Lamini LLM pipeline will automatically distribute your LLM calls over the entire cluster so you don't have
 to think about thread pools and batching.
@@ -43,10 +43,11 @@ LLMs are extremely computationally intensive. Processing even a modest amount of
 may require hundreds of GPUs to process quickly. So we recommend using this interface for any
 data processing with more than ~100 LLM calls.
 
+Pipeline also has automated retry to make sure transient failures do not break down the whole pipeline.
+
 # Building Lamini pipeline
 
 ## Overview
-
 
 A Lamini LLM pipeline is a series of stages.
 Each stage is implemented as a subclass of `GenerationNode` class.
@@ -73,10 +74,19 @@ https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a74
 ## QuestionGenerator
 
 The first stage reads a passage from an earnings call, and ask LLMs to generate three questions about it.
-This is achieved by a custom prompt in `make_prompt()` and `output_type` in `postprocess()`
+This is achieved by [the prompt on line 79](https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a745f085a7b70/05_data_pipeline/generate_data.py#L79) in `make_prompt()` and `output_type` in `postprocess()`
 to force it to generate three questions and automatically parse them:
 
 https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a745f085a7b70/05_data_pipeline/generate_data.py#L52-L83
+
+### preprocess & postprocess
+
+One can define their own `preprocess()` to transform an `PromptObject` of a `GenerationNode` before passing it
+to remote LLM inference API. Additionally, `postprocess()` to transfrom the result from LLM inference API.
+
+In this example, `QuestionGenerator` has its own `preprocess()` & `postprocess()`:
+
+https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a745f085a7b70/05_data_pipeline/generate_data.py#L48-L61
 
 ## AnswerGenerator
 
