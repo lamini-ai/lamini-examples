@@ -92,4 +92,4 @@ https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a74
 
 The answer generator is similar, just with a different prompt.  You can control it by editing the prompt.
 
-https://github.com/lamini-ai/lamini-examples/blob/fd355126bb73f7167098a2f7ba15488e23b7f945/05_data_pipeline/generate_data.py#L192-L215
+https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a745f085a7b70/05_data_pipeline/generate_data.py#L85-L118
