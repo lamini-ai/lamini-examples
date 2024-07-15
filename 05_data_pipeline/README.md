@@ -47,7 +47,9 @@ data processing with more than ~100 LLM calls.
 
 ## Overview
 
-Use [the following code](generate_data.py#L19) to define a pipeline:
+The pipeline is defined in the `QuestionAnswerPipeline` class.
+A pipeline is a series of `Node` defined as subclasses of `GenerationNode`.
+The output of a `Node` is passed to the next one as input, as shown in the `forward()` function below.
 
 https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a745f085a7b70/05_data_pipeline/generate_data.py#L19-L33
 
