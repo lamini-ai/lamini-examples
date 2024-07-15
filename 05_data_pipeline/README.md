@@ -4,9 +4,12 @@
 
 # Data Pipelines
 
-We can leverage Llama 3 to build data pipelines. Llama 3 can read english and
-reason over it. We can use this capability to build data pipelines by inserting
-calls to the LLM to perform data transformations.
+This guide presents an example of using Lamini LLM pipeline to implement a performant
+and reliable LLM processing workflow to generate meaningful questions and answers from
+earning call transcripts of publicly-traded companies.
+
+We use Llama 3 as the LLM in this pipeline. Llama 3 can read english and
+reason over it. We then insert calls to the LLM to perform additional data transformations.
 
 Run the follow script to have Llama 3 read through earnings calls, pretend to
 be a financial analyst, and ask relevant questions, and answer them using the
