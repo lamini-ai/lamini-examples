@@ -6,10 +6,14 @@
 
 This guide presents an example of using Lamini LLM pipeline to implement a performant
 and reliable LLM processing workflow to generate meaningful questions and answers from
-earning call transcripts of publicly-traded companies.
+earning call transcripts of publicly-traded companies. The pipeline can be seen as
+"chat with earning scripts in batches".
 
-We use Llama 3 as the LLM in this pipeline. Llama 3 can read english and
-reason over it. We then insert calls to the LLM to perform additional data transformations.
+The source code is in [generate_data.py](generate_data.py),
+and we'll walk through the code in the rest of this guide.
+
+We use Llama 3 in this guide. Llama 3 can read english and reason over it.
+We insert processing before and after calling to Llama3 inference RPCs.
 
 Run the follow script to have Llama 3 read through earnings calls, pretend to
 be a financial analyst, and ask relevant questions, and answer them using the
@@ -21,7 +25,7 @@ source text.
 
 We are only generating QA for the first line for this example since the transcript is massive.
 Below is a sample of the output of the data pipeline.
-The source code is in [generate_data.py](generate_data.py), and we'll walk through the code in the rest of this guide.
+
 
 ```json
 {
@@ -46,7 +50,8 @@ LLMs are extremely computationally intensive. Processing even a modest amount of
 may require hundreds of GPUs to process quickly. So we recommend using this interface for any
 data processing with more than ~100 LLM calls.
 
-Pipeline also has automated retry to make sure transient failures do not break down the whole pipeline.
+Pipeline also has automated retry to make sure transient failures in calling Llama 3 inference RPCs
+do not break down the whole pipeline.
 
 # Building Lamini pipeline
 
