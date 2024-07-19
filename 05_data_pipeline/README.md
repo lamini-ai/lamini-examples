@@ -11,6 +11,8 @@ earning call transcripts of publicly-traded companies. The pipeline can be seen 
 
 The source code is in [generate_data.py](generate_data.py),
 and we'll walk through the code in the rest of this guide.
+You can read the source code and comments in [generate_data.py](generate_data.py)
+to better understand how **GenerationPipeline** works.
 
 We use Llama 3 in this guide. Llama 3 can read english and reason over it.
 We insert processing before and after calling to Llama3 inference RPCs.
