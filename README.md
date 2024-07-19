@@ -18,9 +18,9 @@ These examples show effective tools for building LLMs. We strongly encourage fol
 4. [RAG Tuning](04_rag_tuning/README.md) - Retrieval Augmented Generation (RAG), improve the quality of your LLM by tuning the retrieval component.
 5. [Data Pipeline](05_data_pipeline/README.md) - Prepare your data for training an LLM.
 6. [Instruction Fine Tuning (IFT)](06_ift/README.md) - Instruction fine tune an LLM on your data.
-7. [Memory Tuning 🔗](https://github.com/meta-llama/llama-recipes/tree/main/recipes/3p_integration/lamini/text2sql_memory_tuning) - Embed facts into an LLM and improve factual accuracy on your data.
 
 Extra Examples:
+- [Memory Tuning 🔗](https://github.com/meta-llama/llama-recipes/tree/main/recipes/3p_integrations/lamini/text2sql_memory_tuning) - Embed facts into an LLM and improve factual accuracy on your data.
 - [JSON Output](10_json_output/README.md) - Extract structured output from an LLM, following a guaranteed JSON schema.
 - [Classify](11_classify/README.md) - Classify data using an LLM, e.g. to filter out low quality training data
 - [Slackbot](12_slackbot/README.md) - Learn how to create a Slack bot that calls an LLM.
