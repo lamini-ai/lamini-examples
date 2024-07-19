@@ -24,6 +24,10 @@ class QuestionAnswerPipeline(GenerationPipeline):
         self.answer_generator = AnswerGenerator()
 
     def forward(self, x):
+        """Defines the pipeline
+        
+        forward() is invoked by __call__() as shown in run_pipeline() below.
+        """
         x = self.question_generator(x, output_type={
             "question_1": "str",
             "question_2": "str",
@@ -40,11 +44,26 @@ def get_company_info(chunk):
     return info
 
 class QuestionGenerator(GenerationNode):
+    """GenerationNode represents a step of processing in a pipeline.
+
+    GenerationNode.__call__() is the entrypoint, which includes 3 sub-steps for each prompt:
+    1. Transform prompt: invoke self.preprocess() to transform prompt to implement
+       the semantic of this GenerationNode.
+    2. Generate: invoke self.generate() (defined in GenerationNode) to send prompt
+       to Lamini inference API, and fetch the response
+    3. Transform response: invoke self.postprocess() to transform response to implement
+       the semantic of this GenerationNode.
+
+    If you do not need to transform prompt and response, you don't need to implement
+    self.preprocess() or self.postprocess().
+    
+    You may implement self.preprocess() and self.postprocess() for your own purpose.
+    """
     def __init__(self):
         super(QuestionGenerator, self).__init__(
             model_name="meta-llama/Meta-Llama-3-8B-Instruct", max_new_tokens=150
         )
-        
+
     def preprocess(self, obj: PromptObject):
         obj.prompt = self.make_prompt(obj)
         logger.info(f"Generating question for {obj.data['ticker']}, {obj.data['q']}")
@@ -62,6 +81,7 @@ class QuestionGenerator(GenerationNode):
 
 
     def make_prompt(self, obj):
+        """This is a helper function used by self.preprocess()"""
         prompt = (
             "<s>[INSTR]You are a financial analyst with extensive experience at Goldman Sachs."
         )
@@ -122,6 +142,7 @@ async def load_earnings_calls():
     path = "/app/lamini-earnings-sdk/data/test_set_transcripts.jsonl"
 
     with jsonlines.open(path) as reader:
+        # Here we only read the 1st line from the .jsonl file.
         for line in itertools.islice(reader, 1):
             logger.info(f"Loaded earnings call for {line['ticker']}")
             yield PromptObject(prompt="", data=line)
