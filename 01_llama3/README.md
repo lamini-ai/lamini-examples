@@ -6,16 +6,16 @@
 
 It is straightforward to call powerful LLMs like Llama3 from Python using Lamini.
 
-1. Get `<YOUR-LAMINI-API-KEY>` at [https://app.lamini.ai/account](https://app.lamini.ai/account).
-
-2. Add your key to `llama3.py`.
-
-https://github.com/lamini-ai/lamini-sdk/blob/main/01_llama3/llama3.py#L1-L6
-
+1. Get `<YOUR-LAMINI-API-KEY>` at [your account page on Lamini](https://app.lamini.ai/account).
+2. Modify `llama3.py` to insert the key.
+   https://github.com/lamini-ai/lamini-sdk/blob/main/01_llama3/llama3.py#L1-L6
 3. Run using Docker:
+    ```bash
+    ./scripts/llama3.sh
+    ```
 
+That's it! 🎉 You can also install lamini SDK and run Python code directly:
 ```bash
-./scripts/llama3.sh
+pip install lamini
+python llama3.py`
 ```
-
-That's it! 🎉 You can also `$ pip install lamini` in any python environment and run `llama3.py`.
