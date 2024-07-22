@@ -16,7 +16,7 @@ jobs:
       - run: |
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
-          echo '  key: ${{ secrets.API_TOKEN }}'
+          echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
       - run: ./01_llama3/scripts/llama3.sh
 
   # eval:
