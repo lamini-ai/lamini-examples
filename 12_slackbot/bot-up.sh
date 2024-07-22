@@ -15,9 +15,7 @@ LOCAL_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd
 # Build the container
 $LOCAL_DIRECTORY/scripts/build.sh
 
-docker run -it \
+docker run \
     -v ~/.lamini:/root/.lamini \
     -p 3000:3000 \
 lamini-slackbot:latest
-
-

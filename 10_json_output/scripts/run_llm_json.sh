@@ -15,7 +15,7 @@ LOCAL_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd
 # Build the container
 $LOCAL_DIRECTORY/../../scripts/build.sh
 
-docker run -it \
+docker run \
     -v ~/.lamini:/root/.lamini \
     --entrypoint /app/lamini-earnings-sdk/json_output/scripts/start.sh \
     lamini-earnings-sdk:latest $@
