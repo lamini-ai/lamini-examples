@@ -5,6 +5,15 @@
 
 [![Latest Release](https://img.shields.io/badge/Latest%20Version-1.4.3-blue?logo=github)](https://github.com/lamini-ai/lamini-sdk/commits/main)
 [![GitHub License](https://img.shields.io/github/license/lamini-ai/lamini)](https://github.com/lamini-ai/lamini-sdk/blob/main/LICENSE)</div>
+## Installation Instructions
+
+Before you start, please get your `<YOUR-LAMINI-API-KEY>` at https://app.lamini.ai/account.
+
+Create `~/.lamini/configure.yaml` and write the file as follows, this will persist your Lamini credentials:
+```
+production:
+  key: <YOUR-LAMINI-API-KEY>
+```
 
 ## Lamini Examples
 
@@ -28,21 +37,6 @@ Extra Examples:
 ### Notes
 
 The goal of this repo is to teach and provide examples of important tools for building LLMs; the examples emphasize simplicitly and readibility, not heavy optimization.</br>  Once you have mastered a module from this repo, consider forking it and adapting it to your own application.</br>  All of the code in this repository is licensed Apache 2. You are free to use it for any purpose including commercial applications.
-
-### Installation Instructions
-
-Before you start, please get your Lamini API key and install the python library.
-
-First, get `<YOUR-LAMINI-API-KEY>` at https://app.lamini.ai/account.
-Add the key as an environment variable.
-```
-export LAMINI_API_KEY="<YOUR-LAMINI-API-KEY>"
-```
-
-Next, install the Python library.
-```
-pip install --upgrade lamini
-```
 
 ### GitHub Repository
 ---
