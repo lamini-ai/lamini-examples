@@ -95,8 +95,6 @@ class LaminiModelStage(GenerationNode):
         *args,
         **kwargs,
     ):
-        prompt = self.add_template(prompt)
-
         results = super().generate(
             prompt,
             output_type=self.dataset.get_output_type(),
@@ -106,14 +104,12 @@ class LaminiModelStage(GenerationNode):
 
         return results
 
-    async def add_template(self, prompts):
-        async for prompt in prompts:
+    def preprocess(self, prompt: PromptObject):
+        new_prompt = "<|begin_of_text|><|start_header_id|>user<|end_header_id|>"
+        new_prompt += prompt.data.get_prompt() + "<|eot_id|>"
+        new_prompt += "<|start_header_id|>assistant<|end_header_id|>"
 
-            new_prompt = "<|begin_of_text|><|start_header_id|>user<|end_header_id|>"
-            new_prompt += prompt.data.get_prompt() + "<|eot_id|>"
-            new_prompt += "<|start_header_id|>assistant<|end_header_id|>"
-
-            yield PromptObject(prompt=new_prompt, data=prompt.data)
+        return PromptObject(prompt=new_prompt, data=prompt.data)
 
 def load_lamini_model(model_name):
     return LaminiModel(model_name)
