@@ -1,6 +1,6 @@
-from typing import Dict, Union, AsyncIterator, Iterator
+from typing import Union, AsyncIterator, Iterator
 
-from lamini_rag.lamini_embedding_model_stage import LaminiEmbeddingModelStage
+from lamini_rag.lamini_embedding_model_stage import LaminiEmbeddingModelStage, DatasetDescriptor
 from lamini_rag.lamini_rag_model_stage import LaminiRAGModelStage
 from lamini_rag.data_descriptor import DatasetDescriptor
 from lamini.generation.generation_pipeline import GenerationPipeline
