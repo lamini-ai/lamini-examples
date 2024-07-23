@@ -17,5 +17,5 @@ $LOCAL_DIRECTORY/../../scripts/build.sh
 
 docker run -it \
     -v ~/.lamini:/root/.lamini \
-    --entrypoint /app/lamini-earnings-sdk/json_output/scripts/start.sh \
+    --entrypoint /app/lamini-earnings-sdk/10_json_output/scripts/start.sh \
     lamini-earnings-sdk:latest $@
