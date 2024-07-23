@@ -47,31 +47,10 @@ async def run_evaluation_pipeline(model, dataset, args):
     return result_list
 
 
-def get_prompt(example: dict):
-    assert isinstance(example, dict)
-    prompt = (
-        "You are a financial analyst with extensive experience at Goldman Sachs. "
-    )
-    prompt += "You are reading questions that you have heard from a client about a specific earnings call. "
-    prompt += "The question asks about specific numbers mentioned in the call. "
-    prompt += "Format your answer as a json object with the following fields: { 'answer': str, 'value': float, 'units': str }. "
-    prompt += "Limit value to 2 significant digits. "
-    prompt += "For example if the answer is 22%, the value should be 22.0 and the units should be 'percent'. "
-    prompt += "The question is about this earnings call:\n"
-    prompt += "====================\n"
-    prompt += f"Date of the call: {example['date']}\n"
-    prompt += f"Ticker: {example['ticker']}\n"
-    prompt += f"Quarter: {example['q']}\n"
-    prompt += "====================\n"
-    prompt += "The client asks\n"
-    prompt += example["question"]
-    return prompt
-
 async def slice_dataset(dataset, args):
     for index, example in enumerate(dataset):
-        logger.info(f"example: {example}")
         if index < args.max_examples:
-            yield PromptObject(prompt=get_prompt(example), data=example)
+            yield PromptObject(prompt=example.get_prompt(), data=example)
 
 
 class EvaluationPipeline(GenerationPipeline):

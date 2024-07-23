@@ -3,7 +3,7 @@ import random
 
 
 def load_earnings_call_dataset():
-    path = "/Users/yaxiong/Workspace/lamini-ai/lamini-examples/data/earnings_calls.jsonl"
+    path = "/app/lamini-earnings-sdk/data/earnings_calls.jsonl"
 
     return EarningsCallsDataset(path)
 
@@ -27,8 +27,8 @@ class EarningsCallsDataset:
         random.seed(42)
         random.shuffle(items)
 
-        for _, item in enumerate(items):
-            yield item
+        for index, item in enumerate(items):
+            yield EarningsCallsExample(index, item)
 
     def get_length(self):
         return sum(1 for line in self)
@@ -43,7 +43,6 @@ class EarningsCallsDataset:
 
 class EarningsCallsExample:
     def __init__(self, index, example):
-        print(f"EarningsCallsExample: {type(example)}:{example}")
         self.index = index
         self.example = example
 

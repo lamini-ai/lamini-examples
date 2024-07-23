@@ -79,7 +79,7 @@ def load_model(args):
 
 
 def save_results(results, args):
-    base_path = "./"
+    base_path = "/app/lamini-earnings-sdk/data/results"
     experiment_name = f"{args.data}_{args.model}".replace("/", "_")
 
     if not os.path.exists(base_path):
