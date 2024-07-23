@@ -1,19 +1,13 @@
-from typing import Union, Iterator, AsyncIterator
+import asyncio
+import jsonlines
+import logging
 
+from argparse import ArgumentParser
+from tqdm import tqdm
 
 from lamini.generation.base_prompt_object import PromptObject
 from lamini.generation.generation_pipeline import GenerationPipeline
 from lamini.generation.generation_node import GenerationNode
-
-
-from tqdm import tqdm
-
-from argparse import ArgumentParser
-
-import asyncio
-import jsonlines
-
-import logging
 
 
 def main():

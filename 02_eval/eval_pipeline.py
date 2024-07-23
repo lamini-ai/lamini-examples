@@ -64,9 +64,7 @@ class EvaluationPipeline(GenerationPipeline):
         for stage in self.model_stages:
             x = stage(x)
 
-
         x = self.modify_stage(x)
-
         x = self.score_stage(x)
         return x
 
