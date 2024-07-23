@@ -5,7 +5,7 @@ import logging
 from argparse import ArgumentParser
 from typing import Union, Iterator, AsyncIterator
 
-from load_earnings_call_dataset import load_earnings_call_dataset, EarningsCallsExample
+from load_earnings_call_dataset import load_earnings_call_dataset
 from lamini.generation.generation_node import GenerationNode
 from lamini.generation.base_prompt_object import PromptObject
 from eval_pipeline import evaluate_model
@@ -18,7 +18,7 @@ def main():
 
     dataset = load_dataset(args)
 
-    model = load_model(args)
+    model = LaminiModel(args.model)
 
     results = evaluate_model(model, dataset, args)
 
@@ -102,12 +102,7 @@ class LaminiModelStage(GenerationNode):
         new_prompt = "<|begin_of_text|><|start_header_id|>user<|end_header_id|>"
         new_prompt += example.get_prompt() + "<|eot_id|>"
         new_prompt += "<|start_header_id|>assistant<|end_header_id|>"
-
         return PromptObject(prompt=new_prompt, data=prompt.data)
-
-
-def load_lamini_model(model_name):
-    return LaminiModel(model_name)
 
 
 class LaminiModel:
@@ -117,10 +112,6 @@ class LaminiModel:
             self.model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
     def get_stages(self, dataset):
         return [LaminiModelStage(dataset=dataset, model_name=self.model_name)]
-
-
-def load_model(args):
-    return load_lamini_model(args.model)
 
 
 def save_results(results, args):
