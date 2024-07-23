@@ -78,19 +78,12 @@ def load_dataset(args):
     with jsonlines.open(path) as reader:
         dataset = list(reader)
 
-    for index, example in enumerate(dataset):
+    for index, data in enumerate(dataset):
         if index < args.max_examples:
-            earnings_example = EarningsExample(example)
             yield PromptObject(
-                prompt=earnings_example.get_prompt(), data=earnings_example
+                prompt="", data=data
             )
 
-class EarningsExample:
-    def __init__(self, example):
-        self.example = example
-
-    def get_prompt(self):
-        return make_prompt(self.example)
 
 def make_prompt(example):
     prompt = "You are an expert analyst from Goldman Sachs with 15 years of experience."
@@ -119,12 +112,11 @@ class LaminiModelStage(GenerationNode):
         )
         self.model_name = model_name
 
-    def preprocess(self, prompt: PromptObject) -> PromptObject:
+    def preprocess(self, prompt: PromptObject):
         new_prompt = "<|begin_of_text|><|start_header_id|>user<|end_header_id|>"
-        new_prompt += prompt.data.get_prompt() + "<|eot_id|>"
+        new_prompt += make_prompt(prompt.data) + "<|eot_id|>"
         new_prompt += "<|start_header_id|>assistant<|end_header_id|>"
-
-        return PromptObject(prompt=new_prompt, data=prompt.data)
+        prompt.prompt = new_prompt
 
 
 class SpotCheckPipeline(GenerationPipeline):
@@ -143,7 +135,7 @@ def save_results(results):
     with jsonlines.open(file_name, "w") as writer:
         for result in results:
 
-            row = result.data.example.copy()
+            row = result.data.copy()
             row["model_answer"] = result.response["model_answer"]
             row["prompt"] = result.prompt
 
