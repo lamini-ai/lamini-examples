@@ -73,7 +73,7 @@ class DatasetDescriptor:
 
 
 def load_dataset(args):
-    path = "/Users/yaxiong/Workspace/lamini-ai/lamini-examples/data/golden_test_set.jsonl"
+    path = "/app/lamini-earnings-sdk/data/golden_test_set.jsonl"
 
     with jsonlines.open(path) as reader:
         dataset = list(reader)
@@ -130,7 +130,7 @@ class SpotCheckPipeline(GenerationPipeline):
 
 
 def save_results(results):
-    file_name = "spot_check_results.jsonl"
+    file_name = "/app/lamini-earnings-sdk/data/results/spot_check_results.jsonl"
 
     with jsonlines.open(file_name, "w") as writer:
         for result in results:
