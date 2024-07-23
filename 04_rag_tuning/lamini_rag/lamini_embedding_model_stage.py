@@ -3,7 +3,7 @@ from lamini.generation.embedding_node import EmbeddingNode
 
 from typing import Iterator, AsyncIterator, Optional, Union
 
-from lamini_rag.lamini_pipeline import DatasetDescriptor
+from lamini_rag.data_descriptor import DatasetDescriptor
 
 class LaminiEmbeddingModelStage(EmbeddingNode):
     """ 

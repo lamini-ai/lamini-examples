@@ -2,20 +2,8 @@ from typing import Dict, Union, AsyncIterator, Iterator
 
 from lamini_rag.lamini_embedding_model_stage import LaminiEmbeddingModelStage
 from lamini_rag.lamini_rag_model_stage import LaminiRAGModelStage
-
+from lamini_rag.data_descriptor import DatasetDescriptor
 from lamini.generation.generation_pipeline import GenerationPipeline
-
-
-class DatasetDescriptor:
-    """ 
-    A simple helper class to provide the structured output from
-    generated responses in a pipeline
-    """
-
-    def get_output_type(self) -> Dict[str, str]:
-        """Returns the structured output for the pipeline
-        """
-        return {"model_answer": "str"}
 
 
 class SpotCheckPipeline(GenerationPipeline):
