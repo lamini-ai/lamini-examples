@@ -1,8 +1,10 @@
+from typing import Union, Iterator, AsyncIterator
+
+
 from lamini.generation.base_prompt_object import PromptObject
 from lamini.generation.generation_pipeline import GenerationPipeline
+from lamini.generation.generation_node import GenerationNode
 
-
-from utils.lamini_model_stage import LaminiModelStage
 
 from tqdm import tqdm
 
@@ -53,7 +55,7 @@ def parse_arguments():
 async def run_spot_check(args):
     dataset = load_dataset(args)
 
-    results = SpotCheckPipeline(DatasetDescriptor()).call(dataset)
+    results = SpotCheckPipeline().call(dataset)
 
     result_list = []
 
@@ -71,7 +73,7 @@ class DatasetDescriptor:
 
 
 def load_dataset(args):
-    path = "/app/lamini-earnings-sdk/data/golden_test_set.jsonl"
+    path = "/Users/yaxiong/Workspace/lamini-ai/lamini-examples/data/golden_test_set.jsonl"
 
     with jsonlines.open(path) as reader:
         dataset = list(reader)
@@ -109,18 +111,34 @@ def get_company_info(example):
     return prompt
 
 
+class LaminiModelStage(GenerationNode):
+    def __init__(self, model_name="meta-llama/Meta-Llama-3-8B-Instruct",):
+        super().__init__(
+            model_name=model_name,
+            max_new_tokens=150,
+        )
+        self.model_name = model_name
+
+    def preprocess(self, prompt: PromptObject) -> PromptObject:
+        new_prompt = "<|begin_of_text|><|start_header_id|>user<|end_header_id|>"
+        new_prompt += prompt.data.get_prompt() + "<|eot_id|>"
+        new_prompt += "<|start_header_id|>assistant<|end_header_id|>"
+
+        return PromptObject(prompt=new_prompt, data=prompt.data)
+
+
 class SpotCheckPipeline(GenerationPipeline):
-    def __init__(self, dataset):
+    def __init__(self):
         super().__init__()
-        self.model_stage = LaminiModelStage(dataset=dataset)
+        self.model_stage = LaminiModelStage()
 
     def forward(self, x):
-        x = self.model_stage(x)
+        x = self.model_stage(x, output_type={"model_answer": "str"})
         return x
 
 
 def save_results(results):
-    file_name = "/app/lamini-earnings-sdk/data/results/spot_check_results.jsonl"
+    file_name = "spot_check_results.jsonl"
 
     with jsonlines.open(file_name, "w") as writer:
         for result in results:
