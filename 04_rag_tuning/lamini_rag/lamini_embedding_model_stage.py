@@ -1,20 +1,9 @@
 from lamini.generation.base_prompt_object import PromptObject
 from lamini.generation.embedding_node import EmbeddingNode
 
-from typing import Dict, Iterator, AsyncIterator, Optional, Union
+from typing import Iterator, AsyncIterator, Optional, Union
 
-
-class DatasetDescriptor:
-    """ 
-    A simple helper class to provide the structured output from
-    generated responses in a pipeline
-    """
-
-    def get_output_type(self) -> Dict[str, str]:
-        """Returns the structured output for the pipeline
-        """
-        return {"model_answer": "str"}
-
+from lamini_rag.data_descriptor import DatasetDescriptor
 
 class LaminiEmbeddingModelStage(EmbeddingNode):
     """ 
