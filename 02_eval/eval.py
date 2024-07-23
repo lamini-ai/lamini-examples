@@ -140,18 +140,19 @@ def save_results(results, args):
     items = []
     with jsonlines.open(file_name, "w") as writer:
         for result in results:
+            print(f"result: {result}")
             items.append(result)
-            # writer.write(
-            #     {
-            #         "id": result.data.result["example_id"],
-            #         "prompt": result.data.result["prompt"],
-            #         "response": result.data.result["response"],
-            #         "reference_response": result.data.result["reference_response"],
-            #         "is_exact_match": result.data.result["is_exact_match"],
-            #         "score": result.data.result["score"],
-            #         "explanation": result.data.result["explanation"],
-            #     }
-            # )
+            writer.write(
+                {
+                    "id": result.data["result"]["example_id"],
+                    "prompt": result.data["result"]["prompt"],
+                    "response": result.data["result"]["response"],
+                    "reference_response": result.data["result"]["reference_response"],
+                    "is_exact_match": result.data["result"]["is_exact_match"],
+                    "score": result.data["result"]["score"],
+                    "explanation": result.data["result"]["explanation"],
+                }
+            )
         print(f"result count: {len(items)}")
 
 

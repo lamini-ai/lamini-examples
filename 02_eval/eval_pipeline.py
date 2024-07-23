@@ -18,16 +18,16 @@ def evaluate_model(model, dataset, args):
 
     results = asyncio.run(run_evaluation_pipeline(model, dataset, args))
 
-    # print("Total results:", len(results))
-    # print(
-    #     "Avg precision score:",
-    #     sum([result.data.result["is_exact_match"] for result in results])
-    #     / len(results),
-    # )
-    # print(
-    #     "Avg score:",
-    #     sum([result.data.result["score"] for result in results]) / len(results),
-    # )
+    print("Total results:", len(results))
+    print(
+        "Avg precision score:",
+        sum([result.data["result"]["is_exact_match"] for result in results])
+        / len(results),
+    )
+    print(
+        "Avg score:",
+        sum([result.data["result"]["score"] for result in results]) / len(results),
+    )
 
     return results
 
@@ -63,9 +63,10 @@ class EvaluationPipeline(GenerationPipeline):
     def forward(self, x):
         for stage in self.model_stages:
             x = stage(x)
-        return x
+        
 
         x = self.modify_stage(x)
+        
         x = self.score_stage(x)
         return x
 
@@ -83,7 +84,7 @@ class ModifyStage(ModifyNode):
                 )
                 result.response = result.error
 
-            result.data.response = result.response
+            result.data["example"].response = result.response
 
             yield result
 
@@ -128,12 +129,12 @@ class ScoreStage(GenerationNode):
                 )
                 continue
 
-            result.data.result = {
-                "example_id": result.data.get_id(),
-                "prompt": result.data.get_prompt(),
-                "response": result.data.response,
-                "reference_response": result.data.get_response_json(),
-                "is_exact_match": result.data.is_exact_match(result.data.response),
+            result.data["result"] = {
+                "example_id": result.data["example"].get_id(),
+                "prompt": result.data["example"].get_prompt(),
+                "response": result.data["example"].response,
+                "reference_response": result.data["example"].get_response_json(),
+                "is_exact_match": result.data["example"].is_exact_match(result.data["example"].response),
                 "score": result.response["score"],
                 "explanation": result.response["explanation"],
             }
@@ -141,7 +142,7 @@ class ScoreStage(GenerationNode):
             yield result
 
     def make_prompt(self, example):
-        response = example.data.format_response(example.response)
+        response = example.data["example"].format_response(example.response)
 
         prompt = "<s>[INSTR]A large language model (LLM) is going to answer a question. "
         prompt += (
@@ -149,14 +150,14 @@ class ScoreStage(GenerationNode):
         )
         prompt += "You are an expert scorer.\n\n"
         prompt += "Rate the answer using a score from 1 (lowest match) to 5 (highest match).\n"
-        prompt += example.data.get_rubric()
+        prompt += example.data["example"].get_rubric()
         prompt += "Use the full range. Read the gold answer carefully. "
         prompt += "Explain your score in 2-3 sentences, then assign a score. "
         prompt += 'Output your score as a JSON object in the format {"explanation" : str, "score" : int}\n'
         prompt += "Use single quotes within your explanation. End your explanation with a double quote.\n"
         prompt += "Prefer answers that are most similar to the gold answer, even if the gold answer refused to answer the question.\n\n"
-        prompt += f"========== question =========\n{example.data.get_question()}\n\n"
-        prompt += f"========== gold answer =========\n{example.data.get_response(response)}\n\n"
+        prompt += f"========== question =========\n{example.data["example"].get_question()}\n\n"
+        prompt += f"========== gold answer =========\n{example.data["example"].get_response(response)}\n\n"
         prompt += f"========== model answer =========\n{response}\n\n"
         prompt += "=" * 40 + "\n\n"
         prompt += f"How would you score the model's answer compared to the gold answer (using the 1-5 scale defined above)?[/INSTR]"
