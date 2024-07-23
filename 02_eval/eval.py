@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
 
-from load_earnings_call_dataset import load_earnings_call_dataset
+from load_earnings_call_dataset import load_earnings_call_dataset, EarningsCallsExample
 # from utils.lamini_model import load_lamini_model
 
 from eval_pipeline import evaluate_model
@@ -105,8 +105,9 @@ class LaminiModelStage(GenerationNode):
         return results
 
     def preprocess(self, prompt: PromptObject):
+        example = prompt.data["example"]
         new_prompt = "<|begin_of_text|><|start_header_id|>user<|end_header_id|>"
-        new_prompt += prompt.data.get_prompt() + "<|eot_id|>"
+        new_prompt += example.get_prompt() + "<|eot_id|>"
         new_prompt += "<|start_header_id|>assistant<|end_header_id|>"
 
         return PromptObject(prompt=new_prompt, data=prompt.data)
