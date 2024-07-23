@@ -3,7 +3,7 @@ import random
 
 
 def load_earnings_call_dataset():
-    path = "/Users/yaxiong/Workspace/lamini-ai/lamini-examples/data/earnings_calls.jsonl"
+    path = "/app/lamini-earnings-sdk/data/earnings_calls.jsonl"
 
     return EarningsCallsDataset(path)
 

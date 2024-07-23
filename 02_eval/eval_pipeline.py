@@ -63,10 +63,10 @@ class EvaluationPipeline(GenerationPipeline):
     def forward(self, x):
         for stage in self.model_stages:
             x = stage(x)
-        
+
 
         x = self.modify_stage(x)
-        
+
         x = self.score_stage(x)
         return x
 
@@ -156,8 +156,8 @@ class ScoreStage(GenerationNode):
         prompt += 'Output your score as a JSON object in the format {"explanation" : str, "score" : int}\n'
         prompt += "Use single quotes within your explanation. End your explanation with a double quote.\n"
         prompt += "Prefer answers that are most similar to the gold answer, even if the gold answer refused to answer the question.\n\n"
-        prompt += f"========== question =========\n{example.data["example"].get_question()}\n\n"
-        prompt += f"========== gold answer =========\n{example.data["example"].get_response(response)}\n\n"
+        prompt += f"========== question =========\n{example.data['example'].get_question()}\n\n"
+        prompt += f"========== gold answer =========\n{example.data['example'].get_response(response)}\n\n"
         prompt += f"========== model answer =========\n{response}\n\n"
         prompt += "=" * 40 + "\n\n"
         prompt += f"How would you score the model's answer compared to the gold answer (using the 1-5 scale defined above)?[/INSTR]"
