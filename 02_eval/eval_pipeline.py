@@ -63,6 +63,7 @@ class EvaluationPipeline(GenerationPipeline):
     def forward(self, x):
         for stage in self.model_stages:
             x = stage(x)
+        return x
 
         x = self.modify_stage(x)
         x = self.score_stage(x)
