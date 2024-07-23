@@ -49,6 +49,7 @@ async def run_evaluation_pipeline(model, dataset, args):
 
 async def slice_dataset(dataset, args):
     for index, example in enumerate(dataset):
+        logger.info(f"example: {example}")
         if index < args.max_examples:
             yield PromptObject(prompt=example.get_prompt(), data=example)
 

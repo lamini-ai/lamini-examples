@@ -23,7 +23,6 @@ class LaminiModelStage(GenerationNode):
 
         results = super().generate(
             prompt,
-            model_name=self.model_name,
             output_type=self.dataset.get_output_type(),
             *args,
             **kwargs,
