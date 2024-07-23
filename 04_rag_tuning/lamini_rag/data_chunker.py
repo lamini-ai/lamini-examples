@@ -53,7 +53,7 @@ class EarningsCallChunker(BaseDataChunker):
     order.
     """
 
-    def get_chunks(self, data: Tuple[str, str]) -> Generator[str]:
+    def get_chunks(self, data: Tuple[str, str]) -> Generator[str, None, None]:
         """ A generator that yields a list of strings, each a 
         substring of the text with length self.chunk_size the last 
         element of the list may be shorter than self.chunk_size. 
