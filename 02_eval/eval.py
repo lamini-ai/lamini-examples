@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 
 from load_earnings_call_dataset import load_earnings_call_dataset
-from utils.lamini_model import load_lamini_model
+# from utils.lamini_model import load_lamini_model
 
 from eval_pipeline import evaluate_model
 
@@ -74,6 +74,21 @@ def load_dataset(args):
         raise ValueError(f"Unknown dataset: {args.data}")
 
 
+from utils.lamini_model_stage import LaminiModelStage
+
+
+def load_lamini_model(model_name):
+    return LaminiModel(model_name)
+
+
+class LaminiModel:
+    def __init__(self, model_name):
+        self.model_name = model_name
+        if model_name is None:
+            self.model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
+    def get_stages(self, dataset):
+        return [LaminiModelStage(dataset=dataset, model_name=self.model_name)]
+    
 def load_model(args):
     return load_lamini_model(args.model)
 
