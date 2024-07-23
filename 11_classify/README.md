@@ -9,7 +9,7 @@ Train a new classifier with just a prompt. No data needed -- but add data to boo
 In this example, we build a classifier to remove low quality training data.
 
 ```python
-from lamini_classifier import LaminiClassifier
+from lamini import LaminiClassifier
 
 llm = LaminiClassifier()
 
@@ -20,7 +20,7 @@ prompts={
 
 llm.prompt_train(prompts)
 
-llm.save("models/my_model.lamini")
+llm.save("my_model.lamini")
 ```
 
 Then, predict!
