@@ -1,15 +1,13 @@
-from argparse import ArgumentParser
-
-from load_earnings_call_dataset import load_earnings_call_dataset, EarningsCallsExample
-# from utils.lamini_model import load_lamini_model
-
-from eval_pipeline import evaluate_model
-
 import jsonlines
-
 import os
-
 import logging
+
+from argparse import ArgumentParser
+from typing import Union, Iterator, AsyncIterator
+
+from load_earnings_call_dataset import load_earnings_call_dataset, EarningsCallsExamplerom lamini.generation.generation_node import GenerationNode
+from lamini.generation.base_prompt_object import PromptObject
+from eval_pipeline import evaluate_model
 
 
 def main():
@@ -74,12 +72,6 @@ def load_dataset(args):
         raise ValueError(f"Unknown dataset: {args.data}")
 
 
-from lamini.generation.generation_node import GenerationNode
-from lamini.generation.base_prompt_object import PromptObject
-
-from typing import Union, Iterator, AsyncIterator
-
-
 class LaminiModelStage(GenerationNode):
     def __init__(self, dataset, model_name="meta-llama/Meta-Llama-3-8B-Instruct",):
         super().__init__(
@@ -112,6 +104,7 @@ class LaminiModelStage(GenerationNode):
 
         return PromptObject(prompt=new_prompt, data=prompt.data)
 
+
 def load_lamini_model(model_name):
     return LaminiModel(model_name)
 
@@ -123,13 +116,14 @@ class LaminiModel:
             self.model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
     def get_stages(self, dataset):
         return [LaminiModelStage(dataset=dataset, model_name=self.model_name)]
-    
+
+
 def load_model(args):
     return load_lamini_model(args.model)
 
 
 def save_results(results, args):
-    base_path = "./"
+    base_path = "/app/lamini-earnings-sdk/data/results"
     experiment_name = f"{args.data}_{args.model}".replace("/", "_")
 
     if not os.path.exists(base_path):
@@ -137,11 +131,8 @@ def save_results(results, args):
 
     file_name = f"{base_path}/{experiment_name}_results.json"
 
-    items = []
     with jsonlines.open(file_name, "w") as writer:
         for result in results:
-            print(f"result: {result}")
-            items.append(result)
             writer.write(
                 {
                     "id": result.data["result"]["example_id"],
@@ -153,7 +144,6 @@ def save_results(results, args):
                     "explanation": result.data["result"]["explanation"],
                 }
             )
-        print(f"result count: {len(items)}")
 
 
 main()
