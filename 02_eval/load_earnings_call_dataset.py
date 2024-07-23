@@ -27,8 +27,8 @@ class EarningsCallsDataset:
         random.seed(42)
         random.shuffle(items)
 
-        for index, item in enumerate(items):
-            yield EarningsCallsExample(index, item)
+        for _, item in enumerate(items):
+            yield item
 
     def get_length(self):
         return sum(1 for line in self)
