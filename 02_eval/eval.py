@@ -5,7 +5,8 @@ import logging
 from argparse import ArgumentParser
 from typing import Union, Iterator, AsyncIterator
 
-from load_earnings_call_dataset import load_earnings_call_dataset, EarningsCallsExamplerom lamini.generation.generation_node import GenerationNode
+from load_earnings_call_dataset import load_earnings_call_dataset, EarningsCallsExample
+from lamini.generation.generation_node import GenerationNode
 from lamini.generation.base_prompt_object import PromptObject
 from eval_pipeline import evaluate_model
 
