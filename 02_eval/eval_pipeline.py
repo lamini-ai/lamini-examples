@@ -18,16 +18,16 @@ def evaluate_model(model, dataset, args):
 
     results = asyncio.run(run_evaluation_pipeline(model, dataset, args))
 
-    print("Total results:", len(results))
-    print(
-        "Avg precision score:",
-        sum([result.data.result["is_exact_match"] for result in results])
-        / len(results),
-    )
-    print(
-        "Avg score:",
-        sum([result.data.result["score"] for result in results]) / len(results),
-    )
+    # print("Total results:", len(results))
+    # print(
+    #     "Avg precision score:",
+    #     sum([result.data.result["is_exact_match"] for result in results])
+    #     / len(results),
+    # )
+    # print(
+    #     "Avg score:",
+    #     sum([result.data.result["score"] for result in results]) / len(results),
+    # )
 
     return results
 

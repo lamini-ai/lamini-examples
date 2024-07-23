@@ -87,19 +87,22 @@ def save_results(results, args):
 
     file_name = f"{base_path}/{experiment_name}_results.json"
 
+    items = []
     with jsonlines.open(file_name, "w") as writer:
         for result in results:
-            writer.write(
-                {
-                    "id": result.data.result["example_id"],
-                    "prompt": result.data.result["prompt"],
-                    "response": result.data.result["response"],
-                    "reference_response": result.data.result["reference_response"],
-                    "is_exact_match": result.data.result["is_exact_match"],
-                    "score": result.data.result["score"],
-                    "explanation": result.data.result["explanation"],
-                }
-            )
+            items.append(result)
+            # writer.write(
+            #     {
+            #         "id": result.data.result["example_id"],
+            #         "prompt": result.data.result["prompt"],
+            #         "response": result.data.result["response"],
+            #         "reference_response": result.data.result["reference_response"],
+            #         "is_exact_match": result.data.result["is_exact_match"],
+            #         "score": result.data.result["score"],
+            #         "explanation": result.data.result["explanation"],
+            #     }
+            # )
+        print(f"result count: {len(items)}")
 
 
 main()
