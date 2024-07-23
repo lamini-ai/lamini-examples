@@ -2,35 +2,109 @@ name: Test examples
 on:
   workflow_dispatch:
   workflow_call:
+
 jobs:
-  deploy:
+  llama3:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.x
+      - run: |
+          mkdir ~/.lamini/
+          echo 'production:' >> ~/.lamini/configure.yaml
+          echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
+      - run: ./01_llama3/scripts/llama3.sh
 
-      - name: 01 Llama3
-        run: ./01_llama3/scripts/llama3.sh
+  eval:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - run: |
+          mkdir ~/.lamini/
+          echo 'production:' >> ~/.lamini/configure.yaml
+          echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
+      - run: ./02_eval/scripts/eval.sh
 
-      - name: 02 Eval
-        run: ./02_eval/scripts/eval.sh
+  prompt_tuning:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - run: |
+          mkdir ~/.lamini/
+          echo 'production:' >> ~/.lamini/configure.yaml
+          echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
+      - run: ./03_prompt_tuning/scripts/prompt_tune.sh
 
-      - name: 03 Prompt Tuning
-        run: ./03_prompt_tuning/scripts/prompt_tune.sh
+  rag_tuning:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - run: |
+          mkdir ~/.lamini/
+          echo 'production:' >> ~/.lamini/configure.yaml
+          echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
+      - run: ./04_rag_tuning/scripts/rag_tuning.sh
 
-      - name: 04 RAG Tuning
-        run: ./04_rag_tuning/scripts/rag_tuning.sh
+  data_pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - run: |
+          mkdir ~/.lamini/
+          echo 'production:' >> ~/.lamini/configure.yaml
+          echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
+      - run: ./05_data_pipeline/scripts/generate-data.sh
 
-      - name: 05 Data Pipeline
-        run: ./05_data_pipeline/scripts/generate-data.sh
+  ift:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - run: |
+          mkdir ~/.lamini/
+          echo 'production:' >> ~/.lamini/configure.yaml
+          echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
+      - run: ./06_ift/scripts/train.sh
 
-      - name: 06 IFT
-        run: ./06_ift/scripts/train.sh
-
-      - name: 10 Json Output
-        run: ./10_json_output/scripts/run_llm_json.sh
+  json_output:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - run: |
+          mkdir ~/.lamini/
+          echo 'production:' >> ~/.lamini/configure.yaml
+          echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
+      - run: ./10_json_output/scripts/run_llm_json.sh
