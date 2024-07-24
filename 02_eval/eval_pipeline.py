@@ -1,22 +1,21 @@
+import asyncio
+import logging
+
+from tqdm import tqdm
+from typing import AsyncIterator, Iterator, Union
+
 from lamini.generation.base_prompt_object import PromptObject
 from lamini.generation.generation_node import GenerationNode
 from lamini.generation.generation_pipeline import GenerationPipeline
 from lamini.generation.modify_node import ModifyNode
 
-from tqdm import tqdm
-
-import asyncio
-
-from typing import AsyncIterator, Iterator, Union
-
-import logging
 
 logger = logging.getLogger(__name__)
 
 
-def evaluate_model(model, dataset, args):
+def evaluate_model(dataset, args):
 
-    results = asyncio.run(run_evaluation_pipeline(model, dataset, args))
+    results = asyncio.run(run_evaluation_pipeline(dataset, args))
 
     print("Total results:", len(results))
     print(
@@ -32,10 +31,8 @@ def evaluate_model(model, dataset, args):
     return results
 
 
-async def run_evaluation_pipeline(model, dataset, args):
-    data_slice = slice_dataset(dataset, args)
-
-    results = EvaluationPipeline(model, dataset).call(data_slice)
+async def run_evaluation_pipeline(dataset, args):
+    results = EvaluationPipeline().call(dataset)
 
     result_list = []
 
@@ -47,44 +44,49 @@ async def run_evaluation_pipeline(model, dataset, args):
     return result_list
 
 
-async def slice_dataset(dataset, args):
-    for index, example in enumerate(dataset):
-        if index < args.max_examples:
-            yield PromptObject(prompt=example.get_prompt(), data={"example": example})
-
-
 class EvaluationPipeline(GenerationPipeline):
-    def __init__(self, model, dataset):
+    def __init__(self):
         super().__init__()
-        self.model_stages = model.get_stages(dataset)
+
+        self.model_gen_stage = LaminiModelStage()
         self.modify_stage = ModifyStage()
         self.score_stage = ScoreStage()
 
     def forward(self, x):
-        for stage in self.model_stages:
-            x = stage(x)
-
+        x = self.model_gen_stage(x, output_type={
+            "answer": "str",
+            "value": "float",
+            "units": "str",
+        })
         x = self.modify_stage(x)
-        x = self.score_stage(x)
+        x = self.score_stage(x, output_type={
+            "explanation": "str",
+            "score": "int",
+        })
         return x
+
+
+class LaminiModelStage(GenerationNode):
+    def __init__(self):
+        super().__init__(
+            model_name="meta-llama/Meta-Llama-3-8B-Instruct",
+            max_new_tokens=150,
+        )
+
+    def preprocess(self, prompt: PromptObject):
+        example = prompt.data["example"]
+        new_prompt = "<|begin_of_text|><|start_header_id|>user<|end_header_id|>"
+        new_prompt += example.get_prompt() + "<|eot_id|>"
+        new_prompt += "<|start_header_id|>assistant<|end_header_id|>"
+        return PromptObject(prompt=new_prompt, data=prompt.data)
 
 
 class ModifyStage(ModifyNode):
     def __init__(self):
-        super().__init__()
+        super().__init__(self.modify_result)
 
-    async def modify(self, results):
-        async for result in results:
-            # filter out results that are None
-            if result.response is None:
-                logging.error(
-                    f"Error evaluating example {result.data.get_id()}: {result.error}"
-                )
-                result.response = result.error
-
-            result.data["example"].response = result.response
-
-            yield result
+    def modify_result(self, result: PromptObject):
+        result.data["example"].response = result.response
 
 
 class ScoreStage(GenerationNode):
@@ -94,52 +96,7 @@ class ScoreStage(GenerationNode):
             max_new_tokens=150,
         )
 
-    def generate(
-        self,
-        prompt: Union[Iterator[PromptObject], AsyncIterator[PromptObject]],
-        *args,
-        **kwargs,
-    ):
-        results = super().generate(
-            prompt,
-            output_type={"explanation": "str", "score": "int"},
-            *args,
-            **kwargs,
-        )
-
-        return results
-
-    async def transform_prompt(self, examples):
-        async for example in examples:
-            example.prompt = self.make_prompt(example)
-
-            yield example
-
-    async def process_results(self, results):
-        async for result in results:
-            # filter out results that are None
-            if result is None:
-                continue
-
-            if result.response is None:
-                logging.error(
-                    f"Error scoring example {result.data.get_id()}: {result.error}"
-                )
-                continue
-
-            result.data["result"] = {
-                "example_id": result.data["example"].get_id(),
-                "prompt": result.data["example"].get_prompt(),
-                "response": result.data["example"].response,
-                "reference_response": result.data["example"].get_response_json(),
-                "is_exact_match": result.data["example"].is_exact_match(result.data["example"].response),
-                "score": result.response["score"],
-                "explanation": result.response["explanation"],
-            }
-
-            yield result
-
-    def make_prompt(self, example):
+    def preprocess(self, example):
         response = example.data["example"].format_response(example.response)
 
         prompt = "<s>[INSTR]A large language model (LLM) is going to answer a question. "
@@ -160,4 +117,15 @@ class ScoreStage(GenerationNode):
         prompt += "=" * 40 + "\n\n"
         prompt += f"How would you score the model's answer compared to the gold answer (using the 1-5 scale defined above)?[/INSTR]"
 
-        return prompt
+        example.prompt = prompt
+
+    def postprocess(self, result):
+        result.data["result"] = {
+            "example_id": result.data["example"].get_id(),
+            "prompt": result.data["example"].get_prompt(),
+            "response": result.data["example"].response,
+            "reference_response": result.data["example"].get_response_json(),
+            "is_exact_match": result.data["example"].is_exact_match(result.data["example"].response),
+            "score": result.response["score"],
+            "explanation": result.response["explanation"],
+        }

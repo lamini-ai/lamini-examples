@@ -3,10 +3,8 @@ import os
 import logging
 
 from argparse import ArgumentParser
-from typing import Union, Iterator, AsyncIterator
 
 from load_earnings_call_dataset import load_earnings_call_dataset
-from lamini.generation.generation_node import GenerationNode
 from lamini.generation.base_prompt_object import PromptObject
 from eval_pipeline import evaluate_model
 
@@ -16,13 +14,17 @@ def main():
 
     setup_logging(args)
 
-    dataset = load_dataset(args)
+    dataset = slice_dataset(load_dataset(args), args.max_examples)
 
-    model = LaminiModel(args.model)
-
-    results = evaluate_model(model, dataset, args)
+    results = evaluate_model(dataset, args)
 
     save_results(results, args)
+
+
+async def slice_dataset(dataset, max_examples):
+    for index, example in enumerate(dataset):
+        if index < max_examples:
+            yield PromptObject(prompt=example.get_prompt(), data={"example": example})
 
 
 def parse_arguments():
@@ -71,47 +73,6 @@ def load_dataset(args):
         return load_earnings_call_dataset()
     else:
         raise ValueError(f"Unknown dataset: {args.data}")
-
-
-class LaminiModelStage(GenerationNode):
-    def __init__(self, dataset, model_name="meta-llama/Meta-Llama-3-8B-Instruct",):
-        super().__init__(
-            model_name=model_name,
-            max_new_tokens=150,
-        )
-        self.model_name = model_name
-        self.dataset = dataset
-
-    def generate(
-        self,
-        prompt: Union[Iterator[PromptObject], AsyncIterator[PromptObject]],
-        *args,
-        **kwargs,
-    ):
-        results = super().generate(
-            prompt,
-            output_type=self.dataset.get_output_type(),
-            *args,
-            **kwargs,
-        )
-
-        return results
-
-    def preprocess(self, prompt: PromptObject):
-        example = prompt.data["example"]
-        new_prompt = "<|begin_of_text|><|start_header_id|>user<|end_header_id|>"
-        new_prompt += example.get_prompt() + "<|eot_id|>"
-        new_prompt += "<|start_header_id|>assistant<|end_header_id|>"
-        return PromptObject(prompt=new_prompt, data=prompt.data)
-
-
-class LaminiModel:
-    def __init__(self, model_name):
-        self.model_name = model_name
-        if model_name is None:
-            self.model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
-    def get_stages(self, dataset):
-        return [LaminiModelStage(dataset=dataset, model_name=self.model_name)]
 
 
 def save_results(results, args):
