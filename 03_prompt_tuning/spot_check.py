@@ -99,13 +99,6 @@ def get_company_info(example):
 
 
 class LaminiModelStage(GenerationNode):
-    def __init__(self, model_name="meta-llama/Meta-Llama-3-8B-Instruct",):
-        super().__init__(
-            model_name=model_name,
-            max_new_tokens=150,
-        )
-        self.model_name = model_name
-
     def preprocess(self, prompt: PromptObject):
         new_prompt = "<|begin_of_text|><|start_header_id|>user<|end_header_id|>"
         new_prompt += make_prompt(prompt.data) + "<|eot_id|>"
@@ -116,7 +109,9 @@ class LaminiModelStage(GenerationNode):
 class SpotCheckPipeline(GenerationPipeline):
     def __init__(self):
         super().__init__()
-        self.model_stage = LaminiModelStage()
+        self.model_stage = LaminiModelStage(
+            "meta-llama/Meta-Llama-3-8B-Instruct", max_new_tokens=150
+        )
 
     def forward(self, x):
         x = self.model_stage(x, output_type={"model_answer": "str"})
