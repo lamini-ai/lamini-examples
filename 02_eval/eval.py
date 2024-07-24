@@ -1,15 +1,12 @@
+import jsonlines
+import os
+import logging
+
 from argparse import ArgumentParser
 
 from load_earnings_call_dataset import load_earnings_call_dataset
-from utils.lamini_model import load_lamini_model
-
+from lamini.generation.base_prompt_object import PromptObject
 from eval_pipeline import evaluate_model
-
-import jsonlines
-
-import os
-
-import logging
 
 
 def main():
@@ -17,13 +14,17 @@ def main():
 
     setup_logging(args)
 
-    dataset = load_dataset(args)
+    dataset = slice_dataset(load_dataset(args), args.max_examples)
 
-    model = load_model(args)
-
-    results = evaluate_model(model, dataset, args)
+    results = evaluate_model(dataset, args)
 
     save_results(results, args)
+
+
+async def slice_dataset(dataset, max_examples):
+    for index, example in enumerate(dataset):
+        if index < max_examples:
+            yield PromptObject(prompt=example.get_prompt(), data={"example": example})
 
 
 def parse_arguments():
@@ -74,10 +75,6 @@ def load_dataset(args):
         raise ValueError(f"Unknown dataset: {args.data}")
 
 
-def load_model(args):
-    return load_lamini_model(args.model)
-
-
 def save_results(results, args):
     base_path = "/app/lamini-earnings-sdk/data/results"
     experiment_name = f"{args.data}_{args.model}".replace("/", "_")
@@ -91,13 +88,13 @@ def save_results(results, args):
         for result in results:
             writer.write(
                 {
-                    "id": result.data.result["example_id"],
-                    "prompt": result.data.result["prompt"],
-                    "response": result.data.result["response"],
-                    "reference_response": result.data.result["reference_response"],
-                    "is_exact_match": result.data.result["is_exact_match"],
-                    "score": result.data.result["score"],
-                    "explanation": result.data.result["explanation"],
+                    "id": result.data["result"]["example_id"],
+                    "prompt": result.data["result"]["prompt"],
+                    "response": result.data["result"]["response"],
+                    "reference_response": result.data["result"]["reference_response"],
+                    "is_exact_match": result.data["result"]["is_exact_match"],
+                    "score": result.data["result"]["score"],
+                    "explanation": result.data["result"]["explanation"],
                 }
             )
 

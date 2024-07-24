@@ -1,17 +1,13 @@
-from lamini.generation.base_prompt_object import PromptObject
-from lamini.generation.generation_pipeline import GenerationPipeline
-
-
-from utils.lamini_model_stage import LaminiModelStage
-
-from tqdm import tqdm
-
-from argparse import ArgumentParser
-
 import asyncio
 import jsonlines
-
 import logging
+
+from argparse import ArgumentParser
+from tqdm import tqdm
+
+from lamini.generation.base_prompt_object import PromptObject
+from lamini.generation.generation_pipeline import GenerationPipeline
+from lamini.generation.generation_node import GenerationNode
 
 
 def main():
@@ -53,7 +49,7 @@ def parse_arguments():
 async def run_spot_check(args):
     dataset = load_dataset(args)
 
-    results = SpotCheckPipeline(DatasetDescriptor()).call(dataset)
+    results = SpotCheckPipeline().call(dataset)
 
     result_list = []
 
@@ -76,19 +72,12 @@ def load_dataset(args):
     with jsonlines.open(path) as reader:
         dataset = list(reader)
 
-    for index, example in enumerate(dataset):
+    for index, data in enumerate(dataset):
         if index < args.max_examples:
-            earnings_example = EarningsExample(example)
             yield PromptObject(
-                prompt=earnings_example.get_prompt(), data=earnings_example
+                prompt="", data=data
             )
 
-class EarningsExample:
-    def __init__(self, example):
-        self.example = example
-
-    def get_prompt(self):
-        return make_prompt(self.example)
 
 def make_prompt(example):
     prompt = "You are an expert analyst from Goldman Sachs with 15 years of experience."
@@ -109,13 +98,23 @@ def get_company_info(example):
     return prompt
 
 
+class LaminiModelStage(GenerationNode):
+    def preprocess(self, prompt: PromptObject):
+        new_prompt = "<|begin_of_text|><|start_header_id|>user<|end_header_id|>"
+        new_prompt += make_prompt(prompt.data) + "<|eot_id|>"
+        new_prompt += "<|start_header_id|>assistant<|end_header_id|>"
+        prompt.prompt = new_prompt
+
+
 class SpotCheckPipeline(GenerationPipeline):
-    def __init__(self, dataset):
+    def __init__(self):
         super().__init__()
-        self.model_stage = LaminiModelStage(dataset=dataset)
+        self.model_stage = LaminiModelStage(
+            "meta-llama/Meta-Llama-3-8B-Instruct", max_new_tokens=150
+        )
 
     def forward(self, x):
-        x = self.model_stage(x)
+        x = self.model_stage(x, output_type={"model_answer": "str"})
         return x
 
 
@@ -125,7 +124,7 @@ def save_results(results):
     with jsonlines.open(file_name, "w") as writer:
         for result in results:
 
-            row = result.data.example.copy()
+            row = result.data.copy()
             row["model_answer"] = result.response["model_answer"]
             row["prompt"] = result.prompt
 
