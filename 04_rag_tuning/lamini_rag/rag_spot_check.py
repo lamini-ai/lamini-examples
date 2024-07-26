@@ -5,7 +5,6 @@ from lamini_rag.data_loader import DataLoader
 from lamini_rag.data_chunker import EarningsCallChunker
 from lamini_rag.example_prompt_formatter import EarningsExample
 from lamini_rag.lamini_pipeline import SpotCheckPipeline
-from lamini_rag.data_descriptor import DatasetDescriptor
 
 from lamini.generation.base_prompt_object import PromptObject
 
@@ -204,7 +203,7 @@ async def run_spot_check(args) -> List[PromptObject]:
 
     dataset = load_dataset(args)
 
-    results = SpotCheckPipeline(DatasetDescriptor()).call(dataset)
+    results = SpotCheckPipeline().call(dataset)
 
     result_list = []
 

@@ -7,14 +7,11 @@ from typing import Union, Iterator, AsyncIterator
 
 
 class LaminiRAGModelStage(GenerationNode):
-    def __init__(self, dataset):
+    def __init__(self):
         super().__init__(
             model_name="meta-llama/Meta-Llama-3-8B-Instruct",
             max_new_tokens=150,
         )
-
-        self.dataset = dataset
-
         model_path = "/app/lamini-earnings-sdk/04_rag_tuning/rag_model"
         self.index = LaminiIndex.load_index(model_path)
 

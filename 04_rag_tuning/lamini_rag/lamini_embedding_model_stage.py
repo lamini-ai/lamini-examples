@@ -1,6 +1,5 @@
 from lamini.generation.base_prompt_object import PromptObject
 from lamini.generation.embedding_node import EmbeddingNode
-from lamini_rag.data_descriptor import DatasetDescriptor
 
 class LaminiEmbeddingModelStage(EmbeddingNode):
     """ 
@@ -11,18 +10,7 @@ class LaminiEmbeddingModelStage(EmbeddingNode):
 
     For more information on how EmbeddingNodes work, refer to 
         https://github.com/lamini-ai/lamini/blob/main/lamini/generation/embedding_node.py
-        
-    Parameters
-    ----------
-    dataset: DatasetDescriptor
-        Helper class used for output format to be passed to 
-        the API calls
-        
     """
-
-    def __init__(self, dataset: DatasetDescriptor):
-        super().__init__()
-        self.dataset = dataset
 
     def preprocess(self, prompt: PromptObject):
         """ A generator function that will yield the PromptObject

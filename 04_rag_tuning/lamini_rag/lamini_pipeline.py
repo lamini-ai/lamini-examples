@@ -1,8 +1,7 @@
-from typing import Dict, Union, AsyncIterator, Iterator
+from typing import Union, AsyncIterator, Iterator
 
 from lamini_rag.lamini_embedding_model_stage import LaminiEmbeddingModelStage
 from lamini_rag.lamini_rag_model_stage import LaminiRAGModelStage
-from lamini_rag.data_descriptor import DatasetDescriptor
 from lamini.generation.generation_pipeline import GenerationPipeline
 
 
@@ -12,19 +11,11 @@ class SpotCheckPipeline(GenerationPipeline):
     embedding stage and a RAG model stage in sequence. This
     class is a simple example showcasing how to build LLM
     pipelines using Lamini generation nodes.
-
-    Parameters
-    ----------
-    dataset: DatasetDescriptor
-        An object to set the formatting for the output of the
-        LLM stages.
-
     """
-
-    def __init__(self, dataset: DatasetDescriptor):
+    def __init__(self):
         super().__init__()
-        self.embedding_stage = LaminiEmbeddingModelStage(dataset)
-        self.model_stage = LaminiRAGModelStage(dataset)
+        self.embedding_stage = LaminiEmbeddingModelStage()
+        self.model_stage = LaminiRAGModelStage()
 
     def forward(self, x: Union[Iterator, AsyncIterator]) -> AsyncIterator:
         """ Main function for execution of a provided prompt. This 
@@ -35,7 +26,7 @@ class SpotCheckPipeline(GenerationPipeline):
 
         Pipelines are intended to be called for execution of prompts. For example,
         the following line within the run_spot_check function:
-            results = SpotCheckPipeline(DatasetDescriptor()).call(dataset)
+            results = SpotCheckPipeline().call(dataset)
 
         Parameters
         ----------
@@ -56,5 +47,5 @@ class SpotCheckPipeline(GenerationPipeline):
             https://github.com/lamini-ai/lamini/blob/main/lamini/generation/generation_node.py#L42
         """
         x = self.embedding_stage(x)
-        x = self.model_stage(x, output_type=self.model_stage.dataset.get_output_type())
+        x = self.model_stage(x, output_type={"model_answer": "str"})
         return x
