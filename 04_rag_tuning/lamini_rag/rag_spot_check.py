@@ -183,7 +183,7 @@ def load_dataset(args: Namespace) -> PromptObject:
         if index < args.max_examples:
             earnings_example = EarningsExample(example)
             yield PromptObject(
-                prompt=earnings_example.get_prompt(), data=earnings_example
+                prompt=earnings_example.get_prompt(), data={"example": earnings_example}
             )
 
 
@@ -232,7 +232,7 @@ def save_results(args, results) -> None:
     with jsonlines.open(args.output_path, "w") as writer:
         for result in results:
 
-            row = result.data.example.copy()
+            row = result.data["example"].example.copy()
             row["model_answer"] = result.response["model_answer"]
             row["prompt"] = result.prompt
 

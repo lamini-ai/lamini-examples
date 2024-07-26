@@ -80,7 +80,7 @@ class LaminiEmbeddingModelStage(EmbeddingNode):
             for RAG inference
         """
         async for prompt in prompts:
-            query = prompt.data.get_query()
+            query = prompt.data["example"].get_query()
 
             yield PromptObject(prompt=query, data=prompt.data)
 

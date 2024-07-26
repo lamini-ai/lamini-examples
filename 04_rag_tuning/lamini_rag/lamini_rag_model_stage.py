@@ -45,7 +45,7 @@ class LaminiRAGModelStage(GenerationNode):
             new_prompt += "Consider the following:\n\n"
             for result in results:
                 new_prompt += result + "\n\n"
-            new_prompt += prompt.data.get_prompt() + "<|eot_id|>"
+            new_prompt += prompt.data["example"].get_prompt() + "<|eot_id|>"
             new_prompt += "<|start_header_id|>assistant<|end_header_id|>"
 
             yield PromptObject(prompt=new_prompt, data=prompt.data)
