@@ -5,7 +5,6 @@ from lamini_rag.data_loader import DataLoader
 from lamini_rag.data_chunker import EarningsCallChunker
 from lamini_rag.example_prompt_formatter import EarningsExample
 from lamini_rag.lamini_pipeline import SpotCheckPipeline
-from lamini_rag.data_descriptor import DatasetDescriptor
 
 from lamini.generation.base_prompt_object import PromptObject
 
@@ -183,7 +182,7 @@ def load_dataset(args: Namespace) -> PromptObject:
         if index < args.max_examples:
             earnings_example = EarningsExample(example)
             yield PromptObject(
-                prompt=earnings_example.get_prompt(), data=earnings_example
+                prompt=earnings_example.get_prompt(), data={"example": earnings_example}
             )
 
 
@@ -204,7 +203,7 @@ async def run_spot_check(args) -> List[PromptObject]:
 
     dataset = load_dataset(args)
 
-    results = SpotCheckPipeline(DatasetDescriptor()).call(dataset)
+    results = SpotCheckPipeline().call(dataset)
 
     result_list = []
 
@@ -232,7 +231,7 @@ def save_results(args, results) -> None:
     with jsonlines.open(args.output_path, "w") as writer:
         for result in results:
 
-            row = result.data.example.copy()
+            row = result.data["example"].example.copy()
             row["model_answer"] = result.response["model_answer"]
             row["prompt"] = result.prompt
 
