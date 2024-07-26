@@ -56,5 +56,5 @@ class SpotCheckPipeline(GenerationPipeline):
             https://github.com/lamini-ai/lamini/blob/main/lamini/generation/generation_node.py#L42
         """
         x = self.embedding_stage(x)
-        x = self.model_stage(x)
+        x = self.model_stage(x, output_type=self.model_stage.dataset.get_output_type())
         return x

@@ -18,21 +18,6 @@ class LaminiRAGModelStage(GenerationNode):
         model_path = "/app/lamini-earnings-sdk/04_rag_tuning/rag_model"
         self.index = LaminiIndex.load_index(model_path)
 
-    def generate(
-        self,
-        prompt: Union[Iterator[PromptObject], AsyncIterator[PromptObject]],
-        *args,
-        **kwargs,
-    ):
-        results = super().generate(
-            prompt,
-            output_type=self.dataset.get_output_type(),
-            *args,
-            **kwargs,
-        )
-
-        return results
-
     def preprocess(self, prompt: PromptObject):
         query_embedding = prompt.response
 
