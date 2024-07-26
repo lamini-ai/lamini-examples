@@ -1,8 +1,5 @@
 from lamini.generation.base_prompt_object import PromptObject
 from lamini.generation.embedding_node import EmbeddingNode
-
-from typing import Iterator, AsyncIterator, Optional, Union
-
 from lamini_rag.data_descriptor import DatasetDescriptor
 
 class LaminiEmbeddingModelStage(EmbeddingNode):
