@@ -2,20 +2,37 @@ import asyncio
 import logging
 
 from tqdm import tqdm
-from typing import AsyncIterator, Iterator, Union
+from typing import List, Any, AsyncGenerator, Generator, Union
 
 from lamini.generation.base_prompt_object import PromptObject
 from lamini.generation.generation_node import GenerationNode
 from lamini.generation.generation_pipeline import GenerationPipeline
 from lamini.generation.modify_node import ModifyNode
 
+from load_earnings_call_dataset import EarningsCallsDataset
 
 logger = logging.getLogger(__name__)
 
 
-def evaluate_model(dataset, args):
+def evaluate_model(dataset: EarningsCallsDataset) -> List[Any]:
+    """ Run model evaluation with the provided dataset
 
-    results = asyncio.run(run_evaluation_pipeline(dataset, args))
+    Parameters
+    ----------
+    dataset: EarningsCallsDataset
+        Object hanlding the loading and formatting of the jsonlines
+        example data
+    
+    args: Namespace
+        Input args at runtime
+
+    Returns
+    -------
+    results: List[Any]
+        Returned results from the evaluation pipline
+    """
+
+    results = asyncio.run(run_evaluation_pipeline(dataset))
 
     print("Total results:", len(results))
     print(
@@ -31,7 +48,21 @@ def evaluate_model(dataset, args):
     return results
 
 
-async def run_evaluation_pipeline(dataset, args):
+async def run_evaluation_pipeline(dataset: EarningsCallsDataset) -> List[Any]:
+    """ Run model evaluation with the provided dataset
+
+    Parameters
+    ----------
+    dataset: EarningsCallsDataset
+        Object hanlding the loading and formatting of the jsonlines
+        example data
+
+    Returns
+    -------
+    result_list: List[Any]
+        Returned results from the evaluation pipline
+    """
+
     results = EvaluationPipeline().call(dataset)
 
     result_list = []
@@ -45,14 +76,39 @@ async def run_evaluation_pipeline(dataset, args):
 
 
 class EvaluationPipeline(GenerationPipeline):
-    def __init__(self):
+    """ 
+    Extension of a GenerationPipeline to generate, modify, then 
+    score the returned results from Lamini.generate.
+
+    Parameters
+    ----------
+    None
+
+    """
+
+    def __init__(self) -> None:
         super().__init__()
 
         self.model_gen_stage = LaminiModelStage()
         self.modify_stage = ModifyStage()
         self.score_stage = ScoreStage()
 
-    def forward(self, x):
+    def forward(
+            self, x: Union[Generator[PromptObject, None, None], AsyncGenerator[PromptObject, None]]
+            ) -> AsyncGenerator[PromptObject, None]:
+        """ Implementation of a forward call for this pipeline
+
+        Parameters
+        ----------
+        x: Union[Generator[PromptObject, None, None], AsyncGenerator[PromptObject, None]]
+            Provided input for pipeline
+
+        Returns
+        -------
+        x: AsyncGenerator[PromptObject, None]
+            Returned output from pipeline execution
+        """
+
         x = self.model_gen_stage(x, output_type={
             "answer": "str",
             "value": "float",
@@ -67,13 +123,35 @@ class EvaluationPipeline(GenerationPipeline):
 
 
 class LaminiModelStage(GenerationNode):
+    """ 
+    Extension of a GenerationNode for generation calls within a pipeline
+
+    Parameters
+    ----------
+    None
+
+    """
+
     def __init__(self):
         super().__init__(
             model_name="meta-llama/Meta-Llama-3-8B-Instruct",
             max_new_tokens=150,
         )
 
-    def preprocess(self, prompt: PromptObject):
+    def preprocess(self, prompt: PromptObject) -> PromptObject:
+        """ Formatting of the prompt for Llama3 text markers
+
+        Parameters
+        ----------
+        prompt: PromptObject
+            Provided prompt for node
+
+        Returns
+        -------
+        PromptObject
+            Formatted new prompt ready for forward call
+        """
+
         example = prompt.data["example"]
         new_prompt = "<|begin_of_text|><|start_header_id|>user<|end_header_id|>"
         new_prompt += example.get_prompt() + "<|eot_id|>"
@@ -82,21 +160,63 @@ class LaminiModelStage(GenerationNode):
 
 
 class ModifyStage(ModifyNode):
+    """ 
+    Extension of a ModifyNode for generation calls within a pipeline
+
+    Parameters
+    ----------
+    None
+
+    """
+
     def __init__(self):
         super().__init__(self.modify_result)
 
-    def modify_result(self, result: PromptObject):
+    def modify_result(self, result: PromptObject) -> None:
+        """ Data formatting for the provided result
+
+        Parameters
+        ----------
+        result: PromptObject
+            Provided result from a prior node in the pipeline
+
+        Returns
+        -------
+        None
+        """
+
         result.data["example"].response = result.response
 
 
 class ScoreStage(GenerationNode):
+    """ 
+    Extension of a GenerationNode for scoring of a prompt within a pipeline
+
+    Parameters
+    ----------
+    None
+
+    """
+
     def __init__(self):
         super().__init__(
             model_name="meta-llama/Meta-Llama-3-8B-Instruct",
             max_new_tokens=150,
         )
 
-    def preprocess(self, example):
+    def preprocess(self, example: PromptObject) -> None:
+        """ Preprocess provided prompt object before generate call
+
+        Parameters
+        ----------
+        example: PromptObject
+            Prompt object for which to preprocess
+
+        Returns
+        -------
+        None
+        """
+
         response = example.data["example"].format_response(example.response)
 
         prompt = "<s>[INSTR]A large language model (LLM) is going to answer a question. "
@@ -119,7 +239,19 @@ class ScoreStage(GenerationNode):
 
         example.prompt = prompt
 
-    def postprocess(self, result):
+    def postprocess(self, result: PromptObject) -> None:
+        """ Postprocess provided prompt object after generate call
+
+        Parameters
+        ----------
+        result: PromptObject
+            Prompt object for which to postprocess
+
+        Returns
+        -------
+        None
+        """
+
         result.data["result"] = {
             "example_id": result.data["example"].get_id(),
             "prompt": result.data["example"].get_prompt(),
