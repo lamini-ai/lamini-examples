@@ -2,9 +2,7 @@ import asyncio
 import logging
 
 from tqdm import tqdm
-from typing import AsyncIterator, Iterator, Union, List, Any
-
-from argparse import Namespace
+from typing import List, Any
 
 from lamini.generation.base_prompt_object import PromptObject
 from lamini.generation.generation_node import GenerationNode
@@ -16,7 +14,7 @@ from load_earnings_call_dataset import EarningsCallsDataset
 logger = logging.getLogger(__name__)
 
 
-def evaluate_model(dataset: EarningsCallsDataset, args: Namespace) -> List[Any]:
+def evaluate_model(dataset: EarningsCallsDataset) -> List[Any]:
     """ Run model evaluation with the provided dataset
 
     Parameters
@@ -34,7 +32,7 @@ def evaluate_model(dataset: EarningsCallsDataset, args: Namespace) -> List[Any]:
         Returned results from the evaluation pipline
     """
 
-    results = asyncio.run(run_evaluation_pipeline(dataset, args))
+    results = asyncio.run(run_evaluation_pipeline(dataset))
 
     print("Total results:", len(results))
     print(

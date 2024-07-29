@@ -28,7 +28,7 @@ def main() -> None:
 
     dataset = slice_dataset(load_dataset(args), args.max_examples)
 
-    results = evaluate_model(dataset, args)
+    results = evaluate_model(dataset)
 
     save_results(results, args)
 
@@ -36,7 +36,7 @@ def main() -> None:
 async def slice_dataset(
         dataset: EarningsCallsDataset, 
         max_examples: int
-    ) -> AsyncGenerator[PromptObject, None, None]:
+    ) -> AsyncGenerator[PromptObject, None]:
     """ Enforce the max_examples limit on the provided
     dataset
 

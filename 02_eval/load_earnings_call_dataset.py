@@ -4,116 +4,6 @@ import jsonlines
 import random
 
 
-def load_earnings_call_dataset() -> EarningsCallsDataset:
-    """ Wrap jsonlines file into an EarningsCallsDataset
-
-    Parameters
-    ----------
-    None
-
-    Returns
-    -------
-    EarningsCallsDataset
-        Object to handle async loading and output types
-    """
-
-    path = "/app/lamini-earnings-sdk/data/earnings_calls.jsonl"
-
-    return EarningsCallsDataset(path)
-
-
-class EarningsCallsDataset:
-    """ 
-    A Dataset handler for iteration within async processing as
-    well as output type formatting for Lamini generate calls.
-
-    Parameters
-    ----------
-    path: str
-        Dataset path string
-
-    """
-
-    def __init__(self, path: str) -> None:
-        self.path = path
-
-        self.length = self.get_length()
-
-    def __len__(self) -> int:
-        """ Length measured of lines within the json lines
-
-        Parameters
-        ----------
-        None
-
-        Returns
-        -------
-        int:
-            Number of lines, as definied within __init__
-        """
-
-        return self.length
-
-    def __iter__(self) -> Generator[EarningsCallsExample, None, None]:
-        """ Iteration of the provided jsonlines file
-
-        Parameters
-        ----------
-        None
-
-        Yields
-        ------
-        EarningsCallsExample:
-            Number of lines, as definied within __init__
-        """
-        items = []
-
-        with jsonlines.open(self.path) as reader:
-            for obj in reader:
-                items.append(obj)
-
-        random.seed(42)
-        random.shuffle(items)
-
-        for index, item in enumerate(items):
-            yield EarningsCallsExample(index, item)
-
-    def get_length(self) -> int:
-        """ Return the number of lines in the jsonlines file
-
-        Parameters
-        ----------
-        None
-
-        Yields
-        ------
-        int:
-            number of lines within the jsonlines file
-        """
-
-        return sum(1 for line in self)
-
-    def get_output_type(self) -> Dict[str, str]:
-        """ Return the dictionary for the output format
-        of a Lamini.generate call.
-
-        Parameters
-        ----------
-        None
-
-        Returns
-        -------
-        Dict[str, str]:
-            Output format of a generate call from Lamini
-        """
-
-        return {
-            "answer": "str",
-            "value": "float",
-            "units": "str",
-        }
-
-
 class EarningsCallsExample:
     """ 
     A class holding the id, prompt, and formatting of queries
@@ -356,3 +246,110 @@ class EarningsCallsExample:
 
         return prompt
 
+class EarningsCallsDataset:
+    """ 
+    A Dataset handler for iteration within async processing as
+    well as output type formatting for Lamini generate calls.
+
+    Parameters
+    ----------
+    path: str
+        Dataset path string
+
+    """
+
+    def __init__(self, path: str) -> None:
+        self.path = path
+
+        self.length = self.get_length()
+
+    def __len__(self) -> int:
+        """ Length measured of lines within the json lines
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        int:
+            Number of lines, as definied within __init__
+        """
+
+        return self.length
+
+    def __iter__(self) -> Generator[EarningsCallsExample, None, None]:
+        """ Iteration of the provided jsonlines file
+
+        Parameters
+        ----------
+        None
+
+        Yields
+        ------
+        EarningsCallsExample:
+            Number of lines, as definied within __init__
+        """
+        items = []
+
+        with jsonlines.open(self.path) as reader:
+            for obj in reader:
+                items.append(obj)
+
+        random.seed(42)
+        random.shuffle(items)
+
+        for index, item in enumerate(items):
+            yield EarningsCallsExample(index, item)
+
+    def get_length(self) -> int:
+        """ Return the number of lines in the jsonlines file
+
+        Parameters
+        ----------
+        None
+
+        Yields
+        ------
+        int:
+            number of lines within the jsonlines file
+        """
+
+        return sum(1 for line in self)
+
+    def get_output_type(self) -> Dict[str, str]:
+        """ Return the dictionary for the output format
+        of a Lamini.generate call.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        Dict[str, str]:
+            Output format of a generate call from Lamini
+        """
+
+        return {
+            "answer": "str",
+            "value": "float",
+            "units": "str",
+        }
+
+def load_earnings_call_dataset() -> EarningsCallsDataset:
+    """ Wrap jsonlines file into an EarningsCallsDataset
+
+    Parameters
+    ----------
+    None
+
+    Returns
+    -------
+    EarningsCallsDataset
+        Object to handle async loading and output types
+    """
+
+    path = "/app/lamini-earnings-sdk/data/earnings_calls.jsonl"
+
+    return EarningsCallsDataset(path)
