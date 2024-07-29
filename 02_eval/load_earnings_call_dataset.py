@@ -34,12 +34,12 @@ class EarningsCallsDataset:
 
     """
 
-    def __init__(self, path: str):
+    def __init__(self, path: str) -> None:
         self.path = path
 
         self.length = self.get_length()
 
-    def __len__(self):
+    def __len__(self) -> int:
         """ Length measured of lines within the json lines
 
         Parameters
@@ -131,7 +131,7 @@ class EarningsCallsExample:
 
     """
 
-    def __init__(self, index, example):
+    def __init__(self, index, example) -> None:
         self.index = index
         self.example = example
 
