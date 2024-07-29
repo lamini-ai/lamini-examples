@@ -2,7 +2,7 @@ import asyncio
 import logging
 
 from tqdm import tqdm
-from typing import List, Any
+from typing import List, Any, AsyncGenerator, Generator, Union
 
 from lamini.generation.base_prompt_object import PromptObject
 from lamini.generation.generation_node import GenerationNode
@@ -93,18 +93,20 @@ class EvaluationPipeline(GenerationPipeline):
         self.modify_stage = ModifyStage()
         self.score_stage = ScoreStage()
 
-    def forward(self, x: PromptObject) -> PromptObject:
+    def forward(
+            self, x: Union[Generator[PromptObject, None, None], AsyncGenerator[PromptObject, None]]
+            ) -> AsyncGenerator[PromptObject, None]:
         """ Implementation of a forward call for this pipeline
 
         Parameters
         ----------
-        x: PromptObject
-            Provided prompt for pipeline
+        x: Union[Generator[PromptObject, None, None], AsyncGenerator[PromptObject, None]]
+            Provided input for pipeline
 
         Returns
         -------
-        x: PromptObject
-            Returned prompt object from pipeline execution
+        x: AsyncGenerator[PromptObject, None]
+            Returned output from pipeline execution
         """
 
         x = self.model_gen_stage(x, output_type={
