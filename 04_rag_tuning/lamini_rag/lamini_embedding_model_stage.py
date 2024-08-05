@@ -12,7 +12,23 @@ class LaminiEmbeddingModelStage(EmbeddingNode):
         https://github.com/lamini-ai/lamini/blob/main/lamini/generation/embedding_node.py
     """
 
-    def preprocess(self, prompt: PromptObject):
+    def preprocess(self, prompt: PromptObject) -> PromptObject:
+        """ Construct a new prompt object given the prompt
+        data. Preprocess is called before passing the prompt 
+        to the generate, allowing for precise control for what 
+        prompt adjustments are needed for this particular node.
+
+        Parameters
+        ----------
+        prompt: PromptObject
+            Prompt within the GenerationPipeline
+
+        Returns
+        -------
+        PromptObject
+            Newly instantiate prompt object
+        """
+
         query = prompt.data["example"].get_query()
         return PromptObject(prompt=query, data=prompt.data)
 

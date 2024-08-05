@@ -24,7 +24,7 @@ class EarningsExample:
     def __init__(self, example: Dict[str, str]):
         self.example = example
 
-    def get_prompt(self):
+    def get_prompt(self) -> str:
         """ prompt getter function
 
         Returns
@@ -51,7 +51,7 @@ class EarningsExample:
 
         return prompt
 
-    def make_prompt(self):
+    def make_prompt(self) -> str:
         """ Construct a prompt using a template and inject the
         specific example information and question into the prompt.
 
@@ -70,7 +70,7 @@ class EarningsExample:
         return prompt
 
 
-    def get_company_info(self):
+    def get_company_info(self) -> str:
         """ Construct a string using the company information
         within self.example
 

@@ -12,6 +12,7 @@ class SpotCheckPipeline(GenerationPipeline):
     class is a simple example showcasing how to build LLM
     pipelines using Lamini generation nodes.
     """
+
     def __init__(self):
         super().__init__()
         self.embedding_stage = LaminiEmbeddingModelStage()
@@ -46,6 +47,8 @@ class SpotCheckPipeline(GenerationPipeline):
             on what is returned from each stage:
             https://github.com/lamini-ai/lamini/blob/main/lamini/generation/generation_node.py#L42
         """
+
         x = self.embedding_stage(x)
         x = self.model_stage(x, output_type={"model_answer": "str"})
         return x
+    
