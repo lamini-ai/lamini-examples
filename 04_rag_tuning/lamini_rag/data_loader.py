@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import List, Tuple, Generator, Any
 import jsonlines
 
 from lamini_rag.data_chunker import BaseDataChunker
@@ -68,7 +68,7 @@ class DataLoader:
         """
         return self.chunker.get_chunks(self.load())
 
-    def get_chunk_batches(self) -> List:
+    def get_chunk_batches(self) -> Generator[List[str], None, None]:
         """ A generator that yields batches of chunks
         Each batch is a list of strings, each a substring of the 
         text with length self.batch_size the last element of the 
@@ -91,7 +91,7 @@ class DataLoader:
         if len(chunks) > 0:
             yield chunks
 
-    def load(self) -> Tuple:
+    def load(self) -> Generator[Tuple[Any], None, None]:
         """ A generator that yields specific keys within 
         each line of the jsonl data from the specified
         path at the instantiation of this object
