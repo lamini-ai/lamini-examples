@@ -1,3 +1,5 @@
+from typing import AsyncGenerator, Generator, List, Any, Union, AsyncIterator, Iterator
+
 from lamini.generation.base_prompt_object import PromptObject
 from lamini.generation.embedding_node import EmbeddingNode
 from lamini.generation.generation_pipeline import GenerationPipeline
@@ -43,7 +45,7 @@ class LaminiIndex:
         path: str,
         faiss_file_name: str = "index.faiss",
         splits_file_name: str = "splits.json"
-        ):
+        ) -> object:
         """Factory function for constructing a LaminiIndex object
         from existing faiss and splits files from the provided
         path. 
@@ -80,17 +82,19 @@ class LaminiIndex:
 
         return lamini_index
 
-    async def build_index(self):
-        """ 
+    async def build_index(self) -> None:
+        """ Instantiate a new IndexFlatL2. build_index_async
+        is called to embed the vectors into the new index.
 
         Parameters
         ----------
-        
+        None
         
         Returns
         -------
-        
+        None
         """
+
         self.splits = []
 
         total_batches = len(self.loader)
@@ -103,17 +107,20 @@ class LaminiIndex:
         await self.build_index_async()
 
 
-    async def build_index_async(self):
-        """ 
+    async def build_index_async(self) -> None:
+        """ Build out the embedding prompts with the chunks from
+        the data loader. Generate the embeddings using the EmbeddingPipeline
+        and update the IndexFlatL2 with these embedding chunks.
 
         Parameters
         ----------
-        
+        None
         
         Returns
         -------
-        
+        None
         """
+
         total_chunks = len(self.loader)
 
         chunks = self.get_embedding_prompts(self.loader.get_chunks())
@@ -123,31 +130,47 @@ class LaminiIndex:
         await self.update_index(embeddings, total_chunks)
 
 
-    async def get_embedding_prompts(self, chunks):
-        """ 
+    async def get_embedding_prompts(
+            self, 
+            chunks: AsyncGenerator[str, None]
+        ) -> AsyncGenerator[PromptObject, None, None]:
+        """ Build new PromptObjects from the provided chunks
 
         Parameters
         ----------
+        chunks: AsyncGenerator[str, None]
+            Chunk generator
         
-        
-        Returns
-        -------
-        
+        Yields
+        ------
+        PromptObject
+            PromptObject for each chunk in chunks
         """
+
         for chunk in chunks:
             yield PromptObject(prompt=chunk)
 
-    async def update_index(self, embeddings, total_chunks):
-        """ 
+    async def update_index(
+            self, 
+            embeddings: AsyncGenerator[PromptObject, None, None], 
+            total_chunks: int
+        ) -> None:
+        """ Embeddings are iterated through and added to the
+        FlatIndexL2.
 
         Parameters
         ----------
-        
+        embeddings: AsyncGenerator[PromptObject, None, None]
+            Embedding results from LLM generatr embeddings 
+
+        total_chunks: int
+            Upper limit of chunks to process
         
         Returns
         -------
-        
+        None
         """
+
         pbar = tqdm(desc="Building index", unit=" chunks", total=total_chunks)
 
         async for embedding in embeddings:
@@ -155,17 +178,36 @@ class LaminiIndex:
             self.splits.append(embedding.prompt)
             pbar.update()
 
-    def mmr_query(self, query_embedding, k=20, n=5):
-        """ 
+    def mmr_query(
+            self, 
+            query_embedding: Any, 
+            k: int = 20, 
+            n: int = 5
+        ) -> List[Any]:
+        """ Conduct an Maximal Marginal Relevance query on the index
+        vectors to find the n most diverse results of the k nearest 
+        neighbors.
 
         Parameters
         ----------
-        
+        query_embedding: Any
+            Embedding vector of the query to find the nearest 
+            neighbors
+
+        k: int = 20
+            Nearest neighbor amount
+
+        n: int = 5
+            Amount of most diverse neighbors, must be less than
+            or equal to k
         
         Returns
         -------
-        
+        most_diverse: List[Any]
+            List of size n of the most diverse neighbors within the
+            found k nearest neighbors to the query_embedding
         """
+
         embedding = query_embedding
 
         embedding_array = np.array([embedding])
@@ -178,17 +220,32 @@ class LaminiIndex:
 
         return most_diverse
 
-    def most_diverse_results(self, query_embedding, indices, n):
-        """ 
+    def most_diverse_results(
+            self, 
+            query_embedding: Any, 
+            indices: List[Any], 
+            n: int
+        ) -> List[Any]:
+        """ Find the n most diverse results for the query_embedding
+        and the list of indices.
 
         Parameters
         ----------
+        query_embedding: Any
+            Embedding to search for the most diverse results
         
+        indices: List[Any]
+            Indices to use for the Index search
+
+        n: int
+            Number of diverse results to return
         
         Returns
         -------
-        
+        List[Any]
+            List of splits that result in the most diverse options
         """
+
         # get the embeddings for the indices
         embeddings = [self.index.reconstruct(int(i)) for i in indices]
 
@@ -225,17 +282,19 @@ class LaminiIndex:
 
         return [self.splits[i] for i in results]
 
-    def save_index(self, path):
-        """ 
+    def save_index(self, path: str) -> None:
+        """ Save the index to a directory
 
         Parameters
         ----------
-        
+        path: str
+            Directory path to save the index
         
         Returns
         -------
-        
+        None
         """
+
         faiss_path = os.path.join(path, "index.faiss")
         splits_path = os.path.join(path, "splits.json")
 
@@ -254,24 +313,26 @@ class LaminiIndex:
 
 class EmbeddingPipeline(GenerationPipeline):
     """ 
-    This class is  
+    Pipeline to generate embedding vectors from provided queries
         
     Parameters
     ----------
     None
         
     """
+
     def __init__(self):
         super().__init__()
 
         self.embedding_generator = EmbeddingGenerator()
 
-    def forward(self, x):
-        """ 
+    def forward(self,  x: Union[Iterator, AsyncIterator]) -> Generator[PromptObject, None, None]:
+        """ Main function to generate the embeddings
 
         Parameters
         ----------
-        
+        x: Union[Iterator, AsyncIterator]
+            Prompt object iterator for provided input to the pipeline
         
         Returns
         -------
@@ -285,7 +346,8 @@ class EmbeddingPipeline(GenerationPipeline):
 
 class EmbeddingGenerator(EmbeddingNode):
     """ 
-    This class is  
+    Node to generate embeddings, this is intended to be used within 
+    the above EmbeddingPipeline.
         
     Parameters
     ----------

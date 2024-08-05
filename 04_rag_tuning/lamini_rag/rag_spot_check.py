@@ -34,7 +34,6 @@ def setup_logging() -> None:
         handlers=[logging.StreamHandler()],
     )
 
-
 def parse_arguments() -> Namespace:
     """ Argument Parser setup 
     The following arguments are used in this test script:
@@ -116,7 +115,6 @@ def parse_arguments() -> Namespace:
 
     return parser.parse_args()
 
-
 async def build_rag_index(args: Namespace) -> None:
     """ Build/Load Rag Index
     Load in a rag space from the provided args.rag_path argument. If
@@ -148,7 +146,6 @@ async def build_rag_index(args: Namespace) -> None:
 
     os.makedirs(args.rag_path, exist_ok=True)
     index.save_index(args.rag_path)
-
 
 def load_dataset(args: Namespace) -> PromptObject:
     """Load in test dataset
@@ -185,7 +182,6 @@ def load_dataset(args: Namespace) -> PromptObject:
                 prompt=earnings_example.get_prompt(), data={"example": earnings_example}
             )
 
-
 async def run_spot_check(args) -> List[PromptObject]:
     """ Main runtime function to run the spot check for RAG 
 
@@ -214,7 +210,6 @@ async def run_spot_check(args) -> List[PromptObject]:
 
     return result_list
 
-
 def save_results(args, results) -> None:
     """Store the generated results into the provided output path
 
@@ -241,7 +236,6 @@ def save_results(args, results) -> None:
             print(result.prompt, "\n")
             print("Model Answer: ", result.response["model_answer"])
             print("\n")
-
 
 if __name__ == "__main__":
     # Run preprocess functions of initalizing logging and argument parsing 
