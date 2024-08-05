@@ -2,6 +2,7 @@ from typing import List, Dict, Any, Generator, Union, Iterator, AsyncIterator
 import asyncio
 import jsonlines
 import logging
+from copy import deepcopy
 
 from argparse import ArgumentParser, Namespace
 from tqdm import tqdm
@@ -296,7 +297,7 @@ def save_results(args, results) -> None:
     with jsonlines.open(args.output_path, "w") as writer:
         for result in results:
 
-            row = result.data["example"].example.copy()
+            row = deepcopy(result.data)
             row["model_answer"] = result.response["model_answer"]
             row["prompt"] = result.prompt
 
