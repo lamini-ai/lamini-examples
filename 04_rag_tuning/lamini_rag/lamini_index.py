@@ -133,7 +133,7 @@ class LaminiIndex:
     async def get_embedding_prompts(
             self, 
             chunks: AsyncGenerator[str, None]
-        ) -> AsyncGenerator[PromptObject, None, None]:
+        ) -> AsyncGenerator[PromptObject, None]:
         """ Build new PromptObjects from the provided chunks
 
         Parameters
@@ -152,7 +152,7 @@ class LaminiIndex:
 
     async def update_index(
             self, 
-            embeddings: AsyncGenerator[PromptObject, None, None], 
+            embeddings: AsyncGenerator[PromptObject, None], 
             total_chunks: int
         ) -> None:
         """ Embeddings are iterated through and added to the
