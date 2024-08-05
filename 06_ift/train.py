@@ -1,10 +1,22 @@
-from lamini import Lamini
-
+from typing import Generator, Any, Dict
 import argparse
 import jsonlines
 
+from lamini import Lamini
 
-def main():
+
+def main() -> None:
+    """Main runtime function for Instruction Fine Tuning
+
+    Parameters
+    ----------
+    None
+
+    Returns
+    -------
+    None
+    """
+    
     parser = argparse.ArgumentParser(description="Lamini training script.")
     parser.add_argument('--dataset-path', type=str,
                         default="data/results/generated_q_a.jsonl",
@@ -25,7 +37,21 @@ def main():
     )
 
 
-def load_training_data(path: str):
+def load_training_data(path: str) -> Generator[Dict[str, Any], None, None]:
+    """ Handler for jsonlines file data loading
+
+    Parameters
+    ----------
+    path: str
+        jsonline file location
+
+    Yields
+    -------
+    Dict[str, Any]
+        Dictionary of the input and expected output for each
+        line within the provided path.
+    """
+    
     limit = 10
 
     with jsonlines.open(path) as reader:
@@ -42,12 +68,26 @@ def load_training_data(path: str):
             }
 
 
-def make_question(obj):
+def make_question(obj: Dict[str, Any]) -> str:
+    """ Format a question string from the provided
+    dictionary
+
+    Parameters
+    ----------
+    obj: Dict[str, Any]
+        Provided prompt metadata
+
+    Returns
+    -------
+    str:
+        Formatted new string
+    """
+
     question = (
         f"Consider the following company: {obj['ticker']} and quarter: {obj['q']}. "
     )
     question += obj["question"]
     return question
 
-
-main()
+if __name__ == "__main__":
+    main()
