@@ -1,2 +1,3 @@
 lamini==3.0.4
 packaging
+faiss-cpu
