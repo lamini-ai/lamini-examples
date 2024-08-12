@@ -16,14 +16,18 @@ class LaminiRAGModelStage(GenerationNode):
 
     For more information on how GenerationNode work, refer to 
         https://github.com/lamini-ai/lamini/blob/main/lamini/generation/generation_node.py
+    
+    Parameters
+    ----------
+    model_path: str
+        Location of the index model
     """
 
-    def __init__(self):
+    def __init__(self, model_path: str):
         super().__init__(
             model_name="meta-llama/Meta-Llama-3-8B-Instruct",
             max_new_tokens=150,
         )
-        model_path = "/app/lamini-earnings-sdk/04_rag_tuning/rag_model"
         self.index = LaminiIndex.load_index(model_path)
 
     def preprocess(self, prompt: PromptObject) -> PromptObject:

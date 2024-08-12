@@ -47,7 +47,7 @@ class DataLoader:
             chunker: BaseDataChunker,
             loader_keys: List[str],
             batch_size: int = 128, 
-            limit: int = 100, 
+            limit: int = 100
         ):
         self.path = path
         self.batch_size = batch_size

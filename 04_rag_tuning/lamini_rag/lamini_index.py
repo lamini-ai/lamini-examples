@@ -36,9 +36,10 @@ class LaminiIndex:
         
     """
 
-    def __init__(self, loader: DataLoader = None, config = {}):
+    def __init__(self, loader: DataLoader = None, config = {}, embedding_size = 384):
         self.loader = loader
         self.config = config
+        self.embedding_size = embedding_size
 
     @staticmethod
     def load_index(
@@ -102,7 +103,7 @@ class LaminiIndex:
         logger.info(f"Building index with {total_batches} batches")
 
         # Initialize the index
-        self.index = faiss.IndexFlatL2(self.loader.embedding_size)
+        self.index = faiss.IndexFlatL2(self.embedding_size)
 
         await self.build_index_async()
 
@@ -356,4 +357,4 @@ class EmbeddingGenerator(EmbeddingNode):
     """
     
     def __init__(self):
-        super().__init__(model_name="meta-llama/Llama-2-7b-chat-hf", max_tokens=5)
+        super().__init__(model_name="meta-llama/Llama-2-7b-chat-hf")
