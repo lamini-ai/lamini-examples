@@ -11,12 +11,17 @@ class SpotCheckPipeline(GenerationPipeline):
     embedding stage and a RAG model stage in sequence. This
     class is a simple example showcasing how to build LLM
     pipelines using Lamini generation nodes.
+
+    Parameters
+    ----------
+    model_path: str
+        Location of the index model
     """
 
-    def __init__(self):
+    def __init__(self, model_path: str):
         super().__init__()
         self.embedding_stage = LaminiEmbeddingModelStage()
-        self.model_stage = LaminiRAGModelStage()
+        self.model_stage = LaminiRAGModelStage(model_path=model_path)
 
     def forward(self, x: Union[Iterator, AsyncIterator]) -> AsyncIterator:
         """ Main function for execution of a provided prompt. This 

@@ -139,7 +139,8 @@ async def build_rag_index(args: Namespace) -> None:
     index = LaminiIndex(
         loader=DataLoader(
             path=args.index_data,
-            chunker=EarningsCallChunker()
+            chunker=EarningsCallChunker(),
+            loader_keys=["transcript", "ticker"]
             )
         )
     await index.build_index()
@@ -199,7 +200,7 @@ async def run_spot_check(args) -> List[PromptObject]:
 
     dataset = load_dataset(args)
 
-    results = SpotCheckPipeline().call(dataset)
+    results = SpotCheckPipeline(args.rag_path).call(dataset)
 
     result_list = []
 
