@@ -13,6 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          repository: lamini-ai/lamini-examples
           path: lamini-examples
       - name: Setup Python
         uses: actions/setup-python@v4
