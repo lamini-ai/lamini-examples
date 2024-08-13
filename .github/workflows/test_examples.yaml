@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          path: lamini-examples
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -20,7 +22,7 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
-      - run: ./01_llama3/scripts/llama3.sh
+      - run: ./lamini-examples/01_llama3/scripts/llama3.sh
 
   eval:
     runs-on: ubuntu-latest
@@ -35,7 +37,7 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
-      - run: ./02_eval/scripts/eval.sh
+      - run: ./lamini-examples/02_eval/scripts/eval.sh
 
   prompt_tuning:
     runs-on: ubuntu-latest
@@ -50,7 +52,7 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
-      - run: ./03_prompt_tuning/scripts/prompt_tune.sh
+      - run: ./lamini-examples/03_prompt_tuning/scripts/prompt_tune.sh
 
   rag_tuning:
     runs-on: ubuntu-latest
@@ -65,7 +67,7 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
-      - run: ./04_rag_tuning/scripts/rag_tuning.sh
+      - run: ./lamini-examples/04_rag_tuning/scripts/rag_tuning.sh
 
   data_pipeline:
     runs-on: ubuntu-latest
@@ -80,7 +82,7 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
-      - run: ./05_data_pipeline/scripts/generate-data.sh
+      - run: ./lamini-examples/05_data_pipeline/scripts/generate-data.sh
 
   ift:
     runs-on: ubuntu-latest
@@ -95,7 +97,7 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
-      - run: ./06_ift/scripts/train.sh
+      - run: ./lamini-examples/06_ift/scripts/train.sh
 
   json_output:
     runs-on: ubuntu-latest
@@ -110,4 +112,4 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
-      - run: ./10_json_output/scripts/run_llm_json.sh
+      - run: ./lamini-examples/10_json_output/scripts/run_llm_json.sh
