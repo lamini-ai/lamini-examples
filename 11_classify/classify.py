@@ -11,7 +11,7 @@ prompts={
 }
 
 # Call prompt train to train the LLM with the provided classes and prompts
-llm.prompt_train(prompts)
+if llm.prompt_train(prompts):
 
-# Save the model for later use
-llm.save("my_model.lamini")
+  # Save the model for later use
+  llm.save("my_model.lamini")
