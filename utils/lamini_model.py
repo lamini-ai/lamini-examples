@@ -9,6 +9,6 @@ class LaminiModel:
     def __init__(self, model_name):
         self.model_name = model_name
         if model_name is None:
-            self.model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
+            self.model_name = "meta-llama/Meta-Llama-3.1-8B-Instruct"
     def get_stages(self, dataset):
         return [LaminiModelStage(dataset=dataset, model_name=self.model_name)]

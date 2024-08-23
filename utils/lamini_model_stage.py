@@ -5,7 +5,7 @@ from typing import Union, Iterator, AsyncIterator
 
 
 class LaminiModelStage(GenerationNode):
-    def __init__(self, dataset, model_name="meta-llama/Meta-Llama-3-8B-Instruct",):
+    def __init__(self, dataset, model_name="meta-llama/Meta-Llama-3.1-8B-Instruct",):
         super().__init__(
             model_name=model_name,
             max_new_tokens=150,

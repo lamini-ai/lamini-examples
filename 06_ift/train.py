@@ -16,14 +16,14 @@ def main() -> None:
     -------
     None
     """
-    
+
     parser = argparse.ArgumentParser(description="Lamini training script.")
     parser.add_argument('--dataset-path', type=str,
                         default="data/results/generated_q_a.jsonl",
                         help='Path to the training dataset')
     args = parser.parse_args()
 
-    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3.1-8B-Instruct")
 
     dataset = list(load_training_data(args.dataset_path)) * 10
 
@@ -51,7 +51,7 @@ def load_training_data(path: str) -> Generator[Dict[str, Any], None, None]:
         Dictionary of the input and expected output for each
         line within the provided path.
     """
-    
+
     limit = 10
 
     with jsonlines.open(path) as reader:

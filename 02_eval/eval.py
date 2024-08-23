@@ -34,7 +34,7 @@ def main() -> None:
 
 
 async def slice_dataset(
-        dataset: EarningsCallsDataset, 
+        dataset: EarningsCallsDataset,
         max_examples: int
     ) -> AsyncGenerator[PromptObject, None]:
     """ Enforce the max_examples limit on the provided
@@ -47,7 +47,7 @@ async def slice_dataset(
 
     max_examples: int
         Upper limit of example count
-        
+
     Yields
     ------
     PromptObject
@@ -61,19 +61,19 @@ async def slice_dataset(
 
 
 def parse_arguments() -> Namespace:
-    """ Argument Parser setup 
+    """ Argument Parser setup
     The following arguments are used in this test script:
         --data
             Path and file name for the evaluation data
 
         --model
             Name of the model to evaluate
-            default meta-llama/Meta-Llama-3-8B-Instruct
+            default meta-llama/Meta-Llama-3.1-8B-Instruct
 
         --max-examples
             Max number of examples to evaluate
             default 100
-        
+
     Returns
     -------
     argparse.Namespace
@@ -91,7 +91,7 @@ def parse_arguments() -> Namespace:
     parser.add_argument(
         "--model",
         type=str,
-        default="meta-llama/Meta-Llama-3-8B-Instruct",
+        default="meta-llama/Meta-Llama-3.1-8B-Instruct",
         help="The name of the model to evaluate",
     )
 
@@ -119,7 +119,7 @@ def setup_logging(args: Namespace) -> None:
 
             model
                 Name of the model to evaluate
-                default meta-llama/Meta-Llama-3-8B-Instruct
+                default meta-llama/Meta-Llama-3.1-8B-Instruct
 
     Returns
     -------
@@ -159,7 +159,7 @@ def load_dataset(args: Namespace) -> EarningsCallsDataset:
     Raises
     ------
     ValueError
-        Raised if the dataset is not found in the pre-set 
+        Raised if the dataset is not found in the pre-set
         dataset key words
     """
 
@@ -184,7 +184,7 @@ def save_results(results: List[PromptObject], args: Namespace) -> None:
                 Path and file name for the evaluation data
             model
                 Name of the model to evaluate
-                default meta-llama/Meta-Llama-3-8B-Instruct
+                default meta-llama/Meta-Llama-3.1-8B-Instruct
 
     Returns
     -------

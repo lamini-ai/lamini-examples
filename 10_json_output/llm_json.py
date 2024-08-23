@@ -1,7 +1,7 @@
 from lamini import Lamini
 
 # Instatiate Lamini object to interface with LLMs on the compute server
-llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
+llm = Lamini(model_name="meta-llama/Meta-Llama-3.1-8B-Instruct")
 
 # Provide query to generate and provide output type as a dictionary
 response = llm.generate(

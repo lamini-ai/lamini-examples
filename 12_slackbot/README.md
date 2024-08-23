@@ -31,7 +31,7 @@ Add the key to a config file (`slack/config.json`):
         "<YOUR-SLACK-CHANNEL-ID>": {
             "_channel_name": "#channel-name",
             "token": "<YOUR-LAMINI-API-KEY>",
-            "model_names": ["mistralai/Mistral-7B-Instruct-v0.2"]
+            "model_names": ["mistralai/Mistral-7B-Instruct-v0.3"]
         }
     }
 }

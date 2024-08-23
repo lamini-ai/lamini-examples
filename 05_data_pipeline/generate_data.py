@@ -19,8 +19,8 @@ logging.basicConfig(
 
 
 class QuestionAnswerPipeline(GenerationPipeline):
-    """ 
-    An extension fo the GenerationPipeline that will put two 
+    """
+    An extension fo the GenerationPipeline that will put two
     nodes in sequence, one to generate questions from a provided
     prompt, and the next to answer the generated question from the
     prior node.
@@ -33,7 +33,7 @@ class QuestionAnswerPipeline(GenerationPipeline):
         self.answer_generator = AnswerGenerator()
 
     def forward(self, x: Union[Iterator, AsyncIterator]) -> AsyncIterator:
-        """ Main function for execution of a provided prompt. This 
+        """ Main function for execution of a provided prompt. This
         is not intended to be the public function for running a prompt
         within a pipeline. This is a override of the function within
         the parent class here:
@@ -47,16 +47,16 @@ class QuestionAnswerPipeline(GenerationPipeline):
         ----------
         x: Union[Iterator, AsyncIterator]
             Iterator, or generators are passed between nodes and pipelines. This
-            is the prompts being passed through into the corresponding stages of 
+            is the prompts being passed through into the corresponding stages of
             the pipelines.
             See the call function within the generation pipeline to see what is
             being passed to the child function
             https://github.com/lamini-ai/lamini/blob/main/lamini/generation/generation_pipeline.py#L42
-        
+
         Returns
         -------
         x: Generator
-            The generator outputs from the final stage is returned.  
+            The generator outputs from the final stage is returned.
             See the call function within the generation node class for more information
             on what is returned from each stage:
             https://github.com/lamini-ai/lamini/blob/main/lamini/generation/generation_node.py#L42
@@ -84,7 +84,7 @@ def get_company_info(chunk: PromptObject) -> str:
     -------
     info: str
         Constructed string using the company metadata
-    
+
     """
     info = f"Company: {chunk.data['exchange']}\n"
     info += f"Ticker: {chunk.data['ticker']}\n"
@@ -106,17 +106,17 @@ class QuestionGenerator(GenerationNode):
 
     If you do not need to transform prompt and response, you don't need to implement
     self.preprocess() or self.postprocess().
-    
+
     You may implement self.preprocess() and self.postprocess() for your own purpose.
     """
 
     def __init__(self):
         super(QuestionGenerator, self).__init__(
-            model_name="meta-llama/Meta-Llama-3-8B-Instruct", max_new_tokens=150
+            model_name="meta-llama/Meta-Llama-3.1-8B-Instruct", max_new_tokens=150
         )
 
     def preprocess(self, prompt: PromptObject) -> None:
-        """ Log the prompt and prompt data that is being 
+        """ Log the prompt and prompt data that is being
         preprocessed within this Node.
 
         Parameters
@@ -201,7 +201,7 @@ class AnswerGenerator(GenerationNode):
 
     def __init__(self):
         super(AnswerGenerator, self).__init__(
-            model_name="meta-llama/Meta-Llama-3-8B-Instruct", max_new_tokens=150
+            model_name="meta-llama/Meta-Llama-3.1-8B-Instruct", max_new_tokens=150
         )
 
     def postprocess(self, prompt: PromptObject) -> None:
@@ -273,10 +273,10 @@ class AnswerGenerator(GenerationNode):
         prompt += "[/INSTR]"
 
         return prompt
-    
+
 
 async def load_earnings_calls() -> AsyncGenerator[PromptObject, None]:
-    """ Load the test data set that is the earnings call curated 
+    """ Load the test data set that is the earnings call curated
     responses the pipeline is tested against.
 
     Parameters
