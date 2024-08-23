@@ -9,6 +9,7 @@ on:
 jobs:
   llama3:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -27,6 +28,7 @@ jobs:
 
   eval:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -45,6 +47,7 @@ jobs:
 
   prompt_tuning:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -63,6 +66,7 @@ jobs:
 
   rag_tuning:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -81,6 +85,7 @@ jobs:
 
   data_pipeline:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -99,6 +104,7 @@ jobs:
 
   ift:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -117,6 +123,7 @@ jobs:
 
   json_output:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
