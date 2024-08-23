@@ -22,7 +22,7 @@ def evaluate_model(dataset: EarningsCallsDataset) -> List[Any]:
     dataset: EarningsCallsDataset
         Object hanlding the loading and formatting of the jsonlines
         example data
-    
+
     args: Namespace
         Input args at runtime
 
@@ -76,8 +76,8 @@ async def run_evaluation_pipeline(dataset: EarningsCallsDataset) -> List[Any]:
 
 
 class EvaluationPipeline(GenerationPipeline):
-    """ 
-    Extension of a GenerationPipeline to generate, modify, then 
+    """
+    Extension of a GenerationPipeline to generate, modify, then
     score the returned results from Lamini.generate.
 
     Parameters
@@ -123,7 +123,7 @@ class EvaluationPipeline(GenerationPipeline):
 
 
 class LaminiModelStage(GenerationNode):
-    """ 
+    """
     Extension of a GenerationNode for generation calls within a pipeline
 
     Parameters
@@ -134,7 +134,7 @@ class LaminiModelStage(GenerationNode):
 
     def __init__(self):
         super().__init__(
-            model_name="meta-llama/Meta-Llama-3-8B-Instruct",
+            model_name="meta-llama/Meta-Llama-3.1-8B-Instruct",
             max_new_tokens=150,
         )
 
@@ -160,7 +160,7 @@ class LaminiModelStage(GenerationNode):
 
 
 class ModifyStage(ModifyNode):
-    """ 
+    """
     Extension of a ModifyNode for generation calls within a pipeline
 
     Parameters
@@ -189,7 +189,7 @@ class ModifyStage(ModifyNode):
 
 
 class ScoreStage(GenerationNode):
-    """ 
+    """
     Extension of a GenerationNode for scoring of a prompt within a pipeline
 
     Parameters
@@ -200,7 +200,7 @@ class ScoreStage(GenerationNode):
 
     def __init__(self):
         super().__init__(
-            model_name="meta-llama/Meta-Llama-3-8B-Instruct",
+            model_name="meta-llama/Meta-Llama-3.1-8B-Instruct",
             max_new_tokens=150,
         )
 

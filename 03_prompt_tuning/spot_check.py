@@ -29,10 +29,10 @@ class DatasetDescriptor:
 
 
 class LaminiModelStage(GenerationNode):
-    """ 
+    """
     Extension of the GenerationNode to overwrite preprocess.
     Preprocess is called bbefore passing the prompt to the generate,
-    allowing for precise control for what prompt adjustments are 
+    allowing for precise control for what prompt adjustments are
     needed for this particular node.
     """
 
@@ -78,7 +78,7 @@ class LaminiModelStage(GenerationNode):
         prompt += "Answer the following question: \n"
         prompt += example["question"]
         return prompt
-    
+
     def get_company_info(self, example: Dict[str, Any]) -> str:
         """ Construct a string using the company information
 
@@ -101,7 +101,7 @@ class LaminiModelStage(GenerationNode):
 
 
 class SpotCheckPipeline(GenerationPipeline):
-    """ 
+    """
     An extension fo the GenerationPipeline. This
     class is a simple example showcasing how to build LLM
     pipelines using Lamini generation nodes.
@@ -110,11 +110,11 @@ class SpotCheckPipeline(GenerationPipeline):
     def __init__(self):
         super().__init__()
         self.model_stage = LaminiModelStage(
-            "meta-llama/Meta-Llama-3-8B-Instruct", max_new_tokens=150
+            "meta-llama/Meta-Llama-3.1-8B-Instruct", max_new_tokens=150
         )
 
     def forward(self, x: Union[Iterator, AsyncIterator]) -> Generator[PromptObject, None, None]:
-        """ Main function for execution of a provided prompt. This 
+        """ Main function for execution of a provided prompt. This
         is not intended to be the public function for running a prompt
         within a pipeline. This is a override of the function within
         the parent class here:
@@ -128,16 +128,16 @@ class SpotCheckPipeline(GenerationPipeline):
         ----------
         x: Union[Iterator, AsyncIterator]
             Iterator, or generators are passed between nodes and pipelines. This
-            is the prompts being passed through into the corresponding stages of 
+            is the prompts being passed through into the corresponding stages of
             the pipelines.
             See the call function within the generation pipeline to see what is
             being passed to the child function
             https://github.com/lamini-ai/lamini/blob/main/lamini/generation/generation_pipeline.py#L42
-        
+
         Returns
         -------
         x: Generator
-            The generator outputs from the final stage is returned.  
+            The generator outputs from the final stage is returned.
             See the call function within the generation node class for more information
             on what is returned from each stage:
             https://github.com/lamini-ai/lamini/blob/main/lamini/generation/generation_node.py#L42
@@ -168,12 +168,12 @@ def setup_logging() -> None:
     )
 
 def parse_arguments() -> Namespace:
-    """ Argument Parser setup 
+    """ Argument Parser setup
     The following arguments are used in this test script:
         --max-examples
             Max number of examples to evaluate
             default 3
-        
+
         --output-path
             This is the path that will be storing the output results
             when calling the pipeline with the supplied data from
@@ -181,11 +181,11 @@ def parse_arguments() -> Namespace:
 
         --test-data
             Path to the golden test set for evaluation
-            
+
     Parameters
     ----------
     None
-            
+
     Returns
     -------
     argparse.Namespace
@@ -221,7 +221,7 @@ def parse_arguments() -> Namespace:
     return parser.parse_args()
 
 async def run_spot_check(args) -> List[PromptObject]:
-    """ Main runtime function to run the spot check for prompt tuning 
+    """ Main runtime function to run the spot check for prompt tuning
 
     Parameters
     ----------
@@ -252,11 +252,11 @@ def load_dataset(args: Namespace) -> Generator[PromptObject, None, None]:
     """Load in the test data from the args.test_data attribute, expected
     format is to be in jsonl.
 
-    Each data point in the test_data is then added into a EarningExample 
+    Each data point in the test_data is then added into a EarningExample
     object which is then wrapped into a PromptObject to be yielded back
     to the returning function
 
-    Yield is used as this function is expected to be used within an async 
+    Yield is used as this function is expected to be used within an async
     call to the Lamini platform.
 
     Parameters
@@ -309,7 +309,7 @@ def save_results(args, results) -> None:
             print("\n")
 
 if __name__ == "__main__":
-    # Run preprocess functions of initalizing logging and argument parsing 
+    # Run preprocess functions of initalizing logging and argument parsing
     setup_logging()
 
     args = parse_arguments()

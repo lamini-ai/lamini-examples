@@ -7,16 +7,16 @@ from typing import Union, Iterator, AsyncIterator
 
 
 class LaminiRAGModelStage(GenerationNode):
-    """ 
+    """
     This child class of GenerationNode is for use within a
     GenerationPipeline (or a child of that class). The class
-    extension here is overwriting the preprocess function 
+    extension here is overwriting the preprocess function
     in order to query the vector index and embed those results
-    into the prompt before calling generate. 
+    into the prompt before calling generate.
 
-    For more information on how GenerationNode work, refer to 
+    For more information on how GenerationNode work, refer to
         https://github.com/lamini-ai/lamini/blob/main/lamini/generation/generation_node.py
-    
+
     Parameters
     ----------
     model_path: str
@@ -25,15 +25,15 @@ class LaminiRAGModelStage(GenerationNode):
 
     def __init__(self, model_path: str):
         super().__init__(
-            model_name="meta-llama/Meta-Llama-3-8B-Instruct",
+            model_name="meta-llama/Meta-Llama-3.1-8B-Instruct",
             max_new_tokens=150,
         )
         self.index = LaminiIndex.load_index(model_path)
 
     def preprocess(self, prompt: PromptObject) -> PromptObject:
         """ Construct a new prompt object given the prompt
-        data. Preprocess is called before passing the prompt 
-        to the generate, allowing for precise control for what 
+        data. Preprocess is called before passing the prompt
+        to the generate, allowing for precise control for what
         prompt adjustments are needed for this particular node.
 
         Parameters
