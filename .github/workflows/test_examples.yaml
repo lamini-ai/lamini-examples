@@ -22,7 +22,7 @@ jobs:
       - run: |
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
-          echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
+          echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
       - run: ./lamini-examples/01_llama3/scripts/llama3.sh
 
   eval:
@@ -40,7 +40,7 @@ jobs:
       - run: |
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
-          echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
+          echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
       - run: ./lamini-examples/02_eval/scripts/eval.sh
 
   prompt_tuning:
@@ -58,7 +58,7 @@ jobs:
       - run: |
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
-          echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
+          echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
       - run: ./lamini-examples/03_prompt_tuning/scripts/prompt_tune.sh
 
   rag_tuning:
@@ -76,7 +76,7 @@ jobs:
       - run: |
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
-          echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
+          echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
       - run: ./lamini-examples/04_rag_tuning/scripts/rag_tuning.sh
 
   data_pipeline:
@@ -94,7 +94,7 @@ jobs:
       - run: |
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
-          echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
+          echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
       - run: ./lamini-examples/05_data_pipeline/scripts/generate-data.sh
 
   ift:
@@ -112,7 +112,7 @@ jobs:
       - run: |
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
-          echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
+          echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
       - run: ./lamini-examples/06_ift/scripts/train.sh
 
   json_output:
@@ -130,5 +130,5 @@ jobs:
       - run: |
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
-          echo '  key: ${{ secrets.API_TOKEN }}' >> ~/.lamini/configure.yaml
+          echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
       - run: ./lamini-examples/10_json_output/scripts/run_llm_json.sh
