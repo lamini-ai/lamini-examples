@@ -25,7 +25,7 @@ jobs:
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
       - run: pip install -r ./lamini-examples/requirements.txt
-      - run: ./lamini-examples/01_llama3/llama3.py
+      - run: python ./lamini-examples/01_llama3/llama3.py
 
   eval:
     runs-on: ubuntu-latest
@@ -83,7 +83,7 @@ jobs:
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
       - run: pip install -r ./lamini-examples/requirements.txt
-      - run: ./lamini-examples/04_rag_tuning/rag.py
+      - run: python ./lamini-examples/04_rag_tuning/rag.py
 
   data_pipeline:
     runs-on: ubuntu-latest
