@@ -7,12 +7,16 @@
 [![GitHub License](https://img.shields.io/github/license/lamini-ai/lamini)](https://github.com/lamini-ai/lamini-sdk/blob/main/LICENSE)</div>
 ## Installation Instructions
 
-Before you start, please get your `<YOUR-LAMINI-API-KEY>` at https://app.lamini.ai/account.
-
+1. Before you start, please get your `<YOUR-LAMINI-API-KEY>` at https://app.lamini.ai/account.
 Create `~/.lamini/configure.yaml` and write the file as follows, this will persist your Lamini credentials:
-```
+```yaml
 production:
   key: <YOUR-LAMINI-API-KEY>
+```
+
+2. Install python requirements
+```bash
+pip3 install -r ./lamini-examples/requirements.txt
 ```
 
 ## Lamini Examples
