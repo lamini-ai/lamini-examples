@@ -81,7 +81,8 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
-      - run: ./lamini-examples/04_rag_tuning/scripts/rag_tuning.sh
+      - run: pip install -r ./lamini-examples/requirements.txt
+      - run: ./lamini-examples/04_rag_tuning/rag.py
 
   data_pipeline:
     runs-on: ubuntu-latest
