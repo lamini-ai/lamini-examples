@@ -2,7 +2,6 @@ import faiss
 import lamini
 import jsonlines
 
-EMBEDDING_SIZE = 384
 k = 2
 
 # Set up for the index, which holds the embeddings, and the splits, which holds the corresponding plain text
