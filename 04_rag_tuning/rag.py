@@ -6,7 +6,7 @@ EMBEDDING_SIZE = 384
 k = 2
 
 # Set up for the index, which holds the embeddings, and the splits, which holds the corresponding plain text
-index = faiss.IndexFlatL2(EMBEDDING_SIZE)
+index = None
 splits = []
 
 # Instantiate Lamini's embedding client
@@ -16,6 +16,8 @@ with jsonlines.open("data.jsonl", "r") as file:
     for item in file:
         # Create an embedding for every 'transcript' item in the file and add to the index
         transcript_embedding = embedding_client.generate(item['transcript'])
+        if not index:
+            index = faiss.IndexFlatL2(transcript_embedding.size) # Set the size of the index based on model embedding size
         index.add(transcript_embedding)
         splits.append(item['transcript'])
 
