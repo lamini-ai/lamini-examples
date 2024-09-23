@@ -10,3 +10,8 @@ Run RAG:
 cd 04_rag_tuning
 python3 rag.py
 ```
+
+# Tune it
+Similar to prompt tuning, you can tune the RAG parameters and the surrounding prompt:
+- `k`: number of nearest neighbors (chunks) to use
+- `prompt`: the prompt surrounding the RAG chunks and the question

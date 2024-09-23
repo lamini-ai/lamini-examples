@@ -2,6 +2,7 @@ import faiss
 import lamini
 import jsonlines
 
+# Number of nearest chunks to return
 k = 2
 
 # Set up for the index, which holds the embeddings, and the splits, which holds the corresponding plain text
