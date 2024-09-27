@@ -4,7 +4,7 @@
 
 # Finetuning Llama 3
 
-It's easy to finetue Llama 3 on the question & answer dataset we just created.
+It's easy to finetune Llama 3 on the question & answer dataset we just created.
 
 ```bash
 ./scripts/train.sh
