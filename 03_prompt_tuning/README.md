@@ -31,7 +31,7 @@ Try out many prompts quickly instead of thinking hard about the perfect prompt. 
 
 ## Don't forget the template
 
-This code adds the prompt template for Llama 3. Don't forget it! The model will perform much worse without the correct template. Every model has a different template. Look it up on the model card, e.g. [Llama3 model card](https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-llama-3/).
+This code adds the prompt template for Llama 3.1. Don't forget it! The model will perform much worse without the correct template. Every model has a different template. Look it up on the model card, e.g. [Llama3.1 model card](https://www.llama.com/docs/model-cards-and-prompt-formats/llama3_1/).
 
 ```python
 async def add_template(self, prompts):
