@@ -21,11 +21,13 @@ jobs:
         with:
           python-version: 3.x
       - run: |
-          mkdir ~/.lamini/
-          echo 'production:' >> ~/.lamini/configure.yaml
-          echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
+          echo LAMINI_API_URL=https://api.lamini.ai >>  ${GITHUB_ENV}
+          echo LAMINI_API_KEY=${{ secrets.PRODUCTION_TOKEN }} >>  ${GITHUB_ENV}
+          
       - run: pip install -r ./lamini-examples/requirements.txt
       - run: |
+          echo $LAMINI_API_URL
+          echo $LAMINI_API_KEY
           cd ./lamini-examples/01_llama3
           python llama3.py
 
