@@ -206,7 +206,7 @@ def parse_arguments() -> Namespace:
     parser.add_argument(
         "--output-path",
         type=str,
-        default="/app/lamini-earnings-sdk/data/results/rag_spot_check_results.jsonl",
+        default="../data/results/rag_spot_check_results.jsonl",
         help="Path for results of model generation to be stored",
     )
 
@@ -214,7 +214,7 @@ def parse_arguments() -> Namespace:
     parser.add_argument(
         "--test-data",
         type=str,
-        default="/app/lamini-earnings-sdk/data/golden_test_set.jsonl",
+        default="../data/golden_test_set.jsonl",
         help="Path for results of model generation to be stored",
     )
 

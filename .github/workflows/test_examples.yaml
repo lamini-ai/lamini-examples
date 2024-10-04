@@ -68,7 +68,10 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
-      - run: ./lamini-examples/03_prompt_tuning/scripts/prompt_tune.sh
+      - run: pip install -r ./lamini-examples/requirements.txt
+      - run: |
+          cd ./lamini-examples/03_prompt_tuning
+          python spot_check.py
 
   rag_tuning:
     runs-on: ubuntu-latest

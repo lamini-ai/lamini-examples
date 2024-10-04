@@ -9,7 +9,8 @@ Consider watching this video explaining how to prompt tune Open LLMs: https://ww
 Run Llama 3 on a few example questions:
 
 ```bash
-./scripts/prompt_tune.sh
+cd 03_prompt_tuning
+python3 spot_check.py
 ```
 
 You can view the results in [data/results/spot_check_results.jsonl](data/results/spot_check_results.jsonl).
@@ -19,7 +20,6 @@ You can view the results in [data/results/spot_check_results.jsonl](data/results
 Quicky iterate on different prompts by editing the [Prompt code](spot_check.py#L94), and running the spot check.
 
 https://github.com/lamini-ai/lamini-examples/blob/d01af0bcd91d135098f4e099f82b24b44f52d414/03_prompt_tuning/spot_check.py#L93-L109
-
 
 For example, try changing `"You are an expert analyst from Goldman Sachs with 15 years of experience."` to `"You are an influencer who loves emojis."` and see what happens!
 
