@@ -8,7 +8,7 @@ It's easy to finetune Llama 3.1 on the question & answer dataset we just created
 
 ```bash
 cd 06_memory_tuning
-python3 train.py
+python3 tune.py
 ```
 
 # Monitoring your job
@@ -16,7 +16,7 @@ python3 train.py
 After you submit a training job, it is scheduled on the cluster. You can monitor the progress of the job by visiting the link provided in the output of the training script.
 
 ```bash
-$ python3 train.py
+$ python3 tune.py
 
 Uploading data....
 Upload to blob completed for data.

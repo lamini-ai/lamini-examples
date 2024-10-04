@@ -19,7 +19,7 @@ def main() -> None:
 
     parser = argparse.ArgumentParser(description="Lamini training script.")
     parser.add_argument('--dataset-path', type=str,
-                        default="data/results/generated_q_a.jsonl",
+                        default="generated_q_a.jsonl",
                         help='Path to the training dataset')
     args = parser.parse_args()
 
@@ -27,7 +27,7 @@ def main() -> None:
 
     dataset = list(load_training_data(args.dataset_path)) * 10
 
-    llm.train(
+    llm.tune(
         data_or_dataset_id=dataset,
         finetune_args={
             "max_steps": 300,
