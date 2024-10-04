@@ -71,7 +71,7 @@ jobs:
       - run: pip install -r ./lamini-examples/requirements.txt
       - run: |
           cd ./lamini-examples/03_prompt_tuning
-          python spot_check.py
+          python generate.py
 
   rag_tuning:
     runs-on: ubuntu-latest
