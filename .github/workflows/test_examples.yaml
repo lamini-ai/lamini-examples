@@ -117,7 +117,7 @@ jobs:
           cd ./lamini-examples/05_data_pipeline
           python generate_data.py
 
-  ift:
+  memory_tuning:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
