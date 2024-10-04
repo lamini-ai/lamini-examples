@@ -4,6 +4,10 @@ on:
     branches:
       - main
 
+  pull_request:
+    branches:
+      - main
+
 jobs:
   tests:
         uses: ./.github/workflows/run_examples.yaml
