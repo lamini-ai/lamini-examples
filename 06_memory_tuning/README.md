@@ -11,6 +11,8 @@ cd 06_memory_tuning
 python3 tune.py
 ```
 
+For a walkthrough, check out the [notebook](Memory_Tuning.ipynb)!
+
 # Monitoring your job
 
 After you submit a training job, it is scheduled on the cluster. You can monitor the progress of the job by visiting the link provided in the output of the training script.
