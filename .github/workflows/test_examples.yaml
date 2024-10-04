@@ -112,7 +112,10 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
-      - run: ./lamini-examples/05_data_pipeline/scripts/generate-data.sh
+      - run: pip install -r ./lamini-examples/requirements.txt
+      - run: |
+          cd ./lamini-examples/05_data_pipeline
+          python generate_data.py
 
   ift:
     runs-on: ubuntu-latest
