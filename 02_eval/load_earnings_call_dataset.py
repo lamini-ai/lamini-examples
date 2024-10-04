@@ -350,6 +350,6 @@ def load_earnings_call_dataset() -> EarningsCallsDataset:
         Object to handle async loading and output types
     """
 
-    path = "./earnings_calls.jsonl"
+    path = "../data/earnings_calls.jsonl"
 
     return EarningsCallsDataset(path)
