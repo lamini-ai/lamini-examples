@@ -13,18 +13,8 @@ https://github.com/lamini-ai/lamini-examples/blob/main/10_json_output/llm_json.p
 # Run with structured output
 
 ```bash
-./scripts/run_llm_json.sh
+cd 10_json_output
+python3 llm_json.py
 ```
 
-Try editing the `output_type` in `json_output/llm_json.py` and see what happens!
-
----
-
-</div>
-<div align="center">
-
-![GitHub forks](https://img.shields.io/github/forks/lamini-ai/lamini-sdk) &ensp; © Lamini. &ensp; ![GitHub stars](https://img.shields.io/github/stars/lamini-ai/lamini-sdk)
-
-</div>
-
---------
+Try editing the `output_type` in `llm_json.py` and see what happens!

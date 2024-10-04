@@ -156,4 +156,7 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
-      - run: ./lamini-examples/10_json_output/scripts/run_llm_json.sh
+      - run: pip install -r ./lamini-examples/requirements.txt
+      - run: |
+          cd ./lamini-examples/10_json_output
+          python llm_json.py
