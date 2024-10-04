@@ -11,4 +11,3 @@ jobs:
             api_url: "https://api.lamini.ai"
         secrets:
             api_key: ${{ secrets.PRODUCTION_TOKEN }}
-        needs: [deploy]
