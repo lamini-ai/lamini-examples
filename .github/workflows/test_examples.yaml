@@ -46,7 +46,9 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
-      - run: ./lamini-examples/02_eval/scripts/eval.sh
+      - run: |
+          cd ./lamini-examples/02_eval
+          python eval.py
 
   prompt_tuning:
     runs-on: ubuntu-latest
