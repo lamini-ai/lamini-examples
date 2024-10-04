@@ -46,6 +46,7 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
+      - run: pip install -r ./lamini-examples/requirements.txt
       - run: |
           cd ./lamini-examples/02_eval
           python eval.py
@@ -127,6 +128,7 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
+      - run: pip install -r ./lamini-examples/requirements.txt
       - run: |
           cd ./lamini-examples/06_memory_tuning
           python tune.py
