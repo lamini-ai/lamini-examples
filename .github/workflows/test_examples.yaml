@@ -46,7 +46,10 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
-      - run: ./lamini-examples/02_eval/scripts/eval.sh
+      - run: pip install -r ./lamini-examples/requirements.txt
+      - run: |
+          cd ./lamini-examples/02_eval
+          python eval.py
 
   prompt_tuning:
     runs-on: ubuntu-latest
@@ -65,7 +68,10 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
-      - run: ./lamini-examples/03_prompt_tuning/scripts/prompt_tune.sh
+      - run: pip install -r ./lamini-examples/requirements.txt
+      - run: |
+          cd ./lamini-examples/03_prompt_tuning
+          python spot_check.py
 
   rag_tuning:
     runs-on: ubuntu-latest
@@ -106,9 +112,12 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
-      - run: ./lamini-examples/05_data_pipeline/scripts/generate-data.sh
+      - run: pip install -r ./lamini-examples/requirements.txt
+      - run: |
+          cd ./lamini-examples/05_data_pipeline
+          python generate_data.py
 
-  ift:
+  memory_tuning:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -125,6 +134,7 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
+      - run: pip install -r ./lamini-examples/requirements.txt
       - run: |
           cd ./lamini-examples/06_memory_tuning
           python tune.py
@@ -146,4 +156,7 @@ jobs:
           mkdir ~/.lamini/
           echo 'production:' >> ~/.lamini/configure.yaml
           echo '  key: ${{ secrets.PRODUCTION_TOKEN }}' >> ~/.lamini/configure.yaml
-      - run: ./lamini-examples/10_json_output/scripts/run_llm_json.sh
+      - run: pip install -r ./lamini-examples/requirements.txt
+      - run: |
+          cd ./lamini-examples/10_json_output
+          python llm_json.py

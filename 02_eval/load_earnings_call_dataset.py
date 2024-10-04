@@ -5,7 +5,7 @@ import random
 
 
 class EarningsCallsExample:
-    """ 
+    """
     A class holding the id, prompt, and formatting of queries
     for the Earnings Call examples dataset. This class is intended
     to be used within a Dataset object to format lines from a
@@ -196,7 +196,7 @@ class EarningsCallsExample:
         }
 
     def format_response(self, response: Dict[str, Any]) -> Dict[str, Any]:
-        """ Response dictionary formatting 
+        """ Response dictionary formatting
 
         Parameters
         ----------
@@ -247,7 +247,7 @@ class EarningsCallsExample:
         return prompt
 
 class EarningsCallsDataset:
-    """ 
+    """
     A Dataset handler for iteration within async processing as
     well as output type formatting for Lamini generate calls.
 
@@ -350,6 +350,6 @@ def load_earnings_call_dataset() -> EarningsCallsDataset:
         Object to handle async loading and output types
     """
 
-    path = "/app/lamini-earnings-sdk/data/earnings_calls.jsonl"
+    path = "../data/earnings_calls.jsonl"
 
     return EarningsCallsDataset(path)

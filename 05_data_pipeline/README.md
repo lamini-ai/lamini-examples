@@ -22,7 +22,8 @@ be a financial analyst, and ask relevant questions, and answer them using the
 source text.
 
 ```bash
-./scripts/generate-data.sh
+cd 05_data_pipeline
+python3 generate_data.py
 ```
 
 We are only generating QA for the first line for this example since the transcript is massive.

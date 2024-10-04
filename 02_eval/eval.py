@@ -191,7 +191,7 @@ def save_results(results: List[PromptObject], args: Namespace) -> None:
     None
     """
 
-    base_path = "/app/lamini-earnings-sdk/data/results"
+    base_path = "../data/results"
     experiment_name = f"{args.data}_{args.model}".replace("/", "_")
 
     if not os.path.exists(base_path):

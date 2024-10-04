@@ -289,7 +289,7 @@ async def load_earnings_calls() -> AsyncGenerator[PromptObject, None]:
         Constructed prompt object from a single line within the test set.
     """
 
-    path = "/app/lamini-earnings-sdk/data/test_set_transcripts.jsonl"
+    path = "../data/test_set_transcripts.jsonl"
 
     with jsonlines.open(path) as reader:
         # Here we only read the 1st line from the .jsonl file.
@@ -310,7 +310,7 @@ async def save_answers(answers: Generator[PromptObject, None, None]) -> None:
     None
     """
 
-    path = "/app/lamini-earnings-sdk/data/results/generated_q_a.jsonl"
+    path = "../data/results/generated_q_a.jsonl"
 
     with jsonlines.open(path, "w") as writer:
         pbar = tqdm(desc="Saving answers", unit=" answers")

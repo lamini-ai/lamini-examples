@@ -19,7 +19,7 @@ def main() -> None:
 
     parser = argparse.ArgumentParser(description="Lamini training script.")
     parser.add_argument('--dataset-path', type=str,
-                        default="generated_q_a.jsonl",
+                        default="../data/results/generated_q_a.jsonl",
                         help='Path to the training dataset')
     args = parser.parse_args()
 
