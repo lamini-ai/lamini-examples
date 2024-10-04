@@ -1,4 +1,4 @@
-name: Test examples
+name: Run examples
 on:
   workflow_call:
     inputs:
@@ -52,7 +52,7 @@ jobs:
         run: |
           echo LAMINI_API_URL=${{ inputs.api_url }} >>  ${GITHUB_ENV}
           echo LAMINI_API_KEY=${{ secrets.api_key }} >>  ${GITHUB_ENV}
-      - run: ./lamini-examples/02_eval/scripts/eval.sh
+      - run: ./lamini-examples/02_eval/scripts/eval.sh --env-file ${GITHUB_ENV}
 
   prompt_tuning:
     runs-on: ubuntu-latest
@@ -71,7 +71,7 @@ jobs:
         run: |
           echo LAMINI_API_URL=${{ inputs.api_url }} >>  ${GITHUB_ENV}
           echo LAMINI_API_KEY=${{ secrets.api_key }} >>  ${GITHUB_ENV}
-      - run: ./lamini-examples/03_prompt_tuning/scripts/prompt_tune.sh
+      - run: ./lamini-examples/03_prompt_tuning/scripts/prompt_tune.sh --env-file ${GITHUB_ENV}
 
   rag_tuning:
     runs-on: ubuntu-latest
@@ -112,7 +112,7 @@ jobs:
         run: |
           echo LAMINI_API_URL=${{ inputs.api_url }} >>  ${GITHUB_ENV}
           echo LAMINI_API_KEY=${{ secrets.api_key }} >>  ${GITHUB_ENV}
-      - run: ./lamini-examples/05_data_pipeline/scripts/generate-data.sh
+      - run: ./lamini-examples/05_data_pipeline/scripts/generate-data.sh --env-file ${GITHUB_ENV}
 
   ift:
     runs-on: ubuntu-latest
@@ -131,7 +131,7 @@ jobs:
         run: |
           echo LAMINI_API_URL=${{ inputs.api_url }} >>  ${GITHUB_ENV}
           echo LAMINI_API_KEY=${{ secrets.api_key }} >>  ${GITHUB_ENV}
-      - run: ./lamini-examples/06_ift/scripts/train.sh
+      - run: ./lamini-examples/06_ift/scripts/train.sh --env-file ${GITHUB_ENV}
 
   json_output:
     runs-on: ubuntu-latest
@@ -150,4 +150,4 @@ jobs:
         run: |
           echo LAMINI_API_URL=${{ inputs.api_url }} >>  ${GITHUB_ENV}
           echo LAMINI_API_KEY=${{ secrets.api_key }} >>  ${GITHUB_ENV}
-      - run: ./lamini-examples/10_json_output/scripts/run_llm_json.sh
+      - run: ./lamini-examples/10_json_output/scripts/run_llm_json.sh --env-file ${GITHUB_ENV}
