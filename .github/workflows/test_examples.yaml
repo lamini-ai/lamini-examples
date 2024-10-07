@@ -10,8 +10,11 @@ on:
 
 jobs:
   tests:
-    uses: .github/workflows/run_examples.yaml
-    with:
-        api_url: "https://api.lamini.ai"
-    secrets:
-        api_key: ${{ secrets.PRODUCTION_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: .github/workflows/run_examples.yaml
+        with:
+            api_url: "https://api.lamini.ai"
+        secrets:
+            api_key: ${{ secrets.PRODUCTION_TOKEN }}
