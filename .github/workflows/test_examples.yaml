@@ -11,7 +11,7 @@ on:
 jobs:
   tests:
     # https://dev.to/n3wt0n/composite-actions-vs-reusable-workflows-what-is-the-difference-github-actions-11kd
-    uses: .github/workflows/run_examples.yaml
+    uses: ./.github/workflows/run_examples.yaml
     with:
         api_url: "https://api.lamini.ai"
     secrets:
