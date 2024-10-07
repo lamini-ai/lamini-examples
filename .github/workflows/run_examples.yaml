@@ -1,0 +1,168 @@
+name: Run examples
+on:
+  workflow_call:
+    inputs:
+      api_url:
+        description: "The URL of the Lamini API service"
+        required: true
+        type: string
+    secrets:
+      # Secrets cannot be passed as inputs. So we have to pass secrets separately.
+      api_key:
+        description: "The key of the Lamini API service"
+        required: true
+
+jobs:
+  llama3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: lamini-ai/lamini-examples
+          path: lamini-examples
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - name: Setup API endpoint
+        run: |
+          echo LAMINI_API_URL=${{ inputs.api_url }} >>  ${GITHUB_ENV}
+          echo LAMINI_API_KEY=${{ secrets.api_key }} >>  ${GITHUB_ENV}
+      - run: pip install -r ./lamini-examples/requirements.txt
+      - run: |
+          cd ./lamini-examples/01_llama3
+          python llama3.py
+
+  eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: lamini-ai/lamini-examples
+          path: lamini-examples
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - name: Setup API endpoint
+        run: |
+          echo LAMINI_API_URL=${{ inputs.api_url }} >>  ${GITHUB_ENV}
+          echo LAMINI_API_KEY=${{ secrets.api_key }} >>  ${GITHUB_ENV}
+      - run: pip install -r ./lamini-examples/requirements.txt
+      - run: |
+          cd ./lamini-examples/02_eval
+          python eval.py
+
+  prompt_tuning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: lamini-ai/lamini-examples
+          path: lamini-examples
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - name: Setup API endpoint
+        run: |
+          echo LAMINI_API_URL=${{ inputs.api_url }} >>  ${GITHUB_ENV}
+          echo LAMINI_API_KEY=${{ secrets.api_key }} >>  ${GITHUB_ENV}
+      - run: pip install -r ./lamini-examples/requirements.txt
+      - run: |
+          cd ./lamini-examples/03_prompt_tuning
+          python generate.py
+
+  rag_tuning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: lamini-ai/lamini-examples
+          path: lamini-examples
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - name: Setup API endpoint
+        run: |
+          echo LAMINI_API_URL=${{ inputs.api_url }} >>  ${GITHUB_ENV}
+          echo LAMINI_API_KEY=${{ secrets.api_key }} >>  ${GITHUB_ENV}
+      - run: pip install -r ./lamini-examples/requirements.txt
+      - run: |
+          cd ./lamini-examples/04_rag_tuning
+          python rag.py
+
+  data_pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: lamini-ai/lamini-examples
+          path: lamini-examples
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - name: Setup API endpoint
+        run: |
+          echo LAMINI_API_URL=${{ inputs.api_url }} >>  ${GITHUB_ENV}
+          echo LAMINI_API_KEY=${{ secrets.api_key }} >>  ${GITHUB_ENV}
+      - run: pip install -r ./lamini-examples/requirements.txt
+      - run: |
+          cd ./lamini-examples/05_data_pipeline
+          python generate_data.py
+
+  memory_tuning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: lamini-ai/lamini-examples
+          path: lamini-examples
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - name: Setup API endpoint
+        run: |
+          echo LAMINI_API_URL=${{ inputs.api_url }} >>  ${GITHUB_ENV}
+          echo LAMINI_API_KEY=${{ secrets.api_key }} >>  ${GITHUB_ENV}
+      - run: pip install -r ./lamini-examples/requirements.txt
+      - run: |
+          cd ./lamini-examples/06_memory_tuning
+          python tune.py
+
+  json_output:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: lamini-ai/lamini-examples
+          path: lamini-examples
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - name: Setup API endpoint
+        run: |
+          echo LAMINI_API_URL=${{ inputs.api_url }} >>  ${GITHUB_ENV}
+          echo LAMINI_API_KEY=${{ secrets.api_key }} >>  ${GITHUB_ENV}
+      - run: pip install -r ./lamini-examples/requirements.txt
+      - run: |
+          cd ./lamini-examples/10_json_output
+          python llm_json.py
