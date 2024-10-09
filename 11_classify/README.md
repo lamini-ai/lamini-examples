@@ -9,9 +9,12 @@ Train a new classifier with just a prompt. No data needed -- but add data to boo
 In this example, we build a classifier to remove low quality training data.
 
 ```python
-from lamini import LaminiClassifier
+import lamini
 
-llm = LaminiClassifier()
+lamini.gate_pipeline_batch_completions = True
+
+# Instatiate Classifier object to pass prompts to the LLM on the compute server
+llm = lamini.LaminiClassifier()
 
 prompts={
   "correct": "Questions with correct answers.",
