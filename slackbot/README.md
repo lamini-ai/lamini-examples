@@ -53,7 +53,7 @@ Now mention your slackbot in a conversation.
 
 # Edit the prompt
 
-Edit the prompt in the [app.py](https://github.com/lamini-ai/lamini-sdk/blob/main/12_slackbot/slack/app.py#L211-L214).
+Edit the prompt in the [app.py](https://github.com/lamini-ai/lamini-sdk/blob/main/slackbot/slack/app.py#L211-L214).
 
 ---
 

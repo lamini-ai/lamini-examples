@@ -30,7 +30,7 @@ def main_event(client, event, say) -> None:
 
     Parameters
     ----------
-    
+
 
     Returns
     -------
@@ -103,13 +103,13 @@ def main_event(client, event, say) -> None:
 @app.event("reaction_added")
 def reaction_event(client: object, event: Dict[str, Any]) -> None:
     """ Handler for reaction events, handles up and down iterations
-    of the model count by the given reaction. 
+    of the model count by the given reaction.
 
     Parameters
     ----------
     client: object
         Slack bot client object
-    
+
     event: Dict[str, Any]
         Metadata information for the event
 
@@ -173,7 +173,7 @@ def reaction_remove_event(client: object, event: Dict[str, Any]) -> None:
     ----------
     client: object
         Slack bot client object
-    
+
     event: Dict[str, Any]
         Metadata information for the event
 
@@ -236,13 +236,13 @@ def get_count_command(ack: Callable, body: Dict[str, Any], respond: Callable) ->
     Parameters
     ----------
     ack: Callable
-        
+
     body: Dict[str, Any]
-        Metadata for the channle and model 
-    
+        Metadata for the channle and model
+
     respond: Callable
         Function for response generation
-    
+
     Returns
     -------
     None
@@ -336,7 +336,7 @@ def post_process(answer: str) -> str:
     ----------
     answer: str
         Answer from LLM
-    
+
     Returns
     -------
     clean_answer: str

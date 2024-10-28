@@ -34,8 +34,8 @@ These examples show effective tools for building LLMs. We strongly encourage fol
 
 Extra Examples:
 - [Meta Llama Memory Tuning 🔗](https://github.com/meta-llama/llama-recipes/tree/main/recipes/3p_integrations/lamini/text2sql_memory_tuning) - Embed facts into an LLM and improve factual accuracy on your data.
-- [JSON Output](10_json_output/README.md) - Extract structured output from an LLM, following a guaranteed JSON schema.
-- [Slackbot](12_slackbot/README.md) - Learn how to create a Slack bot that calls an LLM.
+- [JSON Output](json_output/README.md) - Extract structured output from an LLM, following a guaranteed JSON schema.
+- [Slackbot](slackbot/README.md) - Learn how to create a Slack bot that calls an LLM.
 
 ### Notes
 

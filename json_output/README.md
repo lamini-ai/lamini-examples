@@ -8,12 +8,12 @@ Structured outputs are required to combine LLM outputs with code, e.g. to call a
 
 In the past, engineers had to write custom parsers, which were complex, unreliable, and required re-engineering for each new model. With Lamini, you can easily get guaranteed json output.
 
-https://github.com/lamini-ai/lamini-examples/blob/main/10_json_output/llm_json.py#L1-L9
+https://github.com/lamini-ai/lamini-examples/blob/main/json_output/llm_json.py#L1-L9
 
 # Run with structured output
 
 ```bash
-cd 10_json_output
+cd json_output
 python3 llm_json.py
 ```
 
