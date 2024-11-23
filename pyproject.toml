@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "lamini-examples"
+version = "0.1.0"
+description = "Tutorials for using Lamini"
+authors = ["jdungan <johnadungan@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+lamini = "3.0.5"
+packaging = "^24.2"
+faiss-cpu = "^1.9.0.post1"
+jsonlines = "^4.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
