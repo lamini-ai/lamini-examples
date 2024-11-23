@@ -1,4 +1,4 @@
-lamini==3.0.5
+lamini==3.1.3
 packaging
 faiss-cpu
 jsonlines

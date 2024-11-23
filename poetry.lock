@@ -648,14 +648,13 @@ attrs = ">=19.2.0"
 
 [[package]]
 name = "lamini"
-version = "3.0.5"
+version = "3.1.3"
 description = "Build on large language models faster"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "lamini-3.0.5-5-py3-none-any.whl", hash = "sha256:2953c8bb35d42848c952790bfb2d2cbea12e95be0b2c1a23493e48300e832529"},
-    {file = "lamini-3.0.5-6-py3-none-any.whl", hash = "sha256:50c779892e3a49c74509320e4e2bb171b2bc406deecd9c18360efae4f6c61540"},
-    {file = "lamini-3.0.5-7-py3-none-any.whl", hash = "sha256:3c1cad22b02bb15a7ddf9a7835771c14eee024f848a26bae7f89871b55ed4bc4"},
+    {file = "lamini-3.1.3-11-py3-none-any.whl", hash = "sha256:80cb807a0f70f80bd336cf9cc84ef9e6d1248223163930da634f62970b599dcd"},
+    {file = "lamini-3.1.3-12-py3-none-any.whl", hash = "sha256:cc5d067870e6274e3d6a5eca217778852ac1fc9046125ef41dff4fc91c4adb39"},
 ]
 
 [package.dependencies]
@@ -1446,4 +1445,4 @@ propcache = ">=0.2.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "9c56a3fab4ad9732977234b069126b6a6a51a29fde0b9bc52a6db6029182a373"
+content-hash = "119e8420460a0cd9893c1ee41506a76bd3ff12d65a93ca5647be5e1d5432cbb7"

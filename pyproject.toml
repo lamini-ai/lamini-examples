@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-lamini = "3.0.5"
+lamini = "3.1.3"
 packaging = "^24.2"
 faiss-cpu = "^1.9.0.post1"
 jsonlines = "^4.0.0"
