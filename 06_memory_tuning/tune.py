@@ -30,7 +30,7 @@ def main() -> None:
     llm.tune(
         data_or_dataset_id=dataset,
         finetune_args={
-            "max_steps": 300,
+            "max_steps": 60,
             "early_stopping": False,
             "load_best_model_at_end": False,
         },
