@@ -14,13 +14,13 @@ from load_earnings_call_dataset import EarningsCallsDataset
 logger = logging.getLogger(__name__)
 
 
-def evaluate_model(dataset: EarningsCallsDataset) -> List[Any]:
+def evaluate_model(dataset: AsyncGenerator[PromptObject, None]) -> List[Any]:
     """ Run model evaluation with the provided dataset
 
     Parameters
     ----------
     dataset: EarningsCallsDataset
-        Object hanlding the loading and formatting of the jsonlines
+        Object handling the loading and formatting of the jsonlines
         example data
 
     args: Namespace
@@ -48,13 +48,13 @@ def evaluate_model(dataset: EarningsCallsDataset) -> List[Any]:
     return results
 
 
-async def run_evaluation_pipeline(dataset: EarningsCallsDataset) -> List[Any]:
+async def run_evaluation_pipeline(dataset: AsyncGenerator[PromptObject, None]) -> List[Any]:
     """ Run model evaluation with the provided dataset
 
     Parameters
     ----------
     dataset: EarningsCallsDataset
-        Object hanlding the loading and formatting of the jsonlines
+        Object handling the loading and formatting of the jsonlines
         example data
 
     Returns

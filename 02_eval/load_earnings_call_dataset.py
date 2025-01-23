@@ -248,8 +248,8 @@ class EarningsCallsExample:
 
 class EarningsCallsDataset:
     """
-    A Dataset handler for iteration within async processing as
-    well as output type formatting for Lamini generate calls.
+    A Dataset handler for iteration as well as output type formatting for
+    Lamini generate calls.
 
     Parameters
     ----------
@@ -347,7 +347,7 @@ def load_earnings_call_dataset() -> EarningsCallsDataset:
     Returns
     -------
     EarningsCallsDataset
-        Object to handle async loading and output types
+        Object to handle loading and output types
     """
 
     path = "../data/earnings_calls.jsonl"
