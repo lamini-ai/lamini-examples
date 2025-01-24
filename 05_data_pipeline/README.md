@@ -93,7 +93,7 @@ https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a74
 ### preprocess & postprocess
 
 One can define their own `preprocess()` to transform an `PromptObject` of a `GenerationNode` before passing it
-to remote LLM inference API. Additionally, `postprocess()` to transfrom the result from LLM inference API.
+to remote LLM inference API. Additionally, `postprocess()` to transform the result from LLM inference API.
 
 In this example, `QuestionGenerator` has its own `preprocess()` & `postprocess()`:
 
@@ -108,7 +108,7 @@ https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a74
 ## Saving results
 
 The output of the final `GenerationNode` is an `AsyncGenerator` that should be saved somewhere.
-This is done in `save_answers()`, which uses `async for` to iterator through the results,
+This is done in `save_answers()`, which uses `async for` to iterate through the results,
 and write them into an output file.
 
 https://github.com/lamini-ai/lamini-examples/blob/70accea931ce666e3d1ca0b1609a745f085a7b70/05_data_pipeline/generate_data.py#L129-L145

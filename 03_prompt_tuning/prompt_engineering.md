@@ -177,7 +177,7 @@ _Coming soon: results and examples showing what happens when parts of prompt are
 
 A prompt template is like a standardized format for asking questions or providing input to the model. It helps the model understand the context and type of information you're seeking, improving the chances of getting relevant and accurate responses.
 
-WARNING.  Models are trained to assume specifc prompt template syntax.  If you forget the prompt template, it will make the model's answers much lower quality.
+WARNING.  Models are trained to assume specific prompt template syntax.  If you forget the prompt template, it will make the model's answers much lower quality.
 
 For example, Llama 3 usees the following template,
 where we replace `{system_prompt}` with the system prompt and
@@ -339,7 +339,7 @@ You may get comparable responses irrespective of where the constraints are posit
 
 ## Reducing Hallucinations
 
-Hallucinations in language models refer to the generation of incorrect or fictional information that is not present in the training data.
+Hallucinations in language models refers to the generation of incorrect or fictional information that is not present in the training data.
 While achieving complete prevention is inherently difficult due to the dynamic and complex nature of natural language, there are strategies for effectively reducing hallucinations through prompt engineering.
 
 ### Use Clear and Direct Language
@@ -347,7 +347,7 @@ While achieving complete prevention is inherently difficult due to the dynamic a
 Clear and direct language in prompt engineering enhances model understanding, reduces ambiguity, and improves overall communication.
 It is advisable to avoid jargon, slang, ambiguous language, and overly complex terms.
 
-For example, the first prompt below is ambigous, while the second prompt clearly
+For example, the first prompt below is ambiguous, while the second prompt clearly
 instructs the model to perform a specific task.
 
 :x: `"Too much diet cola."`
@@ -464,7 +464,7 @@ print(answer)
 ```
 
 Behind the scenes, `Lamini` automatically wraps the user and system prompts
-in model prompt template. The default system prompt is model's recommended system prompt.
+in model prompt template. The default system prompt is the model's recommended system prompt.
 
 ```
 Always assist with care, respect, and truth. Respond with utmost utility yet securely. Avoid harmful, unethical, prejudiced, or negative content. Ensure replies promote fairness and positivity.
