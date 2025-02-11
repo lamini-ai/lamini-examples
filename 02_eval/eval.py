@@ -131,12 +131,12 @@ def setup_logging(args: Namespace) -> None:
         logging.root.removeHandler(handler)
 
     logging.basicConfig(
-        level=logging.INFO,
+        level=logging.WARNING,
         format="%(asctime)s [%(levelname)s] %(message)s",
         handlers=[logging.StreamHandler()],
     )
 
-    logging.info(f"Evaluating model {args.model} on dataset {args.data}")
+    logging.warning(f"Evaluating model {args.model} on dataset {args.data}")
 
 
 def load_dataset(args: Namespace) -> EarningsCallsDataset:
